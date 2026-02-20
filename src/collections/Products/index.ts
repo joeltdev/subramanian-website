@@ -24,6 +24,13 @@ export const Products: CollectionConfig = {
     useAsTitle: 'name',
     defaultColumns: ['name', 'productCode', 'category', 'updatedAt'],
   },
+  versions: {
+    drafts: {
+      autosave: {
+        interval: 1000,
+      },
+    },
+  },
   fields: [
     {
       name: 'name',

@@ -18,14 +18,19 @@ export const ProductCategories: CollectionConfig = {
     useAsTitle: 'name',
     defaultColumns: ['name', 'slug', 'parent', 'updatedAt'],
   },
+  versions: {
+    drafts: {
+      autosave: {
+        interval: 1000,
+      },
+    },
+  },
   fields: [
     {
       name: 'name',
       type: 'text',
       required: true,
     },
-    // slugField defaults useAsSlug to 'title'; override to 'name'.
-    // position: undefined keeps it in the main form body (not sidebar).
     slugField({
       useAsSlug: 'name',
       position: undefined,
