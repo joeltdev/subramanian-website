@@ -16,27 +16,23 @@ export const hero: Field = {
     {
       name: 'type',
       type: 'select',
-      defaultValue: 'lowImpact',
+      defaultValue: 'section1',
       label: 'Type',
       options: [
-        {
-          label: 'None',
-          value: 'none',
-        },
-        {
-          label: 'High Impact',
-          value: 'highImpact',
-        },
-        {
-          label: 'Medium Impact',
-          value: 'mediumImpact',
-        },
-        {
-          label: 'Low Impact',
-          value: 'lowImpact',
-        },
+        { label: 'None', value: 'none' },
+        { label: 'Centered Animated', value: 'section1' },
+        { label: 'Left Aligned Animated', value: 'section2' },
       ],
       required: true,
+    },
+    {
+      name: 'badgeLabel',
+      type: 'text',
+      admin: {
+        description:
+          'Optional announcement badge shown above the heading (e.g. "Introducing our new feature")',
+        condition: (_, { type } = {}) => type === 'section1',
+      },
     },
     {
       name: 'richText',
@@ -59,13 +55,13 @@ export const hero: Field = {
       },
     }),
     {
-      name: 'media',
+      name: 'mediaPreview',
       type: 'upload',
-      admin: {
-        condition: (_, { type } = {}) => ['highImpact', 'mediumImpact'].includes(type),
-      },
       relationTo: 'media',
-      required: true,
+      admin: {
+        description: 'App screenshot or preview image shown below the hero text',
+        condition: (_, { type } = {}) => ['section1', 'section2'].includes(type),
+      },
     },
   ],
   label: false,

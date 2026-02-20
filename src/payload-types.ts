@@ -162,7 +162,11 @@ export interface Page {
   id: number;
   title: string;
   hero: {
-    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
+    type: 'none' | 'section1' | 'section2';
+    /**
+     * Optional announcement badge shown above the heading (e.g. "Introducing our new feature")
+     */
+    badgeLabel?: string | null;
     richText?: {
       root: {
         type: string;
@@ -202,7 +206,10 @@ export interface Page {
           id?: string | null;
         }[]
       | null;
-    media?: (number | null) | Media;
+    /**
+     * App screenshot or preview image shown below the hero text
+     */
+    mediaPreview?: (number | null) | Media;
   };
   layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[];
   meta?: {
@@ -1251,6 +1258,7 @@ export interface PagesSelect<T extends boolean = true> {
     | T
     | {
         type?: T;
+        badgeLabel?: T;
         richText?: T;
         links?:
           | T
@@ -1267,7 +1275,7 @@ export interface PagesSelect<T extends boolean = true> {
                   };
               id?: T;
             };
-        media?: T;
+        mediaPreview?: T;
       };
   layout?:
     | T
