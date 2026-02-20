@@ -791,11 +791,6 @@ export interface Form {
 export interface ProductCategory {
   id: number;
   name: string;
-  /**
-   * When enabled, the slug will auto-generate from the title field on save and autosave.
-   */
-  generateSlug?: boolean | null;
-  slug: string;
   description?: string | null;
   image?: (number | null) | Media;
   /**
@@ -806,6 +801,19 @@ export interface ProductCategory {
    * Display order among siblings at the same level. Lower = first.
    */
   sortOrder?: number | null;
+  meta?: {
+    title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
+    description?: string | null;
+  };
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
   parent?: (number | null) | ProductCategory;
   breadcrumbs?:
     | {
@@ -915,6 +923,14 @@ export interface Product {
     };
     [k: string]: unknown;
   } | null;
+  meta?: {
+    title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
+    description?: string | null;
+  };
   /**
    * EAN / Barcode
    */
@@ -1534,12 +1550,19 @@ export interface UsersSelect<T extends boolean = true> {
  */
 export interface ProductCategoriesSelect<T extends boolean = true> {
   name?: T;
-  generateSlug?: T;
-  slug?: T;
   description?: T;
   image?: T;
   color?: T;
   sortOrder?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        image?: T;
+        description?: T;
+      };
+  generateSlug?: T;
+  slug?: T;
   parent?: T;
   breadcrumbs?:
     | T
@@ -1592,6 +1615,13 @@ export interface ProductsSelect<T extends boolean = true> {
   productVideo?: T;
   threeDModel?: T;
   technicalParameters?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        image?: T;
+        description?: T;
+      };
   ean?: T;
   productCode?: T;
   category?: T;

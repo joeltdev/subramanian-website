@@ -3,6 +3,13 @@ import type { CollectionConfig } from 'payload'
 import { anyone } from '../access/anyone'
 import { authenticated } from '../access/authenticated'
 import { slugField } from 'payload'
+import {
+  MetaDescriptionField,
+  MetaImageField,
+  MetaTitleField,
+  OverviewField,
+  PreviewField,
+} from '@payloadcms/plugin-seo/fields'
 
 export const ProductCategories: CollectionConfig = {
   slug: 'product-categories',
@@ -31,35 +38,64 @@ export const ProductCategories: CollectionConfig = {
       type: 'text',
       required: true,
     },
+    {
+      type: 'tabs',
+      tabs: [
+        {
+          label: 'Details',
+          fields: [
+            {
+              name: 'description',
+              type: 'text',
+            },
+            {
+              name: 'image',
+              type: 'upload',
+              relationTo: 'media',
+            },
+            {
+              name: 'color',
+              type: 'text',
+              admin: {
+                description: 'Hex color code, e.g. #3B82F6',
+              },
+            },
+            {
+              name: 'sortOrder',
+              type: 'number',
+              min: 0,
+              admin: {
+                description: 'Display order among siblings at the same level. Lower = first.',
+                step: 1,
+              },
+            },
+          ],
+        },
+        {
+          name: 'meta',
+          label: 'SEO',
+          fields: [
+            OverviewField({
+              titlePath: 'meta.title',
+              descriptionPath: 'meta.description',
+              imagePath: 'meta.image',
+            }),
+            MetaTitleField({ hasGenerateFn: true }),
+            MetaImageField({ relationTo: 'media' }),
+            MetaDescriptionField({}),
+            PreviewField({
+              hasGenerateFn: true,
+              titlePath: 'meta.title',
+              descriptionPath: 'meta.description',
+            }),
+          ],
+        },
+      ],
+    },
     slugField({
       useAsSlug: 'name',
       position: undefined,
     }),
-    {
-      name: 'description',
-      type: 'text',
-    },
-    {
-      name: 'image',
-      type: 'upload',
-      relationTo: 'media',
-    },
-    {
-      name: 'color',
-      type: 'text',
-      admin: {
-        description: 'Hex color code, e.g. #3B82F6',
-      },
-    },
-    {
-      name: 'sortOrder',
-      type: 'number',
-      min: 0,
-      admin: {
-        description: 'Display order among siblings at the same level. Lower = first.',
-        step: 1,
-      },
-    },
     // NOTE: 'parent' and 'breadcrumbs' fields are injected automatically
     // by nestedDocsPlugin at startup. Do not define them here.
   ],

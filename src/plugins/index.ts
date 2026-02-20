@@ -14,13 +14,24 @@ import { Page, Post } from '@/payload-types'
 import { getServerSideURL } from '@/utilities/getURL'
 
 const generateTitle: GenerateTitle<Post | Page> = ({ doc }) => {
-  return doc?.title ? `${doc.title} | Payload Website Template` : 'Payload Website Template'
+  const label = doc?.title ?? (doc as unknown as { name?: string })?.name
+  return label ? `${label} | Payload Website Template` : 'Payload Website Template'
 }
 
-const generateURL: GenerateURL<Post | Page> = ({ doc }) => {
+const generateURL: GenerateURL<Post | Page> = ({ doc, collectionConfig }) => {
   const url = getServerSideURL()
+  const slug = doc?.slug as string | undefined
 
-  return doc?.slug ? `${url}/${doc.slug}` : url
+  if (!slug) return url
+
+  switch (collectionConfig?.slug) {
+    case 'products':
+      return `${url}/products/${slug}`
+    case 'product-categories':
+      return `${url}/product-categories/${slug}`
+    default:
+      return `${url}/${slug}`
+  }
 }
 
 export const plugins: Plugin[] = [
