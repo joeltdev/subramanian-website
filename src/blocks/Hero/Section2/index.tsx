@@ -6,8 +6,9 @@ import { CMSLink } from '@/components/Link'
 import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
 import { AnimatedGroup } from '@/components/ui/animated-group'
+import type { Variants } from 'motion/react'
 
-const transitionVariants = {
+const transitionVariants: { container?: Variants; item?: Variants } = {
   item: {
     hidden: { opacity: 0, filter: 'blur(12px)', y: 12 },
     visible: {
