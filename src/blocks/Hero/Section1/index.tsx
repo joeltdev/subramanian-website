@@ -4,6 +4,7 @@ import { ArrowRight } from 'lucide-react'
 
 import type { Page } from '@/payload-types'
 import { CMSLink } from '@/components/Link'
+import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
 import { AnimatedGroup } from '@/components/ui/animated-group'
 

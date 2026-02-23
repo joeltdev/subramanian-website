@@ -35,7 +35,7 @@ export const Section2Hero: React.FC<Page['hero']> = ({ links, mediaPreview, rich
         <div className="relative pt-24">
           <div className="absolute inset-0 -z-10 size-full [background:radial-gradient(125%_125%_at_50%_100%,transparent_0%,var(--color-background)_75%)]" />
 
-          <div className="mx-auto max-w-5xl px-6">
+          <div className="mx-auto max-w-7xl px-6">
             <div className="sm:mx-auto lg:mr-auto lg:mt-0">
               {/* Rich text content — left aligned */}
               {richText && (
