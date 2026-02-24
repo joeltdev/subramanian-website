@@ -8,6 +8,9 @@ import { ContentBlock } from '@/blocks/Content/Component'
 import { FormBlock } from '@/blocks/Form/Component'
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { LogoCloudBlock } from '@/blocks/LogoCloud/Component'
+import { FeatureCardsBlock } from '@/blocks/FeatureCards/Component'
+import { FeatureShowcaseBlock } from '@/blocks/FeatureShowcase/Component'
+import { FeatureBentoBlock } from '@/blocks/FeatureBento/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -16,6 +19,9 @@ const blockComponents = {
   formBlock: FormBlock,
   mediaBlock: MediaBlock,
   logoCloud: LogoCloudBlock,
+  featureCards: FeatureCardsBlock,
+  featureShowcase: FeatureShowcaseBlock,
+  featureBento: FeatureBentoBlock,
 }
 
 export const RenderBlocks: React.FC<{

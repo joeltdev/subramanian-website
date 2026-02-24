@@ -211,7 +211,17 @@ export interface Page {
      */
     mediaPreview?: (number | null) | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock | LogoCloudBlock)[];
+  layout: (
+    | CallToActionBlock
+    | ContentBlock
+    | MediaBlock
+    | ArchiveBlock
+    | FormBlock
+    | LogoCloudBlock
+    | FeatureCardsBlock
+    | FeatureShowcaseBlock
+    | FeatureBentoBlock
+  )[];
   meta?: {
     title?: string | null;
     /**
@@ -813,6 +823,433 @@ export interface LogoCloudBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeatureCardsBlock".
+ */
+export interface FeatureCardsBlock {
+  variant: 'floating' | 'outlined' | 'grid';
+  /**
+   * Section heading and supporting text — e.g. 'Smart automation for modern buildings'
+   */
+  intro?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  items?:
+    | {
+        icon?:
+          | (
+              | 'Activity'
+              | 'BarChart'
+              | 'Bolt'
+              | 'ChartBarIncreasing'
+              | 'CheckCircle'
+              | 'Cloud'
+              | 'Code'
+              | 'Cpu'
+              | 'Database'
+              | 'Fingerprint'
+              | 'Globe'
+              | 'IdCard'
+              | 'Layers'
+              | 'Lock'
+              | 'Map'
+              | 'MessageCircle'
+              | 'Pencil'
+              | 'RefreshCw'
+              | 'Rocket'
+              | 'Settings'
+              | 'Settings2'
+              | 'Shield'
+              | 'Sparkles'
+              | 'Star'
+              | 'Users'
+              | 'Zap'
+            )
+          | null;
+        /**
+         * Short feature label — e.g. 'Remote Control', 'KNX Integration', 'Energy Monitoring'
+         */
+        title: string;
+        /**
+         * One or two sentences — e.g. 'Manage every INELS device from a single dashboard, anywhere in the world.'
+         */
+        description?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'featureCards';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeatureShowcaseBlock".
+ */
+export interface FeatureShowcaseBlock {
+  variant: 'split' | 'perspective';
+  /**
+   * Section heading and supporting text — e.g. 'Smart automation for modern buildings'
+   */
+  intro?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  items?:
+    | {
+        icon?:
+          | (
+              | 'Activity'
+              | 'BarChart'
+              | 'Bolt'
+              | 'ChartBarIncreasing'
+              | 'CheckCircle'
+              | 'Cloud'
+              | 'Code'
+              | 'Cpu'
+              | 'Database'
+              | 'Fingerprint'
+              | 'Globe'
+              | 'IdCard'
+              | 'Layers'
+              | 'Lock'
+              | 'Map'
+              | 'MessageCircle'
+              | 'Pencil'
+              | 'RefreshCw'
+              | 'Rocket'
+              | 'Settings'
+              | 'Settings2'
+              | 'Shield'
+              | 'Sparkles'
+              | 'Star'
+              | 'Users'
+              | 'Zap'
+            )
+          | null;
+        /**
+         * Short feature label — e.g. 'Remote Control', 'KNX Integration', 'Energy Monitoring'
+         */
+        title: string;
+        /**
+         * One or two sentences — e.g. 'Manage every INELS device from a single dashboard, anywhere in the world.'
+         */
+        description?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Main foreground image (overlaid on top)
+   */
+  imageForeground?: (number | null) | Media;
+  /**
+   * Background shown in dark mode
+   */
+  imageDark?: (number | null) | Media;
+  /**
+   * Background shown in light mode
+   */
+  imageLight?: (number | null) | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'featureShowcase';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeatureBentoBlock".
+ */
+export interface FeatureBentoBlock {
+  variant: 'stats' | 'metrics' | 'panels' | 'accordion';
+  /**
+   * Key metric to highlight — e.g. '99.9% Uptime', '10 000+ Connected Devices', '30% Energy Savings'
+   */
+  stat?: string | null;
+  /**
+   * Section heading and supporting text — e.g. 'Smart automation for modern buildings'
+   */
+  intro?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  items?:
+    | {
+        icon?:
+          | (
+              | 'Activity'
+              | 'BarChart'
+              | 'Bolt'
+              | 'ChartBarIncreasing'
+              | 'CheckCircle'
+              | 'Cloud'
+              | 'Code'
+              | 'Cpu'
+              | 'Database'
+              | 'Fingerprint'
+              | 'Globe'
+              | 'IdCard'
+              | 'Layers'
+              | 'Lock'
+              | 'Map'
+              | 'MessageCircle'
+              | 'Pencil'
+              | 'RefreshCw'
+              | 'Rocket'
+              | 'Settings'
+              | 'Settings2'
+              | 'Shield'
+              | 'Sparkles'
+              | 'Star'
+              | 'Users'
+              | 'Zap'
+            )
+          | null;
+        /**
+         * Short feature label — e.g. 'Remote Control', 'KNX Integration', 'Energy Monitoring'
+         */
+        title: string;
+        /**
+         * One or two sentences — e.g. 'Manage every INELS device from a single dashboard, anywhere in the world.'
+         */
+        description?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Up to 3 panels shown beside map / chart decorations
+   */
+  panelItems?:
+    | {
+        icon?:
+          | (
+              | 'Activity'
+              | 'BarChart'
+              | 'Bolt'
+              | 'ChartBarIncreasing'
+              | 'CheckCircle'
+              | 'Cloud'
+              | 'Code'
+              | 'Cpu'
+              | 'Database'
+              | 'Fingerprint'
+              | 'Globe'
+              | 'IdCard'
+              | 'Layers'
+              | 'Lock'
+              | 'Map'
+              | 'MessageCircle'
+              | 'Pencil'
+              | 'RefreshCw'
+              | 'Rocket'
+              | 'Settings'
+              | 'Settings2'
+              | 'Shield'
+              | 'Sparkles'
+              | 'Star'
+              | 'Users'
+              | 'Zap'
+            )
+          | null;
+        /**
+         * Badge text — e.g. 'Real-time device tracking'
+         */
+        label: string;
+        /**
+         * Panel heading — e.g. 'Live device status across all sites'
+         */
+        heading?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        id?: string | null;
+      }[]
+    | null;
+  imagePanels?:
+    | {
+        /**
+         * Short feature label — e.g. 'Remote Control', 'KNX Integration'
+         */
+        title: string;
+        /**
+         * One or two sentences — e.g. 'Manage every INELS device from a single dashboard, anywhere in the world.'
+         */
+        description?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        /**
+         * Image shown in dark mode
+         */
+        imageDark?: (number | null) | Media;
+        /**
+         * Image shown in light mode
+         */
+        imageLight?: (number | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  accordionItems?:
+    | {
+        icon?:
+          | (
+              | 'Activity'
+              | 'BarChart'
+              | 'Bolt'
+              | 'ChartBarIncreasing'
+              | 'CheckCircle'
+              | 'Cloud'
+              | 'Code'
+              | 'Cpu'
+              | 'Database'
+              | 'Fingerprint'
+              | 'Globe'
+              | 'IdCard'
+              | 'Layers'
+              | 'Lock'
+              | 'Map'
+              | 'MessageCircle'
+              | 'Pencil'
+              | 'RefreshCw'
+              | 'Rocket'
+              | 'Settings'
+              | 'Settings2'
+              | 'Shield'
+              | 'Sparkles'
+              | 'Star'
+              | 'Users'
+              | 'Zap'
+            )
+          | null;
+        /**
+         * Short feature label — e.g. 'Remote Control', 'KNX Integration'
+         */
+        title: string;
+        /**
+         * One or two sentences — e.g. 'Manage every INELS device from a single dashboard, anywhere in the world.'
+         */
+        description?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        /**
+         * Preview image shown when this item is active
+         */
+        image?: (number | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'featureBento';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "product-categories".
  */
 export interface ProductCategory {
@@ -1306,6 +1743,9 @@ export interface PagesSelect<T extends boolean = true> {
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
         logoCloud?: T | LogoCloudBlockSelect<T>;
+        featureCards?: T | FeatureCardsBlockSelect<T>;
+        featureShowcase?: T | FeatureShowcaseBlockSelect<T>;
+        featureBento?: T | FeatureBentoBlockSelect<T>;
       };
   meta?:
     | T
@@ -1416,6 +1856,90 @@ export interface LogoCloudBlockSelect<T extends boolean = true> {
     | T
     | {
         logo?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeatureCardsBlock_select".
+ */
+export interface FeatureCardsBlockSelect<T extends boolean = true> {
+  variant?: T;
+  intro?: T;
+  items?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeatureShowcaseBlock_select".
+ */
+export interface FeatureShowcaseBlockSelect<T extends boolean = true> {
+  variant?: T;
+  intro?: T;
+  items?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  imageForeground?: T;
+  imageDark?: T;
+  imageLight?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeatureBentoBlock_select".
+ */
+export interface FeatureBentoBlockSelect<T extends boolean = true> {
+  variant?: T;
+  stat?: T;
+  intro?: T;
+  items?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  panelItems?:
+    | T
+    | {
+        icon?: T;
+        label?: T;
+        heading?: T;
+        id?: T;
+      };
+  imagePanels?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        imageDark?: T;
+        imageLight?: T;
+        id?: T;
+      };
+  accordionItems?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        image?: T;
         id?: T;
       };
   id?: T;
