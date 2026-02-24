@@ -211,7 +211,7 @@ export interface Page {
      */
     mediaPreview?: (number | null) | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[];
+  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock | LogoCloudBlock)[];
   meta?: {
     title?: string | null;
     /**
@@ -793,6 +793,26 @@ export interface Form {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "LogoCloudBlock".
+ */
+export interface LogoCloudBlock {
+  type: 'section1' | 'section3';
+  /**
+   * Label shown above or beside the logos (e.g. "Trusted by leading teams")
+   */
+  heading?: string | null;
+  logos?:
+    | {
+        logo: number | Media;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'logoCloud';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "product-categories".
  */
 export interface ProductCategory {
@@ -1285,6 +1305,7 @@ export interface PagesSelect<T extends boolean = true> {
         mediaBlock?: T | MediaBlockSelect<T>;
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
+        logoCloud?: T | LogoCloudBlockSelect<T>;
       };
   meta?:
     | T
@@ -1381,6 +1402,22 @@ export interface FormBlockSelect<T extends boolean = true> {
   form?: T;
   enableIntro?: T;
   introContent?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "LogoCloudBlock_select".
+ */
+export interface LogoCloudBlockSelect<T extends boolean = true> {
+  type?: T;
+  heading?: T;
+  logos?:
+    | T
+    | {
+        logo?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }
