@@ -26,7 +26,7 @@ export const OutlinedFeatureCards: React.FC<FeatureCardsBlock> = ({ intro, items
 
         {Array.isArray(items) && items.length > 0 && (
           <Card className="@min-4xl:max-w-full @min-4xl:grid-cols-3 @min-4xl:divide-x @min-4xl:divide-y-0 mx-auto mt-8 grid max-w-sm divide-y overflow-hidden shadow-zinc-950/5 *:text-center md:mt-16">
-            {items.map(({ id, icon, title, description }) => {
+            {items.map(({ id, icon, richText }) => {
               const Icon = icon ? iconMap[icon] : null
               return (
                 <div key={id} className="group shadow-zinc-950/5">
@@ -34,11 +34,10 @@ export const OutlinedFeatureCards: React.FC<FeatureCardsBlock> = ({ intro, items
                     <CardDecorator>
                       {Icon && <Icon className="size-6" aria-hidden />}
                     </CardDecorator>
-                    {title && <h3 className="mt-6 font-medium">{title}</h3>}
                   </CardHeader>
-                  {description && (
+                  {richText && (
                     <CardContent>
-                      <RichText data={description} enableGutter={false} />
+                      <RichText data={richText} enableGutter={false} />
                     </CardContent>
                   )}
                 </div>

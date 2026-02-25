@@ -221,6 +221,7 @@ export interface Page {
     | FeatureCardsBlock
     | FeatureShowcaseBlock
     | FeatureBentoBlock
+    | IntegrationsBlock
   )[];
   meta?: {
     title?: string | null;
@@ -878,13 +879,9 @@ export interface FeatureCardsBlock {
             )
           | null;
         /**
-         * Short feature label — e.g. 'Remote Control', 'KNX Integration', 'Energy Monitoring'
+         * Item heading and body — e.g. '### Remote Control\nManage every device from a single dashboard.'
          */
-        title: string;
-        /**
-         * One or two sentences — e.g. 'Manage every INELS device from a single dashboard, anywhere in the world.'
-         */
-        description?: {
+        richText?: {
           root: {
             type: string;
             children: {
@@ -963,13 +960,9 @@ export interface FeatureShowcaseBlock {
             )
           | null;
         /**
-         * Short feature label — e.g. 'Remote Control', 'KNX Integration', 'Energy Monitoring'
+         * Item heading and body — e.g. '### Remote Control\nManage every device from a single dashboard.'
          */
-        title: string;
-        /**
-         * One or two sentences — e.g. 'Manage every INELS device from a single dashboard, anywhere in the world.'
-         */
-        description?: {
+        richText?: {
           root: {
             type: string;
             children: {
@@ -1064,13 +1057,9 @@ export interface FeatureBentoBlock {
             )
           | null;
         /**
-         * Short feature label — e.g. 'Remote Control', 'KNX Integration', 'Energy Monitoring'
+         * Item heading and body — e.g. '### Remote Control\nManage every device from a single dashboard.'
          */
-        title: string;
-        /**
-         * One or two sentences — e.g. 'Manage every INELS device from a single dashboard, anywhere in the world.'
-         */
-        description?: {
+        richText?: {
           root: {
             type: string;
             children: {
@@ -1151,13 +1140,9 @@ export interface FeatureBentoBlock {
   imagePanels?:
     | {
         /**
-         * Short feature label — e.g. 'Remote Control', 'KNX Integration'
+         * Panel heading and body text
          */
-        title: string;
-        /**
-         * One or two sentences — e.g. 'Manage every INELS device from a single dashboard, anywhere in the world.'
-         */
-        description?: {
+        richText?: {
           root: {
             type: string;
             children: {
@@ -1216,13 +1201,13 @@ export interface FeatureBentoBlock {
             )
           | null;
         /**
-         * Short feature label — e.g. 'Remote Control', 'KNX Integration'
+         * Accordion trigger label — e.g. 'Remote Control'
          */
         title: string;
         /**
-         * One or two sentences — e.g. 'Manage every INELS device from a single dashboard, anywhere in the world.'
+         * Expanded body content for this accordion item
          */
-        description?: {
+        richText?: {
           root: {
             type: string;
             children: {
@@ -1247,6 +1232,110 @@ export interface FeatureBentoBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'featureBento';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IntegrationsBlock".
+ */
+export interface IntegrationsBlock {
+  variant: 'grid' | 'tiles' | 'slider';
+  /**
+   * Section heading and supporting text — e.g. "Integrate with your favorite tools"
+   */
+  intro?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  integrations?:
+    | {
+        /**
+         * Integration logo image (SVG or PNG recommended)
+         */
+        logo: number | Media;
+        /**
+         * Integration name and description — Grid Cards variant only
+         */
+        richText?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        /**
+         * "Learn more" link per card — Grid Cards variant only
+         */
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null);
+          url?: string | null;
+          label: string;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Brand logo shown in the center of the layout — Tiles and Slider variants
+   */
+  centerLogo?: (number | null) | Media;
+  /**
+   * Call-to-action button for the section — Tiles and Slider variants
+   */
+  links?:
+    | {
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null);
+          url?: string | null;
+          label: string;
+          /**
+           * Choose how the link should be rendered.
+           */
+          appearance?: ('default' | 'outline') | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'integrations';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1746,6 +1835,7 @@ export interface PagesSelect<T extends boolean = true> {
         featureCards?: T | FeatureCardsBlockSelect<T>;
         featureShowcase?: T | FeatureShowcaseBlockSelect<T>;
         featureBento?: T | FeatureBentoBlockSelect<T>;
+        integrations?: T | IntegrationsBlockSelect<T>;
       };
   meta?:
     | T
@@ -1872,8 +1962,7 @@ export interface FeatureCardsBlockSelect<T extends boolean = true> {
     | T
     | {
         icon?: T;
-        title?: T;
-        description?: T;
+        richText?: T;
         id?: T;
       };
   id?: T;
@@ -1890,8 +1979,7 @@ export interface FeatureShowcaseBlockSelect<T extends boolean = true> {
     | T
     | {
         icon?: T;
-        title?: T;
-        description?: T;
+        richText?: T;
         id?: T;
       };
   imageForeground?: T;
@@ -1912,8 +2000,7 @@ export interface FeatureBentoBlockSelect<T extends boolean = true> {
     | T
     | {
         icon?: T;
-        title?: T;
-        description?: T;
+        richText?: T;
         id?: T;
       };
   panelItems?:
@@ -1927,8 +2014,7 @@ export interface FeatureBentoBlockSelect<T extends boolean = true> {
   imagePanels?:
     | T
     | {
-        title?: T;
-        description?: T;
+        richText?: T;
         imageDark?: T;
         imageLight?: T;
         id?: T;
@@ -1938,8 +2024,50 @@ export interface FeatureBentoBlockSelect<T extends boolean = true> {
     | {
         icon?: T;
         title?: T;
-        description?: T;
+        richText?: T;
         image?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IntegrationsBlock_select".
+ */
+export interface IntegrationsBlockSelect<T extends boolean = true> {
+  variant?: T;
+  intro?: T;
+  integrations?:
+    | T
+    | {
+        logo?: T;
+        richText?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+            };
+        id?: T;
+      };
+  centerLogo?: T;
+  links?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+              appearance?: T;
+            };
         id?: T;
       };
   id?: T;

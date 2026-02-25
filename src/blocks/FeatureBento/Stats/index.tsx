@@ -31,7 +31,7 @@ export const StatsFeatureBento: React.FC<FeatureBentoBlock> = ({ stat, items }) 
                   </svg>
                   <span className="mx-auto block w-fit text-5xl font-semibold">{stat ?? '100%'}</span>
                 </div>
-                {card0?.title && <h2 className="mt-6 text-center text-3xl font-semibold">{card0.title}</h2>}
+                {card0?.richText && <RichText data={card0.richText} enableGutter={false} className="mt-6 text-center" />}
               </CardContent>
             </Card>
 
@@ -44,8 +44,7 @@ export const StatsFeatureBento: React.FC<FeatureBentoBlock> = ({ stat, items }) 
                   </svg>
                 </div>
                 <div className="relative z-10 mt-6 space-y-2 text-center">
-                  {card1?.title && <h2 className="text-lg font-medium">{card1.title}</h2>}
-                  {card1?.description && <RichText data={card1.description} enableGutter={false} />}
+                  {card1?.richText && <RichText data={card1.richText} enableGutter={false} />}
                 </div>
               </CardContent>
             </Card>
@@ -59,8 +58,7 @@ export const StatsFeatureBento: React.FC<FeatureBentoBlock> = ({ stat, items }) 
                   </svg>
                 </div>
                 <div className="relative z-10 mt-14 space-y-2 text-center">
-                  {card2?.title && <h2 className="text-lg font-medium">{card2.title}</h2>}
-                  {card2?.description && <RichText data={card2.description} enableGutter={false} />}
+                  {card2?.richText && <RichText data={card2.richText} enableGutter={false} />}
                 </div>
               </CardContent>
             </Card>
@@ -73,8 +71,7 @@ export const StatsFeatureBento: React.FC<FeatureBentoBlock> = ({ stat, items }) 
                     {Icon3 && <Icon3 className="m-auto size-5" />}
                   </div>
                   <div className="space-y-2">
-                    {card3?.title && <h2 className="text-lg font-medium">{card3.title}</h2>}
-                    {card3?.description && <RichText data={card3.description} enableGutter={false} />}
+                    {card3?.richText && <RichText data={card3.richText} enableGutter={false} />}
                   </div>
                 </div>
                 <div className="rounded-tl-(--radius) relative -mb-6 -mr-6 mt-6 h-fit border-l border-t p-6 py-6 sm:ml-6">
@@ -96,8 +93,7 @@ export const StatsFeatureBento: React.FC<FeatureBentoBlock> = ({ stat, items }) 
                     {Icon4 && <Icon4 className="m-auto size-6" />}
                   </div>
                   <div className="space-y-2">
-                    {card4?.title && <h2 className="text-lg font-medium">{card4.title}</h2>}
-                    {card4?.description && <RichText data={card4.description} enableGutter={false} />}
+                    {card4?.richText && <RichText data={card4.richText} enableGutter={false} />}
                   </div>
                 </div>
                 <div className="before:bg-(--color-border) relative mt-6 before:absolute before:inset-0 before:mx-auto before:w-px sm:-my-6 sm:-mr-6">

@@ -26,7 +26,7 @@ export const FloatingFeatureCards: React.FC<FeatureCardsBlock> = ({ intro, items
 
         {Array.isArray(items) && items.length > 0 && (
           <div className="@min-4xl:max-w-full @min-4xl:grid-cols-3 mx-auto mt-8 grid max-w-sm gap-6 [--color-background:var(--color-muted)] [--color-card:var(--color-muted)] *:text-center md:mt-16 dark:[--color-muted:var(--color-zinc-900)]">
-            {items.map(({ id, icon, title, description }) => {
+            {items.map(({ id, icon, richText }) => {
               const Icon = icon ? iconMap[icon] : null
               return (
                 <Card key={id} className="group border-0 shadow-none">
@@ -34,11 +34,10 @@ export const FloatingFeatureCards: React.FC<FeatureCardsBlock> = ({ intro, items
                     <CardDecorator>
                       {Icon && <Icon className="size-6" aria-hidden />}
                     </CardDecorator>
-                    {title && <h3 className="mt-6 font-medium">{title}</h3>}
                   </CardHeader>
-                  {description && (
+                  {richText && (
                     <CardContent>
-                      <RichText data={description} enableGutter={false} />
+                      <RichText data={richText} enableGutter={false} />
                     </CardContent>
                   )}
                 </Card>

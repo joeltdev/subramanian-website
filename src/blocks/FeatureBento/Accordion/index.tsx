@@ -48,8 +48,8 @@ export const AccordionFeatureBento: React.FC<FeatureBentoBlock> = ({
                     </div>
                   </AccordionTrigger>
                   <AccordionContent>
-                    {item.description && (
-                      <RichText data={item.description} enableGutter={false} />
+                    {item.richText && (
+                      <RichText data={item.richText} enableGutter={false} />
                     )}
                   </AccordionContent>
                 </AccordionItem>

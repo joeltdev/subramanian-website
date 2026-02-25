@@ -21,10 +21,7 @@ export const PanelsFeatureBento: React.FC<FeatureBentoBlock> = ({ imagePanels })
           <Card className="group overflow-hidden shadow-zinc-950/5 sm:col-span-3 sm:rounded-none sm:rounded-tl-xl">
             <CardHeader>
               <div className="md:p-6">
-                {p0?.title && <p className="font-medium">{p0.title}</p>}
-                {p0?.description && (
-                  <RichText data={p0.description} enableGutter={false} />
-                )}
+                {p0?.richText && <RichText data={p0.richText} enableGutter={false} />}
               </div>
             </CardHeader>
             {(p0?.imageDark || p0?.imageLight) && (
@@ -51,10 +48,10 @@ export const PanelsFeatureBento: React.FC<FeatureBentoBlock> = ({ imagePanels })
 
           {/* Card 2 – title + small image panel (col-span-2) */}
           <Card className="group overflow-hidden shadow-zinc-950/5 sm:col-span-2 sm:rounded-none sm:rounded-tr-xl">
-            {p1?.title && (
-              <p className="mx-auto my-6 max-w-md text-balance px-6 text-center text-lg font-semibold sm:text-2xl md:p-6">
-                {p1.title}
-              </p>
+            {p1?.richText && (
+              <div className="mx-auto my-6 max-w-md text-balance px-6 text-center md:p-6">
+                <RichText data={p1.richText} enableGutter={false} />
+              </div>
             )}
             {(p1?.imageDark || p1?.imageLight) && (
               <CardContent className="mt-auto h-fit">
@@ -82,10 +79,10 @@ export const PanelsFeatureBento: React.FC<FeatureBentoBlock> = ({ imagePanels })
 
           {/* Card 3 – title + keyboard shortcut decoration (col-span-2) */}
           <Card className="group p-6 shadow-zinc-950/5 sm:col-span-2 sm:rounded-none sm:rounded-bl-xl md:p-12">
-            {p2?.title && (
-              <p className="mx-auto mb-12 max-w-md text-balance text-center text-lg font-semibold sm:text-2xl">
-                {p2.title}
-              </p>
+            {p2?.richText && (
+              <div className="mx-auto mb-12 max-w-md text-balance text-center">
+                <RichText data={p2.richText} enableGutter={false} />
+              </div>
             )}
             <div aria-hidden className="flex justify-center gap-6">
               <div className="inset-shadow-sm dark:inset-shadow-white/5 bg-muted/35 relative flex aspect-square size-16 items-center rounded-[7px] border p-3 shadow-lg ring dark:shadow-white/5 dark:ring-black">
@@ -101,10 +98,7 @@ export const PanelsFeatureBento: React.FC<FeatureBentoBlock> = ({ imagePanels })
           {/* Card 4 – title + integration icons (col-span-3) */}
           <Card className="group relative shadow-zinc-950/5 sm:col-span-3 sm:rounded-none sm:rounded-br-xl">
             <CardHeader className="p-6 md:p-12">
-              {p3?.title && <p className="font-medium">{p3.title}</p>}
-              {p3?.description && (
-                <RichText data={p3.description} enableGutter={false} />
-              )}
+              {p3?.richText && <RichText data={p3.richText} enableGutter={false} />}
             </CardHeader>
             <CardContent className="relative h-fit px-6 pb-6 md:px-12 md:pb-12">
               <div aria-hidden className="grid grid-cols-4 gap-2 md:grid-cols-6">

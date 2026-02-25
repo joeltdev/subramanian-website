@@ -11,6 +11,19 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE TYPE "public"."enum_pages_blocks_content_columns_link_appearance" AS ENUM('default', 'outline');
   CREATE TYPE "public"."enum_pages_blocks_archive_populate_by" AS ENUM('collection', 'selection');
   CREATE TYPE "public"."enum_pages_blocks_archive_relation_to" AS ENUM('posts');
+  CREATE TYPE "public"."enum_pages_blocks_logo_cloud_type" AS ENUM('section1', 'section3');
+  CREATE TYPE "public"."enum_pages_blocks_feature_cards_items_icon" AS ENUM('Activity', 'BarChart', 'Bolt', 'ChartBarIncreasing', 'CheckCircle', 'Cloud', 'Code', 'Cpu', 'Database', 'Fingerprint', 'Globe', 'IdCard', 'Layers', 'Lock', 'Map', 'MessageCircle', 'Pencil', 'RefreshCw', 'Rocket', 'Settings', 'Settings2', 'Shield', 'Sparkles', 'Star', 'Users', 'Zap');
+  CREATE TYPE "public"."enum_pages_blocks_feature_cards_variant" AS ENUM('floating', 'outlined', 'grid');
+  CREATE TYPE "public"."enum_pages_blocks_feature_showcase_items_icon" AS ENUM('Activity', 'BarChart', 'Bolt', 'ChartBarIncreasing', 'CheckCircle', 'Cloud', 'Code', 'Cpu', 'Database', 'Fingerprint', 'Globe', 'IdCard', 'Layers', 'Lock', 'Map', 'MessageCircle', 'Pencil', 'RefreshCw', 'Rocket', 'Settings', 'Settings2', 'Shield', 'Sparkles', 'Star', 'Users', 'Zap');
+  CREATE TYPE "public"."enum_pages_blocks_feature_showcase_variant" AS ENUM('split', 'perspective');
+  CREATE TYPE "public"."enum_pages_blocks_feature_bento_items_icon" AS ENUM('Activity', 'BarChart', 'Bolt', 'ChartBarIncreasing', 'CheckCircle', 'Cloud', 'Code', 'Cpu', 'Database', 'Fingerprint', 'Globe', 'IdCard', 'Layers', 'Lock', 'Map', 'MessageCircle', 'Pencil', 'RefreshCw', 'Rocket', 'Settings', 'Settings2', 'Shield', 'Sparkles', 'Star', 'Users', 'Zap');
+  CREATE TYPE "public"."enum_pages_blocks_feature_bento_panel_items_icon" AS ENUM('Activity', 'BarChart', 'Bolt', 'ChartBarIncreasing', 'CheckCircle', 'Cloud', 'Code', 'Cpu', 'Database', 'Fingerprint', 'Globe', 'IdCard', 'Layers', 'Lock', 'Map', 'MessageCircle', 'Pencil', 'RefreshCw', 'Rocket', 'Settings', 'Settings2', 'Shield', 'Sparkles', 'Star', 'Users', 'Zap');
+  CREATE TYPE "public"."enum_pages_blocks_feature_bento_accordion_items_icon" AS ENUM('Activity', 'BarChart', 'Bolt', 'ChartBarIncreasing', 'CheckCircle', 'Cloud', 'Code', 'Cpu', 'Database', 'Fingerprint', 'Globe', 'IdCard', 'Layers', 'Lock', 'Map', 'MessageCircle', 'Pencil', 'RefreshCw', 'Rocket', 'Settings', 'Settings2', 'Shield', 'Sparkles', 'Star', 'Users', 'Zap');
+  CREATE TYPE "public"."enum_pages_blocks_feature_bento_variant" AS ENUM('stats', 'metrics', 'panels', 'accordion');
+  CREATE TYPE "public"."enum_pages_blocks_integrations_integrations_link_type" AS ENUM('reference', 'custom');
+  CREATE TYPE "public"."enum_pages_blocks_integrations_links_link_type" AS ENUM('reference', 'custom');
+  CREATE TYPE "public"."enum_pages_blocks_integrations_links_link_appearance" AS ENUM('default', 'outline');
+  CREATE TYPE "public"."enum_pages_blocks_integrations_variant" AS ENUM('grid', 'tiles', 'slider');
   CREATE TYPE "public"."enum_pages_hero_type" AS ENUM('none', 'section1', 'section2');
   CREATE TYPE "public"."enum_pages_status" AS ENUM('draft', 'published');
   CREATE TYPE "public"."enum__pages_v_version_hero_links_link_type" AS ENUM('reference', 'custom');
@@ -22,6 +35,19 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE TYPE "public"."enum__pages_v_blocks_content_columns_link_appearance" AS ENUM('default', 'outline');
   CREATE TYPE "public"."enum__pages_v_blocks_archive_populate_by" AS ENUM('collection', 'selection');
   CREATE TYPE "public"."enum__pages_v_blocks_archive_relation_to" AS ENUM('posts');
+  CREATE TYPE "public"."enum__pages_v_blocks_logo_cloud_type" AS ENUM('section1', 'section3');
+  CREATE TYPE "public"."enum__pages_v_blocks_feature_cards_items_icon" AS ENUM('Activity', 'BarChart', 'Bolt', 'ChartBarIncreasing', 'CheckCircle', 'Cloud', 'Code', 'Cpu', 'Database', 'Fingerprint', 'Globe', 'IdCard', 'Layers', 'Lock', 'Map', 'MessageCircle', 'Pencil', 'RefreshCw', 'Rocket', 'Settings', 'Settings2', 'Shield', 'Sparkles', 'Star', 'Users', 'Zap');
+  CREATE TYPE "public"."enum__pages_v_blocks_feature_cards_variant" AS ENUM('floating', 'outlined', 'grid');
+  CREATE TYPE "public"."enum__pages_v_blocks_feature_showcase_items_icon" AS ENUM('Activity', 'BarChart', 'Bolt', 'ChartBarIncreasing', 'CheckCircle', 'Cloud', 'Code', 'Cpu', 'Database', 'Fingerprint', 'Globe', 'IdCard', 'Layers', 'Lock', 'Map', 'MessageCircle', 'Pencil', 'RefreshCw', 'Rocket', 'Settings', 'Settings2', 'Shield', 'Sparkles', 'Star', 'Users', 'Zap');
+  CREATE TYPE "public"."enum__pages_v_blocks_feature_showcase_variant" AS ENUM('split', 'perspective');
+  CREATE TYPE "public"."enum__pages_v_blocks_feature_bento_items_icon" AS ENUM('Activity', 'BarChart', 'Bolt', 'ChartBarIncreasing', 'CheckCircle', 'Cloud', 'Code', 'Cpu', 'Database', 'Fingerprint', 'Globe', 'IdCard', 'Layers', 'Lock', 'Map', 'MessageCircle', 'Pencil', 'RefreshCw', 'Rocket', 'Settings', 'Settings2', 'Shield', 'Sparkles', 'Star', 'Users', 'Zap');
+  CREATE TYPE "public"."enum__pages_v_blocks_feature_bento_panel_items_icon" AS ENUM('Activity', 'BarChart', 'Bolt', 'ChartBarIncreasing', 'CheckCircle', 'Cloud', 'Code', 'Cpu', 'Database', 'Fingerprint', 'Globe', 'IdCard', 'Layers', 'Lock', 'Map', 'MessageCircle', 'Pencil', 'RefreshCw', 'Rocket', 'Settings', 'Settings2', 'Shield', 'Sparkles', 'Star', 'Users', 'Zap');
+  CREATE TYPE "public"."enum__pages_v_blocks_feature_bento_accordion_items_icon" AS ENUM('Activity', 'BarChart', 'Bolt', 'ChartBarIncreasing', 'CheckCircle', 'Cloud', 'Code', 'Cpu', 'Database', 'Fingerprint', 'Globe', 'IdCard', 'Layers', 'Lock', 'Map', 'MessageCircle', 'Pencil', 'RefreshCw', 'Rocket', 'Settings', 'Settings2', 'Shield', 'Sparkles', 'Star', 'Users', 'Zap');
+  CREATE TYPE "public"."enum__pages_v_blocks_feature_bento_variant" AS ENUM('stats', 'metrics', 'panels', 'accordion');
+  CREATE TYPE "public"."enum__pages_v_blocks_integrations_integrations_link_type" AS ENUM('reference', 'custom');
+  CREATE TYPE "public"."enum__pages_v_blocks_integrations_links_link_type" AS ENUM('reference', 'custom');
+  CREATE TYPE "public"."enum__pages_v_blocks_integrations_links_link_appearance" AS ENUM('default', 'outline');
+  CREATE TYPE "public"."enum__pages_v_blocks_integrations_variant" AS ENUM('grid', 'tiles', 'slider');
   CREATE TYPE "public"."enum__pages_v_version_hero_type" AS ENUM('none', 'section1', 'section2');
   CREATE TYPE "public"."enum__pages_v_version_status" AS ENUM('draft', 'published');
   CREATE TYPE "public"."enum_posts_status" AS ENUM('draft', 'published');
@@ -122,6 +148,143 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"form_id" integer,
   	"enable_intro" boolean,
   	"intro_content" jsonb,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE "pages_blocks_logo_cloud_logos" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" varchar NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"logo_id" integer
+  );
+  
+  CREATE TABLE "pages_blocks_logo_cloud" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"type" "enum_pages_blocks_logo_cloud_type" DEFAULT 'section1',
+  	"heading" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE "pages_blocks_feature_cards_items" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" varchar NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"icon" "enum_pages_blocks_feature_cards_items_icon",
+  	"rich_text" jsonb
+  );
+  
+  CREATE TABLE "pages_blocks_feature_cards" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"variant" "enum_pages_blocks_feature_cards_variant" DEFAULT 'floating',
+  	"intro" jsonb,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE "pages_blocks_feature_showcase_items" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" varchar NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"icon" "enum_pages_blocks_feature_showcase_items_icon",
+  	"rich_text" jsonb
+  );
+  
+  CREATE TABLE "pages_blocks_feature_showcase" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"variant" "enum_pages_blocks_feature_showcase_variant" DEFAULT 'split',
+  	"intro" jsonb,
+  	"image_foreground_id" integer,
+  	"image_dark_id" integer,
+  	"image_light_id" integer,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE "pages_blocks_feature_bento_items" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" varchar NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"icon" "enum_pages_blocks_feature_bento_items_icon",
+  	"rich_text" jsonb
+  );
+  
+  CREATE TABLE "pages_blocks_feature_bento_panel_items" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" varchar NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"icon" "enum_pages_blocks_feature_bento_panel_items_icon",
+  	"label" varchar,
+  	"heading" jsonb
+  );
+  
+  CREATE TABLE "pages_blocks_feature_bento_image_panels" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" varchar NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"rich_text" jsonb,
+  	"image_dark_id" integer,
+  	"image_light_id" integer
+  );
+  
+  CREATE TABLE "pages_blocks_feature_bento_accordion_items" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" varchar NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"icon" "enum_pages_blocks_feature_bento_accordion_items_icon",
+  	"title" varchar,
+  	"rich_text" jsonb,
+  	"image_id" integer
+  );
+  
+  CREATE TABLE "pages_blocks_feature_bento" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"variant" "enum_pages_blocks_feature_bento_variant" DEFAULT 'stats',
+  	"stat" varchar,
+  	"intro" jsonb,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE "pages_blocks_integrations_integrations" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" varchar NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"logo_id" integer,
+  	"rich_text" jsonb,
+  	"link_type" "enum_pages_blocks_integrations_integrations_link_type" DEFAULT 'reference',
+  	"link_new_tab" boolean,
+  	"link_url" varchar,
+  	"link_label" varchar
+  );
+  
+  CREATE TABLE "pages_blocks_integrations_links" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" varchar NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"link_type" "enum_pages_blocks_integrations_links_link_type" DEFAULT 'reference',
+  	"link_new_tab" boolean,
+  	"link_url" varchar,
+  	"link_label" varchar,
+  	"link_appearance" "enum_pages_blocks_integrations_links_link_appearance" DEFAULT 'default'
+  );
+  
+  CREATE TABLE "pages_blocks_integrations" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"variant" "enum_pages_blocks_integrations_variant" DEFAULT 'grid',
+  	"intro" jsonb,
+  	"center_logo_id" integer,
   	"block_name" varchar
   );
   
@@ -242,6 +405,157 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"form_id" integer,
   	"enable_intro" boolean,
   	"intro_content" jsonb,
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE "_pages_v_blocks_logo_cloud_logos" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"logo_id" integer,
+  	"_uuid" varchar
+  );
+  
+  CREATE TABLE "_pages_v_blocks_logo_cloud" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"type" "enum__pages_v_blocks_logo_cloud_type" DEFAULT 'section1',
+  	"heading" varchar,
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE "_pages_v_blocks_feature_cards_items" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"icon" "enum__pages_v_blocks_feature_cards_items_icon",
+  	"rich_text" jsonb,
+  	"_uuid" varchar
+  );
+  
+  CREATE TABLE "_pages_v_blocks_feature_cards" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"variant" "enum__pages_v_blocks_feature_cards_variant" DEFAULT 'floating',
+  	"intro" jsonb,
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE "_pages_v_blocks_feature_showcase_items" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"icon" "enum__pages_v_blocks_feature_showcase_items_icon",
+  	"rich_text" jsonb,
+  	"_uuid" varchar
+  );
+  
+  CREATE TABLE "_pages_v_blocks_feature_showcase" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"variant" "enum__pages_v_blocks_feature_showcase_variant" DEFAULT 'split',
+  	"intro" jsonb,
+  	"image_foreground_id" integer,
+  	"image_dark_id" integer,
+  	"image_light_id" integer,
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE "_pages_v_blocks_feature_bento_items" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"icon" "enum__pages_v_blocks_feature_bento_items_icon",
+  	"rich_text" jsonb,
+  	"_uuid" varchar
+  );
+  
+  CREATE TABLE "_pages_v_blocks_feature_bento_panel_items" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"icon" "enum__pages_v_blocks_feature_bento_panel_items_icon",
+  	"label" varchar,
+  	"heading" jsonb,
+  	"_uuid" varchar
+  );
+  
+  CREATE TABLE "_pages_v_blocks_feature_bento_image_panels" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"rich_text" jsonb,
+  	"image_dark_id" integer,
+  	"image_light_id" integer,
+  	"_uuid" varchar
+  );
+  
+  CREATE TABLE "_pages_v_blocks_feature_bento_accordion_items" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"icon" "enum__pages_v_blocks_feature_bento_accordion_items_icon",
+  	"title" varchar,
+  	"rich_text" jsonb,
+  	"image_id" integer,
+  	"_uuid" varchar
+  );
+  
+  CREATE TABLE "_pages_v_blocks_feature_bento" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"variant" "enum__pages_v_blocks_feature_bento_variant" DEFAULT 'stats',
+  	"stat" varchar,
+  	"intro" jsonb,
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE "_pages_v_blocks_integrations_integrations" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"logo_id" integer,
+  	"rich_text" jsonb,
+  	"link_type" "enum__pages_v_blocks_integrations_integrations_link_type" DEFAULT 'reference',
+  	"link_new_tab" boolean,
+  	"link_url" varchar,
+  	"link_label" varchar,
+  	"_uuid" varchar
+  );
+  
+  CREATE TABLE "_pages_v_blocks_integrations_links" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"link_type" "enum__pages_v_blocks_integrations_links_link_type" DEFAULT 'reference',
+  	"link_new_tab" boolean,
+  	"link_url" varchar,
+  	"link_label" varchar,
+  	"link_appearance" "enum__pages_v_blocks_integrations_links_link_appearance" DEFAULT 'default',
+  	"_uuid" varchar
+  );
+  
+  CREATE TABLE "_pages_v_blocks_integrations" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"variant" "enum__pages_v_blocks_integrations_variant" DEFAULT 'grid',
+  	"intro" jsonb,
+  	"center_logo_id" integer,
   	"_uuid" varchar,
   	"block_name" varchar
   );
@@ -992,6 +1306,29 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   ALTER TABLE "pages_blocks_archive" ADD CONSTRAINT "pages_blocks_archive_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "pages_blocks_form_block" ADD CONSTRAINT "pages_blocks_form_block_form_id_forms_id_fk" FOREIGN KEY ("form_id") REFERENCES "public"."forms"("id") ON DELETE set null ON UPDATE no action;
   ALTER TABLE "pages_blocks_form_block" ADD CONSTRAINT "pages_blocks_form_block_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_logo_cloud_logos" ADD CONSTRAINT "pages_blocks_logo_cloud_logos_logo_id_media_id_fk" FOREIGN KEY ("logo_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "pages_blocks_logo_cloud_logos" ADD CONSTRAINT "pages_blocks_logo_cloud_logos_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_logo_cloud"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_logo_cloud" ADD CONSTRAINT "pages_blocks_logo_cloud_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_feature_cards_items" ADD CONSTRAINT "pages_blocks_feature_cards_items_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_feature_cards"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_feature_cards" ADD CONSTRAINT "pages_blocks_feature_cards_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_feature_showcase_items" ADD CONSTRAINT "pages_blocks_feature_showcase_items_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_feature_showcase"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_feature_showcase" ADD CONSTRAINT "pages_blocks_feature_showcase_image_foreground_id_media_id_fk" FOREIGN KEY ("image_foreground_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "pages_blocks_feature_showcase" ADD CONSTRAINT "pages_blocks_feature_showcase_image_dark_id_media_id_fk" FOREIGN KEY ("image_dark_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "pages_blocks_feature_showcase" ADD CONSTRAINT "pages_blocks_feature_showcase_image_light_id_media_id_fk" FOREIGN KEY ("image_light_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "pages_blocks_feature_showcase" ADD CONSTRAINT "pages_blocks_feature_showcase_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_feature_bento_items" ADD CONSTRAINT "pages_blocks_feature_bento_items_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_feature_bento"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_feature_bento_panel_items" ADD CONSTRAINT "pages_blocks_feature_bento_panel_items_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_feature_bento"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_feature_bento_image_panels" ADD CONSTRAINT "pages_blocks_feature_bento_image_panels_image_dark_id_media_id_fk" FOREIGN KEY ("image_dark_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "pages_blocks_feature_bento_image_panels" ADD CONSTRAINT "pages_blocks_feature_bento_image_panels_image_light_id_media_id_fk" FOREIGN KEY ("image_light_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "pages_blocks_feature_bento_image_panels" ADD CONSTRAINT "pages_blocks_feature_bento_image_panels_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_feature_bento"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_feature_bento_accordion_items" ADD CONSTRAINT "pages_blocks_feature_bento_accordion_items_image_id_media_id_fk" FOREIGN KEY ("image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "pages_blocks_feature_bento_accordion_items" ADD CONSTRAINT "pages_blocks_feature_bento_accordion_items_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_feature_bento"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_feature_bento" ADD CONSTRAINT "pages_blocks_feature_bento_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_integrations_integrations" ADD CONSTRAINT "pages_blocks_integrations_integrations_logo_id_media_id_fk" FOREIGN KEY ("logo_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "pages_blocks_integrations_integrations" ADD CONSTRAINT "pages_blocks_integrations_integrations_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_integrations"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_integrations_links" ADD CONSTRAINT "pages_blocks_integrations_links_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_integrations"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_integrations" ADD CONSTRAINT "pages_blocks_integrations_center_logo_id_media_id_fk" FOREIGN KEY ("center_logo_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "pages_blocks_integrations" ADD CONSTRAINT "pages_blocks_integrations_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "pages" ADD CONSTRAINT "pages_hero_media_preview_id_media_id_fk" FOREIGN KEY ("hero_media_preview_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
   ALTER TABLE "pages" ADD CONSTRAINT "pages_meta_image_id_media_id_fk" FOREIGN KEY ("meta_image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
   ALTER TABLE "pages_rels" ADD CONSTRAINT "pages_rels_parent_fk" FOREIGN KEY ("parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
@@ -1008,6 +1345,29 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   ALTER TABLE "_pages_v_blocks_archive" ADD CONSTRAINT "_pages_v_blocks_archive_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "_pages_v_blocks_form_block" ADD CONSTRAINT "_pages_v_blocks_form_block_form_id_forms_id_fk" FOREIGN KEY ("form_id") REFERENCES "public"."forms"("id") ON DELETE set null ON UPDATE no action;
   ALTER TABLE "_pages_v_blocks_form_block" ADD CONSTRAINT "_pages_v_blocks_form_block_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_logo_cloud_logos" ADD CONSTRAINT "_pages_v_blocks_logo_cloud_logos_logo_id_media_id_fk" FOREIGN KEY ("logo_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_logo_cloud_logos" ADD CONSTRAINT "_pages_v_blocks_logo_cloud_logos_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_logo_cloud"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_logo_cloud" ADD CONSTRAINT "_pages_v_blocks_logo_cloud_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_feature_cards_items" ADD CONSTRAINT "_pages_v_blocks_feature_cards_items_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_feature_cards"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_feature_cards" ADD CONSTRAINT "_pages_v_blocks_feature_cards_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_feature_showcase_items" ADD CONSTRAINT "_pages_v_blocks_feature_showcase_items_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_feature_showcase"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_feature_showcase" ADD CONSTRAINT "_pages_v_blocks_feature_showcase_image_foreground_id_media_id_fk" FOREIGN KEY ("image_foreground_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_feature_showcase" ADD CONSTRAINT "_pages_v_blocks_feature_showcase_image_dark_id_media_id_fk" FOREIGN KEY ("image_dark_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_feature_showcase" ADD CONSTRAINT "_pages_v_blocks_feature_showcase_image_light_id_media_id_fk" FOREIGN KEY ("image_light_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_feature_showcase" ADD CONSTRAINT "_pages_v_blocks_feature_showcase_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_feature_bento_items" ADD CONSTRAINT "_pages_v_blocks_feature_bento_items_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_feature_bento"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_feature_bento_panel_items" ADD CONSTRAINT "_pages_v_blocks_feature_bento_panel_items_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_feature_bento"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_feature_bento_image_panels" ADD CONSTRAINT "_pages_v_blocks_feature_bento_image_panels_image_dark_id_media_id_fk" FOREIGN KEY ("image_dark_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_feature_bento_image_panels" ADD CONSTRAINT "_pages_v_blocks_feature_bento_image_panels_image_light_id_media_id_fk" FOREIGN KEY ("image_light_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_feature_bento_image_panels" ADD CONSTRAINT "_pages_v_blocks_feature_bento_image_panels_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_feature_bento"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_feature_bento_accordion_items" ADD CONSTRAINT "_pages_v_blocks_feature_bento_accordion_items_image_id_media_id_fk" FOREIGN KEY ("image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_feature_bento_accordion_items" ADD CONSTRAINT "_pages_v_blocks_feature_bento_accordion_items_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_feature_bento"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_feature_bento" ADD CONSTRAINT "_pages_v_blocks_feature_bento_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_integrations_integrations" ADD CONSTRAINT "_pages_v_blocks_integrations_integrations_logo_id_media_id_fk" FOREIGN KEY ("logo_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_integrations_integrations" ADD CONSTRAINT "_pages_v_blocks_integrations_integrations_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_integrations"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_integrations_links" ADD CONSTRAINT "_pages_v_blocks_integrations_links_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_integrations"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_integrations" ADD CONSTRAINT "_pages_v_blocks_integrations_center_logo_id_media_id_fk" FOREIGN KEY ("center_logo_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_integrations" ADD CONSTRAINT "_pages_v_blocks_integrations_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "_pages_v" ADD CONSTRAINT "_pages_v_parent_id_pages_id_fk" FOREIGN KEY ("parent_id") REFERENCES "public"."pages"("id") ON DELETE set null ON UPDATE no action;
   ALTER TABLE "_pages_v" ADD CONSTRAINT "_pages_v_version_hero_media_preview_id_media_id_fk" FOREIGN KEY ("version_hero_media_preview_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
   ALTER TABLE "_pages_v" ADD CONSTRAINT "_pages_v_version_meta_image_id_media_id_fk" FOREIGN KEY ("version_meta_image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
@@ -1131,6 +1491,48 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX "pages_blocks_form_block_parent_id_idx" ON "pages_blocks_form_block" USING btree ("_parent_id");
   CREATE INDEX "pages_blocks_form_block_path_idx" ON "pages_blocks_form_block" USING btree ("_path");
   CREATE INDEX "pages_blocks_form_block_form_idx" ON "pages_blocks_form_block" USING btree ("form_id");
+  CREATE INDEX "pages_blocks_logo_cloud_logos_order_idx" ON "pages_blocks_logo_cloud_logos" USING btree ("_order");
+  CREATE INDEX "pages_blocks_logo_cloud_logos_parent_id_idx" ON "pages_blocks_logo_cloud_logos" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_logo_cloud_logos_logo_idx" ON "pages_blocks_logo_cloud_logos" USING btree ("logo_id");
+  CREATE INDEX "pages_blocks_logo_cloud_order_idx" ON "pages_blocks_logo_cloud" USING btree ("_order");
+  CREATE INDEX "pages_blocks_logo_cloud_parent_id_idx" ON "pages_blocks_logo_cloud" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_logo_cloud_path_idx" ON "pages_blocks_logo_cloud" USING btree ("_path");
+  CREATE INDEX "pages_blocks_feature_cards_items_order_idx" ON "pages_blocks_feature_cards_items" USING btree ("_order");
+  CREATE INDEX "pages_blocks_feature_cards_items_parent_id_idx" ON "pages_blocks_feature_cards_items" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_feature_cards_order_idx" ON "pages_blocks_feature_cards" USING btree ("_order");
+  CREATE INDEX "pages_blocks_feature_cards_parent_id_idx" ON "pages_blocks_feature_cards" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_feature_cards_path_idx" ON "pages_blocks_feature_cards" USING btree ("_path");
+  CREATE INDEX "pages_blocks_feature_showcase_items_order_idx" ON "pages_blocks_feature_showcase_items" USING btree ("_order");
+  CREATE INDEX "pages_blocks_feature_showcase_items_parent_id_idx" ON "pages_blocks_feature_showcase_items" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_feature_showcase_order_idx" ON "pages_blocks_feature_showcase" USING btree ("_order");
+  CREATE INDEX "pages_blocks_feature_showcase_parent_id_idx" ON "pages_blocks_feature_showcase" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_feature_showcase_path_idx" ON "pages_blocks_feature_showcase" USING btree ("_path");
+  CREATE INDEX "pages_blocks_feature_showcase_image_foreground_idx" ON "pages_blocks_feature_showcase" USING btree ("image_foreground_id");
+  CREATE INDEX "pages_blocks_feature_showcase_image_dark_idx" ON "pages_blocks_feature_showcase" USING btree ("image_dark_id");
+  CREATE INDEX "pages_blocks_feature_showcase_image_light_idx" ON "pages_blocks_feature_showcase" USING btree ("image_light_id");
+  CREATE INDEX "pages_blocks_feature_bento_items_order_idx" ON "pages_blocks_feature_bento_items" USING btree ("_order");
+  CREATE INDEX "pages_blocks_feature_bento_items_parent_id_idx" ON "pages_blocks_feature_bento_items" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_feature_bento_panel_items_order_idx" ON "pages_blocks_feature_bento_panel_items" USING btree ("_order");
+  CREATE INDEX "pages_blocks_feature_bento_panel_items_parent_id_idx" ON "pages_blocks_feature_bento_panel_items" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_feature_bento_image_panels_order_idx" ON "pages_blocks_feature_bento_image_panels" USING btree ("_order");
+  CREATE INDEX "pages_blocks_feature_bento_image_panels_parent_id_idx" ON "pages_blocks_feature_bento_image_panels" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_feature_bento_image_panels_image_dark_idx" ON "pages_blocks_feature_bento_image_panels" USING btree ("image_dark_id");
+  CREATE INDEX "pages_blocks_feature_bento_image_panels_image_light_idx" ON "pages_blocks_feature_bento_image_panels" USING btree ("image_light_id");
+  CREATE INDEX "pages_blocks_feature_bento_accordion_items_order_idx" ON "pages_blocks_feature_bento_accordion_items" USING btree ("_order");
+  CREATE INDEX "pages_blocks_feature_bento_accordion_items_parent_id_idx" ON "pages_blocks_feature_bento_accordion_items" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_feature_bento_accordion_items_image_idx" ON "pages_blocks_feature_bento_accordion_items" USING btree ("image_id");
+  CREATE INDEX "pages_blocks_feature_bento_order_idx" ON "pages_blocks_feature_bento" USING btree ("_order");
+  CREATE INDEX "pages_blocks_feature_bento_parent_id_idx" ON "pages_blocks_feature_bento" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_feature_bento_path_idx" ON "pages_blocks_feature_bento" USING btree ("_path");
+  CREATE INDEX "pages_blocks_integrations_integrations_order_idx" ON "pages_blocks_integrations_integrations" USING btree ("_order");
+  CREATE INDEX "pages_blocks_integrations_integrations_parent_id_idx" ON "pages_blocks_integrations_integrations" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_integrations_integrations_logo_idx" ON "pages_blocks_integrations_integrations" USING btree ("logo_id");
+  CREATE INDEX "pages_blocks_integrations_links_order_idx" ON "pages_blocks_integrations_links" USING btree ("_order");
+  CREATE INDEX "pages_blocks_integrations_links_parent_id_idx" ON "pages_blocks_integrations_links" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_integrations_order_idx" ON "pages_blocks_integrations" USING btree ("_order");
+  CREATE INDEX "pages_blocks_integrations_parent_id_idx" ON "pages_blocks_integrations" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_integrations_path_idx" ON "pages_blocks_integrations" USING btree ("_path");
+  CREATE INDEX "pages_blocks_integrations_center_logo_idx" ON "pages_blocks_integrations" USING btree ("center_logo_id");
   CREATE INDEX "pages_hero_hero_media_preview_idx" ON "pages" USING btree ("hero_media_preview_id");
   CREATE INDEX "pages_meta_meta_image_idx" ON "pages" USING btree ("meta_image_id");
   CREATE UNIQUE INDEX "pages_slug_idx" ON "pages" USING btree ("slug");
@@ -1166,6 +1568,48 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX "_pages_v_blocks_form_block_parent_id_idx" ON "_pages_v_blocks_form_block" USING btree ("_parent_id");
   CREATE INDEX "_pages_v_blocks_form_block_path_idx" ON "_pages_v_blocks_form_block" USING btree ("_path");
   CREATE INDEX "_pages_v_blocks_form_block_form_idx" ON "_pages_v_blocks_form_block" USING btree ("form_id");
+  CREATE INDEX "_pages_v_blocks_logo_cloud_logos_order_idx" ON "_pages_v_blocks_logo_cloud_logos" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_logo_cloud_logos_parent_id_idx" ON "_pages_v_blocks_logo_cloud_logos" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_logo_cloud_logos_logo_idx" ON "_pages_v_blocks_logo_cloud_logos" USING btree ("logo_id");
+  CREATE INDEX "_pages_v_blocks_logo_cloud_order_idx" ON "_pages_v_blocks_logo_cloud" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_logo_cloud_parent_id_idx" ON "_pages_v_blocks_logo_cloud" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_logo_cloud_path_idx" ON "_pages_v_blocks_logo_cloud" USING btree ("_path");
+  CREATE INDEX "_pages_v_blocks_feature_cards_items_order_idx" ON "_pages_v_blocks_feature_cards_items" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_feature_cards_items_parent_id_idx" ON "_pages_v_blocks_feature_cards_items" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_feature_cards_order_idx" ON "_pages_v_blocks_feature_cards" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_feature_cards_parent_id_idx" ON "_pages_v_blocks_feature_cards" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_feature_cards_path_idx" ON "_pages_v_blocks_feature_cards" USING btree ("_path");
+  CREATE INDEX "_pages_v_blocks_feature_showcase_items_order_idx" ON "_pages_v_blocks_feature_showcase_items" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_feature_showcase_items_parent_id_idx" ON "_pages_v_blocks_feature_showcase_items" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_feature_showcase_order_idx" ON "_pages_v_blocks_feature_showcase" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_feature_showcase_parent_id_idx" ON "_pages_v_blocks_feature_showcase" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_feature_showcase_path_idx" ON "_pages_v_blocks_feature_showcase" USING btree ("_path");
+  CREATE INDEX "_pages_v_blocks_feature_showcase_image_foreground_idx" ON "_pages_v_blocks_feature_showcase" USING btree ("image_foreground_id");
+  CREATE INDEX "_pages_v_blocks_feature_showcase_image_dark_idx" ON "_pages_v_blocks_feature_showcase" USING btree ("image_dark_id");
+  CREATE INDEX "_pages_v_blocks_feature_showcase_image_light_idx" ON "_pages_v_blocks_feature_showcase" USING btree ("image_light_id");
+  CREATE INDEX "_pages_v_blocks_feature_bento_items_order_idx" ON "_pages_v_blocks_feature_bento_items" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_feature_bento_items_parent_id_idx" ON "_pages_v_blocks_feature_bento_items" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_feature_bento_panel_items_order_idx" ON "_pages_v_blocks_feature_bento_panel_items" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_feature_bento_panel_items_parent_id_idx" ON "_pages_v_blocks_feature_bento_panel_items" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_feature_bento_image_panels_order_idx" ON "_pages_v_blocks_feature_bento_image_panels" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_feature_bento_image_panels_parent_id_idx" ON "_pages_v_blocks_feature_bento_image_panels" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_feature_bento_image_panels_image_dark_idx" ON "_pages_v_blocks_feature_bento_image_panels" USING btree ("image_dark_id");
+  CREATE INDEX "_pages_v_blocks_feature_bento_image_panels_image_light_idx" ON "_pages_v_blocks_feature_bento_image_panels" USING btree ("image_light_id");
+  CREATE INDEX "_pages_v_blocks_feature_bento_accordion_items_order_idx" ON "_pages_v_blocks_feature_bento_accordion_items" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_feature_bento_accordion_items_parent_id_idx" ON "_pages_v_blocks_feature_bento_accordion_items" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_feature_bento_accordion_items_image_idx" ON "_pages_v_blocks_feature_bento_accordion_items" USING btree ("image_id");
+  CREATE INDEX "_pages_v_blocks_feature_bento_order_idx" ON "_pages_v_blocks_feature_bento" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_feature_bento_parent_id_idx" ON "_pages_v_blocks_feature_bento" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_feature_bento_path_idx" ON "_pages_v_blocks_feature_bento" USING btree ("_path");
+  CREATE INDEX "_pages_v_blocks_integrations_integrations_order_idx" ON "_pages_v_blocks_integrations_integrations" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_integrations_integrations_parent_id_idx" ON "_pages_v_blocks_integrations_integrations" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_integrations_integrations_logo_idx" ON "_pages_v_blocks_integrations_integrations" USING btree ("logo_id");
+  CREATE INDEX "_pages_v_blocks_integrations_links_order_idx" ON "_pages_v_blocks_integrations_links" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_integrations_links_parent_id_idx" ON "_pages_v_blocks_integrations_links" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_integrations_order_idx" ON "_pages_v_blocks_integrations" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_integrations_parent_id_idx" ON "_pages_v_blocks_integrations" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_integrations_path_idx" ON "_pages_v_blocks_integrations" USING btree ("_path");
+  CREATE INDEX "_pages_v_blocks_integrations_center_logo_idx" ON "_pages_v_blocks_integrations" USING btree ("center_logo_id");
   CREATE INDEX "_pages_v_parent_idx" ON "_pages_v" USING btree ("parent_id");
   CREATE INDEX "_pages_v_version_hero_version_hero_media_preview_idx" ON "_pages_v" USING btree ("version_hero_media_preview_id");
   CREATE INDEX "_pages_v_version_meta_version_meta_image_idx" ON "_pages_v" USING btree ("version_meta_image_id");
@@ -1429,6 +1873,20 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TABLE "pages_blocks_media_block" CASCADE;
   DROP TABLE "pages_blocks_archive" CASCADE;
   DROP TABLE "pages_blocks_form_block" CASCADE;
+  DROP TABLE "pages_blocks_logo_cloud_logos" CASCADE;
+  DROP TABLE "pages_blocks_logo_cloud" CASCADE;
+  DROP TABLE "pages_blocks_feature_cards_items" CASCADE;
+  DROP TABLE "pages_blocks_feature_cards" CASCADE;
+  DROP TABLE "pages_blocks_feature_showcase_items" CASCADE;
+  DROP TABLE "pages_blocks_feature_showcase" CASCADE;
+  DROP TABLE "pages_blocks_feature_bento_items" CASCADE;
+  DROP TABLE "pages_blocks_feature_bento_panel_items" CASCADE;
+  DROP TABLE "pages_blocks_feature_bento_image_panels" CASCADE;
+  DROP TABLE "pages_blocks_feature_bento_accordion_items" CASCADE;
+  DROP TABLE "pages_blocks_feature_bento" CASCADE;
+  DROP TABLE "pages_blocks_integrations_integrations" CASCADE;
+  DROP TABLE "pages_blocks_integrations_links" CASCADE;
+  DROP TABLE "pages_blocks_integrations" CASCADE;
   DROP TABLE "pages" CASCADE;
   DROP TABLE "pages_rels" CASCADE;
   DROP TABLE "_pages_v_version_hero_links" CASCADE;
@@ -1439,6 +1897,20 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TABLE "_pages_v_blocks_media_block" CASCADE;
   DROP TABLE "_pages_v_blocks_archive" CASCADE;
   DROP TABLE "_pages_v_blocks_form_block" CASCADE;
+  DROP TABLE "_pages_v_blocks_logo_cloud_logos" CASCADE;
+  DROP TABLE "_pages_v_blocks_logo_cloud" CASCADE;
+  DROP TABLE "_pages_v_blocks_feature_cards_items" CASCADE;
+  DROP TABLE "_pages_v_blocks_feature_cards" CASCADE;
+  DROP TABLE "_pages_v_blocks_feature_showcase_items" CASCADE;
+  DROP TABLE "_pages_v_blocks_feature_showcase" CASCADE;
+  DROP TABLE "_pages_v_blocks_feature_bento_items" CASCADE;
+  DROP TABLE "_pages_v_blocks_feature_bento_panel_items" CASCADE;
+  DROP TABLE "_pages_v_blocks_feature_bento_image_panels" CASCADE;
+  DROP TABLE "_pages_v_blocks_feature_bento_accordion_items" CASCADE;
+  DROP TABLE "_pages_v_blocks_feature_bento" CASCADE;
+  DROP TABLE "_pages_v_blocks_integrations_integrations" CASCADE;
+  DROP TABLE "_pages_v_blocks_integrations_links" CASCADE;
+  DROP TABLE "_pages_v_blocks_integrations" CASCADE;
   DROP TABLE "_pages_v" CASCADE;
   DROP TABLE "_pages_v_rels" CASCADE;
   DROP TABLE "posts_populated_authors" CASCADE;
@@ -1509,6 +1981,19 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TYPE "public"."enum_pages_blocks_content_columns_link_appearance";
   DROP TYPE "public"."enum_pages_blocks_archive_populate_by";
   DROP TYPE "public"."enum_pages_blocks_archive_relation_to";
+  DROP TYPE "public"."enum_pages_blocks_logo_cloud_type";
+  DROP TYPE "public"."enum_pages_blocks_feature_cards_items_icon";
+  DROP TYPE "public"."enum_pages_blocks_feature_cards_variant";
+  DROP TYPE "public"."enum_pages_blocks_feature_showcase_items_icon";
+  DROP TYPE "public"."enum_pages_blocks_feature_showcase_variant";
+  DROP TYPE "public"."enum_pages_blocks_feature_bento_items_icon";
+  DROP TYPE "public"."enum_pages_blocks_feature_bento_panel_items_icon";
+  DROP TYPE "public"."enum_pages_blocks_feature_bento_accordion_items_icon";
+  DROP TYPE "public"."enum_pages_blocks_feature_bento_variant";
+  DROP TYPE "public"."enum_pages_blocks_integrations_integrations_link_type";
+  DROP TYPE "public"."enum_pages_blocks_integrations_links_link_type";
+  DROP TYPE "public"."enum_pages_blocks_integrations_links_link_appearance";
+  DROP TYPE "public"."enum_pages_blocks_integrations_variant";
   DROP TYPE "public"."enum_pages_hero_type";
   DROP TYPE "public"."enum_pages_status";
   DROP TYPE "public"."enum__pages_v_version_hero_links_link_type";
@@ -1520,6 +2005,19 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TYPE "public"."enum__pages_v_blocks_content_columns_link_appearance";
   DROP TYPE "public"."enum__pages_v_blocks_archive_populate_by";
   DROP TYPE "public"."enum__pages_v_blocks_archive_relation_to";
+  DROP TYPE "public"."enum__pages_v_blocks_logo_cloud_type";
+  DROP TYPE "public"."enum__pages_v_blocks_feature_cards_items_icon";
+  DROP TYPE "public"."enum__pages_v_blocks_feature_cards_variant";
+  DROP TYPE "public"."enum__pages_v_blocks_feature_showcase_items_icon";
+  DROP TYPE "public"."enum__pages_v_blocks_feature_showcase_variant";
+  DROP TYPE "public"."enum__pages_v_blocks_feature_bento_items_icon";
+  DROP TYPE "public"."enum__pages_v_blocks_feature_bento_panel_items_icon";
+  DROP TYPE "public"."enum__pages_v_blocks_feature_bento_accordion_items_icon";
+  DROP TYPE "public"."enum__pages_v_blocks_feature_bento_variant";
+  DROP TYPE "public"."enum__pages_v_blocks_integrations_integrations_link_type";
+  DROP TYPE "public"."enum__pages_v_blocks_integrations_links_link_type";
+  DROP TYPE "public"."enum__pages_v_blocks_integrations_links_link_appearance";
+  DROP TYPE "public"."enum__pages_v_blocks_integrations_variant";
   DROP TYPE "public"."enum__pages_v_version_hero_type";
   DROP TYPE "public"."enum__pages_v_version_status";
   DROP TYPE "public"."enum_posts_status";

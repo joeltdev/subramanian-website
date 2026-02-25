@@ -11,6 +11,7 @@ import { LogoCloudBlock } from '@/blocks/LogoCloud/Component'
 import { FeatureCardsBlock } from '@/blocks/FeatureCards/Component'
 import { FeatureShowcaseBlock } from '@/blocks/FeatureShowcase/Component'
 import { FeatureBentoBlock } from '@/blocks/FeatureBento/Component'
+import { IntegrationsBlock } from '@/blocks/Integrations/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -22,6 +23,7 @@ const blockComponents = {
   featureCards: FeatureCardsBlock,
   featureShowcase: FeatureShowcaseBlock,
   featureBento: FeatureBentoBlock,
+  integrations: IntegrationsBlock,
 }
 
 export const RenderBlocks: React.FC<{

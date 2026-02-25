@@ -53,22 +53,15 @@ export const FeatureCards: Block = {
           options: ICON_OPTIONS,
         },
         {
-          name: 'title',
-          type: 'text',
-          required: true,
-          admin: {
-            description: "Short feature label — e.g. 'Remote Control', 'KNX Integration', 'Energy Monitoring'",
-          },
-        },
-        {
-          name: 'description',
+          name: 'richText',
           type: 'richText',
           admin: {
-            description: "One or two sentences — e.g. 'Manage every INELS device from a single dashboard, anywhere in the world.'",
+            description: "Item heading and body — e.g. '### Remote Control\\nManage every device from a single dashboard.'",
           },
           editor: lexicalEditor({
             features: ({ rootFeatures }) => [
               ...rootFeatures,
+              HeadingFeature({ enabledHeadingSizes: ['h3', 'h4'] }),
               FixedToolbarFeature(),
               InlineToolbarFeature(),
             ],

@@ -36,15 +36,16 @@ export const SplitFeatureShowcase: React.FC<FeatureShowcaseBlock> = ({
 
         {Array.isArray(items) && items.length > 0 && (
           <div className="relative mx-auto grid grid-cols-2 gap-x-3 gap-y-6 sm:gap-8 lg:grid-cols-4">
-            {items.map(({ id, icon, title, description }) => {
+            {items.map(({ id, icon, richText }) => {
               const Icon = icon ? iconMap[icon] : null
               return (
                 <div key={id} className="space-y-3">
-                  <div className="flex items-center gap-2">
-                    {Icon && <Icon className="size-4" />}
-                    {title && <h3 className="text-sm font-medium">{title}</h3>}
-                  </div>
-                  {description && <RichText data={description} enableGutter={false} />}
+                  {Icon && (
+                    <div className="flex items-center gap-2">
+                      <Icon className="size-4" />
+                    </div>
+                  )}
+                  {richText && <RichText data={richText} enableGutter={false} />}
                 </div>
               )
             })}
