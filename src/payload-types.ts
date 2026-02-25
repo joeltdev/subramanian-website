@@ -223,6 +223,7 @@ export interface Page {
     | FeatureBentoBlock
     | IntegrationsBlock
     | ContentSectionBlock
+    | StatsBlock
   )[];
   meta?: {
     title?: string | null;
@@ -1483,6 +1484,59 @@ export interface ContentSectionBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StatsBlock".
+ */
+export interface StatsBlock {
+  /**
+   * Section heading and supporting text
+   */
+  intro?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Each stat shows a value (e.g. "+1200") and a label (e.g. "Stars on GitHub")
+   */
+  stats?:
+    | {
+        /**
+         * Stat value and label — e.g. "### +1200\nStars on GitHub". Use h3 for the value.
+         */
+        richText?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'stats';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "product-categories".
  */
 export interface ProductCategory {
@@ -1981,6 +2035,7 @@ export interface PagesSelect<T extends boolean = true> {
         featureBento?: T | FeatureBentoBlockSelect<T>;
         integrations?: T | IntegrationsBlockSelect<T>;
         contentSection?: T | ContentSectionBlockSelect<T>;
+        stats?: T | StatsBlockSelect<T>;
       };
   meta?:
     | T
@@ -2251,6 +2306,21 @@ export interface ContentSectionBlockSelect<T extends boolean = true> {
               label?: T;
               appearance?: T;
             };
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StatsBlock_select".
+ */
+export interface StatsBlockSelect<T extends boolean = true> {
+  intro?: T;
+  stats?:
+    | T
+    | {
+        richText?: T;
         id?: T;
       };
   id?: T;
