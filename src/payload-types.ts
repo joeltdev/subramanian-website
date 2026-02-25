@@ -2794,6 +2794,10 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  */
 export interface Header {
   id: number;
+  /**
+   * Logo displayed in the header. Falls back to the default logo if not set.
+   */
+  logo?: (number | null) | Media;
   tabs?:
     | {
         /**
@@ -2993,6 +2997,7 @@ export interface Footer {
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
+  logo?: T;
   tabs?:
     | T
     | {

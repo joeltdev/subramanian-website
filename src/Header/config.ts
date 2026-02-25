@@ -10,6 +10,14 @@ export const Header: GlobalConfig = {
   },
   fields: [
     {
+      name: 'logo',
+      type: 'upload',
+      relationTo: 'media',
+      admin: {
+        description: 'Logo displayed in the header. Falls back to the default logo if not set.',
+      },
+    },
+    {
       name: 'tabs',
       type: 'array',
       maxRows: 8,
