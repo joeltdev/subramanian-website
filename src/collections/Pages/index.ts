@@ -14,6 +14,7 @@ import { FeatureBento } from '../../blocks/FeatureBento/config'
 import { Integrations } from '../../blocks/Integrations/config'
 import { ContentSection } from '../../blocks/ContentSection/config'
 import { Stats } from '../../blocks/Stats/config'
+import { Testimonials } from '../../blocks/Testimonials/config'
 import { hero } from '@/blocks/Hero/config'
 import { slugField } from 'payload'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
@@ -79,7 +80,7 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, LogoCloud, FeatureCards, FeatureShowcase, FeatureBento, Integrations, ContentSection, Stats],
+              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, LogoCloud, FeatureCards, FeatureShowcase, FeatureBento, Integrations, ContentSection, Stats, Testimonials],
               required: true,
               admin: {
                 initCollapsed: true,

@@ -3,6 +3,7 @@ import * as migration_20260225_102735 from './20260225_102735';
 import * as migration_20260225_add_header_tabs from './20260225_add_header_tabs';
 import * as migration_20260225_add_header_logo from './20260225_add_header_logo';
 import * as migration_20260225_add_stats_block from './20260225_add_stats_block';
+import * as migration_20260225_add_testimonials_block from './20260225_add_testimonials_block';
 
 export const migrations = [
   {
@@ -29,5 +30,10 @@ export const migrations = [
     up: migration_20260225_add_stats_block.up,
     down: migration_20260225_add_stats_block.down,
     name: '20260225_add_stats_block',
+  },
+  {
+    up: migration_20260225_add_testimonials_block.up,
+    down: migration_20260225_add_testimonials_block.down,
+    name: '20260225_add_testimonials_block',
   },
 ];

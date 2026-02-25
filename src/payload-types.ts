@@ -224,6 +224,7 @@ export interface Page {
     | IntegrationsBlock
     | ContentSectionBlock
     | StatsBlock
+    | TestimonialsBlock
   )[];
   meta?: {
     title?: string | null;
@@ -1537,6 +1538,75 @@ export interface StatsBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TestimonialsBlock".
+ */
+export interface TestimonialsBlock {
+  /**
+   * Section heading and supporting text
+   */
+  intro?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * First item displays as the large featured card. Remaining items fill the smaller cards.
+   */
+  testimonials?:
+    | {
+        /**
+         * Optional company logo shown at the top of the card (SVG or PNG)
+         */
+        logo?: (number | null) | Media;
+        /**
+         * The testimonial quote text
+         */
+        richText?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        /**
+         * Full name of the person giving the testimonial
+         */
+        author?: string | null;
+        /**
+         * Job title or role, e.g. "Software Engineer"
+         */
+        role?: string | null;
+        /**
+         * Author profile photo
+         */
+        avatar?: (number | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'testimonials';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "product-categories".
  */
 export interface ProductCategory {
@@ -2036,6 +2106,7 @@ export interface PagesSelect<T extends boolean = true> {
         integrations?: T | IntegrationsBlockSelect<T>;
         contentSection?: T | ContentSectionBlockSelect<T>;
         stats?: T | StatsBlockSelect<T>;
+        testimonials?: T | TestimonialsBlockSelect<T>;
       };
   meta?:
     | T
@@ -2321,6 +2392,25 @@ export interface StatsBlockSelect<T extends boolean = true> {
     | T
     | {
         richText?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TestimonialsBlock_select".
+ */
+export interface TestimonialsBlockSelect<T extends boolean = true> {
+  intro?: T;
+  testimonials?:
+    | T
+    | {
+        logo?: T;
+        richText?: T;
+        author?: T;
+        role?: T;
+        avatar?: T;
         id?: T;
       };
   id?: T;
