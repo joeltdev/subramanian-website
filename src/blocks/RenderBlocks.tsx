@@ -12,6 +12,7 @@ import { FeatureCardsBlock } from '@/blocks/FeatureCards/Component'
 import { FeatureShowcaseBlock } from '@/blocks/FeatureShowcase/Component'
 import { FeatureBentoBlock } from '@/blocks/FeatureBento/Component'
 import { IntegrationsBlock } from '@/blocks/Integrations/Component'
+import { ContentSectionBlock } from '@/blocks/ContentSection/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -24,6 +25,7 @@ const blockComponents = {
   featureShowcase: FeatureShowcaseBlock,
   featureBento: FeatureBentoBlock,
   integrations: IntegrationsBlock,
+  contentSection: ContentSectionBlock,
 }
 
 export const RenderBlocks: React.FC<{

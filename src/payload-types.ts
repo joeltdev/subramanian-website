@@ -222,6 +222,7 @@ export interface Page {
     | FeatureShowcaseBlock
     | FeatureBentoBlock
     | IntegrationsBlock
+    | ContentSectionBlock
   )[];
   meta?: {
     title?: string | null;
@@ -1339,6 +1340,149 @@ export interface IntegrationsBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContentSectionBlock".
+ */
+export interface ContentSectionBlock {
+  variant: 'splitImage' | 'overlayFeatures' | 'wideImageCta' | 'textCta' | 'centeredGrid';
+  /**
+   * Section heading and supporting text
+   */
+  intro?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Image displayed in dark mode
+   */
+  imageDark?: (number | null) | Media;
+  /**
+   * Image displayed in light mode
+   */
+  imageLight?: (number | null) | Media;
+  /**
+   * Section image
+   */
+  image?: (number | null) | Media;
+  /**
+   * Blockquote body text — Split with Image variant
+   */
+  quote?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Author citation, e.g. "Jane Smith, CTO"
+   */
+  quoteAuthor?: string | null;
+  /**
+   * Company logo shown below the quote
+   */
+  quoteLogo?: (number | null) | Media;
+  items?:
+    | {
+        icon?:
+          | (
+              | 'Activity'
+              | 'BarChart'
+              | 'Bolt'
+              | 'ChartBarIncreasing'
+              | 'CheckCircle'
+              | 'Cloud'
+              | 'Code'
+              | 'Cpu'
+              | 'Database'
+              | 'Fingerprint'
+              | 'Globe'
+              | 'IdCard'
+              | 'Layers'
+              | 'Lock'
+              | 'Map'
+              | 'MessageCircle'
+              | 'Pencil'
+              | 'RefreshCw'
+              | 'Rocket'
+              | 'Settings'
+              | 'Settings2'
+              | 'Shield'
+              | 'Sparkles'
+              | 'Star'
+              | 'Users'
+              | 'Zap'
+            )
+          | null;
+        /**
+         * Item heading and body — e.g. "### Fast\nBuilt for speed from the ground up."
+         */
+        richText?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        id?: string | null;
+      }[]
+    | null;
+  links?:
+    | {
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null);
+          url?: string | null;
+          label: string;
+          /**
+           * Choose how the link should be rendered.
+           */
+          appearance?: ('default' | 'outline') | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'contentSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "product-categories".
  */
 export interface ProductCategory {
@@ -1836,6 +1980,7 @@ export interface PagesSelect<T extends boolean = true> {
         featureShowcase?: T | FeatureShowcaseBlockSelect<T>;
         featureBento?: T | FeatureBentoBlockSelect<T>;
         integrations?: T | IntegrationsBlockSelect<T>;
+        contentSection?: T | ContentSectionBlockSelect<T>;
       };
   meta?:
     | T
@@ -2055,6 +2200,44 @@ export interface IntegrationsBlockSelect<T extends boolean = true> {
         id?: T;
       };
   centerLogo?: T;
+  links?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+              appearance?: T;
+            };
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContentSectionBlock_select".
+ */
+export interface ContentSectionBlockSelect<T extends boolean = true> {
+  variant?: T;
+  intro?: T;
+  imageDark?: T;
+  imageLight?: T;
+  image?: T;
+  quote?: T;
+  quoteAuthor?: T;
+  quoteLogo?: T;
+  items?:
+    | T
+    | {
+        icon?: T;
+        richText?: T;
+        id?: T;
+      };
   links?:
     | T
     | {
@@ -2611,9 +2794,21 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  */
 export interface Header {
   id: number;
-  navItems?:
+  tabs?:
     | {
-        link: {
+        /**
+         * Shown in the navigation bar.
+         */
+        label: string;
+        /**
+         * Make the tab label a clickable link.
+         */
+        enableDirectLink?: boolean | null;
+        /**
+         * Show a dropdown panel on hover.
+         */
+        enableDropdown?: boolean | null;
+        link?: {
           type?: ('reference' | 'custom') | null;
           newTab?: boolean | null;
           reference?:
@@ -2628,9 +2823,139 @@ export interface Header {
           url?: string | null;
           label: string;
         };
+        /**
+         * Short description shown in the dropdown panel.
+         */
+        description?: string | null;
+        /**
+         * Links shown below the description text.
+         */
+        descriptionLinks?:
+          | {
+              link: {
+                type?: ('reference' | 'custom') | null;
+                newTab?: boolean | null;
+                reference?:
+                  | ({
+                      relationTo: 'pages';
+                      value: number | Page;
+                    } | null)
+                  | ({
+                      relationTo: 'posts';
+                      value: number | Post;
+                    } | null);
+                url?: string | null;
+                label: string;
+              };
+              id?: string | null;
+            }[]
+          | null;
+        /**
+         * Items displayed in the dropdown panel.
+         */
+        navItems?:
+          | {
+              style?: ('default' | 'featured' | 'list') | null;
+              defaultLink?: {
+                link: {
+                  type?: ('reference' | 'custom') | null;
+                  newTab?: boolean | null;
+                  reference?:
+                    | ({
+                        relationTo: 'pages';
+                        value: number | Page;
+                      } | null)
+                    | ({
+                        relationTo: 'posts';
+                        value: number | Post;
+                      } | null);
+                  url?: string | null;
+                  label: string;
+                };
+                /**
+                 * Short description shown below the link.
+                 */
+                description?: string | null;
+              };
+              featuredLink?: {
+                tag?: string | null;
+                label?: string | null;
+                links?:
+                  | {
+                      link: {
+                        type?: ('reference' | 'custom') | null;
+                        newTab?: boolean | null;
+                        reference?:
+                          | ({
+                              relationTo: 'pages';
+                              value: number | Page;
+                            } | null)
+                          | ({
+                              relationTo: 'posts';
+                              value: number | Post;
+                            } | null);
+                        url?: string | null;
+                        label: string;
+                      };
+                      id?: string | null;
+                    }[]
+                  | null;
+              };
+              listLinks?: {
+                tag?: string | null;
+                links?:
+                  | {
+                      link: {
+                        type?: ('reference' | 'custom') | null;
+                        newTab?: boolean | null;
+                        reference?:
+                          | ({
+                              relationTo: 'pages';
+                              value: number | Page;
+                            } | null)
+                          | ({
+                              relationTo: 'posts';
+                              value: number | Post;
+                            } | null);
+                        url?: string | null;
+                        label: string;
+                      };
+                      id?: string | null;
+                    }[]
+                  | null;
+              };
+              id?: string | null;
+            }[]
+          | null;
         id?: string | null;
       }[]
     | null;
+  /**
+   * Show a CTA button in the header navigation.
+   */
+  enableMenuCta?: boolean | null;
+  /**
+   * Optional CTA button shown in the header navigation.
+   */
+  menuCta?: {
+    type?: ('reference' | 'custom') | null;
+    newTab?: boolean | null;
+    reference?:
+      | ({
+          relationTo: 'pages';
+          value: number | Page;
+        } | null)
+      | ({
+          relationTo: 'posts';
+          value: number | Post;
+        } | null);
+    url?: string | null;
+    label: string;
+    /**
+     * Choose how the link should be rendered.
+     */
+    appearance?: ('default' | 'outline') | null;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -2668,9 +2993,12 @@ export interface Footer {
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
-  navItems?:
+  tabs?:
     | T
     | {
+        label?: T;
+        enableDirectLink?: T;
+        enableDropdown?: T;
         link?:
           | T
           | {
@@ -2680,7 +3008,92 @@ export interface HeaderSelect<T extends boolean = true> {
               url?: T;
               label?: T;
             };
+        description?: T;
+        descriptionLinks?:
+          | T
+          | {
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                  };
+              id?: T;
+            };
+        navItems?:
+          | T
+          | {
+              style?: T;
+              defaultLink?:
+                | T
+                | {
+                    link?:
+                      | T
+                      | {
+                          type?: T;
+                          newTab?: T;
+                          reference?: T;
+                          url?: T;
+                          label?: T;
+                        };
+                    description?: T;
+                  };
+              featuredLink?:
+                | T
+                | {
+                    tag?: T;
+                    label?: T;
+                    links?:
+                      | T
+                      | {
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                              };
+                          id?: T;
+                        };
+                  };
+              listLinks?:
+                | T
+                | {
+                    tag?: T;
+                    links?:
+                      | T
+                      | {
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                                label?: T;
+                              };
+                          id?: T;
+                        };
+                  };
+              id?: T;
+            };
         id?: T;
+      };
+  enableMenuCta?: T;
+  menuCta?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        reference?: T;
+        url?: T;
+        label?: T;
+        appearance?: T;
       };
   updatedAt?: T;
   createdAt?: T;

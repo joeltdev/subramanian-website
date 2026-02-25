@@ -1,9 +1,21 @@
 import * as migration_20260225_054934 from './20260225_054934';
+import * as migration_20260225_102735 from './20260225_102735';
+import * as migration_20260225_add_header_tabs from './20260225_add_header_tabs';
 
 export const migrations = [
   {
     up: migration_20260225_054934.up,
     down: migration_20260225_054934.down,
-    name: '20260225_054934'
+    name: '20260225_054934',
+  },
+  {
+    up: migration_20260225_102735.up,
+    down: migration_20260225_102735.down,
+    name: '20260225_102735',
+  },
+  {
+    up: migration_20260225_add_header_tabs.up,
+    down: migration_20260225_add_header_tabs.down,
+    name: '20260225_add_header_tabs',
   },
 ];
