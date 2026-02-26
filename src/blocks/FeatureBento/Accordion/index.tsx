@@ -24,8 +24,8 @@ export const AccordionFeatureBento: React.FC<FeatureBentoBlock> = ({
   const activeData = items.find((item) => item.id === activeItem) ?? items[0]
 
   return (
-    <section className="py-12 md:py-20 lg:py-32">
-      <div className="mx-auto max-w-5xl space-y-8 px-6 md:space-y-16 lg:space-y-20 dark:[--color-border:color-mix(in_oklab,var(--color-white)_10%,transparent)]">
+    <section className="py-16 md:py-32">
+      <div className="mx-auto max-w-5xl space-y-8 px-6 md:space-y-16 dark:[--color-border:color-mix(in_oklab,var(--color-white)_10%,transparent)]">
         <div className="relative z-10 mx-auto max-w-2xl space-y-6 text-center">
           {intro && <RichText data={intro} enableGutter={false} />}
         </div>

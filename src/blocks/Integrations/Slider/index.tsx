@@ -33,9 +33,8 @@ export const SliderIntegrations: React.FC<IntegrationsBlock> = ({
   const ctaLink = Array.isArray(links) && links.length > 0 ? links[0]?.link : null
 
   return (
-    <section>
-      <div className="bg-muted dark:bg-background py-24 md:py-32">
-        <div className="mx-auto max-w-5xl px-6">
+    <section className="bg-muted py-16 md:py-32 dark:bg-background">
+      <div className="mx-auto max-w-5xl px-6">
           <div className="bg-muted/25 group relative mx-auto max-w-[22rem] items-center justify-between space-y-6 [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] sm:max-w-md">
             <div
               role="presentation"
@@ -95,7 +94,6 @@ export const SliderIntegrations: React.FC<IntegrationsBlock> = ({
             {intro && <RichText data={intro} enableGutter={false} />}
             {ctaLink && <CMSLink {...ctaLink} appearance="outline" size="sm" />}
           </div>
-        </div>
       </div>
     </section>
   )

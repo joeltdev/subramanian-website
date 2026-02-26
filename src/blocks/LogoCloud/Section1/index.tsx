@@ -5,7 +5,7 @@ import { Media } from '@/components/Media'
 
 export const Section1LogoCloud: React.FC<LogoCloudBlock> = ({ heading, logos }) => {
   return (
-    <section className="bg-background py-16">
+    <section className="bg-background py-12 md:py-20">
       <div className="mx-auto max-w-5xl px-6">
         {heading && (
           <h2 className="text-center text-lg font-medium">{heading}</h2>

@@ -165,7 +165,7 @@ export function DesktopNav({ data }: { data: Header }) {
           onMouseEnter={cancelClose}
           onMouseLeave={scheduleClose}
         >
-          <div className="container">
+          <div className="mx-auto max-w-7xl px-6">
             <div className="rounded-xl border bg-background shadow-lg p-6 mt-1">
               {/* Header: description */}
               {(activeTabData.description || (activeTabData.descriptionLinks?.length ?? 0) > 0) && (

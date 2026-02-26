@@ -13,7 +13,7 @@ export const OverlayFeaturesContentSection: React.FC<ContentSectionBlock> = ({
   return (
     <section className="py-16 md:py-32">
       <div className="mx-auto max-w-5xl space-y-8 px-6 md:space-y-16">
-        {intro && <RichText data={intro} enableGutter={false} className="relative z-10 max-w-xl" />}
+        {intro && <RichText data={intro} enableGutter={false} className="relative z-10 max-w-xl [&_h2]:text-6xl [&_h2]:font-semibold [&_h2]:mb-8 [&_p]:text-slate-600 [&_p]:text-2xl [&_p]:leading-snug [&_p]:font-light" />}
 
         <div className="relative">
           <div className="relative z-10 space-y-4 md:w-1/2">
@@ -28,14 +28,13 @@ export const OverlayFeaturesContentSection: React.FC<ContentSectionBlock> = ({
                           <Icon className="size-4" />
                         </div>
                       )}
-                      {richText && <RichText data={richText} enableGutter={false} />}
+                      {richText && <RichText data={richText} enableGutter={false} className="[&_h3]:text-sm [&_h3]:font-semibold [&_p]:text-sm [&_p]:text-slate-600 [&_p]:leading-relaxed" />}
                     </div>
                   )
                 })}
               </div>
             )}
           </div>
-
           <div className="md:mask-l-from-35% md:mask-l-to-55% mt-12 h-fit md:absolute md:-inset-y-12 md:inset-x-0 md:mt-0">
             <div className="border-border/50 relative rounded-2xl border border-dotted p-2">
               {typeof imageDark === 'object' && imageDark && (

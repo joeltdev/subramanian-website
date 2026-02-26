@@ -5,6 +5,7 @@ import * as migration_20260225_add_header_logo from './20260225_add_header_logo'
 import * as migration_20260225_add_stats_block from './20260225_add_stats_block';
 import * as migration_20260225_add_testimonials_block from './20260225_add_testimonials_block';
 import * as migration_20260226_update_footer_global from './20260226_update_footer_global';
+import * as migration_20260226_add_hero_section2_bg_fields from './20260226_add_hero_section2_bg_fields';
 
 export const migrations = [
   {
@@ -41,5 +42,10 @@ export const migrations = [
     up: migration_20260226_update_footer_global.up,
     down: migration_20260226_update_footer_global.down,
     name: '20260226_update_footer_global',
+  },
+  {
+    up: migration_20260226_add_hero_section2_bg_fields.up,
+    down: migration_20260226_add_hero_section2_bg_fields.down,
+    name: '20260226_add_hero_section2_bg_fields',
   },
 ];

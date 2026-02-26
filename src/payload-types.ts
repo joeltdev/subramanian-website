@@ -210,6 +210,14 @@ export interface Page {
      * App screenshot or preview image shown below the hero text
      */
     mediaPreview?: (number | null) | Media;
+    /**
+     * Full-screen background video for section 2. Plays autoplay/muted/loop.
+     */
+    backgroundVideo?: (number | null) | Media;
+    /**
+     * Fallback background image when no video is set (section 2 only).
+     */
+    backgroundImage?: (number | null) | Media;
   };
   layout: (
     | CallToActionBlock
@@ -2090,6 +2098,8 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
             };
         mediaPreview?: T;
+        backgroundVideo?: T;
+        backgroundImage?: T;
       };
   layout?:
     | T

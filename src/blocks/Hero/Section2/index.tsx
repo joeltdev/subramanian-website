@@ -1,9 +1,10 @@
 'use client'
 import React from 'react'
+import { ArrowRight } from 'lucide-react'
 
-import type { Page } from '@/payload-types'
+import type { Media, Page } from '@/payload-types'
 import { CMSLink } from '@/components/Link'
-import { Media } from '@/components/Media'
+import { Media as MediaComponent } from '@/components/Media'
 import RichText from '@/components/RichText'
 import { AnimatedGroup } from '@/components/ui/animated-group'
 import type { Variants } from 'motion/react'
@@ -20,7 +21,24 @@ const transitionVariants: { container?: Variants; item?: Variants } = {
   },
 }
 
-export const Section2Hero: React.FC<Page['hero']> = ({ links, mediaPreview, richText }) => {
+type Section2HeroType = Page['hero'] & {
+  badgeLabel?: string | null
+  backgroundVideo?: Media | number | null
+  backgroundImage?: Media | number | null
+}
+
+export const Section2Hero: React.FC<Section2HeroType> = ({
+  badgeLabel,
+  backgroundVideo,
+  backgroundImage,
+  links,
+  mediaPreview,
+  richText,
+}) => {
+  const hasBgMedia =
+    (backgroundVideo && typeof backgroundVideo === 'object' && !!backgroundVideo.url) ||
+    (backgroundImage && typeof backgroundImage === 'object' && !!(backgroundImage as Media).url)
+
   return (
     <div className="overflow-hidden">
       {/* Decorative gradients */}
@@ -33,11 +51,52 @@ export const Section2Hero: React.FC<Page['hero']> = ({ links, mediaPreview, rich
       </div>
 
       <section>
-        <div className="relative pt-24">
-          <div className="absolute inset-0 -z-10 size-full [background:radial-gradient(125%_125%_at_50%_100%,transparent_0%,var(--color-background)_75%)]" />
+        <div className={`relative pt-24 ${hasBgMedia ? 'min-h-[85svh] flex flex-col justify-center' : ''}`}>
+          {/* Background video */}
+          {backgroundVideo && typeof backgroundVideo === 'object' && backgroundVideo.url ? (
+            <video
+              className="absolute inset-0 size-full object-cover -z-20"
+              src={backgroundVideo.url}
+              autoPlay
+              muted
+              loop
+              playsInline
+              aria-hidden
+            />
+          ) : backgroundImage && typeof backgroundImage === 'object' && (backgroundImage as Media).url ? (
+            <img
+              className="absolute inset-0 size-full object-cover -z-20"
+              src={(backgroundImage as Media).url!}
+              alt={(backgroundImage as Media).alt ?? ''}
+              aria-hidden
+            />
+          ) : null}
 
-          <div className="mx-auto max-w-7xl px-6">
+          {/* Overlay - directional when bg media present, radial otherwise */}
+          <div
+            aria-hidden
+            className={
+              hasBgMedia
+                ? 'absolute inset-0 -z-10 size-full bg-gradient-to-r from-background via-background/80 to-transparent'
+                : 'absolute inset-0 -z-10 size-full [background:radial-gradient(125%_125%_at_50%_100%,transparent_0%,var(--color-background)_75%)]'
+            }
+          />
+
+          <div className="mx-auto max-w-7xl px-6 w-full">
             <div className="sm:mx-auto lg:mr-auto lg:mt-0">
+              {/* Badge */}
+              {badgeLabel && (
+                <AnimatedGroup variants={transitionVariants}>
+                  <div className="hover:bg-background dark:hover:border-t-border bg-muted flex w-fit items-center gap-4 rounded-full border p-1 pl-4 shadow-md shadow-zinc-950/5 transition-colors duration-300 dark:border-t-white/5 dark:shadow-zinc-950">
+                    <span className="text-foreground text-sm">{badgeLabel}</span>
+                    <span className="dark:border-background block h-4 w-0.5 border-l bg-white dark:bg-zinc-700" />
+                    <div className="bg-background size-6 overflow-hidden rounded-full">
+                      <ArrowRight className="m-auto size-3 translate-y-1/3" />
+                    </div>
+                  </div>
+                </AnimatedGroup>
+              )}
+
               {/* Rich text content — left aligned */}
               {richText && (
                 <AnimatedGroup
@@ -46,7 +105,7 @@ export const Section2Hero: React.FC<Page['hero']> = ({ links, mediaPreview, rich
                   <RichText
                     data={richText}
                     enableGutter={false}
-                    className="text-balance [&_h1]:text-5xl [&_h1]:font-medium [&_h1]:md:text-6xl [&_p]:mt-8 [&_p]:max-w-2xl [&_p]:text-pretty [&_p]:text-lg"
+                    className="text-balance [&_h1]:text-5xl [&_h1]:md:text-7xl [&_h1]:xl:text-7xl [&_h1]:leading-tight [&_p]:mt-8 [&_p]:max-w-2xl [&_p]:mx-auto [&_p]:text-xl"
                   />
                 </AnimatedGroup>
               )}
@@ -99,7 +158,7 @@ export const Section2Hero: React.FC<Page['hero']> = ({ links, mediaPreview, rich
               }}>
               <div className="mask-b-from-55% relative -mr-56 mt-8 overflow-hidden px-2 sm:mr-0 sm:mt-12 md:mt-20">
                 <div className="inset-shadow-2xs ring-background dark:inset-shadow-white/20 bg-background relative mx-auto max-w-5xl overflow-hidden rounded-2xl border p-4 shadow-lg shadow-zinc-950/15 ring-1">
-                  <Media
+                  <MediaComponent
                     className="aspect-15/8 relative rounded-2xl"
                     imgClassName="rounded-2xl"
                     resource={mediaPreview}

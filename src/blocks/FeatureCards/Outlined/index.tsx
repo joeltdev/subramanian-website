@@ -18,7 +18,7 @@ const CardDecorator = ({ children }: { children: React.ReactNode }) => (
 
 export const OutlinedFeatureCards: React.FC<FeatureCardsBlock> = ({ intro, items }) => {
   return (
-    <section className="bg-zinc-50 py-16 md:py-32 dark:bg-transparent">
+    <section className="bg-muted py-16 md:py-32 dark:bg-transparent">
       <div className="@container mx-auto max-w-5xl px-6">
         <div className="text-center">
           {intro && <RichText data={intro} enableGutter={false} />}

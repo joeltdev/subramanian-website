@@ -14,12 +14,14 @@ export const CenteredGridContentSection: React.FC<ContentSectionBlock> = ({
       <div className="mx-auto max-w-5xl space-y-8 px-6 md:space-y-12">
         {intro && (
           <div className="mx-auto max-w-xl space-y-6 text-center md:space-y-12">
-            <RichText data={intro} enableGutter={false} />
+            <RichText data={intro} enableGutter={false} className="[&_h2]:text-5xl [&_h2]:font-semibold [&_h2]:mb-6 [&_p]:text-slate-600 [&_p]:text-xl [&_p]:leading-snug [&_p]:font-light" />
           </div>
         )}
 
         {typeof image === 'object' && image && (
-          <Media resource={image} imgClassName="rounded-(--radius) grayscale w-full" />
+          <div className="bg-linear-to-b relative rounded-2xl from-zinc-300 to-transparent p-px dark:from-zinc-700">
+            <Media resource={image} imgClassName="w-full rounded-[15px] object-cover grayscale shadow" />
+          </div>
         )}
 
         {Array.isArray(items) && items.length > 0 && (
@@ -33,7 +35,7 @@ export const CenteredGridContentSection: React.FC<ContentSectionBlock> = ({
                       <Icon className="size-4" />
                     </div>
                   )}
-                  {richText && <RichText data={richText} enableGutter={false} />}
+                  {richText && <RichText data={richText} enableGutter={false} className="[&_h3]:text-sm [&_h3]:font-semibold [&_p]:text-sm [&_p]:text-slate-600 [&_p]:leading-relaxed" />}
                 </div>
               )
             })}

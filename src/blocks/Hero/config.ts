@@ -31,7 +31,7 @@ export const hero: Field = {
       admin: {
         description:
           'Optional announcement badge shown above the heading (e.g. "Introducing our new feature")',
-        condition: (_, { type } = {}) => type === 'section1',
+        condition: (_, { type } = {}) => ['section1', 'section2'].includes(type),
       },
     },
     {
@@ -61,6 +61,24 @@ export const hero: Field = {
       admin: {
         description: 'App screenshot or preview image shown below the hero text',
         condition: (_, { type } = {}) => ['section1', 'section2'].includes(type),
+      },
+    },
+    {
+      name: 'backgroundVideo',
+      type: 'upload',
+      relationTo: 'media',
+      admin: {
+        description: 'Full-screen background video for section 2. Plays autoplay/muted/loop.',
+        condition: (_, { type } = {}) => type === 'section2',
+      },
+    },
+    {
+      name: 'backgroundImage',
+      type: 'upload',
+      relationTo: 'media',
+      admin: {
+        description: 'Fallback background image when no video is set (section 2 only).',
+        condition: (_, { type } = {}) => type === 'section2',
       },
     },
   ],

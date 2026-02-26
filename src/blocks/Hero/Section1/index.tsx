@@ -47,7 +47,7 @@ export const Section1Hero: React.FC<Section1HeroType> = ({
             className="absolute inset-0 -z-10 size-full [background:radial-gradient(125%_125%_at_50%_100%,transparent_0%,var(--color-background)_75%)]"
           />
 
-          <div className="mx-auto max-w-7xl px-6">
+          <div className="mx-auto max-w-7xl px-6 w-full">
             <div className="text-center sm:mx-auto lg:mr-auto lg:mt-0">
               {/* Badge */}
               {badgeLabel && (
@@ -122,7 +122,7 @@ export const Section1Hero: React.FC<Section1HeroType> = ({
                 ...transitionVariants,
               }}>
               <div className="mask-b-from-55% relative -mr-56 mt-8 overflow-hidden px-2 sm:mr-0 sm:mt-12 md:mt-20">
-                <div className="inset-shadow-2xs ring-background dark:inset-shadow-white/20 bg-background relative mx-auto max-w-6xl overflow-hidden rounded-2xl border p-4 shadow-lg shadow-zinc-950/15 ring-1">
+                <div className="inset-shadow-2xs ring-background dark:inset-shadow-white/20 bg-background relative mx-auto max-w-5xl overflow-hidden rounded-2xl border p-4 shadow-lg shadow-zinc-950/15 ring-1">
                   <Media
                     className="aspect-15/8 relative rounded-2xl"
                     imgClassName="rounded-2xl"

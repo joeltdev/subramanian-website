@@ -84,7 +84,7 @@ export const MetricsFeatureBento: React.FC<FeatureBentoBlock> = ({ stat, panelIt
   const Icon2 = panel2?.icon ? iconMap[panel2.icon] : null
 
   return (
-    <section className="px-4 py-16 md:py-32">
+    <section className="px-6 py-16 md:py-32">
       <div className="mx-auto grid max-w-5xl border md:grid-cols-2">
         {/* Panel 0 – map decoration */}
         <div>
