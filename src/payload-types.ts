@@ -3129,26 +3129,63 @@ export interface Header {
  */
 export interface Footer {
   id: number;
-  navItems?:
+  /**
+   * Footer navigation columns (e.g. Product, Company, Legal)
+   */
+  columns?:
     | {
-        link: {
-          type?: ('reference' | 'custom') | null;
-          newTab?: boolean | null;
-          reference?:
-            | ({
-                relationTo: 'pages';
-                value: number | Page;
-              } | null)
-            | ({
-                relationTo: 'posts';
-                value: number | Post;
-              } | null);
-          url?: string | null;
-          label: string;
-        };
+        /**
+         * Column title, e.g. "Product" or "Company"
+         */
+        heading: string;
+        links?:
+          | {
+              link: {
+                type?: ('reference' | 'custom') | null;
+                newTab?: boolean | null;
+                reference?:
+                  | ({
+                      relationTo: 'pages';
+                      value: number | Page;
+                    } | null)
+                  | ({
+                      relationTo: 'posts';
+                      value: number | Post;
+                    } | null);
+                url?: string | null;
+                label: string;
+              };
+              id?: string | null;
+            }[]
+          | null;
         id?: string | null;
       }[]
     | null;
+  /**
+   * Social media links shown in the footer header row
+   */
+  socialLinks?:
+    | {
+        platform: 'twitter' | 'linkedin' | 'facebook' | 'threads' | 'instagram' | 'tiktok';
+        /**
+         * Full URL to the social profile
+         */
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Label above the newsletter email input, e.g. "Newsletter"
+   */
+  newsletterHeading?: string | null;
+  /**
+   * Helper text below the email input, e.g. "Don't miss any update!"
+   */
+  newsletterNote?: string | null;
+  /**
+   * e.g. "© 2024 Company, All rights reserved"
+   */
+  copyright?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -3269,20 +3306,36 @@ export interface HeaderSelect<T extends boolean = true> {
  * via the `definition` "footer_select".
  */
 export interface FooterSelect<T extends boolean = true> {
-  navItems?:
+  columns?:
     | T
     | {
-        link?:
+        heading?: T;
+        links?:
           | T
           | {
-              type?: T;
-              newTab?: T;
-              reference?: T;
-              url?: T;
-              label?: T;
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                  };
+              id?: T;
             };
         id?: T;
       };
+  socialLinks?:
+    | T
+    | {
+        platform?: T;
+        url?: T;
+        id?: T;
+      };
+  newsletterHeading?: T;
+  newsletterNote?: T;
+  copyright?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
