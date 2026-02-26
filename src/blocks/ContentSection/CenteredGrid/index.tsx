@@ -11,10 +11,10 @@ export const CenteredGridContentSection: React.FC<ContentSectionBlock> = ({
 }) => {
   return (
     <section className="py-16 md:py-32">
-      <div className="mx-auto max-w-5xl space-y-8 px-6 md:space-y-12">
+      <div className="mx-auto max-w-7xl space-y-8 px-6 md:space-y-12">
         {intro && (
-          <div className="mx-auto max-w-xl space-y-6 text-center md:space-y-12">
-            <RichText data={intro} enableGutter={false} className="[&_h2]:text-5xl [&_h2]:font-semibold [&_h2]:mb-6 [&_p]:text-slate-600 [&_p]:text-xl [&_p]:leading-snug [&_p]:font-light" />
+          <div className="mx-auto max-w-3xl space-y-6 text-center md:space-y-12">
+            <RichText data={intro} enableGutter={false} className="[&_h2]:text-5xl [&_h2]:text-slate-700 [&_h2]:leading-[1.1] [&_h2]:font-semibold [&_h2]:mb-6 [&_h3]:text-3xl [&_h3]:text-slate-700 [&_h3]:font-semibold [&_h3]:leading-tight [&_h3]:mb-4 [&_p]:text-slate-600 [&_p]:text-xl [&_p]:leading-snug [&_p]:font-light" />
           </div>
         )}
 
@@ -29,13 +29,13 @@ export const CenteredGridContentSection: React.FC<ContentSectionBlock> = ({
             {items.map(({ id, icon, richText }, index) => {
               const Icon = icon ? iconMap[icon] : null
               return (
-                <div key={id} className={index === 0 ? 'space-y-3' : 'space-y-2'}>
+                <div key={id} className={`${index === 0 ? 'space-y-3' : 'space-y-2'} border-l border-slate-100 pl-6`}>
                   {Icon && (
                     <div className="flex items-center gap-2">
-                      <Icon className="size-4" />
+                      <Icon className="size-6 text-slate-500" />
                     </div>
                   )}
-                  {richText && <RichText data={richText} enableGutter={false} className="[&_h3]:text-sm [&_h3]:font-semibold [&_p]:text-sm [&_p]:text-slate-600 [&_p]:leading-relaxed" />}
+                  {richText && <RichText data={richText} enableGutter={false} className="[&_h3]:text-lg [&_h3]:font-medium [&_h3]:text-slate-700 [&_h4]:text-base [&_h4]:font-medium [&_h4]:text-slate-600 [&_p]:text-sm [&_p]:text-slate-500 [&_p]:font-normal [&_p]:leading-relaxed" />}
                 </div>
               )
             })}
