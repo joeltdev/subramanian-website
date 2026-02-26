@@ -13,6 +13,8 @@ export const StatsFeatureBento: React.FC<FeatureBentoBlock> = ({ stat, items }) 
   const card3 = f[3]
   const card4 = f[4]
 
+  const Icon1 = card1?.icon ? iconMap[card1.icon] : null
+  const Icon2 = card2?.icon ? iconMap[card2.icon] : null
   const Icon3 = card3?.icon ? iconMap[card3.icon] : Shield
   const Icon4 = card4?.icon ? iconMap[card4.icon] : Users
 
@@ -23,7 +25,7 @@ export const StatsFeatureBento: React.FC<FeatureBentoBlock> = ({ stat, items }) 
           <div className="relative z-10 grid grid-cols-6 gap-3">
 
             {/* Card 1 – Stat */}
-            <Card className="relative col-span-full flex overflow-hidden lg:col-span-2">
+            <Card className="relative bg-background col-span-full flex overflow-hidden lg:col-span-2">
               <CardContent className="relative m-auto size-fit pt-6">
                 <div className="relative flex h-24 w-56 items-center">
                   <svg className="text-muted absolute inset-0 size-full" viewBox="0 0 254 104" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -31,47 +33,47 @@ export const StatsFeatureBento: React.FC<FeatureBentoBlock> = ({ stat, items }) 
                   </svg>
                   <span className="mx-auto block w-fit text-5xl font-semibold">{stat ?? '100%'}</span>
                 </div>
-                {card0?.richText && <RichText data={card0.richText} enableGutter={false} className="mt-6 text-center" />}
+                {card0?.richText && <RichText data={card0.richText} enableGutter={false} className="mt-6 text-center [&_h3]:text-lg [&_h3]:font-semibold [&_h3]:text-slate-700 [&_p]:text-sm [&_p]:text-slate-500 [&_p]:font-normal [&_p]:leading-relaxed" />}
               </CardContent>
             </Card>
 
-            {/* Card 2 – Fingerprint SVG decoration */}
-            <Card className="relative col-span-full overflow-hidden sm:col-span-3 lg:col-span-2">
-              <CardContent className="pt-6">
-                <div className="relative mx-auto flex aspect-square size-32 rounded-full border before:absolute before:-inset-2 before:rounded-full before:border dark:border-white/10 dark:before:border-white/5">
-                  <svg className="m-auto h-fit w-24" viewBox="0 0 212 143" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path className="text-zinc-400 dark:text-zinc-600" d="M44.0209 55.3542C43.1945 54.7639 42.6916 54.0272 42.5121 53.1442C42.3327 52.2611 42.5995 51.345 43.3125 50.3958C50.632 40.3611 59.812 32.5694 70.8525 27.0208C81.8931 21.4722 93.668 18.6979 106.177 18.6979C118.691 18.6979 130.497 21.3849 141.594 26.7587C152.691 32.1326 161.958 39.8936 169.396 50.0417C170.222 51.1042 170.489 52.0486 170.196 52.875C169.904 53.7014 169.401 54.4097 168.688 55C167.979 55.5903 167.153 55.8571 166.208 55.8004C165.264 55.7437 164.438 55.2408 163.729 54.2917C157.236 45.0833 148.885 38.0307 138.675 33.1337C128.466 28.2368 117.633 25.786 106.177 25.7812C94.7257 25.7812 83.9827 28.2321 73.948 33.1337C63.9132 38.0354 55.5903 45.0881 48.9792 54.2917C48.2709 55.3542 47.4445 55.9444 46.5 56.0625C45.5556 56.1806 44.7292 55.9444 44.0209 55.3542Z" fill="currentColor" />
-                  </svg>
-                </div>
-                <div className="relative z-10 mt-6 space-y-2 text-center">
-                  {card1?.richText && <RichText data={card1.richText} enableGutter={false} />}
+            {/* Card 2 – Icon */}
+            <Card className="relative bg-background col-span-full overflow-hidden sm:col-span-3 lg:col-span-2">
+              <CardContent className="pt-12">
+                {Icon1 && (
+                  <div className="relative mx-auto mb-6 flex aspect-square size-12 items-center justify-center rounded-full border before:absolute before:-inset-2 before:rounded-full before:border dark:border-white/10 dark:before:border-white/5">
+                    <Icon1 className="size-5 text-slate-500" />
+                  </div>
+                )}
+                <div className="relative z-10 space-y-2 text-center">
+                  {card1?.richText && <RichText data={card1.richText} enableGutter={false} className="[&_h3]:text-lg [&_h3]:font-semibold [&_h3]:text-slate-700 [&_p]:text-sm [&_p]:text-slate-500 [&_p]:font-normal [&_p]:leading-relaxed" />}
                 </div>
               </CardContent>
             </Card>
 
-            {/* Card 3 – Chart line SVG decoration */}
-            <Card className="relative col-span-full overflow-hidden sm:col-span-3 lg:col-span-2">
-              <CardContent className="pt-6">
-                <div className="pt-6 lg:px-6">
-                  <svg className="dark:text-muted-foreground w-full" viewBox="0 0 386 123" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path className="text-primary-600 dark:text-primary-500" d="M3 121.077C3 121.077 15.3041 93.6691 36.0195 87.756C56.7349 81.8429 66.6632 80.9723 66.6632 80.9723C66.6632 80.9723 80.0327 80.9723 91.4656 80.9723C102.898 80.9723 100.415 64.2824 108.556 64.2824C116.696 64.2824 117.693 92.1332 125.226 92.1332C132.759 92.1332 142.07 78.5115 153.591 80.9723C165.113 83.433 186.092 92.1332 193 92.1332C199.908 92.1332 205.274 64.2824 213.017 64.2824C220.76 64.2824 237.832 93.8946 243.39 92.1332C248.948 90.3718 257.923 60.5 265.284 60.5C271.145 60.5 283.204 87.7182 285.772 87.756C293.823 87.8746 299.2 73.0802 304.411 73.0802C311.283 73.0802 321.425 65.9506 333.552 64.2824C345.68 62.6141 346.91 82.4553 362.27 80.9723C377.629 79.4892 383 106.605 383 106.605" stroke="currentColor" strokeWidth="3" />
-                  </svg>
-                </div>
-                <div className="relative z-10 mt-14 space-y-2 text-center">
-                  {card2?.richText && <RichText data={card2.richText} enableGutter={false} />}
+            {/* Card 3 – Icon */}
+            <Card className="bg-background relative col-span-full overflow-hidden sm:col-span-3 lg:col-span-2">
+              <CardContent className="pt-12">
+                {Icon2 && (
+                  <div className="relative mx-auto mb-6 flex aspect-square size-12 items-center justify-center rounded-full border before:absolute before:-inset-2 before:rounded-full before:border dark:border-white/10 dark:before:border-white/5">
+                    <Icon2 className="size-5 text-slate-500" />
+                  </div>
+                )}
+                <div className="relative z-10 space-y-2 text-center">
+                  {card2?.richText && <RichText data={card2.richText} enableGutter={false} className="[&_h3]:text-lg [&_h3]:font-semibold [&_h3]:text-slate-700 [&_p]:text-sm [&_p]:text-slate-500 [&_p]:font-normal [&_p]:leading-relaxed" />}
                 </div>
               </CardContent>
             </Card>
 
             {/* Card 4 – Icon + chart area */}
-            <Card className="card variant-outlined relative col-span-full overflow-hidden lg:col-span-3">
+            <Card className="card variant-outlined bg-background relative col-span-full overflow-hidden lg:col-span-3">
               <CardContent className="grid pt-6 sm:grid-cols-2">
                 <div className="relative z-10 flex flex-col justify-between space-y-12 lg:space-y-6">
                   <div className="relative flex aspect-square size-12 rounded-full border before:absolute before:-inset-2 before:rounded-full before:border dark:border-white/10 dark:before:border-white/5">
                     {Icon3 && <Icon3 className="m-auto size-5" />}
                   </div>
                   <div className="space-y-2">
-                    {card3?.richText && <RichText data={card3.richText} enableGutter={false} />}
+                    {card3?.richText && <RichText data={card3.richText} enableGutter={false} className="[&_h3]:text-lg [&_h3]:font-semibold [&_h3]:text-slate-700 [&_p]:text-sm [&_p]:text-slate-500 [&_p]:font-normal [&_p]:leading-relaxed" />}
                   </div>
                 </div>
                 <div className="rounded-tl-(--radius) relative -mb-6 -mr-6 mt-6 h-fit border-l border-t p-6 py-6 sm:ml-6">
@@ -86,14 +88,14 @@ export const StatsFeatureBento: React.FC<FeatureBentoBlock> = ({ stat, items }) 
             </Card>
 
             {/* Card 5 – Icon + avatar section */}
-            <Card className="card variant-outlined relative col-span-full overflow-hidden lg:col-span-3">
+            <Card className="card variant-outlined bg-background relative col-span-full overflow-hidden lg:col-span-3">
               <CardContent className="grid h-full pt-6 sm:grid-cols-2">
                 <div className="relative z-10 flex flex-col justify-between space-y-12 lg:space-y-6">
                   <div className="relative flex aspect-square size-12 rounded-full border before:absolute before:-inset-2 before:rounded-full before:border dark:border-white/10 dark:before:border-white/5">
                     {Icon4 && <Icon4 className="m-auto size-6" />}
                   </div>
                   <div className="space-y-2">
-                    {card4?.richText && <RichText data={card4.richText} enableGutter={false} />}
+                    {card4?.richText && <RichText data={card4.richText} enableGutter={false} className="[&_h3]:text-lg [&_h3]:font-semibold [&_h3]:text-slate-700 [&_p]:text-sm [&_p]:text-slate-500 [&_p]:font-normal [&_p]:leading-relaxed" />}
                   </div>
                 </div>
                 <div className="before:bg-(--color-border) relative mt-6 before:absolute before:inset-0 before:mx-auto before:w-px sm:-my-6 sm:-mr-6">

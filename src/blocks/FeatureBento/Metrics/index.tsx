@@ -90,13 +90,13 @@ export const MetricsFeatureBento: React.FC<FeatureBentoBlock> = ({ stat, panelIt
         <div>
           <div className="p-6 sm:p-12">
             {panel0 && (
-              <span className="text-muted-foreground flex items-center gap-2">
+              <span className="flex items-center gap-2 text-sm font-medium text-slate-500">
                 {Icon0 && <Icon0 className="size-4" />}
                 {panel0.label}
               </span>
             )}
             {panel0?.heading && (
-              <RichText data={panel0.heading} enableGutter={false} />
+              <RichText data={panel0.heading} enableGutter={false} className="[&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:text-slate-800 [&_h2]:mb-2 [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:text-slate-700 [&_h3]:mb-2 [&_p]:text-slate-600 [&_p]:leading-snug [&_p]:font-light" />
             )}
           </div>
           <div aria-hidden className="relative">
@@ -117,13 +117,13 @@ export const MetricsFeatureBento: React.FC<FeatureBentoBlock> = ({ stat, panelIt
         <div className="overflow-hidden border-t bg-zinc-50 p-6 sm:p-12 md:border-0 md:border-l dark:bg-transparent">
           <div className="relative z-10">
             {panel1 && (
-              <span className="text-muted-foreground flex items-center gap-2">
+              <span className="flex items-center gap-2 text-sm font-medium text-slate-500">
                 {Icon1 && <Icon1 className="size-4" />}
                 {panel1.label}
               </span>
             )}
             {panel1?.heading && (
-              <RichText data={panel1.heading} enableGutter={false} />
+              <RichText data={panel1.heading} enableGutter={false} className="[&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:text-slate-800 [&_h2]:mb-2 [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:text-slate-700 [&_h3]:mb-2 [&_p]:text-slate-600 [&_p]:leading-snug [&_p]:font-light" />
             )}
           </div>
           <div aria-hidden className="flex flex-col gap-8">
@@ -147,20 +147,20 @@ export const MetricsFeatureBento: React.FC<FeatureBentoBlock> = ({ stat, panelIt
 
         {/* Stat banner */}
         <div className="col-span-full border-y p-12">
-          <p className="text-center text-4xl font-semibold lg:text-7xl">{stat ?? '99.99% Uptime'}</p>
+          <p className="text-center text-4xl font-semibold text-slate-800 lg:text-7xl">{stat ?? '99.99% Uptime'}</p>
         </div>
 
         {/* Panel 2 – chart decoration */}
         <div className="relative col-span-full">
           <div className="absolute z-10 max-w-lg px-6 pr-12 pt-6 md:px-12 md:pt-12">
             {panel2 && (
-              <span className="text-muted-foreground flex items-center gap-2">
+              <span className="flex items-center gap-2 text-sm font-medium text-slate-500">
                 {Icon2 && <Icon2 className="size-4" />}
                 {panel2.label}
               </span>
             )}
             {panel2?.heading && (
-              <RichText data={panel2.heading} enableGutter={false} />
+              <RichText data={panel2.heading} enableGutter={false} className="[&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:text-slate-800 [&_h2]:mb-2 [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:text-slate-700 [&_h3]:mb-2 [&_p]:text-slate-600 [&_p]:leading-snug [&_p]:font-light" />
             )}
           </div>
           <MonitoringChart />

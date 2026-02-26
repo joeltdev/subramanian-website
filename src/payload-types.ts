@@ -233,6 +233,7 @@ export interface Page {
     | ContentSectionBlock
     | StatsBlock
     | TestimonialsBlock
+    | HoverHighlightsBlock
   )[];
   meta?: {
     title?: string | null;
@@ -1615,6 +1616,78 @@ export interface TestimonialsBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HoverHighlightsBlock".
+ */
+export interface HoverHighlightsBlock {
+  /**
+   * Short text displayed above the highlights list
+   */
+  beforeHighlights?: string | null;
+  highlights?:
+    | {
+        /**
+         * Large heading-sized label for this highlight
+         */
+        text: string;
+        /**
+         * Primary image shown when this highlight is hovered
+         */
+        mediaTop?: (number | null) | Media;
+        /**
+         * Secondary image shown offset below the primary
+         */
+        mediaBottom?: (number | null) | Media;
+        link?: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null);
+          url?: string | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Short text displayed below the highlights list
+   */
+  afterHighlights?: string | null;
+  links?:
+    | {
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null);
+          url?: string | null;
+          label: string;
+          /**
+           * Choose how the link should be rendered.
+           */
+          appearance?: ('default' | 'outline') | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'hoverHighlights';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "product-categories".
  */
 export interface ProductCategory {
@@ -2117,6 +2190,7 @@ export interface PagesSelect<T extends boolean = true> {
         contentSection?: T | ContentSectionBlockSelect<T>;
         stats?: T | StatsBlockSelect<T>;
         testimonials?: T | TestimonialsBlockSelect<T>;
+        hoverHighlights?: T | HoverHighlightsBlockSelect<T>;
       };
   meta?:
     | T
@@ -2421,6 +2495,47 @@ export interface TestimonialsBlockSelect<T extends boolean = true> {
         author?: T;
         role?: T;
         avatar?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HoverHighlightsBlock_select".
+ */
+export interface HoverHighlightsBlockSelect<T extends boolean = true> {
+  beforeHighlights?: T;
+  highlights?:
+    | T
+    | {
+        text?: T;
+        mediaTop?: T;
+        mediaBottom?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+            };
+        id?: T;
+      };
+  afterHighlights?: T;
+  links?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+              appearance?: T;
+            };
         id?: T;
       };
   id?: T;
