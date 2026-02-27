@@ -41,12 +41,12 @@ export const StatsFeatureBento: React.FC<FeatureBentoBlock> = ({ stat, items }) 
             <Card className="relative bg-background col-span-full overflow-hidden sm:col-span-3 lg:col-span-2">
               <CardContent className="pt-12">
                 {Icon1 && (
-                  <div className="relative mx-auto mb-6 flex aspect-square size-12 items-center justify-center rounded-full border before:absolute before:-inset-2 before:rounded-full before:border dark:border-white/10 dark:before:border-white/5">
-                    <Icon1 className="size-5 text-slate-500" />
+                  <div className="relative mx-auto mb-6 flex aspect-square size-16 items-center justify-center rounded-full border before:absolute before:-inset-2 before:rounded-full before:border dark:border-white/10 dark:before:border-white/5">
+                    <Icon1 className="size-8 text-slate-500" />
                   </div>
                 )}
                 <div className="relative z-10 space-y-2 text-center">
-                  {card1?.richText && <RichText data={card1.richText} enableGutter={false} className="[&_h3]:text-lg [&_h3]:font-semibold [&_h3]:text-slate-700 [&_p]:text-sm [&_p]:text-slate-500 [&_p]:font-normal [&_p]:leading-relaxed" />}
+                  {card1?.richText && <RichText data={card1.richText} enableGutter={false} className="[&_h3]:text-lg [&_h3]:font-semibold [&_h3]:text-slate-700 [&_p]:text-sm [&_p]:text-center [&_p]:text-slate-500 [&_p]:font-normal [&_p]:leading-relaxed" />}
                 </div>
               </CardContent>
             </Card>
@@ -60,7 +60,7 @@ export const StatsFeatureBento: React.FC<FeatureBentoBlock> = ({ stat, items }) 
                   </div>
                 )}
                 <div className="relative z-10 space-y-2 text-center">
-                  {card2?.richText && <RichText data={card2.richText} enableGutter={false} className="[&_h3]:text-lg [&_h3]:font-semibold [&_h3]:text-slate-700 [&_p]:text-sm [&_p]:text-slate-500 [&_p]:font-normal [&_p]:leading-relaxed" />}
+                  {card2?.richText && <RichText data={card2.richText} enableGutter={false} className="[&_h3]:text-lg [&_h3]:font-semibold [&_h3]:text-slate-700 [&_p]:text-sm [&_p]:text-center [&_p]:text-slate-500 [&_p]:font-normal [&_p]:leading-relaxed" />}
                 </div>
               </CardContent>
             </Card>

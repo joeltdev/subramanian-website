@@ -19,9 +19,9 @@ const CardDecorator = ({ children }: { children: React.ReactNode }) => (
 export const FloatingFeatureCards: React.FC<FeatureCardsBlock> = ({ intro, items }) => {
   return (
     <section className="py-16 md:py-32">
-      <div className="@container mx-auto max-w-5xl px-6">
+      <div className="@container relative z-10 mx-auto max-w-5xl px-6">
         <div className="text-center">
-          {intro && <RichText data={intro} enableGutter={false} />}
+          {intro && <RichText data={intro} enableGutter={false} className="[&_h2]:text-5xl [&_h2]:text-slate-700 [&_h2]:leading-[1.1] [&_h2]:font-semibold [&_h2]:mb-6 [&_h3]:text-3xl [&_h3]:text-slate-700 [&_h3]:font-semibold [&_h3]:leading-tight [&_h3]:mb-4 [&_p]:text-slate-600 [&_p]:text-xl [&_p]:leading-snug [&_p]:font-light" />}
         </div>
 
         {Array.isArray(items) && items.length > 0 && (
@@ -32,12 +32,12 @@ export const FloatingFeatureCards: React.FC<FeatureCardsBlock> = ({ intro, items
                 <Card key={id} className="group border-0 shadow-none">
                   <CardHeader className="pb-3">
                     <CardDecorator>
-                      {Icon && <Icon className="size-6" aria-hidden />}
+                      {Icon && <Icon className="size-6 text-slate-500" aria-hidden />}
                     </CardDecorator>
                   </CardHeader>
                   {richText && (
                     <CardContent>
-                      <RichText data={richText} enableGutter={false} />
+                      <RichText data={richText} enableGutter={false} className="[&_h3]:text-lg [&_h3]:font-semibold [&_h3]:text-slate-700 [&_p]:text-sm [&_p]:text-slate-500 [&_p]:font-normal [&_p]:leading-relaxed" />
                     </CardContent>
                   )}
                 </Card>
