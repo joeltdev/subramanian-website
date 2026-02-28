@@ -86,10 +86,10 @@ export async function Footer() {
   const { logo } = headerData as Header
 
   return (
-    <footer data-theme="dark" className="bg-slate-800 text-foreground">
+    <footer data-theme="dark" className="bg-black text-foreground">
       <div className="mx-auto max-w-7xl px-6">
         {/* Top section: Logo + Newsletter */}
-        <div className="grid gap-16 border-b border-border pt-24 md:grid-cols-2 md:items-end md:gap-24">
+        <div className="grid gap-16 pt-24 md:grid-cols-2 md:items-end md:gap-24">
           {/* Logo */}
           <div>
             <Link href="/" aria-label="go home" className="block size-fit">
@@ -101,7 +101,7 @@ export async function Footer() {
                   height={(logo as Media).height ?? 34}
                   loading="lazy"
                   decoding="async"
-                  className="max-h-10 w-auto dark:invert"
+                  className="max-h-10 w-auto"
                 />
               ) : (
                 <Logo />

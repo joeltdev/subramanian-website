@@ -105,66 +105,6 @@ export const Header: GlobalConfig = {
           },
           fields: [
             {
-              name: 'style',
-              type: 'select',
-              defaultValue: 'default',
-              options: [
-                { label: 'Default', value: 'default' },
-                { label: 'Featured', value: 'featured' },
-                { label: 'List', value: 'list' },
-              ],
-            },
-            {
-              name: 'defaultLink',
-              type: 'group',
-              admin: {
-                hideGutter: true,
-                condition: (_, siblingData) => siblingData?.style === 'default',
-              },
-              fields: [
-                link({
-                  appearances: false,
-                }),
-                {
-                  name: 'description',
-                  type: 'text',
-                  label: 'Description',
-                  admin: {
-                    description: 'Short description shown below the link.',
-                  },
-                },
-              ],
-            },
-            {
-              name: 'featuredLink',
-              type: 'group',
-              admin: {
-                hideGutter: true,
-                condition: (_, siblingData) => siblingData?.style === 'featured',
-              },
-              fields: [
-                {
-                  name: 'tag',
-                  type: 'text',
-                  label: 'Tag',
-                },
-                {
-                  name: 'label',
-                  type: 'text',
-                  label: 'Label',
-                },
-                {
-                  name: 'links',
-                  type: 'array',
-                  fields: [
-                    link({
-                      appearances: false,
-                    }),
-                  ],
-                },
-              ],
-            },
-            {
               name: 'listLinks',
               type: 'group',
               admin: {

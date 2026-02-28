@@ -237,6 +237,8 @@ export interface Page {
     | TestimonialsBlock
     | HoverHighlightsBlock
     | CaseStudiesHighlightBlock
+    | ArticleGridBlock
+    | MediaCardsBlock
   )[];
   meta?: {
     title?: string | null;
@@ -1758,6 +1760,107 @@ export interface CaseStudy {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ArticleGridBlock".
+ */
+export interface ArticleGridBlock {
+  /**
+   * Optional section heading and supporting text shown above the article cards
+   */
+  intro?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  populateBy?: ('collection' | 'selection') | null;
+  /**
+   * Leave empty to show posts from all categories
+   */
+  categories?: (number | Category)[] | null;
+  /**
+   * Pick up to 4 posts to display
+   */
+  selectedDocs?: (number | Post)[] | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'articleGrid';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MediaCardsBlock".
+ */
+export interface MediaCardsBlock {
+  /**
+   * Section heading and supporting text — e.g. 'Smart automation for modern buildings'
+   */
+  intro?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  items?:
+    | {
+        media: number | Media;
+        /**
+         * Card heading and body — e.g. '### Remote Control\nManage every device from a single dashboard.'
+         */
+        richText?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        link?: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null);
+          url?: string | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'mediaCards';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "product-categories".
  */
 export interface ProductCategory {
@@ -2266,6 +2369,8 @@ export interface PagesSelect<T extends boolean = true> {
         testimonials?: T | TestimonialsBlockSelect<T>;
         hoverHighlights?: T | HoverHighlightsBlockSelect<T>;
         caseStudiesHighlight?: T | CaseStudiesHighlightBlockSelect<T>;
+        articleGrid?: T | ArticleGridBlockSelect<T>;
+        mediaCards?: T | MediaCardsBlockSelect<T>;
       };
   meta?:
     | T
@@ -2623,6 +2728,42 @@ export interface HoverHighlightsBlockSelect<T extends boolean = true> {
 export interface CaseStudiesHighlightBlockSelect<T extends boolean = true> {
   intro?: T;
   caseStudies?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ArticleGridBlock_select".
+ */
+export interface ArticleGridBlockSelect<T extends boolean = true> {
+  intro?: T;
+  populateBy?: T;
+  categories?: T;
+  selectedDocs?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MediaCardsBlock_select".
+ */
+export interface MediaCardsBlockSelect<T extends boolean = true> {
+  intro?: T;
+  items?:
+    | T
+    | {
+        media?: T;
+        richText?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+            };
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }
@@ -3244,52 +3385,6 @@ export interface Header {
          */
         navItems?:
           | {
-              style?: ('default' | 'featured' | 'list') | null;
-              defaultLink?: {
-                link: {
-                  type?: ('reference' | 'custom') | null;
-                  newTab?: boolean | null;
-                  reference?:
-                    | ({
-                        relationTo: 'pages';
-                        value: number | Page;
-                      } | null)
-                    | ({
-                        relationTo: 'posts';
-                        value: number | Post;
-                      } | null);
-                  url?: string | null;
-                  label: string;
-                };
-                /**
-                 * Short description shown below the link.
-                 */
-                description?: string | null;
-              };
-              featuredLink?: {
-                tag?: string | null;
-                label?: string | null;
-                links?:
-                  | {
-                      link: {
-                        type?: ('reference' | 'custom') | null;
-                        newTab?: boolean | null;
-                        reference?:
-                          | ({
-                              relationTo: 'pages';
-                              value: number | Page;
-                            } | null)
-                          | ({
-                              relationTo: 'posts';
-                              value: number | Post;
-                            } | null);
-                        url?: string | null;
-                        label: string;
-                      };
-                      id?: string | null;
-                    }[]
-                  | null;
-              };
               listLinks?: {
                 tag?: string | null;
                 links?:
@@ -3453,41 +3548,6 @@ export interface HeaderSelect<T extends boolean = true> {
         navItems?:
           | T
           | {
-              style?: T;
-              defaultLink?:
-                | T
-                | {
-                    link?:
-                      | T
-                      | {
-                          type?: T;
-                          newTab?: T;
-                          reference?: T;
-                          url?: T;
-                          label?: T;
-                        };
-                    description?: T;
-                  };
-              featuredLink?:
-                | T
-                | {
-                    tag?: T;
-                    label?: T;
-                    links?:
-                      | T
-                      | {
-                          link?:
-                            | T
-                            | {
-                                type?: T;
-                                newTab?: T;
-                                reference?: T;
-                                url?: T;
-                                label?: T;
-                              };
-                          id?: T;
-                        };
-                  };
               listLinks?:
                 | T
                 | {

@@ -31,26 +31,32 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
   }, [headerTheme])
 
   return (
-    <header className="mx-auto w-full max-w-7xl px-6 relative z-20" {...(theme ? { 'data-theme': theme } : {})}>
-      <div className="py-4 flex items-center justify-between">
-        <Link href="/">
-          {data.logo && typeof data.logo === 'object' && (data.logo as Media).url ? (
-            <img
-              src={(data.logo as Media).url!}
-              alt={(data.logo as Media).alt ?? 'Logo'}
-              width={(data.logo as Media).width ?? 193}
-              height={(data.logo as Media).height ?? 34}
-              loading="eager"
-              fetchPriority="high"
-              decoding="async"
-              className="max-h-10 w-auto"
-            />
-          ) : (
-            <Logo loading="eager" priority="high" className="invert dark:invert-0" />
-          )}
-        </Link>
-        <DesktopNav data={data} />
-        <MobileNav data={data} />
+    <header
+      className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/95 backdrop-blur-md"
+      style={{ '--header-height': '72px' } as React.CSSProperties}
+      {...(theme ? { 'data-theme': theme } : {})}
+    >
+      <div className="mx-auto w-full max-w-7xl px-6">
+        <div className="py-4 flex items-center justify-between">
+          <Link href="/">
+            {data.logo && typeof data.logo === 'object' && (data.logo as Media).url ? (
+              <img
+                src={(data.logo as Media).url!}
+                alt={(data.logo as Media).alt ?? 'Logo'}
+                width={(data.logo as Media).width ?? 193}
+                height={(data.logo as Media).height ?? 34}
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+                className="max-h-10 w-auto"
+              />
+            ) : (
+              <Logo loading="eager" priority="high" className="invert dark:invert-0" />
+            )}
+          </Link>
+          <DesktopNav data={data} />
+          <MobileNav data={data} />
+        </div>
       </div>
     </header>
   )

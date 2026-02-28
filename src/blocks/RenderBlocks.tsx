@@ -17,6 +17,8 @@ import { StatsBlock } from '@/blocks/Stats/Component'
 import { TestimonialsBlock } from '@/blocks/Testimonials/Component'
 import { CaseStudiesHighlightBlock } from '@/blocks/CaseStudiesHighlight/Component'
 import { HoverHighlightsBlock } from '@/blocks/HoverHighlights/Component'
+import { ArticleGridBlock } from '@/blocks/ArticleGrid/Component'
+import { MediaCardsBlock } from '@/blocks/MediaCards/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -34,6 +36,8 @@ const blockComponents = {
   testimonials: TestimonialsBlock,
   hoverHighlights: HoverHighlightsBlock,
   caseStudiesHighlight: CaseStudiesHighlightBlock,
+  articleGrid: ArticleGridBlock,
+  mediaCards: MediaCardsBlock,
 }
 
 export const RenderBlocks: React.FC<{

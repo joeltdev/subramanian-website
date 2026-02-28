@@ -17,55 +17,20 @@ function NavItemContent({
   item: NavItem
   onLinkClick?: () => void
 }) {
-  const style = item.style ?? 'default'
-
-  if (style === 'default' && item.defaultLink) {
-    const { link, description } = item.defaultLink
-    return (
-      <div className="group flex flex-col gap-0.5 rounded-md px-3 py-2 hover:bg-accent transition-colors">
-        <CMSLink {...link} appearance="inline" onClick={onLinkClick} className="font-medium text-sm" />
-        {description && <p className="text-xs text-muted-foreground">{description}</p>}
-      </div>
-    )
-  }
-
-  if (style === 'featured' && item.featuredLink) {
-    const { tag, label, links } = item.featuredLink
-    return (
-      <div className="rounded-md bg-muted/50 px-3 py-3">
-        {tag && (
-          <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-            {tag}
-          </span>
-        )}
-        {label && <p className="mt-1 font-semibold text-sm">{label}</p>}
-        {links && links.length > 0 && (
-          <ul className="mt-2 flex flex-col gap-1">
-            {links.map((item, i) => (
-              <li key={i}>
-                <CMSLink {...item.link} appearance="inline" onClick={onLinkClick} className="text-sm text-muted-foreground hover:text-foreground transition-colors" />
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-    )
-  }
-
-  if (style === 'list' && item.listLinks) {
+  if (item.listLinks) {
     const { tag, links } = item.listLinks
     return (
-      <div className="px-3 py-2">
+      <div className="px-4 py-3">
         {tag && (
           <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
             {tag}
           </span>
         )}
         {links && links.length > 0 && (
-          <ul className="mt-1 flex flex-col gap-1">
+          <ul className="mt-2 flex flex-col gap-1.5">
             {links.map((item, i) => (
-              <li key={i}>
-                <CMSLink {...item.link} appearance="inline" onClick={onLinkClick} className="text-sm hover:text-primary transition-colors" />
+              <li key={i} className="translate-x-0 hover:translate-x-1.5 transition-transform duration-200">
+                <CMSLink {...item.link} appearance="inline" onClick={onLinkClick} className="text-base text-foreground/80 hover:text-foreground transition-colors duration-200" />
               </li>
             ))}
           </ul>
@@ -110,7 +75,13 @@ export function DesktopNav({ data }: { data: Header }) {
                 key={i}
                 {...tab.link}
                 appearance="inline"
-                className="px-3 py-2 text-sm font-medium hover:text-primary transition-colors"
+                className={cn(
+                  'relative px-4 py-2.5 text-sm font-medium transition-colors duration-200',
+                  'text-foreground/60 hover:text-foreground',
+                  'after:absolute after:bottom-1.5 after:inset-x-4 after:h-px after:bg-foreground',
+                  'after:origin-left after:scale-x-0 hover:after:scale-x-100',
+                  'after:transition-transform after:duration-300',
+                )}
               />
             )
           }
@@ -118,7 +89,7 @@ export function DesktopNav({ data }: { data: Header }) {
           return (
             <div
               key={i}
-              className="relative"
+              className="relative group"
               onMouseEnter={() => {
                 if (hasDropdown) {
                   cancelClose()
@@ -131,8 +102,8 @@ export function DesktopNav({ data }: { data: Header }) {
             >
               <button
                 className={cn(
-                  'flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md transition-colors hover:text-primary',
-                  isActive && 'text-primary',
+                  'relative flex items-center gap-1.5 px-4 py-2.5 text-sm font-medium transition-colors duration-200',
+                  isActive ? 'text-foreground' : 'text-foreground/60 hover:text-foreground',
                 )}
               >
                 {tab.label}
@@ -144,6 +115,13 @@ export function DesktopNav({ data }: { data: Header }) {
                     )}
                   />
                 )}
+                {/* Sliding underline */}
+                <span
+                  className={cn(
+                    'absolute bottom-1.5 left-4 right-4 h-px bg-foreground origin-left transition-transform duration-300',
+                    isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100',
+                  )}
+                />
               </button>
             </div>
           )
@@ -165,39 +143,44 @@ export function DesktopNav({ data }: { data: Header }) {
           onMouseEnter={cancelClose}
           onMouseLeave={scheduleClose}
         >
-          <div className="mx-auto max-w-7xl px-6">
-            <div className="rounded-xl border bg-background shadow-lg p-6 mt-1">
-              {/* Header: description */}
-              {(activeTabData.description || (activeTabData.descriptionLinks?.length ?? 0) > 0) && (
-                <div className="mb-4 flex items-start justify-between gap-8 border-b pb-4">
-                  <p className="max-w-sm text-sm text-muted-foreground">{activeTabData.description}</p>
-                  {activeTabData.descriptionLinks && activeTabData.descriptionLinks.length > 0 && (
-                    <div className="flex flex-wrap gap-3">
-                      {activeTabData.descriptionLinks.map((dl, i) => (
-                        <CMSLink
-                          key={i}
-                          {...dl.link}
-                          appearance="inline"
-                          className="text-sm font-medium hover:text-primary transition-colors"
-                        />
-                      ))}
-                    </div>
-                  )}
-                </div>
-              )}
+          <div className="w-full border-t bg-background shadow-md">
+            <div className="mx-auto max-w-7xl px-8 py-8">
+              <div className="gap-10 grid grid-cols-12">
+                {/* Left: description + links */}
+                {(activeTabData.description || (activeTabData.descriptionLinks?.length ?? 0) > 0) && (
+                  <div className="col-span-4 shrink-0 flex flex-col gap-4 border-r border-border pr-10">
+                    {activeTabData.description && (
+                      <p className="text-xl text-foreground leading-relaxed">{activeTabData.description}</p>
+                    )}
+                    {activeTabData.descriptionLinks && activeTabData.descriptionLinks.length > 0 && (
+                      <div className="flex flex-col gap-2">
+                        {activeTabData.descriptionLinks.map((dl, i) => (
+                          <div key={i} className="translate-x-0 hover:translate-x-1.5 transition-transform duration-200">
+                            <CMSLink
+                              {...dl.link}
+                              appearance="inline"
+                              className="text-base font-medium text-foreground/60 hover:text-foreground transition-colors duration-200"
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )}
 
-              {/* Nav items grid */}
-              {activeTabData.navItems && activeTabData.navItems.length > 0 && (
-                <div className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4">
-                  {activeTabData.navItems.map((item, i) => (
-                    <NavItemContent
-                      key={i}
-                      item={item}
-                      onLinkClick={() => setActiveTab(null)}
-                    />
-                  ))}
-                </div>
-              )}
+                {/* Right: nav items grid */}
+                {activeTabData.navItems && activeTabData.navItems.length > 0 && (
+                  <div className="col-span-8 flex-1 grid grid-cols-2 gap-3 md:grid-cols-3">
+                    {activeTabData.navItems.map((item, i) => (
+                      <NavItemContent
+                        key={i}
+                        item={item}
+                        onLinkClick={() => setActiveTab(null)}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>

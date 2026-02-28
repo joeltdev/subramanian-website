@@ -8,6 +8,11 @@ import * as migration_20260226_update_footer_global from './20260226_update_foot
 import * as migration_20260226_add_hero_section2_bg_fields from './20260226_add_hero_section2_bg_fields';
 import * as migration_20260226_add_hover_highlights_block from './20260226_add_hover_highlights_block';
 import * as migration_20260228_add_case_studies_highlight_block from './20260228_add_case_studies_highlight_block';
+import * as migration_20260228_add_feature_cards_media_variant from './20260228_add_feature_cards_media_variant';
+import * as migration_20260228_add_article_grid_block from './20260228_add_article_grid_block';
+import * as migration_20260228_add_media_cards_block from './20260228_add_media_cards_block';
+import * as migration_20260301_remove_nav_items_default_style from './20260301_remove_nav_items_default_style';
+import * as migration_20260301_remove_nav_items_featured_style from './20260301_remove_nav_items_featured_style';
 
 export const migrations = [
   {
@@ -59,5 +64,30 @@ export const migrations = [
     up: migration_20260228_add_case_studies_highlight_block.up,
     down: migration_20260228_add_case_studies_highlight_block.down,
     name: '20260228_add_case_studies_highlight_block',
+  },
+  {
+    up: migration_20260228_add_feature_cards_media_variant.up,
+    down: migration_20260228_add_feature_cards_media_variant.down,
+    name: '20260228_add_feature_cards_media_variant',
+  },
+  {
+    up: migration_20260228_add_article_grid_block.up,
+    down: migration_20260228_add_article_grid_block.down,
+    name: '20260228_add_article_grid_block',
+  },
+  {
+    up: migration_20260228_add_media_cards_block.up,
+    down: migration_20260228_add_media_cards_block.down,
+    name: '20260228_add_media_cards_block',
+  },
+  {
+    up: migration_20260301_remove_nav_items_default_style.up,
+    down: migration_20260301_remove_nav_items_default_style.down,
+    name: '20260301_remove_nav_items_default_style',
+  },
+  {
+    up: migration_20260301_remove_nav_items_featured_style.up,
+    down: migration_20260301_remove_nav_items_featured_style.down,
+    name: '20260301_remove_nav_items_featured_style',
   },
 ];
