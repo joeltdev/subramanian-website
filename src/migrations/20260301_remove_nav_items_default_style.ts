@@ -8,6 +8,7 @@ export async function up({ db }: MigrateUpArgs): Promise<void> {
     -- Recreate the style enum without 'default'
     CREATE TYPE "public"."enum_header_tabs_nav_items_style_new" AS ENUM('featured', 'list');
 
+    ALTER TABLE "header_tabs_nav_items" ALTER COLUMN "style" DROP DEFAULT;
     ALTER TABLE "header_tabs_nav_items"
       ALTER COLUMN "style" TYPE "public"."enum_header_tabs_nav_items_style_new"
       USING "style"::text::"public"."enum_header_tabs_nav_items_style_new";
@@ -15,6 +16,9 @@ export async function up({ db }: MigrateUpArgs): Promise<void> {
     DROP TYPE "public"."enum_header_tabs_nav_items_style";
     ALTER TYPE "public"."enum_header_tabs_nav_items_style_new"
       RENAME TO "enum_header_tabs_nav_items_style";
+
+    ALTER TABLE "header_tabs_nav_items"
+      ALTER COLUMN "style" SET DEFAULT 'featured'::"public"."enum_header_tabs_nav_items_style";
 
     -- Drop default_link columns
     ALTER TABLE "header_tabs_nav_items"
