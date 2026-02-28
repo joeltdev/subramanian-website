@@ -9,6 +9,10 @@ export const InitTheme: React.FC = () => {
     <Script
       dangerouslySetInnerHTML={{
         __html: `
+  // Light-only mode: always force light theme
+  document.documentElement.setAttribute('data-theme', 'light');
+
+  /* Original dynamic theme logic (re-enable to restore dark/light switching):
   (function () {
     function getImplicitPreference() {
       var mediaQuery = '(prefers-color-scheme: dark)'
@@ -41,6 +45,7 @@ export const InitTheme: React.FC = () => {
 
     document.documentElement.setAttribute('data-theme', themeToSet)
   })();
+  */
   `,
       }}
       id="theme-script"

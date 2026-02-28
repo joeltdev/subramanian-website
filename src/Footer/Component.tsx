@@ -8,7 +8,6 @@ import { CMSLink } from '@/components/Link'
 import { Logo } from '@/components/Logo/Logo'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
 import { cn } from '@/utilities/ui'
 
 const socialIcons: Record<string, React.ReactNode> = {
@@ -87,115 +86,131 @@ export async function Footer() {
   const { logo } = headerData as Header
 
   return (
-    <footer className="border-b bg-white pt-20 dark:bg-transparent">
-      {/* Top bar: Logo + Social links */}
-      <div className="mb-8 border-b md:mb-12">
-        <div className="mx-auto flex max-w-5xl flex-wrap items-end justify-between gap-6 px-6 pb-6">
-          <Link href="/" aria-label="go home" className="block size-fit">
-            {typeof logo === 'object' && logo && (logo as Media).url ? (
-              <img
-                src={(logo as Media).url!}
-                alt={(logo as Media).alt ?? 'Logo'}
-                width={(logo as Media).width ?? 193}
-                height={(logo as Media).height ?? 34}
-                loading="lazy"
-                decoding="async"
-                className="max-h-10 w-auto"
-              />
-            ) : (
-              <Logo />
-            )}
-          </Link>
+    <footer data-theme="dark" className="bg-background text-foreground">
+      <div className="mx-auto max-w-7xl px-6">
+        {/* Top section: Logo + Newsletter */}
+        <div className="grid gap-16 border-b border-border py-20 md:grid-cols-2 md:items-end md:gap-24">
+          {/* Logo */}
+          <div>
+            <Link href="/" aria-label="go home" className="block size-fit">
+              {typeof logo === 'object' && logo && (logo as Media).url ? (
+                <img
+                  src={(logo as Media).url!}
+                  alt={(logo as Media).alt ?? 'Logo'}
+                  width={(logo as Media).width ?? 193}
+                  height={(logo as Media).height ?? 34}
+                  loading="lazy"
+                  decoding="async"
+                  className="max-h-10 w-auto dark:invert"
+                />
+              ) : (
+                <Logo />
+              )}
+            </Link>
+          </div>
 
-          {Array.isArray(socialLinks) && socialLinks.length > 0 && (
-            <div className="flex flex-wrap justify-center gap-6 text-sm">
-              {socialLinks.map(({ id, platform, url }) => {
-                if (!platform || !url) return null
-                return (
-                  <a
-                    key={id}
-                    href={url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={platformLabels[platform] ?? platform}
-                    className="text-muted-foreground hover:text-primary block">
-                    {socialIcons[platform]}
-                  </a>
-                )
-              })}
-            </div>
-          )}
-        </div>
-      </div>
-
-      {/* Middle: Link columns + Newsletter */}
-      <div className="mx-auto max-w-5xl px-6">
-        <div className="grid gap-12 md:grid-cols-5 md:gap-0 lg:grid-cols-4">
-          {Array.isArray(columns) && columns.length > 0 && (
-            <div className="grid grid-cols-2 gap-6 sm:grid-cols-4 md:col-span-5 md:row-start-1 lg:col-span-3">
-              {columns.map(({ id, heading, links }) => (
-                <div key={id} className="space-y-4 text-sm">
-                  {heading && <span className="block font-medium">{heading}</span>}
-                  {Array.isArray(links) &&
-                    links.map(({ id: linkId, link }) => (
-                      <CMSLink
-                        key={linkId}
-                        {...link}
-                        className="text-muted-foreground hover:text-primary block duration-150"
-                      />
-                    ))}
-                </div>
-              ))}
-            </div>
-          )}
-
+          {/* Newsletter */}
           {(newsletterHeading || newsletterNote) && (
-            <form className="row-start-1 border-b pb-8 text-sm md:col-span-2 md:border-none lg:col-span-1">
-              <div className="space-y-4">
+            <form className="space-y-6">
+              <div className="space-y-3">
+                <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                  Newsletter
+                </p>
                 {newsletterHeading && (
-                  <Label htmlFor="footer-mail" className="block font-medium">
+                  <h3 className="text-3xl font-semibold leading-tight tracking-tight">
                     {newsletterHeading}
-                  </Label>
+                  </h3>
                 )}
-                <div className="flex gap-2">
-                  <Input
-                    type="email"
-                    id="footer-mail"
-                    name="mail"
-                    placeholder="Your email"
-                    className="h-8 text-sm"
-                  />
-                  <Button size="sm" type="submit">
-                    Submit
-                  </Button>
-                </div>
                 {newsletterNote && (
-                  <span className="text-muted-foreground block text-sm">{newsletterNote}</span>
+                  <p className="text-base leading-relaxed text-muted-foreground">{newsletterNote}</p>
                 )}
+              </div>
+              <div className="flex gap-2.5">
+                <Input
+                  type="email"
+                  id="footer-mail"
+                  name="mail"
+                  placeholder="your@email.com"
+                  className="h-10 border-border/60 bg-white/5 text-sm placeholder:text-muted-foreground/50 focus-visible:border-ring"
+                />
+                <Button type="submit" className="h-10 shrink-0 px-5 text-sm font-medium">
+                  Subscribe
+                </Button>
               </div>
             </form>
           )}
         </div>
 
-        {/* Bottom bar: Copyright + Language selector */}
-        <div className="mt-12 flex flex-wrap items-end justify-between gap-6 border-t py-6">
-          <small className="text-muted-foreground order-last block text-center text-sm md:order-first">
+        {/* Nav columns */}
+        {Array.isArray(columns) && columns.length > 0 && (
+          <div className="grid grid-cols-2 gap-10 border-b border-border py-14 sm:grid-cols-4">
+            {columns.map(({ id, heading, links }) => (
+              <div key={id} className="space-y-5">
+                {heading && (
+                  <h4 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                    {heading}
+                  </h4>
+                )}
+                {Array.isArray(links) && links.length > 0 && (
+                  <ul className="space-y-3.5">
+                    {links.map(({ id: linkId, link }) => (
+                      <li key={linkId}>
+                        <CMSLink
+                          {...link}
+                          className="text-sm text-foreground/70 transition-colors duration-150 hover:text-foreground"
+                        />
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Bottom bar: Copyright + Social + Language */}
+        <div className="flex flex-wrap items-center justify-between gap-6 py-8">
+          <small className="text-sm text-muted-foreground">
             {copyright ?? `© ${new Date().getFullYear()} All rights reserved`}
           </small>
-          <div className="relative">
-            <ChevronsUpDown
-              className="pointer-events-none absolute inset-y-0 right-2 my-auto opacity-75"
-              size="0.75rem"
-            />
-            <select
-              className={cn(
-                'border-input shadow-xs flex h-9 w-full min-w-32 appearance-none rounded-md border bg-transparent px-3 py-1 text-base outline-none transition-[color,box-shadow] md:text-sm',
-                'focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]',
-              )}
-              name="language"
-              defaultValue="en">
-              <option value="en">English</option>
-            </select>
+
+          <div className="flex flex-wrap items-center gap-6">
+            {Array.isArray(socialLinks) && socialLinks.length > 0 && (
+              <div className="flex gap-5">
+                {socialLinks.map(({ id, platform, url }) => {
+                  if (!platform || !url) return null
+                  return (
+                    <a
+                      key={id}
+                      href={url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={platformLabels[platform] ?? platform}
+                      className="text-muted-foreground transition-colors duration-150 hover:text-foreground">
+                      {socialIcons[platform]}
+                    </a>
+                  )
+                })}
+              </div>
+            )}
+
+            <div className="relative">
+              <ChevronsUpDown
+                className="pointer-events-none absolute inset-y-0 right-2 my-auto opacity-50"
+                size="0.75rem"
+              />
+              <select
+                className={cn(
+                  'flex h-9 min-w-28 appearance-none rounded-md border border-border/60 bg-white/5 px-3 py-1 text-sm text-foreground outline-none transition-colors',
+                  'hover:border-border focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/30',
+                )}
+                name="language"
+                defaultValue="en">
+                <option value="en" className="bg-background text-foreground">
+                  English
+                </option>
+              </select>
+            </div>
           </div>
         </div>
       </div>

@@ -34,6 +34,11 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   }, [])
 
   useEffect(() => {
+    // Light-only mode: always force light theme
+    document.documentElement.setAttribute('data-theme', 'light')
+    setThemeState('light')
+
+    /* Original dynamic theme logic (re-enable to restore dark/light switching):
     let themeToSet: Theme = defaultTheme
     const preference = window.localStorage.getItem(themeLocalStorageKey)
 
@@ -49,6 +54,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
 
     document.documentElement.setAttribute('data-theme', themeToSet)
     setThemeState(themeToSet)
+    */
   }, [])
 
   return <ThemeContext value={{ setTheme, theme }}>{children}</ThemeContext>
