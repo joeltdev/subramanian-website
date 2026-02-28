@@ -15,6 +15,7 @@ import { IntegrationsBlock } from '@/blocks/Integrations/Component'
 import { ContentSectionBlock } from '@/blocks/ContentSection/Component'
 import { StatsBlock } from '@/blocks/Stats/Component'
 import { TestimonialsBlock } from '@/blocks/Testimonials/Component'
+import { CaseStudiesHighlightBlock } from '@/blocks/CaseStudiesHighlight/Component'
 import { HoverHighlightsBlock } from '@/blocks/HoverHighlights/Component'
 
 const blockComponents = {
@@ -32,6 +33,7 @@ const blockComponents = {
   stats: StatsBlock,
   testimonials: TestimonialsBlock,
   hoverHighlights: HoverHighlightsBlock,
+  caseStudiesHighlight: CaseStudiesHighlightBlock,
 }
 
 export const RenderBlocks: React.FC<{

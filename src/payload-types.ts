@@ -75,6 +75,7 @@ export interface Config {
     'product-categories': ProductCategory;
     'product-tags': ProductTag;
     products: Product;
+    'case-studies': CaseStudy;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -100,6 +101,7 @@ export interface Config {
     'product-categories': ProductCategoriesSelect<false> | ProductCategoriesSelect<true>;
     'product-tags': ProductTagsSelect<false> | ProductTagsSelect<true>;
     products: ProductsSelect<false> | ProductsSelect<true>;
+    'case-studies': CaseStudiesSelect<false> | CaseStudiesSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -234,6 +236,7 @@ export interface Page {
     | StatsBlock
     | TestimonialsBlock
     | HoverHighlightsBlock
+    | CaseStudiesHighlightBlock
   )[];
   meta?: {
     title?: string | null;
@@ -1688,6 +1691,73 @@ export interface HoverHighlightsBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CaseStudiesHighlightBlock".
+ */
+export interface CaseStudiesHighlightBlock {
+  /**
+   * Section heading and supporting text
+   */
+  intro?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Case studies to display in the scrolling grid (minimum 3 recommended)
+   */
+  caseStudies: (number | CaseStudy)[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'caseStudiesHighlight';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "case-studies".
+ */
+export interface CaseStudy {
+  id: number;
+  title: string;
+  /**
+   * Opening description for this case study
+   */
+  introContent?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  industry?: string | null;
+  useCase?: string | null;
+  featuredImage: number | Media;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "product-categories".
  */
 export interface ProductCategory {
@@ -2082,6 +2152,10 @@ export interface PayloadLockedDocument {
         value: number | Product;
       } | null)
     | ({
+        relationTo: 'case-studies';
+        value: number | CaseStudy;
+      } | null)
+    | ({
         relationTo: 'redirects';
         value: number | Redirect;
       } | null)
@@ -2191,6 +2265,7 @@ export interface PagesSelect<T extends boolean = true> {
         stats?: T | StatsBlockSelect<T>;
         testimonials?: T | TestimonialsBlockSelect<T>;
         hoverHighlights?: T | HoverHighlightsBlockSelect<T>;
+        caseStudiesHighlight?: T | CaseStudiesHighlightBlockSelect<T>;
       };
   meta?:
     | T
@@ -2543,6 +2618,16 @@ export interface HoverHighlightsBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CaseStudiesHighlightBlock_select".
+ */
+export interface CaseStudiesHighlightBlockSelect<T extends boolean = true> {
+  intro?: T;
+  caseStudies?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "posts_select".
  */
 export interface PostsSelect<T extends boolean = true> {
@@ -2797,6 +2882,21 @@ export interface ProductsSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "case-studies_select".
+ */
+export interface CaseStudiesSelect<T extends boolean = true> {
+  title?: T;
+  introContent?: T;
+  industry?: T;
+  useCase?: T;
+  featuredImage?: T;
+  generateSlug?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

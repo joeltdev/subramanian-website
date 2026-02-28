@@ -16,6 +16,7 @@ import { ContentSection } from '../../blocks/ContentSection/config'
 import { Stats } from '../../blocks/Stats/config'
 import { Testimonials } from '../../blocks/Testimonials/config'
 import { HoverHighlights } from '../../blocks/HoverHighlights/config'
+import { CaseStudiesHighlight } from '../../blocks/CaseStudiesHighlight/config'
 import { hero } from '@/blocks/Hero/config'
 import { slugField } from 'payload'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
@@ -82,7 +83,7 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, LogoCloud, FeatureCards, FeatureShowcase, FeatureBento, Integrations, ContentSection, Stats, Testimonials, HoverHighlights],
+              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, LogoCloud, FeatureCards, FeatureShowcase, FeatureBento, Integrations, ContentSection, Stats, Testimonials, HoverHighlights, CaseStudiesHighlight],
               required: true,
               admin: {
                 initCollapsed: true,
