@@ -22,79 +22,32 @@ function MobileNavItem({
   item: NavItem
   onClose: () => void
 }) {
-  const style = item.style ?? 'default'
+  if (!item.listLinks) return null
 
-  if (style === 'default' && item.defaultLink) {
-    const { link, description } = item.defaultLink
-    return (
-      <div className="flex flex-col gap-0.5 py-2">
-        <CMSLink
-          {...link}
-          appearance="inline"
-          onClick={onClose}
-          className="font-medium text-sm"
-        />
-        {description && <p className="text-xs text-muted-foreground">{description}</p>}
-      </div>
-    )
-  }
-
-  if (style === 'featured' && item.featuredLink) {
-    const { tag, label, links } = item.featuredLink
-    return (
-      <div className="py-2">
-        {tag && (
-          <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-            {tag}
-          </span>
-        )}
-        {label && <p className="font-semibold text-sm mt-0.5">{label}</p>}
-        {links && links.length > 0 && (
-          <ul className="mt-2 flex flex-col gap-1.5">
-            {links.map((item, i) => (
-              <li key={i}>
-                <CMSLink
-                  {...item.link}
-                  appearance="inline"
-                  onClick={onClose}
-                  className="text-sm text-muted-foreground"
-                />
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-    )
-  }
-
-  if (style === 'list' && item.listLinks) {
-    const { tag, links } = item.listLinks
-    return (
-      <div className="py-2">
-        {tag && (
-          <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-            {tag}
-          </span>
-        )}
-        {links && links.length > 0 && (
-          <ul className="mt-1 flex flex-col gap-1.5">
-            {links.map((item, i) => (
-              <li key={i}>
-                <CMSLink
-                  {...item.link}
-                  appearance="inline"
-                  onClick={onClose}
-                  className="text-sm"
-                />
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-    )
-  }
-
-  return null
+  const { tag, links } = item.listLinks
+  return (
+    <div className="py-2">
+      {tag && (
+        <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+          {tag}
+        </span>
+      )}
+      {links && links.length > 0 && (
+        <ul className="mt-1 flex flex-col gap-1.5">
+          {links.map((item, i) => (
+            <li key={i}>
+              <CMSLink
+                {...item.link}
+                appearance="inline"
+                onClick={onClose}
+                className="text-sm"
+              />
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  )
 }
 
 export function MobileNav({ data }: { data: Header }) {
