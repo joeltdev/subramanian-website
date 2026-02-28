@@ -63,7 +63,7 @@ export const OverlayFeaturesContentSection: React.FC<ContentSectionBlock> = ({
                             <Icon className="size-8 text-slate-500" />
                           </div>
                         )}
-                        {richText && <RichText data={richText} enableGutter={false} className="[&_h3]:text-xl [&_h3]:font-medium [&_h3]:text-slate-700 [&_h4]:text-base [&_h4]:font-medium [&_h4]:text-slate-600 [&_p]:text-base [&_p]:text-slate-500 [&_p]:font-normal [&_p]:leading-relaxed" />}
+                        {richText && <RichText data={richText} enableGutter={false} className="[&_h3]:text-xl [&_h3]:font-semibold [&_h3]:text-slate-700 [&_h4]:text-base [&_h4]:font-medium [&_h4]:text-slate-600 [&_p]:text-base [&_p]:text-slate-500 [&_p]:font-normal [&_p]:leading-relaxed" />}
                       </div>
                     )
                   })}

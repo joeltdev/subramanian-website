@@ -43,7 +43,7 @@ export const GridIntegrations: React.FC<IntegrationsBlock> = ({ intro, integrati
                           size="sm"
                           className="gap-1 pr-2 shadow-none">
                           <CMSLink {...link} appearance="inline">
-                            {link.label ?? 'Learn More'}
+                            
                             <ChevronRight className="ml-0 !size-3.5 opacity-50" />
                           </CMSLink>
                         </Button>

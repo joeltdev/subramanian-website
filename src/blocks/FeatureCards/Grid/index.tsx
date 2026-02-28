@@ -12,7 +12,7 @@ export const GridFeatureCards: React.FC<FeatureCardsBlock> = ({ intro, items }) 
         </div>
 
         {Array.isArray(items) && items.length > 0 && (
-          <div className="relative mx-auto grid max-w-4xl divide-x divide-y border *:p-12 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="relative mx-auto grid max-w-5xl divide-x divide-y border *:p-12 sm:grid-cols-2 lg:grid-cols-3">
             {items.map(({ id, icon, richText }) => {
               const Icon = icon ? iconMap[icon] : null
               return (
