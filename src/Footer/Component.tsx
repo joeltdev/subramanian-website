@@ -1,7 +1,7 @@
 import { getCachedGlobal } from '@/utilities/getGlobals'
 import Link from 'next/link'
 import React from 'react'
-import { ChevronsUpDown } from 'lucide-react'
+import { ChevronsUpDown, Send } from 'lucide-react'
 
 import type { Footer, Header, Media } from '@/payload-types'
 import { CMSLink } from '@/components/Link'
@@ -86,10 +86,10 @@ export async function Footer() {
   const { logo } = headerData as Header
 
   return (
-    <footer data-theme="dark" className="bg-background text-foreground">
+    <footer data-theme="dark" className="bg-slate-800 text-foreground">
       <div className="mx-auto max-w-7xl px-6">
         {/* Top section: Logo + Newsletter */}
-        <div className="grid gap-16 border-b border-border py-20 md:grid-cols-2 md:items-end md:gap-24">
+        <div className="grid gap-16 border-b border-border pt-24 md:grid-cols-2 md:items-end md:gap-24">
           {/* Logo */}
           <div>
             <Link href="/" aria-label="go home" className="block size-fit">
@@ -108,44 +108,13 @@ export async function Footer() {
               )}
             </Link>
           </div>
-
-          {/* Newsletter */}
-          {(newsletterHeading || newsletterNote) && (
-            <form className="space-y-6">
-              <div className="space-y-3">
-                <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-                  Newsletter
-                </p>
-                {newsletterHeading && (
-                  <h3 className="text-3xl font-semibold leading-tight tracking-tight">
-                    {newsletterHeading}
-                  </h3>
-                )}
-                {newsletterNote && (
-                  <p className="text-base leading-relaxed text-muted-foreground">{newsletterNote}</p>
-                )}
-              </div>
-              <div className="flex gap-2.5">
-                <Input
-                  type="email"
-                  id="footer-mail"
-                  name="mail"
-                  placeholder="your@email.com"
-                  className="h-10 border-border/60 bg-white/5 text-sm placeholder:text-muted-foreground/50 focus-visible:border-ring"
-                />
-                <Button type="submit" className="h-10 shrink-0 px-5 text-sm font-medium">
-                  Subscribe
-                </Button>
-              </div>
-            </form>
-          )}
         </div>
 
         {/* Nav columns */}
         {Array.isArray(columns) && columns.length > 0 && (
-          <div className="grid grid-cols-2 gap-10 border-b border-border py-14 sm:grid-cols-4">
+          <div className="grid md:grid-cols-4 gap-10 border-b border-border py-14 ">
             {columns.map(({ id, heading, links }) => (
-              <div key={id} className="space-y-5">
+              <div key={id} className="space-y-5 py-8">
                 {heading && (
                   <h4 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
                     {heading}
@@ -165,12 +134,43 @@ export async function Footer() {
                 )}
               </div>
             ))}
+
+            {/* Newsletter */}
+            {(newsletterHeading || newsletterNote) && (
+              <form className="space-y-5 py-8">
+                <div className="space-y-3">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                    {newsletterHeading ?? 'Newsletter'}
+                  </p>
+                  {newsletterNote && (
+                    <p className="text-base leading-relaxed text-muted-foreground">{newsletterNote}</p>
+                  )}
+                </div>
+                <div className="flex gap-2.5">
+                  <Input
+                    type="email"
+                    id="footer-mail"
+                    name="mail"
+                    placeholder="your@email.com"
+                    className="h-10 border-border/60 bg-white/5 text-sm placeholder:text-muted-foreground/50 focus-visible:border-ring"
+                  />
+                  <Button 
+                    type="submit" 
+                    size="icon"
+                    className="h-10 w-10 shrink-0"
+                    aria-label="Subscribe to newsletter"
+                  >
+                    <Send className="h-4 w-4" />
+                  </Button>
+                </div>
+              </form>
+            )}
           </div>
         )}
 
         {/* Bottom bar: Copyright + Social + Language */}
         <div className="flex flex-wrap items-center justify-between gap-6 py-8">
-          <small className="text-sm text-muted-foreground">
+          <small className="text-xs text-slate-400 font-light tracking-wide">
             {copyright ?? `© ${new Date().getFullYear()} All rights reserved`}
           </small>
 
