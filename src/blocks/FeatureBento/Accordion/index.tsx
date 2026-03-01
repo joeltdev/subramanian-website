@@ -29,7 +29,7 @@ export const AccordionFeatureBento: React.FC<FeatureBentoBlock> = ({
   const activeData = items.find((item) => item.id === activeItem) ?? items[0]
 
   return (
-    <section ref={sectionRef} className="py-16 md:py-32">
+    <section ref={sectionRef} className="py-4 md:py-8">
       <div className="mx-auto max-w-5xl space-y-8 px-6 md:space-y-16 dark:[--color-border:color-mix(in_oklab,var(--color-white)_10%,transparent)]">
         <motion.div
           className="relative z-10 mx-auto max-w-2xl space-y-6 text-center"

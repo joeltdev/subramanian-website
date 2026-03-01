@@ -10,7 +10,7 @@ import { Button } from '@/components/ui/button'
 
 export const GridIntegrations: React.FC<IntegrationsBlock> = ({ intro, integrations }) => {
   return (
-    <section className="py-16 md:py-32">
+    <section className="py-4 md:py-8">
       <div className="mx-auto max-w-5xl px-6">
           {intro && (
             <div className="text-center">

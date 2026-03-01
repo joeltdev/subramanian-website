@@ -10,7 +10,7 @@ export const CenteredGridContentSection: React.FC<ContentSectionBlock> = ({
   items,
 }) => {
   return (
-    <section className="py-16 md:py-32">
+    <section className="py-4 md:py-8">
       <div className="mx-auto max-w-7xl space-y-8 px-6 md:space-y-12">
         {intro && (
           <div className="mx-auto max-w-3xl space-y-6 text-center md:space-y-12">

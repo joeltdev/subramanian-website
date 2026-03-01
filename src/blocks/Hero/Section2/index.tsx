@@ -126,9 +126,10 @@ export const Section2Hero: React.FC<Section2HeroType> = ({
                     <CMSLink
                       key={i}
                       {...link}
-                      size="lg"
-                      className="rounded-xl px-8 text-base h-12 inline-flex items-center"
-                    />
+                      size="xl"
+                    >
+                      <ArrowRight />
+                    </CMSLink>
                   ))}
                 </AnimatedGroup>
               )}

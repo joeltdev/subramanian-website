@@ -29,8 +29,8 @@ export const PerspectiveFeatureShowcase: React.FC<FeatureShowcaseBlock> = ({
   const hasImages = imageForeground || imageDark || imageLight
 
   return (
-    <section ref={sectionRef} className="overflow-hidden py-8 md:py-16">
-      <div className="mx-auto max-w-7xl space-y-8 px-6 md:space-y-12">
+    <section ref={sectionRef} className="relative overflow-hidden py-4 md:py-8">
+      <div className="mx-auto max-w-7xl space-y-8 px-6 md:space-y-12 pb-8">
 
         <motion.div
           className="relative z-10 max-w-2xl"
@@ -40,56 +40,6 @@ export const PerspectiveFeatureShowcase: React.FC<FeatureShowcaseBlock> = ({
         >
           {intro && <RichText data={intro} enableGutter={false} className="[&_h2]:type-headline-1 [&_h2]:text-type-body [&_h2]:leading-[1.1] [&_h2]:mb-6 [&_h3]:type-headline-3 [&_h3]:text-type-body [&_h3]:leading-tight [&_h3]:mb-4 [&_p]:text-type-secondary [&_p]:type-body-xl [&_p]:leading-snug" />}
         </motion.div>
-
-        {hasImages && (
-          <motion.div
-            ref={imageRef}
-            className="mask-b-from-75% mask-l-from-75% mask-b-to-95% mask-l-to-95% relative -mx-4 pr-3 pt-3 md:-mx-12"
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={isImageInView ? { opacity: 1, scale: 1 } : undefined}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-          >
-            <div className="perspective-midrange">
-              <div className="rotate-x-6 -skew-2">
-                <div className="relative aspect-[88/36] overflow-hidden rounded-xl shadow-2xl ring-1 ring-slate-200/60">
-
-                  {/* Background — entry fade, then parallax drifts down on scroll */}
-                  <motion.div
-                    className="absolute inset-0 h-full w-full"
-                    initial={{ opacity: 0 }}
-                    animate={isImageInView ? { opacity: 1 } : undefined}
-                    transition={{ duration: 0.9, ease: 'easeOut', delay: 0.25 }}
-                  >
-                    {/* -inset-y-16 gives 64px headroom so the 60px bgY never clips */}
-                    <motion.div className="absolute -inset-y-16 inset-x-0" style={{ y: bgY }}>
-                      {typeof imageLight === 'object' && imageLight && (
-                        <Media resource={imageLight} fill className="dark:hidden" imgClassName="object-cover object-top" />
-                      )}
-                      {typeof imageDark === 'object' && imageDark && (
-                        <Media resource={imageDark} fill className="hidden dark:block" imgClassName="object-cover object-top" />
-                      )}
-                    </motion.div>
-                  </motion.div>
-
-                  {/* Foreground — delayed entry slides up from below, then counter-parallax floats up on scroll */}
-                  {typeof imageForeground === 'object' && imageForeground && (
-                    <motion.div
-                      className="absolute inset-0 mx-auto w-10/12 p-6"
-                      initial={{ opacity: 0, y: 24 }}
-                      animate={isImageInView ? { opacity: 1, y: 0 } : undefined}
-                      transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.7 }}
-                    >
-                      <motion.div className="absolute inset-0" style={{ y: fgY }}>
-                        <Media resource={imageForeground} fill imgClassName="object-contain object-top" />
-                      </motion.div>
-                    </motion.div>
-                  )}
-
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        )}
 
         {Array.isArray(items) && items.length > 0 && (
           <motion.div
@@ -115,6 +65,54 @@ export const PerspectiveFeatureShowcase: React.FC<FeatureShowcaseBlock> = ({
         )}
 
       </div>
+
+      {/* Background — entry fade, then parallax drifts down on scroll */}
+      <motion.div
+        className="h-auto w-full mx-auto"
+        initial={{ opacity: 0 }}
+        animate={isImageInView ? { opacity: 1 } : undefined}
+        transition={{ duration: 0.9, ease: 'easeOut', delay: 0.25 }}
+      >
+        {/* -inset-y-16 gives 64px headroom so the 60px bgY never clips */}
+        <motion.div className="absolute aspect-88/32 inset-x-0" style={{ y: bgY }}>
+          {typeof imageLight === 'object' && imageLight && (
+            <Media resource={imageLight} fill className="dark:hidden" imgClassName="object-cover object-top" />
+          )}
+          {typeof imageDark === 'object' && imageDark && (
+            <Media resource={imageDark} fill className="hidden dark:block" imgClassName="object-cover object-top" />
+          )}
+        </motion.div>
+        {hasImages && (
+          <motion.div
+            ref={imageRef}
+            className="mx-auto pr-3 pt-3 max-w-7xl aspect-88/32"
+            initial={{ opacity: 0, scale: 0.98 }}
+            animate={isImageInView ? { opacity: 1, scale: 1 } : undefined}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+          >
+            <div className="perspective-midrange">
+
+              <div className="relative aspect-[88/40] overflow-hidden drop-shadow-2xl">
+                {/* Foreground — delayed entry slides up from below, then counter-parallax floats up on scroll */}
+                {typeof imageForeground === 'object' && imageForeground && (
+                  <motion.div
+                    className="absolute inset-0 mx-auto w-10/12 p-6 translate-y-8"
+                    initial={{ opacity: 0, y: 24 }}
+                    animate={isImageInView ? { opacity: 1, y: 0 } : undefined}
+                    transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.7 }}
+                  >
+                    <motion.div className="absolute inset-0" style={{ y: fgY }}>
+                      <Media resource={imageForeground} fill imgClassName="object-contain object-top" />
+                    </motion.div>
+                  </motion.div>
+                )}
+
+              </div>
+            </div>
+          </motion.div>
+        )}
+
+      </motion.div>
     </section>
   )
 }

@@ -13,7 +13,7 @@ export const PanelsFeatureBento: React.FC<FeatureBentoBlock> = ({ imagePanels })
   const p3 = panels[3]
 
   return (
-    <section className="bg-muted py-16 md:py-32 dark:bg-muted/25">
+    <section className="bg-muted py-4 md:py-8 dark:bg-muted/25">
       <div className="mx-auto max-w-5xl px-6">
         <div className="mx-auto grid gap-2 sm:grid-cols-5">
 

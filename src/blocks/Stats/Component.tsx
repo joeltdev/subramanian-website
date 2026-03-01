@@ -7,7 +7,7 @@ export const StatsBlock: React.FC<StatsBlockType & { disableInnerContainer?: boo
   stats,
 }) => {
   return (
-    <section className="py-16 md:py-32">
+    <section className="py-4 md:py-8">
       <div className="mx-auto max-w-5xl space-y-8 px-6 md:space-y-16">
         {intro && (
           <div className="relative z-10 mx-auto max-w-xl space-y-6 text-center">

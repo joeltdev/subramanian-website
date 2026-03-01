@@ -7,7 +7,7 @@ import { ChevronRight } from 'lucide-react'
 
 export const MediaCardsBlock: React.FC<MediaCardsBlockType> = ({ intro, items }) => {
   return (
-    <section className="py-16 md:py-32">
+    <section className="py-4 md:py-8">
       <div className="mx-auto max-w-7xl px-6">
         <div className="mx-auto max-w-2xl text-center">
           {intro && (

@@ -23,7 +23,7 @@ export const OverlayFeaturesContentSection: React.FC<ContentSectionBlock> = ({
           will-change: transform;
         }
       `}</style>
-      <section className="py-16 md:py-32">
+      <section className="py-4 md:py-8">
         {/* Full-width positioning context — media escapes the container */}
         <div className="relative">
           {/* Full-bleed media — absolutely positioned edge-to-edge */}

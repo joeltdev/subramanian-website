@@ -12,7 +12,7 @@ export const SplitImageContentSection: React.FC<ContentSectionBlock> = ({
   quoteLogo,
 }) => {
   return (
-    <section className="py-16 md:py-32">
+    <section className="py-4 md:py-8">
       <div className="mx-auto max-w-7xl space-y-8 px-6 md:space-y-16">
         {intro && <RichText data={intro} enableGutter={false} className="relative z-10 max-w-4xl ml-0 [&_h2]:type-headline-1 [&_h2]:text-slate-800 [&_h2]:mb-8 [&_h3]:type-headline-3 [&_h3]:text-type-body [&_h3]:leading-tight [&_h3]:mb-6 [&_p]:text-type-secondary [&_p]:type-body-xl [&_p]:leading-snug" />}
 

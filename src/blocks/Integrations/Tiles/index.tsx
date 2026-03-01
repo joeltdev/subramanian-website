@@ -38,7 +38,7 @@ export const TilesIntegrations: React.FC<IntegrationsBlock> = ({
   const ctaLink = Array.isArray(links) && links.length > 0 ? links[0]?.link : null
 
   return (
-    <section className="bg-muted py-16 md:py-32 dark:bg-background">
+    <section className="bg-muted py-4 md:py-8 dark:bg-background">
       <div className="mx-auto max-w-5xl px-6">
           <div className="grid items-center sm:grid-cols-2">
             <div className="dark:bg-muted/50 relative mx-auto w-fit">

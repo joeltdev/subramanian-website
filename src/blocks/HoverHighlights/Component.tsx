@@ -15,7 +15,7 @@ export const HoverHighlightsBlock: React.FC<HoverHighlightsBlockType & { disable
   const [active, setActive] = useState(0)
 
   return (
-    <section className="py-16 md:py-32">
+    <section className="py-4 md:py-8">
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-8">
 

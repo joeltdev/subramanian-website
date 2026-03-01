@@ -18,7 +18,7 @@ const CardDecorator = ({ children }: { children: React.ReactNode }) => (
 
 export const FloatingFeatureCards: React.FC<FeatureCardsBlock> = ({ intro, items }) => {
   return (
-    <section className="py-16 md:py-32">
+    <section className="py-4 md:py-8">
       <div className="@container relative z-10 mx-auto max-w-5xl px-6">
         <div className="text-center mx-auto max-w-2xl">
           {intro && <RichText data={intro} enableGutter={false} className="[&_h2]:type-headline-1 [&_h2]:text-type-body [&_h2]:leading-[1.1] [&_h2]:mb-6 [&_h3]:type-headline-3 [&_h3]:text-type-body [&_h3]:leading-tight [&_h3]:mb-4 [&_p]:text-type-secondary [&_p]:type-body-xl [&_p]:leading-snug" />}
