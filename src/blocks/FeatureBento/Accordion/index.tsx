@@ -37,7 +37,7 @@ export const AccordionFeatureBento: React.FC<FeatureBentoBlock> = ({
           animate={isInView ? { opacity: 1, y: 0 } : undefined}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
         >
-          {intro && <RichText data={intro} enableGutter={false} className="[&_h2]:text-5xl [&_h2]:text-slate-700 [&_h2]:leading-[1.1] [&_h2]:font-semibold [&_h2]:mb-6 [&_h3]:text-3xl [&_h3]:text-slate-700 [&_h3]:font-semibold [&_h3]:leading-tight [&_h3]:mb-4 [&_p]:text-slate-600 [&_p]:text-xl [&_p]:leading-snug [&_p]:font-light" />}
+          {intro && <RichText data={intro} enableGutter={false} className="[&_h2]:type-headline-1 [&_h2]:text-type-body [&_h2]:leading-[1.1] [&_h2]:mb-6 [&_h3]:type-headline-3 [&_h3]:text-type-body [&_h3]:leading-tight [&_h3]:mb-4 [&_p]:text-type-secondary [&_p]:type-body-xl [&_p]:leading-snug" />}
         </motion.div>
 
         <div ref={contentRef} className="grid gap-12 sm:px-12 md:grid-cols-2 lg:gap-20 lg:px-0">
@@ -57,14 +57,14 @@ export const AccordionFeatureBento: React.FC<FeatureBentoBlock> = ({
               return (
                 <AccordionItem key={item.id} value={item.id ?? ''}>
                   <AccordionTrigger>
-                    <div className="flex items-center gap-2 text-base font-medium text-slate-700">
+                    <div className="flex items-center gap-2 type-body-md text-type-body">
                       {Icon && <Icon className="size-4 text-slate-500" />}
                       {item.title}
                     </div>
                   </AccordionTrigger>
                   <AccordionContent>
                     {item.richText && (
-                      <RichText data={item.richText} enableGutter={false} className="[&_p]:text-sm [&_p]:text-slate-500 [&_p]:font-normal [&_p]:leading-relaxed [&_h3]:text-base [&_h3]:font-medium [&_h3]:text-slate-600" />
+                      <RichText data={item.richText} enableGutter={false} className="[&_p]:type-body-sm [&_p]:text-type-secondary [&_p]:leading-relaxed [&_h3]:type-title-sm [&_h3]:text-type-secondary" />
                     )}
                   </AccordionContent>
                 </AccordionItem>

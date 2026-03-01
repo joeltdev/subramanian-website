@@ -22,7 +22,7 @@ function NavItemContent({
     return (
       <div className="px-4 py-3">
         {tag && (
-          <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+          <span className="type-label-md text-muted-foreground">
             {tag}
           </span>
         )}
@@ -30,7 +30,7 @@ function NavItemContent({
           <ul className="mt-2 flex flex-col gap-1.5">
             {links.map((item, i) => (
               <li key={i} className="translate-x-0 hover:translate-x-1.5 transition-transform duration-200">
-                <CMSLink {...item.link} appearance="inline" onClick={onLinkClick} className="text-base text-foreground/80 hover:text-foreground transition-colors duration-200" />
+                <CMSLink {...item.link} appearance="inline" onClick={onLinkClick} className="type-body-md font-medium text-foreground hover:text-primary transition-colors duration-200" />
               </li>
             ))}
           </ul>
@@ -76,9 +76,9 @@ export function DesktopNav({ data }: { data: Header }) {
                 {...tab.link}
                 appearance="inline"
                 className={cn(
-                  'relative px-4 py-2.5 text-sm font-medium transition-colors duration-200',
-                  'text-foreground/60 hover:text-foreground',
-                  'after:absolute after:bottom-1.5 after:inset-x-4 after:h-px after:bg-foreground',
+                  'relative px-4 py-2.5 type-body-md font-medium transition-colors duration-200',
+                  'text-foreground hover:text-primary',
+                  'after:absolute after:bottom-1.5 after:inset-x-4 after:h-px after:bg-primary',
                   'after:origin-left after:scale-x-0 hover:after:scale-x-100',
                   'after:transition-transform after:duration-300',
                 )}
@@ -102,8 +102,8 @@ export function DesktopNav({ data }: { data: Header }) {
             >
               <button
                 className={cn(
-                  'relative flex items-center gap-1.5 px-4 py-2.5 text-sm font-medium transition-colors duration-200',
-                  isActive ? 'text-foreground' : 'text-foreground/60 hover:text-foreground',
+                  'relative flex items-center gap-1.5 px-4 py-2.5 type-body-md font-medium transition-colors duration-200',
+                  isActive ? 'text-primary hover:text-primary' : 'text-foreground hover:text-primary',
                 )}
               >
                 {tab.label}
@@ -118,7 +118,7 @@ export function DesktopNav({ data }: { data: Header }) {
                 {/* Sliding underline */}
                 <span
                   className={cn(
-                    'absolute bottom-1.5 left-4 right-4 h-px bg-foreground origin-left transition-transform duration-300',
+                    'absolute bottom-1.5 left-4 right-4 h-px bg-primary origin-left transition-transform duration-300',
                     isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100',
                   )}
                 />
@@ -148,9 +148,9 @@ export function DesktopNav({ data }: { data: Header }) {
               <div className="gap-10 grid grid-cols-12">
                 {/* Left: description + links */}
                 {(activeTabData.description || (activeTabData.descriptionLinks?.length ?? 0) > 0) && (
-                  <div className="col-span-4 shrink-0 flex flex-col gap-4 border-r border-border pr-10">
+                  <div className="col-span-4 shrink-0 pt-8 flex flex-col gap-4 border-r border-border pr-10">
                     {activeTabData.description && (
-                      <p className="text-xl text-foreground leading-relaxed">{activeTabData.description}</p>
+                      <p className="type-body-xl text-foreground">{activeTabData.description}</p>
                     )}
                     {activeTabData.descriptionLinks && activeTabData.descriptionLinks.length > 0 && (
                       <div className="flex flex-col gap-2">
@@ -159,7 +159,7 @@ export function DesktopNav({ data }: { data: Header }) {
                             <CMSLink
                               {...dl.link}
                               appearance="inline"
-                              className="text-base font-medium text-foreground/60 hover:text-foreground transition-colors duration-200"
+                              className="type-body-md text-muted-foreground hover:text-primary transition-colors duration-200"
                             />
                           </div>
                         ))}

@@ -40,7 +40,7 @@ export const Section2Hero: React.FC<Section2HeroType> = ({
     (backgroundImage && typeof backgroundImage === 'object' && !!(backgroundImage as Media).url)
 
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-x-clip">
       {/* Decorative gradients */}
       <div
         aria-hidden
@@ -105,7 +105,7 @@ export const Section2Hero: React.FC<Section2HeroType> = ({
                   <RichText
                     data={richText}
                     enableGutter={false}
-                    className="text-balance [&_h1]:m-0 [&_h2]:m-0 [&_h1]:text-5xl [&_h1]:md:text-7xl [&_h1]:xl:text-7xl [&_h1]:leading-tight [&_p]:mt-8 [&_p]:max-w-2xl [&_p]:mx-auto [&_p]:text-2xl [&_p]:text-slate-700"
+                    className="text-balance [&_h1]:m-0 [&_h2]:m-0 [&_h1]:type-display [&_p]:mt-8 [&_p]:max-w-2xl [&_p]:mx-auto [&_p]:type-body-xl [&_p]:text-type-body"
                   />
                 </AnimatedGroup>
               )}
@@ -123,22 +123,12 @@ export const Section2Hero: React.FC<Section2HeroType> = ({
                   }}
                   className="mt-12 flex items-center gap-2">
                   {links.map(({ link }, i) => (
-                    <div
+                    <CMSLink
                       key={i}
-                      className={
-                        i === 0
-                          ? 'bg-foreground/10 rounded-[calc(var(--radius-xl)+0.125rem)] border p-0.5'
-                          : undefined
-                      }>
-                      <CMSLink
-                        {...link}
-                        className={
-                          i === 0
-                            ? 'rounded-xl px-5 text-base'
-                            : 'h-10.5 rounded-xl px-5 text-base'
-                        }
-                      />
-                    </div>
+                      {...link}
+                      size="lg"
+                      className="rounded-xl px-8 text-base h-12 inline-flex items-center"
+                    />
                   ))}
                 </AnimatedGroup>
               )}

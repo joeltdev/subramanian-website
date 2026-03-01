@@ -28,7 +28,7 @@ function MobileNavItem({
   return (
     <div className="py-2">
       {tag && (
-        <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+        <span className="type-label-md text-muted-foreground">
           {tag}
         </span>
       )}
@@ -40,7 +40,7 @@ function MobileNavItem({
                 {...item.link}
                 appearance="inline"
                 onClick={onClose}
-                className="text-sm"
+                className="type-body-sm"
               />
             </li>
           ))}
@@ -91,7 +91,7 @@ export function MobileNav({ data }: { data: Header }) {
                         {...tab.link}
                         appearance="inline"
                         onClick={() => setOpen(false)}
-                        className="flex items-center px-3 py-3 text-base font-medium rounded-md hover:bg-accent transition-colors"
+                        className="flex items-center px-3 py-3 type-body-md rounded-md hover:bg-accent transition-colors"
                       />
                     )
                   }
@@ -100,7 +100,7 @@ export function MobileNav({ data }: { data: Header }) {
                     return (
                       <button
                         key={i}
-                        className="flex items-center justify-between px-3 py-3 text-base font-medium rounded-md hover:bg-accent transition-colors w-full text-left"
+                        className="flex items-center justify-between px-3 py-3 type-body-md rounded-md hover:bg-accent transition-colors w-full text-left"
                         onClick={() => setActiveTab(i)}
                       >
                         {tab.label}
@@ -110,7 +110,7 @@ export function MobileNav({ data }: { data: Header }) {
                   }
 
                   return (
-                    <span key={i} className="px-3 py-3 text-base font-medium">
+                    <span key={i} className="px-3 py-3 type-body-md">
                       {tab.label}
                     </span>
                   )
@@ -134,7 +134,7 @@ export function MobileNav({ data }: { data: Header }) {
             <div className="flex flex-col flex-1 overflow-y-auto">
               <div className="px-4 pt-8 pb-4">
                 <button
-                  className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors mb-4"
+                  className="flex items-center gap-1 type-body-sm text-muted-foreground hover:text-primary transition-colors mb-4"
                   onClick={() => setActiveTab(null)}
                 >
                   <ChevronLeft className="h-4 w-4" />
@@ -143,10 +143,10 @@ export function MobileNav({ data }: { data: Header }) {
 
                 {activeTabData && (
                   <>
-                    <h2 className="text-lg font-semibold">{activeTabData.label}</h2>
+                    <h2 className="type-title-lg">{activeTabData.label}</h2>
 
                     {activeTabData.description && (
-                      <p className="mt-1 text-sm text-muted-foreground">
+                      <p className="mt-1 type-body-sm text-muted-foreground">
                         {activeTabData.description}
                       </p>
                     )}
@@ -159,7 +159,7 @@ export function MobileNav({ data }: { data: Header }) {
                             {...dl.link}
                             appearance="inline"
                             onClick={() => setOpen(false)}
-                            className="text-sm font-medium hover:text-primary transition-colors"
+                            className="type-body-sm hover:text-primary transition-colors"
                           />
                         ))}
                       </div>

@@ -14,29 +14,29 @@ export const SplitImageContentSection: React.FC<ContentSectionBlock> = ({
   return (
     <section className="py-16 md:py-32">
       <div className="mx-auto max-w-7xl space-y-8 px-6 md:space-y-16">
-        {intro && <RichText data={intro} enableGutter={false} className="relative z-10 max-w-4xl ml-0 [&_h2]:text-6xl [&_h2]:text-slate-800 [&_h2]:font-semibold [&_h2]:mb-8 [&_h3]:text-4xl [&_h3]:text-slate-700 [&_h3]:font-semibold [&_h3]:leading-tight [&_h3]:mb-6 [&_p]:text-slate-600 [&_p]:text-2xl [&_p]:leading-snug [&_p]:font-light" />}
+        {intro && <RichText data={intro} enableGutter={false} className="relative z-10 max-w-4xl ml-0 [&_h2]:type-headline-1 [&_h2]:text-slate-800 [&_h2]:mb-8 [&_h3]:type-headline-3 [&_h3]:text-type-body [&_h3]:leading-tight [&_h3]:mb-6 [&_p]:text-type-secondary [&_p]:type-body-xl [&_p]:leading-snug" />}
 
         <div className="grid gap-6 sm:grid-cols-2 md:gap-12 lg:gap-24">
           <div className="relative mb-6 sm:mb-0">
             {typeof imageLight === 'object' && imageLight && (
-              <Media resource={imageLight} className='bg-linear-to-b aspect-3/2 relative rounded-2xl from-zinc-300 to-transparent p-px dark:from-zinc-700' pictureClassName="w-full h-full" imgClassName="w-full h-full rounded-[15px] object-cover shadow dark:hidden" />
+              <Media resource={imageLight} className='bg-linear-to-b aspect-3/2 relative rounded-2xl from-border to-transparent p-px' pictureClassName="w-full h-full" imgClassName="w-full h-full rounded-[15px] object-cover shadow dark:hidden" />
             )}
             {typeof imageDark === 'object' && imageDark && (
-              <Media resource={imageDark} className='bg-linear-to-b aspect-3/2 relative rounded-2xl from-zinc-300 to-transparent p-px dark:from-zinc-700' pictureClassName="w-full h-full" imgClassName="w-full h-full hidden rounded-[15px] object-cover dark:block" />
+              <Media resource={imageDark} className='bg-linear-to-b aspect-3/2 relative rounded-2xl from-border to-transparent p-px' pictureClassName="w-full h-full" imgClassName="w-full h-full hidden rounded-[15px] object-cover dark:block" />
             )}
           </div>
 
           {quote && (
             <div className="flex flex-col justify-center">
-              <blockquote className="border-l-2 pl-6 border-slate-200">
+              <blockquote className="border-l-2 pl-6 border-border">
                 <RichText
                   data={quote}
                   enableGutter={false}
-                  className="[&_p]:text-lg [&_p]:leading-normal [&_p]:font-extralight  [&_p]:italic [&_p]:text-slate-400 md:[&_p]:text-xl"
+                  className="[&_p]:type-quote [&_p]:leading-normal [&_p]:text-slate-400"
                 />
                 <footer className="mt-8 space-y-2">
                   {quoteAuthor && (
-                    <cite className="not-italic block text-base font-normal tracking-wide text-slate-600">
+                    <cite className="not-italic block type-body-md text-type-secondary">
                       {quoteAuthor}
                     </cite>
                   )}

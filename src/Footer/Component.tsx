@@ -116,7 +116,7 @@ export async function Footer() {
             {columns.map(({ id, heading, links }) => (
               <div key={id} className="space-y-5 py-8">
                 {heading && (
-                  <h4 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                  <h4 className="type-label-md text-muted-foreground">
                     {heading}
                   </h4>
                 )}
@@ -126,7 +126,7 @@ export async function Footer() {
                       <li key={linkId}>
                         <CMSLink
                           {...link}
-                          className="text-sm text-foreground/70 transition-colors duration-150 hover:text-foreground"
+                          className="text-sm text-muted-foreground transition-colors duration-150 hover:text-primary"
                         />
                       </li>
                     ))}
@@ -139,11 +139,11 @@ export async function Footer() {
             {(newsletterHeading || newsletterNote) && (
               <form className="space-y-5 py-8">
                 <div className="space-y-3">
-                  <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                  <p className="type-label-md text-muted-foreground">
                     {newsletterHeading ?? 'Newsletter'}
                   </p>
                   {newsletterNote && (
-                    <p className="text-base leading-relaxed text-muted-foreground">{newsletterNote}</p>
+                    <p className="type-body-md text-muted-foreground">{newsletterNote}</p>
                   )}
                 </div>
                 <div className="flex gap-2.5">
@@ -170,7 +170,7 @@ export async function Footer() {
 
         {/* Bottom bar: Copyright + Social + Language */}
         <div className="flex flex-wrap items-center justify-between gap-6 py-8">
-          <small className="text-xs text-slate-400 font-light tracking-wide">
+          <small className="type-body-xs text-muted-foreground">
             {copyright ?? `© ${new Date().getFullYear()} All rights reserved`}
           </small>
 
@@ -186,7 +186,7 @@ export async function Footer() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={platformLabels[platform] ?? platform}
-                      className="text-muted-foreground transition-colors duration-150 hover:text-foreground">
+                      className="text-muted-foreground transition-colors duration-150 hover:text-primary">
                       {socialIcons[platform]}
                     </a>
                   )

@@ -14,7 +14,7 @@ export const MediaCardsBlock: React.FC<MediaCardsBlockType> = ({ intro, items })
             <RichText
               data={intro}
               enableGutter={false}
-              className="[&_h2]:text-5xl [&_h2]:text-slate-700 [&_h2]:leading-[1.1] [&_h2]:font-semibold [&_h2]:mb-6 [&_h3]:text-3xl [&_h3]:text-slate-700 [&_h3]:font-semibold [&_h3]:leading-tight [&_h3]:mb-4 [&_p]:text-slate-600 [&_p]:text-xl [&_p]:leading-snug [&_p]:font-light"
+              className="[&_h2]:type-headline-1 [&_h2]:text-type-body [&_h2]:leading-[1.1] [&_h2]:mb-6 [&_h3]:type-headline-3 [&_h3]:text-type-body [&_h3]:leading-tight [&_h3]:mb-4 [&_p]:text-type-secondary [&_p]:type-body-xl [&_p]:leading-snug"
             />
           )}
         </div>
@@ -50,7 +50,7 @@ export const MediaCardsBlock: React.FC<MediaCardsBlockType> = ({ intro, items })
                       <RichText
                         data={richText}
                         enableGutter={false}
-                        className="[&_h3]:text-4xl [&_h3]:font-normal [&_h3]:text-white [&_h3]:leading-snug [&_h4]:text-3xl [&_h4]:font-normal [&_h4]:text-white [&_p]:mt-2 [&_p]:text-sm [&_p]:text-white/65 [&_p]:leading-relaxed"
+                        className="[&_h3]:text-4xl [&_h3]:font-normal [&_h3]:text-white [&_h3]:leading-snug [&_h4]:text-3xl [&_h4]:font-normal [&_h4]:text-white [&_p]:mt-2 [&_p]:type-body-sm [&_p]:text-white/65 [&_p]:leading-relaxed"
                       />
                     )}
                     <div className="shrink-0 translate-x-1 opacity-0 transition-all duration-300 ease-out group-hover:translate-x-0 group-hover:opacity-100">
@@ -60,7 +60,7 @@ export const MediaCardsBlock: React.FC<MediaCardsBlockType> = ({ intro, items })
                 </>
               )
 
-              const cardClassName = "group relative min-h-[580px] overflow-hidden rounded-2xl bg-slate-100"
+              const cardClassName = "group relative min-h-[580px] overflow-hidden rounded-2xl bg-muted"
 
               if (hasLink) {
                 return (

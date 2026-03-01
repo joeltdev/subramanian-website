@@ -23,7 +23,7 @@ export const TestimonialsBlock: React.FC<
       <div className="mx-auto max-w-5xl space-y-8 px-6 md:space-y-16">
         {intro && (
           <div className="relative z-10 mx-auto max-w-xl space-y-6 text-center md:space-y-12">
-            <RichText data={intro} enableGutter={false} className="[&_h2]:text-5xl [&_h2]:text-slate-700 [&_h2]:leading-[1.1] [&_h2]:font-semibold [&_h2]:mb-6 [&_h3]:text-3xl [&_h3]:text-slate-700 [&_h3]:font-semibold [&_h3]:leading-tight [&_h3]:mb-4 [&_p]:text-slate-600 [&_p]:text-xl [&_p]:leading-snug [&_p]:font-light" />
+            <RichText data={intro} enableGutter={false} className="[&_h2]:type-headline-1 [&_h2]:text-type-body [&_h2]:leading-[1.1] [&_h2]:mb-6 [&_h3]:type-headline-3 [&_h3]:text-type-body [&_h3]:leading-tight [&_h3]:mb-4 [&_p]:text-type-secondary [&_p]:type-body-xl [&_p]:leading-snug" />
           </div>
         )}
 
@@ -54,7 +54,7 @@ export const TestimonialsBlock: React.FC<
                         <RichText
                           data={richText}
                           enableGutter={false}
-                          className={isFeature ? '[&_p]:text-xl [&_p]:font-medium [&_p]:text-slate-700 [&_p]:leading-snug' : '[&_p]:text-sm [&_p]:text-slate-500 [&_p]:font-normal [&_p]:leading-relaxed'}
+                          className={isFeature ? '[&_p]:type-body-xl [&_p]:text-type-body [&_p]:leading-snug' : '[&_p]:type-body-sm [&_p]:text-type-secondary [&_p]:leading-relaxed'}
                         />
                       )}
 
@@ -70,9 +70,9 @@ export const TestimonialsBlock: React.FC<
                         </Avatar>
 
                         <div>
-                          {author && <cite className="block text-sm font-medium text-slate-700">{author}</cite>}
+                          {author && <cite className="block type-body-sm text-type-body">{author}</cite>}
                           {role && (
-                            <span className="block text-sm text-slate-500">{role}</span>
+                            <span className="block type-body-sm text-type-secondary">{role}</span>
                           )}
                         </div>
                       </div>

@@ -22,7 +22,7 @@ export const HoverHighlightsBlock: React.FC<HoverHighlightsBlockType & { disable
           {/* Left: text content */}
           <div className="flex flex-col justify-center gap-6 md:col-span-7 md:gap-8">
             {beforeHighlights && (
-              <p className="text-xl font-light text-slate-600">{beforeHighlights}</p>
+              <p className="type-body-xl text-type-secondary">{beforeHighlights}</p>
             )}
 
             <div className="flex flex-col gap-2 md:gap-3">
@@ -30,9 +30,8 @@ export const HoverHighlightsBlock: React.FC<HoverHighlightsBlockType & { disable
                 highlights.map(({ id, text, link, mediaTop, mediaBottom }, i) => {
                   const isActive = i === active
                   const lineClass = [
-                    'flex cursor-pointer items-center gap-3 font-semibold leading-tight transition-all duration-700 md:gap-4',
-                    'text-4xl md:text-5xl lg:text-6xl',
-                    isActive ? 'opacity-100 text-slate-800' : 'opacity-25 text-slate-700 hover:opacity-50',
+                    'flex cursor-pointer items-center gap-3 type-headline-1 transition-all duration-700 md:gap-4',
+                    isActive ? 'opacity-100 text-slate-800' : 'opacity-25 text-type-body hover:opacity-50',
                   ].join(' ')
                   const arrowClass = [
                     'size-7 shrink-0 transition-all duration-500 md:size-9',
@@ -61,7 +60,7 @@ export const HoverHighlightsBlock: React.FC<HoverHighlightsBlockType & { disable
             </div>
 
             {afterHighlights && (
-              <p className="text-xl font-light text-slate-600">{afterHighlights}</p>
+              <p className="type-body-xl text-type-secondary">{afterHighlights}</p>
             )}
 
             {Array.isArray(links) && links.length > 0 && (

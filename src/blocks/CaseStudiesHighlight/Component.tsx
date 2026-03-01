@@ -44,7 +44,7 @@ export const CaseStudiesHighlightBlock: React.FC<
           <RichText
             data={intro}
             enableGutter={false}
-            className="[&_h2]:text-5xl [&_h2]:text-slate-700 [&_h2]:leading-[1.1] [&_h2]:font-semibold [&_h2]:mb-6 [&_p]:text-slate-600 [&_p]:text-xl [&_p]:leading-snug [&_p]:font-light"
+            className="[&_h2]:type-headline-1 [&_h2]:text-type-body [&_h2]:leading-[1.1] [&_h2]:mb-6 [&_p]:text-type-secondary [&_p]:type-body-xl [&_p]:leading-snug"
           />
         )}
       </div>

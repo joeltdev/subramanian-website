@@ -11,7 +11,7 @@ export const StatsBlock: React.FC<StatsBlockType & { disableInnerContainer?: boo
       <div className="mx-auto max-w-5xl space-y-8 px-6 md:space-y-16">
         {intro && (
           <div className="relative z-10 mx-auto max-w-xl space-y-6 text-center">
-            <RichText data={intro} enableGutter={false} className="[&_h2]:text-5xl [&_h2]:text-slate-700 [&_h2]:leading-[1.1] [&_h2]:font-semibold [&_h2]:mb-6 [&_h3]:text-3xl [&_h3]:text-slate-700 [&_h3]:font-semibold [&_h3]:leading-tight [&_h3]:mb-4 [&_p]:text-slate-600 [&_p]:text-xl [&_p]:leading-snug [&_p]:font-light" />
+            <RichText data={intro} enableGutter={false} className="[&_h2]:type-headline-1 [&_h2]:text-type-body [&_h2]:leading-[1.1] [&_h2]:mb-6 [&_h3]:type-headline-3 [&_h3]:text-type-body [&_h3]:leading-tight [&_h3]:mb-4 [&_p]:text-type-secondary [&_p]:type-body-xl [&_p]:leading-snug" />
           </div>
         )}
 
@@ -23,7 +23,7 @@ export const StatsBlock: React.FC<StatsBlockType & { disableInnerContainer?: boo
                   <RichText
                     data={richText}
                     enableGutter={false}
-                    className="[&_h3]:text-6xl [&_h3]:font-black [&_h3]:tracking-tighter [&_h3]:leading-none md:[&_h3]:text-7xl [&_h4]:text-5xl [&_h4]:font-black [&_h4]:tracking-tighter [&_h4]:leading-none md:[&_h4]:text-6xl [&_p]:mt-2 [&_p]:text-sm [&_p]:uppercase [&_p]:tracking-widest [&_p]:font-medium [&_p]:text-slate-500"
+                    className="[&_h3]:type-stat-xl [&_h3]:leading-none [&_h4]:type-stat [&_h4]:leading-none [&_p]:mt-2 [&_p]:type-label-md [&_p]:text-type-secondary"
                   />
                 )}
               </div>

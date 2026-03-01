@@ -14,12 +14,12 @@ export const CenteredGridContentSection: React.FC<ContentSectionBlock> = ({
       <div className="mx-auto max-w-7xl space-y-8 px-6 md:space-y-12">
         {intro && (
           <div className="mx-auto max-w-3xl space-y-6 text-center md:space-y-12">
-            <RichText data={intro} enableGutter={false} className="[&_h2]:text-5xl [&_h2]:text-slate-700 [&_h2]:leading-[1.1] [&_h2]:font-semibold [&_h2]:mb-6 [&_h3]:text-3xl [&_h3]:text-slate-700 [&_h3]:font-semibold [&_h3]:leading-tight [&_h3]:mb-4 [&_p]:text-slate-600 [&_p]:text-xl [&_p]:leading-snug [&_p]:font-light" />
+            <RichText data={intro} enableGutter={false} className="[&_h2]:type-headline-1 [&_h2]:text-type-body [&_h2]:leading-[1.1] [&_h2]:mb-6 [&_h3]:type-headline-3 [&_h3]:text-type-body [&_h3]:leading-tight [&_h3]:mb-4 [&_p]:text-type-secondary [&_p]:type-body-xl [&_p]:leading-snug" />
           </div>
         )}
 
         {typeof image === 'object' && image && (
-          <div className="bg-linear-to-b relative rounded-2xl from-zinc-300 to-transparent p-px dark:from-zinc-700">
+          <div className="bg-linear-to-b relative rounded-2xl from-border to-transparent p-px">
             <Media resource={image} imgClassName="w-full rounded-[15px] object-cover grayscale shadow" />
           </div>
         )}
@@ -29,13 +29,13 @@ export const CenteredGridContentSection: React.FC<ContentSectionBlock> = ({
             {items.map(({ id, icon, richText }, index) => {
               const Icon = icon ? iconMap[icon] : null
               return (
-                <div key={id} className={`${index === 0 ? 'space-y-3' : 'space-y-2'} border-l border-slate-100 pl-6`}>
+                <div key={id} className={`${index === 0 ? 'space-y-3' : 'space-y-2'} border-l border-border pl-6`}>
                   {Icon && (
                     <div className="flex items-center gap-2">
                       <Icon className="size-6 text-slate-500" />
                     </div>
                   )}
-                  {richText && <RichText data={richText} enableGutter={false} className="[&_h3]:text-lg [&_h3]:font-semibold [&_h3]:text-slate-700 [&_h4]:text-base [&_h4]:font-medium [&_h4]:text-slate-600 [&_p]:text-sm [&_p]:text-slate-500 [&_p]:font-normal [&_p]:leading-relaxed" />}
+                  {richText && <RichText data={richText} enableGutter={false} className="[&_h3]:type-title-lg [&_h3]:text-type-body [&_h4]:type-title-sm [&_h4]:text-type-secondary [&_p]:type-body-sm [&_p]:text-type-secondary [&_p]:leading-relaxed" />}
                 </div>
               )
             })}

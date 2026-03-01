@@ -21,7 +21,7 @@ export const FloatingFeatureCards: React.FC<FeatureCardsBlock> = ({ intro, items
     <section className="py-16 md:py-32">
       <div className="@container relative z-10 mx-auto max-w-5xl px-6">
         <div className="text-center mx-auto max-w-2xl">
-          {intro && <RichText data={intro} enableGutter={false} className="[&_h2]:text-5xl [&_h2]:text-slate-700 [&_h2]:leading-[1.1] [&_h2]:font-semibold [&_h2]:mb-6 [&_h3]:text-3xl [&_h3]:text-slate-700 [&_h3]:font-semibold [&_h3]:leading-tight [&_h3]:mb-4 [&_p]:text-slate-600 [&_p]:text-xl [&_p]:leading-snug [&_p]:font-light" />}
+          {intro && <RichText data={intro} enableGutter={false} className="[&_h2]:type-headline-1 [&_h2]:text-type-body [&_h2]:leading-[1.1] [&_h2]:mb-6 [&_h3]:type-headline-3 [&_h3]:text-type-body [&_h3]:leading-tight [&_h3]:mb-4 [&_p]:text-type-secondary [&_p]:type-body-xl [&_p]:leading-snug" />}
         </div>
 
         {Array.isArray(items) && items.length > 0 && (
@@ -37,7 +37,7 @@ export const FloatingFeatureCards: React.FC<FeatureCardsBlock> = ({ intro, items
                   </CardHeader>
                   {richText && (
                     <CardContent>
-                      <RichText data={richText} enableGutter={false} className="[&_h3]:text-lg [&_h3]:font-semibold [&_h3]:text-slate-700 [&_p]:text-sm [&_p]:text-slate-500 [&_p]:font-normal [&_p]:leading-relaxed" />
+                      <RichText data={richText} enableGutter={false} className="[&_h3]:type-title-lg [&_h3]:text-type-body [&_p]:type-body-sm [&_p]:text-type-secondary [&_p]:leading-relaxed" />
                     </CardContent>
                   )}
                 </Card>

@@ -90,13 +90,13 @@ export const MetricsFeatureBento: React.FC<FeatureBentoBlock> = ({ stat, panelIt
         <div>
           <div className="p-6 sm:p-12">
             {panel0 && (
-              <span className="flex items-center gap-2 text-sm font-medium text-slate-500">
+              <span className="flex items-center gap-2 type-body-sm text-type-secondary">
                 {Icon0 && <Icon0 className="size-4" />}
                 {panel0.label}
               </span>
             )}
             {panel0?.heading && (
-              <RichText data={panel0.heading} enableGutter={false} className="[&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:text-slate-800 [&_h2]:mb-2 [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:text-slate-700 [&_h3]:mb-2 [&_p]:text-slate-600 [&_p]:leading-snug [&_p]:font-light" />
+              <RichText data={panel0.heading} enableGutter={false} className="[&_h2]:type-headline-4 [&_h2]:text-slate-800 [&_h2]:mb-2 [&_h3]:type-title-xl [&_h3]:text-type-body [&_h3]:mb-2 [&_p]:text-type-secondary [&_p]:leading-snug [&_p]:type-body-xl" />
             )}
           </div>
           <div aria-hidden className="relative">
@@ -104,7 +104,7 @@ export const MetricsFeatureBento: React.FC<FeatureBentoBlock> = ({ stat, panelIt
               <div className="rounded-(--radius) bg-background z-1 dark:bg-muted relative flex size-fit w-fit items-center gap-2 border px-3 py-1 text-xs font-medium shadow-md shadow-zinc-950/5">
                 <span className="text-lg">🇨🇩</span> Last connection from DR Congo
               </div>
-              <div className="rounded-(--radius) bg-background absolute inset-2 -bottom-2 mx-auto border px-3 py-4 text-xs font-medium shadow-md shadow-zinc-950/5 dark:bg-zinc-900" />
+              <div className="rounded-(--radius) bg-background absolute inset-2 -bottom-2 mx-auto border px-3 py-4 text-xs font-medium shadow-md shadow-zinc-950/5 dark:bg-card" />
             </div>
             <div className="relative overflow-hidden">
               <div className="bg-radial z-1 to-background absolute inset-0 from-transparent to-75%" />
@@ -114,16 +114,16 @@ export const MetricsFeatureBento: React.FC<FeatureBentoBlock> = ({ stat, panelIt
         </div>
 
         {/* Panel 1 – chat decoration */}
-        <div className="overflow-hidden border-t bg-zinc-50 p-6 sm:p-12 md:border-0 md:border-l dark:bg-transparent">
+        <div className="overflow-hidden border-t bg-muted p-6 sm:p-12 md:border-0 md:border-l dark:bg-transparent">
           <div className="relative z-10">
             {panel1 && (
-              <span className="flex items-center gap-2 text-sm font-medium text-slate-500">
+              <span className="flex items-center gap-2 type-body-sm text-type-secondary">
                 {Icon1 && <Icon1 className="size-4" />}
                 {panel1.label}
               </span>
             )}
             {panel1?.heading && (
-              <RichText data={panel1.heading} enableGutter={false} className="[&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:text-slate-800 [&_h2]:mb-2 [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:text-slate-700 [&_h3]:mb-2 [&_p]:text-slate-600 [&_p]:leading-snug [&_p]:font-light" />
+              <RichText data={panel1.heading} enableGutter={false} className="[&_h2]:type-headline-4 [&_h2]:text-slate-800 [&_h2]:mb-2 [&_h3]:type-title-xl [&_h3]:text-type-body [&_h3]:mb-2 [&_p]:text-type-secondary [&_p]:leading-snug [&_p]:type-body-xl" />
             )}
           </div>
           <div aria-hidden className="flex flex-col gap-8">
@@ -147,20 +147,20 @@ export const MetricsFeatureBento: React.FC<FeatureBentoBlock> = ({ stat, panelIt
 
         {/* Stat banner */}
         <div className="col-span-full border-y p-12">
-          <p className="text-center text-4xl font-semibold text-slate-800 lg:text-7xl">{stat ?? '99.99% Uptime'}</p>
+          <p className="text-center type-stat text-slate-800">{stat ?? '99.99% Uptime'}</p>
         </div>
 
         {/* Panel 2 – chart decoration */}
         <div className="relative col-span-full">
           <div className="absolute z-10 max-w-lg px-6 pr-12 pt-6 md:px-12 md:pt-12">
             {panel2 && (
-              <span className="flex items-center gap-2 text-sm font-medium text-slate-500">
+              <span className="flex items-center gap-2 type-body-sm text-type-secondary">
                 {Icon2 && <Icon2 className="size-4" />}
                 {panel2.label}
               </span>
             )}
             {panel2?.heading && (
-              <RichText data={panel2.heading} enableGutter={false} className="[&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:text-slate-800 [&_h2]:mb-2 [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:text-slate-700 [&_h3]:mb-2 [&_p]:text-slate-600 [&_p]:leading-snug [&_p]:font-light" />
+              <RichText data={panel2.heading} enableGutter={false} className="[&_h2]:type-headline-4 [&_h2]:text-slate-800 [&_h2]:mb-2 [&_h3]:type-title-xl [&_h3]:text-type-body [&_h3]:mb-2 [&_p]:text-type-secondary [&_p]:leading-snug [&_p]:type-body-xl" />
             )}
           </div>
           <MonitoringChart />

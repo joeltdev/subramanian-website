@@ -49,7 +49,7 @@ export const ArticleGridBlock: React.FC<ArticleGridBlockProps & { id?: string }>
             <RichText
               data={intro}
               enableGutter={false}
-              className="[&_h2]:text-4xl [&_h2]:font-semibold [&_h2]:tracking-tight [&_h2]:text-foreground [&_h2]:mb-3 [&_h3]:text-2xl [&_h3]:font-semibold [&_h3]:text-foreground [&_h3]:mb-3 [&_p]:text-muted-foreground [&_p]:text-lg"
+              className="[&_h2]:type-headline-2 [&_h2]:text-foreground [&_h2]:mb-3 [&_h3]:type-headline-4 [&_h3]:text-foreground [&_h3]:mb-3 [&_p]:text-muted-foreground [&_p]:type-body-lg"
             />
           </div>
         )}
@@ -102,18 +102,18 @@ const ArticleCard: React.FC<{ post: Post }> = ({ post }) => {
       </div>
 
       {formattedDate && (
-        <time className="text-muted-foreground text-sm" dateTime={publishedAt ?? undefined}>
+        <time className="text-muted-foreground type-body-sm" dateTime={publishedAt ?? undefined}>
           {formattedDate}
         </time>
       )}
 
-      <h2 className="text-foreground text-lg font-semibold">
+      <h2 className="text-foreground type-title-lg">
         <Link className="before:absolute before:inset-0" href={href}>
           {title}
         </Link>
       </h2>
 
-      {description && <p className="text-muted-foreground text-sm">{description}</p>}
+      {description && <p className="text-muted-foreground type-body-sm">{description}</p>}
 
       <div className="grid grid-cols-[1fr_auto] items-end gap-2 pt-4">
         {author && (
@@ -124,13 +124,13 @@ const ArticleCard: React.FC<{ post: Post }> = ({ post }) => {
                   {initials}
                 </span>
               </div>
-              <span className="text-muted-foreground line-clamp-1 text-sm">{author.name}</span>
+              <span className="text-muted-foreground line-clamp-1 type-body-sm">{author.name}</span>
             </div>
           </div>
         )}
 
         <div className="flex h-6 items-center">
-          <span className="text-primary group-hover:text-foreground flex items-center gap-1 text-sm font-medium transition-colors duration-200">
+          <span className="text-primary group-hover:text-foreground flex items-center gap-1 type-body-sm transition-colors duration-200">
             Read
             <ChevronRight
               className="size-3.5 translate-y-px duration-200 group-hover:translate-x-0.5"

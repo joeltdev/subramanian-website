@@ -51,7 +51,7 @@ export const OverlayFeaturesContentSection: React.FC<ContentSectionBlock> = ({
           {/* Constrained text content */}
           <div className="relative z-10 mx-auto max-w-7xl space-y-8 px-6 md:space-y-16">
             <div className="space-y-4 md:w-1/2">
-              {intro && <RichText data={intro} enableGutter={false} className="relative z-10 max-w-xl [&_h2]:text-slate-800 [&_h2]:text-6xl [&_h2]:font-semibold [&_h2]:mb-8 [&_h3]:text-4xl [&_h3]:text-slate-700 [&_h3]:font-semibold [&_h3]:leading-tight [&_h3]:mb-6 [&_p]:text-slate-600 [&_p]:text-2xl [&_p]:leading-snug [&_p]:font-light mb-8 mx-0" />}
+              {intro && <RichText data={intro} enableGutter={false} className="relative z-10 max-w-xl [&_h2]:text-slate-800 [&_h2]:type-headline-1 [&_h2]:mb-8 [&_h3]:type-headline-3 [&_h3]:text-type-body [&_h3]:leading-tight [&_h3]:mb-6 [&_p]:text-type-secondary [&_p]:type-body-xl [&_p]:leading-snug mb-8 mx-0" />}
               {Array.isArray(items) && items.length > 0 && (
                 <div className="grid grid-cols-2 gap-3 pt-6 sm:gap-4">
                   {items.map(({ id, icon, richText }) => {
@@ -63,7 +63,7 @@ export const OverlayFeaturesContentSection: React.FC<ContentSectionBlock> = ({
                             <Icon className="size-8 text-slate-500" />
                           </div>
                         )}
-                        {richText && <RichText data={richText} enableGutter={false} className="[&_h3]:text-xl [&_h3]:font-semibold [&_h3]:text-slate-700 [&_h4]:text-base [&_h4]:font-medium [&_h4]:text-slate-600 [&_p]:text-base [&_p]:text-slate-500 [&_p]:font-normal [&_p]:leading-relaxed" />}
+                        {richText && <RichText data={richText} enableGutter={false} className="[&_h3]:type-title-xl [&_h3]:text-type-body [&_h4]:type-title-sm [&_h4]:text-type-secondary [&_p]:type-body-md [&_p]:text-type-secondary [&_p]:leading-relaxed" />}
                       </div>
                     )
                   })}

@@ -30,7 +30,7 @@ export const Section1Hero: React.FC<Section1HeroType> = ({
   richText,
 }) => {
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-x-clip">
       {/* Decorative gradients */}
       <div
         aria-hidden
@@ -70,7 +70,7 @@ export const Section1Hero: React.FC<Section1HeroType> = ({
                   <RichText
                     data={richText}
                     enableGutter={false}
-                    className="text-balance [&_h1]:text-5xl [&_h1]:md:text-7xl [&_h1]:xl:text-[5.25rem] [&_p]:mt-8 [&_p]:max-w-2xl [&_p]:mx-auto [&_p]:text-2xl"
+                    className="text-balance [&_h1]:type-display [&_p]:mt-8 [&_p]:max-w-2xl [&_p]:mx-auto [&_p]:type-body-xl"
                   />
                 </AnimatedGroup>
               )}
@@ -88,22 +88,12 @@ export const Section1Hero: React.FC<Section1HeroType> = ({
                   }}
                   className="mt-12 flex flex-col items-center justify-center gap-2 md:flex-row">
                   {links.map(({ link }, i) => (
-                    <div
+                    <CMSLink
                       key={i}
-                      className={
-                        i === 0
-                          ? 'bg-foreground/10 rounded-[calc(var(--radius-xl)+0.125rem)] border p-0.5'
-                          : undefined
-                      }>
-                      <CMSLink
-                        {...link}
-                        className={
-                          i === 0
-                            ? 'rounded-xl px-5 text-base'
-                            : 'h-10.5 rounded-xl px-5 text-base'
-                        }
-                      />
-                    </div>
+                      {...link}
+                      size="lg"
+                      className="rounded-xl px-8 text-base h-12 inline-flex items-center"
+                    />
                   ))}
                 </AnimatedGroup>
               )}
