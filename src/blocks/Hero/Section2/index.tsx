@@ -51,7 +51,7 @@ export const Section2Hero: React.FC<Section2HeroType> = ({
       </div>
 
       <section>
-        <div className={`relative pt-24 ${hasBgMedia ? 'min-h-[85svh] flex flex-col justify-center' : ''}`}>
+        <div className={`relative py-24 ${hasBgMedia ? 'min-h-[85svh] flex flex-col justify-center' : ''}`}>
           {/* Background video */}
           {backgroundVideo && typeof backgroundVideo === 'object' && backgroundVideo.url ? (
             <video
@@ -105,7 +105,7 @@ export const Section2Hero: React.FC<Section2HeroType> = ({
                   <RichText
                     data={richText}
                     enableGutter={false}
-                    className="text-balance [&_h1]:text-5xl [&_h1]:md:text-7xl [&_h1]:xl:text-7xl [&_h1]:leading-tight [&_p]:mt-8 [&_p]:max-w-2xl [&_p]:mx-auto [&_p]:text-xl"
+                    className="text-balance [&_h1]:m-0 [&_h2]:m-0 [&_h1]:text-5xl [&_h1]:md:text-7xl [&_h1]:xl:text-7xl [&_h1]:leading-tight [&_p]:mt-8 [&_p]:max-w-2xl [&_p]:mx-auto [&_p]:text-2xl [&_p]:text-slate-700"
                   />
                 </AnimatedGroup>
               )}

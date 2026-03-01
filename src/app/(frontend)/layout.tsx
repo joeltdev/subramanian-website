@@ -1,8 +1,7 @@
 import type { Metadata } from 'next'
 
 import { cn } from '@/utilities/ui'
-import { GeistMono } from 'geist/font/mono'
-import { GeistSans } from 'geist/font/sans'
+import localFont from 'next/font/local'
 import React from 'react'
 
 import { AdminBar } from '@/components/admin/AdminBar'
@@ -16,11 +15,29 @@ import { draftMode } from 'next/headers'
 import './globals.css'
 import { getServerSideURL } from '@/utilities/getURL'
 
+const generalSans = localFont({
+  src: [
+    {
+      path: '../../../public/fonts/GeneralSans-Variable.woff2',
+      style: 'normal',
+      weight: '200 700',
+    },
+    {
+      path: '../../../public/fonts/GeneralSans-VariableItalic.woff2',
+      style: 'italic',
+      weight: '200 700',
+    },
+  ],
+  variable: '--font-general-sans',
+  display: 'swap',
+  fallback: ['system-ui', 'sans-serif'],
+})
+
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled } = await draftMode()
 
   return (
-    <html className={cn(GeistSans.variable, GeistMono.variable)} lang="en" suppressHydrationWarning>
+    <html className={cn(generalSans.variable)} lang="en" suppressHydrationWarning>
       <head>
         <InitTheme />
         <link href="/favicon.ico" rel="icon" sizes="32x32" />
