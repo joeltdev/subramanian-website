@@ -8,7 +8,7 @@ import { ProgressiveBlur } from '@/components/ui/progressive-blur'
 
 export const Section3LogoCloud: React.FC<LogoCloudBlock> = ({ heading, logos }) => {
   return (
-    <section className="bg-background overflow-hidden py-12 md:py-20">
+    <section className="bg-background overflow-hidden py-2 md:py-4">
       <div className="group relative mx-auto max-w-7xl px-6">
         <div className="flex flex-col items-center md:flex-row">
           {heading && (

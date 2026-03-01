@@ -5,7 +5,7 @@ import { iconMap } from '@/blocks/shared/featureIcons'
 import RichText from '@/components/RichText'
 
 const CardDecorator = ({ children }: { children: React.ReactNode }) => (
-  <div className="mask-radial-from-40% mask-radial-to-60% relative mx-auto size-36 duration-200 [--color-border:color-mix(in_oklab,var(--color-zinc-950)10%,transparent)] group-hover:[--color-border:color-mix(in_oklab,var(--color-zinc-950)20%,transparent)] dark:[--color-border:color-mix(in_oklab,var(--color-white)15%,transparent)] dark:group-hover:[--color-border:color-mix(in_oklab,var(--color-white)20%,transparent)]">
+  <div className="mask-radial-from-40% mask-radial-to-60% relative mx-auto size-36 duration-200 [--color-border:color-mix(in_oklab,var(--color-foreground)10%,transparent)] group-hover:[--color-border:color-mix(in_oklab,var(--color-foreground)20%,transparent)] dark:[--color-border:color-mix(in_oklab,var(--color-white)15%,transparent)] dark:group-hover:[--color-border:color-mix(in_oklab,var(--color-white)20%,transparent)]">
     <div
       aria-hidden
       className="absolute inset-0 bg-[linear-gradient(to_right,var(--color-border)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-border)_1px,transparent_1px)] bg-[size:24px_24px] dark:opacity-50"
@@ -32,7 +32,7 @@ export const OutlinedFeatureCards: React.FC<FeatureCardsBlock> = ({ intro, items
                 <div key={id} className="group shadow-zinc-950/5">
                   <CardHeader className="pb-3">
                     <CardDecorator>
-                      {Icon && <Icon className="size-6 text-slate-500" aria-hidden />}
+                      {Icon && <Icon className="size-6 text-muted-foreground" aria-hidden />}
                     </CardDecorator>
                   </CardHeader>
                   {richText && (

@@ -26,7 +26,7 @@ export const PanelsFeatureBento: React.FC<FeatureBentoBlock> = ({ imagePanels })
             </CardHeader>
             {(p0?.imageDark || p0?.imageLight) && (
               <div className="mask-b-from-75% mask-b-to-95% relative h-fit pl-6 md:pl-12">
-                <div className="bg-background overflow-hidden rounded-tl-lg border-l border-t pl-2 pt-2 dark:bg-zinc-950">
+                <div className="bg-background overflow-hidden rounded-tl-lg border-l border-t pl-2 pt-2 dark:bg-background">
                   {typeof p0?.imageDark === 'object' && p0.imageDark && (
                     <Media
                       resource={p0.imageDark}

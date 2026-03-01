@@ -65,7 +65,7 @@ export const TilesIntegrations: React.FC<IntegrationsBlock> = ({
                 )}
                 <TileCard
                   borderClassName="shadow-black-950/10 shadow-xl border-border"
-                  className="dark:bg-white/10">
+                  className="dark:bg-muted">
                   {typeof centerLogo === 'object' && centerLogo ? (
                     <Media resource={centerLogo} imgClassName="size-8 object-contain" />
                   ) : (

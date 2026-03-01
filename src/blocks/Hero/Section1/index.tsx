@@ -54,7 +54,7 @@ export const Section1Hero: React.FC<Section1HeroType> = ({
                 <AnimatedGroup variants={transitionVariants}>
                   <div className="hover:bg-background dark:hover:border-t-border bg-muted mx-auto flex w-fit items-center gap-4 rounded-full border p-1 pl-4 shadow-md shadow-zinc-950/5 transition-colors duration-300 dark:border-t-white/5 dark:shadow-zinc-950">
                     <span className="text-foreground text-sm">{badgeLabel}</span>
-                    <span className="dark:border-background block h-4 w-0.5 border-l bg-white dark:bg-zinc-700" />
+                    <span className="dark:border-background block h-4 w-0.5 border-l bg-border" />
                     <div className="bg-background size-6 overflow-hidden rounded-full">
                       <ArrowRight className="m-auto size-3 translate-y-1/3" />
                     </div>

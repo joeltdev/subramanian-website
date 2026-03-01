@@ -79,7 +79,7 @@ export const SliderIntegrations: React.FC<IntegrationsBlock> = ({
 
             <div className="absolute inset-0 m-auto flex size-fit justify-center gap-2">
               <SliderCard
-                className="shadow-black-950/10 size-16 bg-white/25 shadow-xl backdrop-blur-md backdrop-grayscale dark:border-white/10 dark:shadow-white/15"
+                className="shadow-black-950/10 size-16 bg-muted/25 shadow-xl backdrop-blur-md backdrop-grayscale dark:border-border"
                 isCenter>
                 {typeof centerLogo === 'object' && centerLogo ? (
                   <Media resource={centerLogo} imgClassName="size-8 object-contain" />

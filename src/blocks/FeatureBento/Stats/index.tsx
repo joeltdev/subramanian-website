@@ -41,7 +41,7 @@ export const StatsFeatureBento: React.FC<FeatureBentoBlock> = ({ stat, items }) 
             <Card className="relative bg-background col-span-full overflow-hidden sm:col-span-3 lg:col-span-2">
               <CardContent className="pt-12">
                 {Icon1 && (
-                  <div className="relative mx-auto mb-6 flex aspect-square size-16 items-center justify-center rounded-full border before:absolute before:-inset-2 before:rounded-full before:border dark:border-white/10 dark:before:border-white/5">
+                  <div className="relative mx-auto mb-6 flex aspect-square size-16 items-center justify-center rounded-full border before:absolute before:-inset-2 before:rounded-full before:border dark:border-border dark:before:border-white/5">
                     <Icon1 className="size-8 text-muted-foreground" />
                   </div>
                 )}
@@ -55,7 +55,7 @@ export const StatsFeatureBento: React.FC<FeatureBentoBlock> = ({ stat, items }) 
             <Card className="bg-background relative col-span-full overflow-hidden sm:col-span-3 lg:col-span-2">
               <CardContent className="pt-12">
                 {Icon2 && (
-                  <div className="relative mx-auto mb-6 flex aspect-square size-12 items-center justify-center rounded-full border before:absolute before:-inset-2 before:rounded-full before:border dark:border-white/10 dark:before:border-white/5">
+                  <div className="relative mx-auto mb-6 flex aspect-square size-12 items-center justify-center rounded-full border before:absolute before:-inset-2 before:rounded-full before:border dark:border-border dark:before:border-white/5">
                     <Icon2 className="size-5 text-muted-foreground" />
                   </div>
                 )}
@@ -69,7 +69,7 @@ export const StatsFeatureBento: React.FC<FeatureBentoBlock> = ({ stat, items }) 
             <Card className="card variant-outlined bg-background relative col-span-full overflow-hidden lg:col-span-3">
               <CardContent className="grid pt-6 sm:grid-cols-2">
                 <div className="relative z-10 flex flex-col justify-between space-y-12 lg:space-y-6">
-                  <div className="relative flex aspect-square size-12 rounded-full border before:absolute before:-inset-2 before:rounded-full before:border dark:border-white/10 dark:before:border-white/5">
+                  <div className="relative flex aspect-square size-12 rounded-full border before:absolute before:-inset-2 before:rounded-full before:border dark:border-border dark:before:border-white/5">
                     {Icon3 && <Icon3 className="m-auto size-5" />}
                   </div>
                   <div className="space-y-2">
@@ -78,9 +78,9 @@ export const StatsFeatureBento: React.FC<FeatureBentoBlock> = ({ stat, items }) 
                 </div>
                 <div className="rounded-tl-(--radius) relative -mb-6 -mr-6 mt-6 h-fit border-l border-t p-6 py-6 sm:ml-6">
                   <div className="absolute left-3 top-2 flex gap-1">
-                    <span className="block size-2 rounded-full border dark:border-white/10 dark:bg-white/10" />
-                    <span className="block size-2 rounded-full border dark:border-white/10 dark:bg-white/10" />
-                    <span className="block size-2 rounded-full border dark:border-white/10 dark:bg-white/10" />
+                    <span className="block size-2 rounded-full border dark:border-border dark:bg-muted" />
+                    <span className="block size-2 rounded-full border dark:border-border dark:bg-muted" />
+                    <span className="block size-2 rounded-full border dark:border-border dark:bg-muted" />
                   </div>
                   <div aria-hidden className="h-32 w-full rounded border bg-muted dark:bg-card" />
                 </div>
@@ -91,7 +91,7 @@ export const StatsFeatureBento: React.FC<FeatureBentoBlock> = ({ stat, items }) 
             <Card className="card variant-outlined bg-background relative col-span-full overflow-hidden lg:col-span-3">
               <CardContent className="grid h-full pt-6 sm:grid-cols-2">
                 <div className="relative z-10 flex flex-col justify-between space-y-12 lg:space-y-6">
-                  <div className="relative flex aspect-square size-12 rounded-full border before:absolute before:-inset-2 before:rounded-full before:border dark:border-white/10 dark:before:border-white/5">
+                  <div className="relative flex aspect-square size-12 rounded-full border before:absolute before:-inset-2 before:rounded-full before:border dark:border-border dark:before:border-white/5">
                     {Icon4 && <Icon4 className="m-auto size-6" />}
                   </div>
                   <div className="space-y-2">

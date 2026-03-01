@@ -38,11 +38,11 @@ export const MediaCardsBlock: React.FC<MediaCardsBlockType> = ({ intro, items })
                       />
                     </div>
                   ) : (
-                    <div className="absolute inset-0 bg-gradient-to-br from-slate-200 to-slate-300" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-border to-muted" />
                   )}
 
                   {/* Bottom gradient */}
-                  <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-slate-900/90 to-transparent transition-opacity duration-300 group-hover:opacity-100" />
+                  <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-background/90 to-transparent transition-opacity duration-300 group-hover:opacity-100" />
 
                   {/* Bottom: text + chevron */}
                   <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-6">
@@ -50,11 +50,11 @@ export const MediaCardsBlock: React.FC<MediaCardsBlockType> = ({ intro, items })
                       <RichText
                         data={richText}
                         enableGutter={false}
-                        className="[&_h3]:text-4xl [&_h3]:font-normal [&_h3]:text-white [&_h3]:leading-snug [&_h4]:text-3xl [&_h4]:font-normal [&_h4]:text-white [&_p]:mt-2 [&_p]:type-body-sm [&_p]:text-white/65 [&_p]:leading-relaxed"
+                        className="[&_h3]:text-4xl [&_h3]:font-normal [&_h3]:text-foreground [&_h3]:leading-snug [&_h4]:text-3xl [&_h4]:font-normal [&_h4]:text-foreground [&_p]:mt-2 [&_p]:type-body-sm [&_p]:text-muted-foreground [&_p]:leading-relaxed"
                       />
                     )}
                     <div className="shrink-0 translate-x-1 opacity-0 transition-all duration-300 ease-out group-hover:translate-x-0 group-hover:opacity-100">
-                      <ChevronRight className="size-5 text-white/70" />
+                      <ChevronRight className="size-5 text-muted-foreground" />
                     </div>
                   </div>
                 </>

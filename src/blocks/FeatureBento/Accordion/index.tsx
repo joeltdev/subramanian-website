@@ -89,7 +89,7 @@ export const AccordionFeatureBento: React.FC<FeatureBentoBlock> = ({
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 6, scale: 0.98 }}
                     transition={{ duration: 0.2 }}
-                    className="size-full overflow-hidden rounded-2xl border bg-zinc-900 shadow-md"
+                    className="size-full overflow-hidden rounded-2xl border bg-background shadow-md"
                   >
                     <Media
                       resource={activeData.image}
