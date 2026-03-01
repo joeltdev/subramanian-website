@@ -14,7 +14,7 @@ const buttonVariants = cva(
         default: [
           "bg-primary text-primary-foreground",
           "justify-start",
-          "[&_svg]:ml-auto",
+          "[&_svg]:ml-auto [&_svg]:box-content",
           "hover:bg-foreground",
           "hover:[&_svg]:translate-x-0.5",
         ],
@@ -32,7 +32,7 @@ const buttonVariants = cva(
         outline: [
           "bg-background text-foreground",
           "justify-start",
-          "[&_svg]:ml-auto",
+          "[&_svg]:ml-auto [&_svg]:box-content",
           "border border-foreground dark:border-foreground/15",
           "hover:bg-foreground hover:text-background dark:hover:bg-primary",
           "hover:[&_svg]:translate-x-0.5",
@@ -60,6 +60,19 @@ const buttonVariants = cva(
         "icon-lg": "h-11 w-11",
       },
     },
+    compoundVariants: [
+      // Icon left-padding scales with size for variants that pin the icon to the right
+      { variant: "default",  size: "xs",      class: "[&_svg]:pl-2" },
+      { variant: "default",  size: "sm",      class: "[&_svg]:pl-3" },
+      { variant: "default",  size: "default", class: "[&_svg]:pl-4" },
+      { variant: "default",  size: "lg",      class: "[&_svg]:pl-6" },
+      { variant: "default",  size: "xl",      class: "[&_svg]:pl-8" },
+      { variant: "outline",  size: "xs",      class: "[&_svg]:pl-2" },
+      { variant: "outline",  size: "sm",      class: "[&_svg]:pl-3" },
+      { variant: "outline",  size: "default", class: "[&_svg]:pl-4" },
+      { variant: "outline",  size: "lg",      class: "[&_svg]:pl-6" },
+      { variant: "outline",  size: "xl",      class: "[&_svg]:pl-8" },
+    ],
     defaultVariants: {
       variant: "default",
       size: "default",

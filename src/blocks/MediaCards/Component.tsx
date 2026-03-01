@@ -9,7 +9,7 @@ export const MediaCardsBlock: React.FC<MediaCardsBlockType> = ({ intro, items })
   return (
     <section className="py-4 md:py-8">
       <div className="mx-auto max-w-7xl px-6">
-        <div className="mx-auto max-w-2xl text-center">
+        <div className="mx-auto max-w-5xl text-center">
           {intro && (
             <RichText
               data={intro}
