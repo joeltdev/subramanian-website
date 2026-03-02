@@ -111,7 +111,7 @@
   --card-foreground: oklch(14.5% 0 0deg);
   --popover: oklch(100% 0 0deg);
   --popover-foreground: oklch(14.5% 0 0deg);
-  --primary: oklch(68.5% 0.169 237.32deg);  /* brand-500 — vivid azure */
+  --primary: var(--color-brand-500);          /* brand-500 — vivid azure */
   --primary-foreground: oklch(98.5% 0 0deg); /* white */
   --secondary: oklch(97% 0 0deg);
   --secondary-foreground: oklch(20.5% 0 0deg);
@@ -123,7 +123,7 @@
   --destructive-foreground: oklch(57.7% 0.245 27.325deg);
   --border: oklch(92.2% 0 0deg);
   --input: oklch(92.2% 0 0deg);
-  --ring: oklch(68.5% 0.169 237.32deg);     /* match primary */
+  --ring: var(--color-brand-500);            /* match primary */
   --chart-1: oklch(64.6% 0.222 41.116deg);
   --chart-2: oklch(60% 0.118 184.704deg);
   --chart-3: oklch(39.8% 0.07 227.392deg);
@@ -156,7 +156,7 @@
   --card-foreground: oklch(98.5% 0 0deg);
   --popover: oklch(14.5% 0 0deg);
   --popover-foreground: oklch(98.5% 0 0deg);
-  --primary: oklch(74.6% 0.16 232.66deg);   /* brand-400 — pops on dark bg */
+  --primary: var(--color-brand-400);         /* brand-400 — pops on dark bg */
   --primary-foreground: oklch(10% 0 0deg);  /* near-black for dark text on light primary */
   --secondary: oklch(26.9% 0 0deg);
   --secondary-foreground: oklch(98.5% 0 0deg);
@@ -168,7 +168,7 @@
   --destructive-foreground: oklch(63.7% 0.237 25.331deg);
   --border: oklch(26.9% 0 0deg);
   --input: oklch(26.9% 0 0deg);
-  --ring: oklch(74.6% 0.16 232.66deg);      /* match primary */
+  --ring: var(--color-brand-400);            /* match primary */
   --chart-1: oklch(48.8% 0.243 264.376deg);
   --chart-2: oklch(69.6% 0.17 162.48deg);
   --chart-3: oklch(76.9% 0.188 70.08deg);
@@ -191,6 +191,60 @@
   --type-color-secondary: var(--muted-foreground);
   --type-color-tertiary: oklch(60% 0 0deg);
   --type-color-inverse: var(--background);
+}
+
+/* ── Section Themes ──────────────────────────────────────────────────────── */
+/* Applied via data-section-theme on block wrappers.                          */
+/* CONSTRAINT: Children must use semantic classes (text-foreground, bg-muted) */
+/* NOT Tailwind dark: prefixes — those respond to <html data-theme> globally. */
+
+[data-section-theme='dark'] {
+  --background: oklch(14.5% 0 0);
+  --foreground: oklch(98.5% 0 0);
+  --card: oklch(17% 0 0);
+  --card-foreground: oklch(98.5% 0 0);
+  --muted: oklch(26.9% 0 0);
+  --muted-foreground: oklch(70.8% 0 0);
+  --border: oklch(26.9% 0 0);
+  --primary: var(--color-brand-400);
+  --ring: var(--color-brand-400);
+  --type-color-heading: oklch(98.5% 0 0);
+  --type-color-body: oklch(82% 0 0);
+  --type-color-secondary: oklch(70.8% 0 0);
+  --type-color-inverse: oklch(14.5% 0 0);
+  color-scheme: dark;
+}
+
+[data-section-theme='brand'] {
+  --background: var(--color-brand-600);
+  --foreground: oklch(98.5% 0 0);
+  --card: var(--color-brand-700);
+  --card-foreground: oklch(98.5% 0 0);
+  --muted: var(--color-brand-700);
+  --muted-foreground: var(--color-brand-200);
+  --border: var(--color-brand-500);
+  --primary: oklch(98.5% 0 0);
+  --ring: oklch(98.5% 0 0);
+  --type-color-heading: oklch(98.5% 0 0);
+  --type-color-body: var(--color-brand-100);
+  --type-color-secondary: var(--color-brand-200);
+  --type-color-inverse: var(--color-brand-600);
+  color-scheme: dark;
+}
+
+[data-section-theme='light'] {
+  --background: oklch(100% 0 0);
+  --foreground: oklch(14.5% 0 0);
+  --card: oklch(96.453% 0.00555 274.897 / 0.60);
+  --muted: oklch(97% 0 0);
+  --muted-foreground: oklch(55.6% 0 0);
+  --border: oklch(92.2% 0 0);
+  --primary: var(--color-brand-500);
+  --ring: var(--color-brand-500);
+  --type-color-heading: oklch(14.5% 0 0);
+  --type-color-body: oklch(30% 0 0);
+  --type-color-secondary: oklch(55.6% 0 0);
+  color-scheme: light;
 }
 
 @theme inline {

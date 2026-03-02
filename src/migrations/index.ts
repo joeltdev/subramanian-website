@@ -13,6 +13,7 @@ import * as migration_20260228_add_article_grid_block from './20260228_add_artic
 import * as migration_20260228_add_media_cards_block from './20260228_add_media_cards_block';
 import * as migration_20260301_remove_nav_items_default_style from './20260301_remove_nav_items_default_style';
 import * as migration_20260301_remove_nav_items_featured_style from './20260301_remove_nav_items_featured_style';
+import * as migration_20260302_add_theme_settings_global from './20260302_add_theme_settings_global';
 
 export const migrations = [
   {
@@ -89,5 +90,10 @@ export const migrations = [
     up: migration_20260301_remove_nav_items_featured_style.up,
     down: migration_20260301_remove_nav_items_featured_style.down,
     name: '20260301_remove_nav_items_featured_style',
+  },
+  {
+    up: migration_20260302_add_theme_settings_global.up,
+    down: migration_20260302_add_theme_settings_global.down,
+    name: '20260302_add_theme_settings_global',
   },
 ];

@@ -8,6 +8,7 @@ import { image2 } from './image-2'
 import { post1 } from './post-1'
 import { post2 } from './post-2'
 import { post3 } from './post-3'
+import { showcasePageData } from './showcase'
 
 const collections: CollectionSlug[] = [
   'categories',
@@ -17,6 +18,7 @@ const collections: CollectionSlug[] = [
   'forms',
   'form-submissions',
   'search',
+  'case-studies',
 ]
 
 const globals: GlobalSlug[] = ['header', 'footer']
@@ -94,6 +96,35 @@ export const seed = async ({
     ),
   ])
 
+  // Showcase images
+  const [
+    heroImgBuffer,
+    smartHomeBuffer,
+    buildingBuffer,
+    officeBuffer,
+    hotelBuffer,
+    datacenterBuffer,
+    productBuffer,
+    residentialBuffer,
+    healthcareBuffer,
+    industrialBuffer,
+    retailBuffer,
+    logoBuffer,
+  ] = await Promise.all([
+    fetchFileByURL('https://picsum.photos/seed/inels-hero/1400/900'),
+    fetchFileByURL('https://picsum.photos/seed/smart-home/1200/800'),
+    fetchFileByURL('https://picsum.photos/seed/building-exterior/1200/800'),
+    fetchFileByURL('https://picsum.photos/seed/office-interior/1200/800'),
+    fetchFileByURL('https://picsum.photos/seed/hotel-lobby/1200/800'),
+    fetchFileByURL('https://picsum.photos/seed/data-center/1200/800'),
+    fetchFileByURL('https://picsum.photos/seed/hardware-product/800/600'),
+    fetchFileByURL('https://picsum.photos/seed/apartment-exterior/1200/800'),
+    fetchFileByURL('https://picsum.photos/seed/hospital-corridor/1200/800'),
+    fetchFileByURL('https://picsum.photos/seed/industrial-warehouse/1200/800'),
+    fetchFileByURL('https://picsum.photos/seed/retail-interior/1200/800'),
+    fetchFileByURL('https://picsum.photos/seed/company-logo/200/80'),
+  ])
+
   const [demoAuthor, image1Doc, image2Doc, image3Doc] = await Promise.all([
     payload.create({
       collection: 'users',
@@ -127,6 +158,36 @@ export const seed = async ({
         },
       }),
     ),
+  ])
+
+  payload.logger.info(`— Seeding showcase media...`)
+
+  const [
+    heroImgDoc,
+    smartHomeDoc,
+    buildingDoc,
+    officeDoc,
+    hotelDoc,
+    datacenterDoc,
+    productDoc,
+    residentialDoc,
+    healthcareDoc,
+    industrialDoc,
+    retailDoc,
+    logoDoc,
+  ] = await Promise.all([
+    payload.create({ collection: 'media', data: { alt: 'iNELS smart building hero' }, file: heroImgBuffer }),
+    payload.create({ collection: 'media', data: { alt: 'Smart home interior' }, file: smartHomeBuffer }),
+    payload.create({ collection: 'media', data: { alt: 'Building exterior' }, file: buildingBuffer }),
+    payload.create({ collection: 'media', data: { alt: 'Office interior' }, file: officeBuffer }),
+    payload.create({ collection: 'media', data: { alt: 'Hotel lobby' }, file: hotelBuffer }),
+    payload.create({ collection: 'media', data: { alt: 'Data center' }, file: datacenterBuffer }),
+    payload.create({ collection: 'media', data: { alt: 'iNELS hardware product' }, file: productBuffer }),
+    payload.create({ collection: 'media', data: { alt: 'Apartment exterior' }, file: residentialBuffer }),
+    payload.create({ collection: 'media', data: { alt: 'Hospital corridor' }, file: healthcareBuffer }),
+    payload.create({ collection: 'media', data: { alt: 'Industrial warehouse' }, file: industrialBuffer }),
+    payload.create({ collection: 'media', data: { alt: 'Retail interior' }, file: retailBuffer }),
+    payload.create({ collection: 'media', data: { alt: 'Company logo placeholder' }, file: logoBuffer }),
   ])
 
   payload.logger.info(`— Seeding posts...`)
@@ -191,6 +252,110 @@ export const seed = async ({
     data: contactFormData,
   })
 
+  payload.logger.info(`— Seeding case studies...`)
+
+  const [caseStudy1, caseStudy2, caseStudy3] = await Promise.all([
+    payload.create({
+      collection: 'case-studies',
+      data: {
+        title: 'Grand Hotel Praha: 250-Room Smart Guest Automation',
+        slug: 'grand-hotel-praha',
+        industry: 'Hospitality',
+        useCase: 'Guest room automation, HVAC, energy metering',
+        featuredImage: hotelDoc.id,
+        introContent: {
+          root: {
+            type: 'root',
+            children: [
+              {
+                type: 'paragraph',
+                children: [
+                  { type: 'text', detail: 0, format: 0, mode: 'normal', style: '', text: 'KNX-controlled guest rooms, centralised BMS, and 30% energy saving across all 250 rooms.', version: 1 },
+                ],
+                direction: 'ltr',
+                format: '',
+                indent: 0,
+                textFormat: 0,
+                version: 1,
+              },
+            ],
+            direction: 'ltr',
+            format: '',
+            indent: 0,
+            version: 1,
+          },
+        },
+      },
+      context: { disableRevalidate: true },
+    }),
+    payload.create({
+      collection: 'case-studies',
+      data: {
+        title: 'Penta Office Tower: HVAC Sub-Metering Across 12 Floors',
+        slug: 'penta-office-tower',
+        industry: 'Commercial Real Estate',
+        useCase: 'BACnet/KNX HVAC, tenant sub-metering, ESG reporting',
+        featuredImage: officeDoc.id,
+        introContent: {
+          root: {
+            type: 'root',
+            children: [
+              {
+                type: 'paragraph',
+                children: [
+                  { type: 'text', detail: 0, format: 0, mode: 'normal', style: '', text: 'Modbus energy meters integrated with KNX HVAC, delivering cloud dashboards for 40 tenants and full ESG reporting.', version: 1 },
+                ],
+                direction: 'ltr',
+                format: '',
+                indent: 0,
+                textFormat: 0,
+                version: 1,
+              },
+            ],
+            direction: 'ltr',
+            format: '',
+            indent: 0,
+            version: 1,
+          },
+        },
+      },
+      context: { disableRevalidate: true },
+    }),
+    payload.create({
+      collection: 'case-studies',
+      data: {
+        title: 'Novák Residences: 80-Apartment RF Smart Home Roll-out',
+        slug: 'novak-residences',
+        industry: 'Residential',
+        useCase: 'RF smart home retrofit, app control, scene automation',
+        featuredImage: residentialDoc.id,
+        introContent: {
+          root: {
+            type: 'root',
+            children: [
+              {
+                type: 'paragraph',
+                children: [
+                  { type: 'text', detail: 0, format: 0, mode: 'normal', style: '', text: 'iNELS RF products installed across all 80 units, with 40% faster commissioning compared to the previous project.', version: 1 },
+                ],
+                direction: 'ltr',
+                format: '',
+                indent: 0,
+                textFormat: 0,
+                version: 1,
+              },
+            ],
+            direction: 'ltr',
+            format: '',
+            indent: 0,
+            version: 1,
+          },
+        },
+      },
+      context: { disableRevalidate: true },
+    }),
+  ])
+
   payload.logger.info(`— Seeding pages...`)
 
   const [_, contactPage] = await Promise.all([
@@ -205,6 +370,32 @@ export const seed = async ({
       data: contactPageData({ contactForm: contactForm }),
     }),
   ])
+
+  payload.logger.info(`— Seeding showcase page...`)
+
+  await payload.create({
+    collection: 'pages',
+    depth: 0,
+    context: { disableRevalidate: true },
+    data: showcasePageData(
+      {
+        heroImg: heroImgDoc.id,
+        smartHome: smartHomeDoc.id,
+        building: buildingDoc.id,
+        office: officeDoc.id,
+        hotel: hotelDoc.id,
+        datacenter: datacenterDoc.id,
+        product: productDoc.id,
+        residential: residentialDoc.id,
+        healthcare: healthcareDoc.id,
+        industrial: industrialDoc.id,
+        retail: retailDoc.id,
+        logo: logoDoc.id,
+      },
+      [caseStudy1.id, caseStudy2.id, caseStudy3.id],
+      contactForm.id,
+    ),
+  })
 
   payload.logger.info(`— Seeding globals...`)
 
@@ -259,11 +450,24 @@ async function fetchFileByURL(url: string): Promise<File> {
   }
 
   const data = await res.arrayBuffer()
+  const ext = url.split('.').pop()?.toLowerCase()
+  const knownExts = ['jpg', 'jpeg', 'png', 'webp', 'gif', 'avif']
+  const mimetype =
+    ext && knownExts.includes(ext)
+      ? `image/${ext === 'jpg' ? 'jpeg' : ext}`
+      : 'image/jpeg'
+
+  // For picsum URLs like https://picsum.photos/seed/inels-hero/1400/900,
+  // use the seed keyword as the filename to avoid collisions on the dimension segment.
+  const picsumSeed = url.match(/picsum\.photos\/seed\/([^/]+)/)?.[1]
+  const name = picsumSeed
+    ? `${picsumSeed}.jpg`
+    : url.split('/').pop() || `file-${Date.now()}`
 
   return {
-    name: url.split('/').pop() || `file-${Date.now()}`,
+    name,
     data: Buffer.from(data),
-    mimetype: `image/${url.split('.').pop()}`,
+    mimetype,
     size: data.byteLength,
   }
 }

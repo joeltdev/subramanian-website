@@ -10,13 +10,10 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        // Solid primary — flat, sharp corners, text left / icon right
+        // Solid primary — flat, sharp corners
         default: [
           "bg-primary text-primary-foreground",
-          "justify-start",
-          "[&_svg]:ml-auto [&_svg]:box-content",
           "hover:bg-foreground",
-          "hover:[&_svg]:translate-x-0.5",
         ],
         // Solid destructive — same emboss technique, destructive palette
         destructive: [
@@ -31,11 +28,8 @@ const buttonVariants = cva(
         // Card-surface outline — actual border so it stays within the box model
         outline: [
           "bg-background text-foreground",
-          "justify-start",
-          "[&_svg]:ml-auto [&_svg]:box-content",
           "border border-foreground dark:border-foreground/15",
           "hover:bg-foreground hover:text-background dark:hover:bg-primary",
-          "hover:[&_svg]:translate-x-0.5",
         ],
         // Secondary — same card-surface treatment on secondary bg
         secondary: [
@@ -61,7 +55,10 @@ const buttonVariants = cva(
       },
     },
     compoundVariants: [
-      // Icon left-padding scales with size for variants that pin the icon to the right
+      // Text-size buttons: left-align text, pin icon to the right with a hover nudge
+      { variant: "default", size: ["xs", "sm", "default", "lg", "xl"], class: "justify-start [&_svg]:ml-auto [&_svg]:box-content hover:[&_svg]:translate-x-0.5" },
+      { variant: "outline", size: ["xs", "sm", "default", "lg", "xl"], class: "justify-start [&_svg]:ml-auto [&_svg]:box-content hover:[&_svg]:translate-x-0.5" },
+      // Icon left-padding scales with size (creates visual breathing room between text and icon)
       { variant: "default",  size: "xs",      class: "[&_svg]:pl-2" },
       { variant: "default",  size: "sm",      class: "[&_svg]:pl-3" },
       { variant: "default",  size: "default", class: "[&_svg]:pl-4" },
