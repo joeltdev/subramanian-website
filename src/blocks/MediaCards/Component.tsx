@@ -5,22 +5,38 @@ import RichText from '@/components/RichText'
 import { CMSLink } from '@/components/Link'
 import { ChevronRight } from 'lucide-react'
 
-export const MediaCardsBlock: React.FC<MediaCardsBlockType> = ({ intro, items }) => {
+export const MediaCardsBlock: React.FC<MediaCardsBlockType> = ({ backgroundMedia, intro, items }) => {
+  const hasBackgroundMedia = backgroundMedia && typeof backgroundMedia === 'object'
+
   return (
-    <section className="py-4 md:py-8">
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="mx-auto max-w-5xl text-center">
+    <section className="py-4 md:py-8 relative">
+      {hasBackgroundMedia && (
+        <div className="absolute w-full aspect-16/7 overflow-hidden mb-8 md:mb-16">
+          <Media
+            resource={backgroundMedia}
+            fill
+            imgClassName="object-cover"
+            className="absolute inset-0 -inset-y-20"
+            videoClassName="absolute inset-0 w-full h-full object-cover"
+          />
+        </div>
+      )}
+      <div className="mx-auto max-w-7xl px-6 z-0 relative">
+        <div className="mx-auto max-w-6xl text-center pt-24 pb-120 relative">
           {intro && (
-            <RichText
-              data={intro}
-              enableGutter={false}
-              className="[&_h2]:type-headline-1 [&_h2]:text-type-body [&_h2]:leading-[1.1] [&_h2]:mb-6 [&_h3]:type-headline-3 [&_h3]:text-type-body [&_h3]:leading-tight [&_h3]:mb-4 [&_p]:text-type-secondary [&_p]:type-body-xl [&_p]:leading-snug"
-            />
+            <>
+              <div className="absolute -z-10 inset-0 bg-background/60 backdrop-blur-xs pointer-events-none" />
+              <RichText
+                data={intro}
+                enableGutter={false}
+                className="[&_h2]:type-headline-1 [&_h2]:text-foreground [&_h2]:leading-[1.1] [&_h2]:mb-6 [&_h3]:type-headline-3 [&_h3]:text-foreground [&_h3]:leading-tight [&_h3]:mb-4 [&_p]:text-foreground [&_p]:type-body-xl [&_p]:leading-snug"
+              />
+            </>
           )}
         </div>
 
         {Array.isArray(items) && items.length > 0 && (
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 md:mt-16">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 -mt-100">
             {items.map((item) => {
               const { id, richText, media, link } = item
               const hasImage = media && typeof media === 'object'
@@ -35,6 +51,8 @@ export const MediaCardsBlock: React.FC<MediaCardsBlockType> = ({ intro, items })
                         resource={media}
                         fill
                         imgClassName="object-cover"
+                        className="w-full h-full"
+                        videoClassName="w-full h-full object-cover"
                       />
                     </div>
                   ) : (

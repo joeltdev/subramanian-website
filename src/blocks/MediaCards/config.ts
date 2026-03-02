@@ -13,6 +13,15 @@ export const MediaCards: Block = {
   labels: { singular: 'Media Cards', plural: 'Media Cards' },
   fields: [
     {
+      name: 'backgroundMedia',
+      type: 'upload',
+      relationTo: 'media',
+      label: 'Block Background Media',
+      admin: {
+        description: 'Optional full-bleed image or video displayed above the cards at a 16:9 aspect ratio.',
+      },
+    },
+    {
       name: 'intro',
       type: 'richText',
       label: 'Intro',
@@ -39,8 +48,11 @@ export const MediaCards: Block = {
           name: 'media',
           type: 'upload',
           relationTo: 'media',
-          label: 'Background Image',
+          label: 'Background Media',
           required: true,
+          admin: {
+            description: 'Upload an image or video to use as the card background.',
+          },
         },
         {
           name: 'richText',

@@ -1802,6 +1802,10 @@ export interface ArticleGridBlock {
  */
 export interface MediaCardsBlock {
   /**
+   * Optional full-bleed image or video displayed above the cards at a 16:9 aspect ratio.
+   */
+  backgroundMedia?: (number | null) | Media;
+  /**
    * Section heading and supporting text — e.g. 'Smart automation for modern buildings'
    */
   intro?: {
@@ -1821,6 +1825,9 @@ export interface MediaCardsBlock {
   } | null;
   items?:
     | {
+        /**
+         * Upload an image or video to use as the card background.
+         */
         media: number | Media;
         /**
          * Card heading and body — e.g. '### Remote Control\nManage every device from a single dashboard.'
@@ -2750,6 +2757,7 @@ export interface ArticleGridBlockSelect<T extends boolean = true> {
  * via the `definition` "MediaCardsBlock_select".
  */
 export interface MediaCardsBlockSelect<T extends boolean = true> {
+  backgroundMedia?: T;
   intro?: T;
   items?:
     | T
