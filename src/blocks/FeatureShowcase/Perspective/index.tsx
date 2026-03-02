@@ -44,13 +44,13 @@ export const PerspectiveFeatureShowcase: React.FC<FeatureShowcaseBlock> = ({
 
       {/* Background — entry fade, then parallax drifts down on scroll */}
       <motion.div
-        className="h-auto w-full mx-auto"
+        className="h-auto aspect-88/32 w-full mx-auto relative"
         initial={{ opacity: 0 }}
         animate={isImageInView ? { opacity: 1 } : undefined}
         transition={{ duration: 0.9, ease: 'easeOut', delay: 0.25 }}
       >
         {/* -inset-y-16 gives 64px headroom so the 60px bgY never clips */}
-        <motion.div className="absolute aspect-88/32 inset-x-0" style={{ y: bgY }}>
+        <motion.div className="absolute h-full inset-x-0" style={{ y: bgY }}>
           {typeof imageLight === 'object' && imageLight && (
             <Media resource={imageLight} fill className="dark:hidden" imgClassName="object-cover object-top" />
           )}
@@ -58,43 +58,36 @@ export const PerspectiveFeatureShowcase: React.FC<FeatureShowcaseBlock> = ({
             <Media resource={imageDark} fill className="hidden dark:block" imgClassName="object-cover object-top" />
           )}
         </motion.div>
-      </motion.div>
-      <motion.div
-        className="h-auto w-full mx-auto"
-        initial={{ opacity: 0 }}
-        animate={isImageInView ? { opacity: 1 } : undefined}
-        transition={{ duration: 0.9, ease: 'easeOut', delay: 0.25 }}
-      >
+
         {hasImages && (
           <motion.div
             ref={imageRef}
-            className="mx-auto pr-3 py-0 max-w-7xl aspect-88/32"
+            className="mx-auto pr-3 py-0 max-w-7xl h-full"
             initial={{ opacity: 0, scale: 0.98 }}
             animate={isImageInView ? { opacity: 1, scale: 1 } : undefined}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
           >
-            <div className="perspective-midrange">
 
-              <div className="relative aspect-[88/40] overflow-hidden drop-shadow-2xl">
-                {/* Foreground — delayed entry slides up from below, then counter-parallax floats up on scroll */}
-                {typeof imageForeground === 'object' && imageForeground && (
-                  <motion.div
-                    className="absolute inset-0 mx-auto w-10/12 p-6 translate-y-8"
-                    initial={{ opacity: 0, y: 24 }}
-                    animate={isImageInView ? { opacity: 1, y: 0 } : undefined}
-                    transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.7 }}
-                  >
-                    <motion.div className="absolute inset-0" style={{ y: fgY }}>
-                      <Media resource={imageForeground} fill imgClassName="object-contain object-top" />
-                    </motion.div>
+
+            <div className="relative h-full w-full overflow-hidden drop-shadow-2xl">
+              {/* Foreground — delayed entry slides up from below, then counter-parallax floats up on scroll */}
+              {typeof imageForeground === 'object' && imageForeground && (
+                <motion.div
+                  className="absolute inset-0 mx-auto w-10/12 p-6 translate-y-8"
+                  initial={{ opacity: 0, y: 24 }}
+                  animate={isImageInView ? { opacity: 1, y: 0 } : undefined}
+                  transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.7 }}
+                >
+                  <motion.div className="absolute inset-0" style={{ y: fgY }}>
+                    <Media resource={imageForeground} fill imgClassName="object-contain object-top" />
                   </motion.div>
-                )}
+                </motion.div>
+              )}
 
-              </div>
             </div>
+
           </motion.div>
         )}
-
       </motion.div>
       <div className="mx-auto max-w-7xl space-y-8 px-6 md:space-y-12 py-16">
         {Array.isArray(items) && items.length > 0 && (
