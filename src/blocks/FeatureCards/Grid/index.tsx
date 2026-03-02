@@ -19,10 +19,10 @@ export const GridFeatureCards: React.FC<FeatureCardsBlock> = ({ intro, items }) 
                 <div key={id} className="space-y-3">
                   {Icon && (
                     <div className="flex items-center gap-2">
-                      <Icon className="size-4 text-slate-500" />
+                      <Icon className="size-12 text-slate-500" />
                     </div>
                   )}
-                  {richText && <RichText data={richText} enableGutter={false} className="[&_h3]:type-title-lg [&_h3]:text-type-body [&_p]:type-body-sm [&_p]:text-type-secondary [&_p]:leading-relaxed" />}
+                  {richText && <RichText data={richText} enableGutter={false} className="[&_h3]:type-title-lg [&_h3]:text-type-heading [&_p]:type-body-base [&_p]:text-type-secondary [&_p]:leading-relaxed" />}
                 </div>
               )
             })}

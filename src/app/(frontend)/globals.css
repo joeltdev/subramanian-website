@@ -358,13 +358,13 @@ html[data-theme='light'] {
 @utility type-title-xl {
   font-size: 1.5rem;
   line-height: 1.3;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: -0.005em;
 }
 @utility type-title-lg {
   font-size: 1.25rem;
   line-height: 1.35;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0;
 }
 @utility type-title-md {
@@ -382,13 +382,13 @@ html[data-theme='light'] {
 
 /* BODY */
 @utility type-body-xl {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   line-height: 1.75;
   font-weight: 400;
   letter-spacing: 0;
 }
 @utility type-body-lg {
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   line-height: 1.7;
   font-weight: 400;
   letter-spacing: 0;
@@ -468,14 +468,14 @@ html[data-theme='light'] {
   text-wrap: balance;
 }
 @utility type-stat {
-  font-size: 4.5rem;
+  font-size: 3rem;
   line-height: 1;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: -0.04em;
 }
 @utility type-stat-xl {
-  font-size: 6rem;
+  font-size: 5rem;
   line-height: 1;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: -0.04em;
 }
