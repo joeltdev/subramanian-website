@@ -18,21 +18,21 @@ const CardDecorator = ({ children }: { children: React.ReactNode }) => (
 
 export const FloatingFeatureCards: React.FC<FeatureCardsBlock> = ({ intro, items }) => {
   return (
-    <section className="py-4 md:py-8">
+    <section className="py-4 md:py-8 bg-accent">
       <div className="@container relative z-10 mx-auto max-w-5xl px-6">
-        <div className="text-center mx-auto max-w-2xl">
-          {intro && <RichText data={intro} enableGutter={false} className="[&_h2]:type-headline-1 [&_h2]:text-type-body [&_h2]:leading-[1.1] [&_h2]:mb-6 [&_h3]:type-headline-3 [&_h3]:text-type-body [&_h3]:leading-tight [&_h3]:mb-4 [&_p]:text-type-secondary [&_p]:type-body-xl [&_p]:leading-snug" />}
+        <div className="text-center mx-auto max-w-4xl">
+          {intro && <RichText data={intro} enableGutter={false} className="[&_h2]:type-headline-2 [&_h2]:text-type-heading [&_h2]:leading-[1.1] [&_h2]:mb-6 [&_h3]:type-headline-3 [&_h3]:text-type-heading [&_h3]:leading-tight [&_h3]:mb-4 [&_p]:text-type-body [&_p]:type-body-xl [&_p]:leading-snug [&_p]:mx-auto [&_p]:w-[80%]" />}
         </div>
 
         {Array.isArray(items) && items.length > 0 && (
-          <div className="@min-4xl:max-w-full @min-4xl:grid-cols-3 mx-auto mt-8 grid max-w-sm gap-6 [--color-background:var(--color-muted)] [--color-card:var(--color-muted)] *:text-center md:mt-16 dark:[--color-muted:var(--color-card)]">
+          <div className="@min-4xl:max-w-full @min-4xl:grid-cols-3 mx-auto mt-8 grid max-w-sm gap-6 [--color-background:var(--color-background)] [--color-card:var(--color-background)] *:text-center md:mt-16 ">
             {items.map(({ id, icon, richText }) => {
               const Icon = icon ? iconMap[icon] : null
               return (
-                <Card key={id} className="group border-0 shadow-none">
+                <Card key={id} className="bg-background border group shadow-sm shadow-black/5 rounded-2xl">
                   <CardHeader className="pb-3">
                     <CardDecorator>
-                      {Icon && <Icon className="size-6 text-muted-foreground" aria-hidden />}
+                      {Icon && <Icon className="size-8 text-muted-foreground" aria-hidden />}
                     </CardDecorator>
                   </CardHeader>
                   {richText && (

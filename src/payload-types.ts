@@ -120,10 +120,12 @@ export interface Config {
   globals: {
     header: Header;
     footer: Footer;
+    'theme-settings': ThemeSetting;
   };
   globalsSelect: {
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
+    'theme-settings': ThemeSettingsSelect<false> | ThemeSettingsSelect<true>;
   };
   locale: null;
   user: User;
@@ -3510,6 +3512,42 @@ export interface Footer {
   createdAt?: string | null;
 }
 /**
+ * Control site-wide brand colours, corner radius, and visual appearance.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "theme-settings".
+ */
+export interface ThemeSetting {
+  id: number;
+  /**
+   * The dark-mode variant is set automatically for each preset.
+   */
+  primaryColorPreset?:
+    | (
+        | 'oklch(68.5% 0.169 237.32)'
+        | 'oklch(58.8% 0.158 241.97)'
+        | 'oklch(55% 0.05 240)'
+        | 'oklch(55% 0.15 165)'
+        | 'oklch(60% 0.2 10)'
+      )
+    | null;
+  /**
+   * Advanced — override with a raw OKLCH colour value.
+   */
+  enableCustomPrimary?: boolean | null;
+  /**
+   * Format: oklch(L% C H) — no deg suffix on hue.
+   */
+  customPrimaryLight?: string | null;
+  customPrimaryDark?: string | null;
+  /**
+   * Controls border-radius on cards, inputs, and buttons site-wide.
+   */
+  radiusPreset?: ('0' | '0.25rem' | '0.5rem' | '1rem') | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "header_select".
  */
@@ -3621,6 +3659,20 @@ export interface FooterSelect<T extends boolean = true> {
   newsletterHeading?: T;
   newsletterNote?: T;
   copyright?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "theme-settings_select".
+ */
+export interface ThemeSettingsSelect<T extends boolean = true> {
+  primaryColorPreset?: T;
+  enableCustomPrimary?: T;
+  customPrimaryLight?: T;
+  customPrimaryDark?: T;
+  radiusPreset?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

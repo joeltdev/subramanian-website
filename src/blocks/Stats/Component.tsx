@@ -7,11 +7,11 @@ export const StatsBlock: React.FC<StatsBlockType & { disableInnerContainer?: boo
   stats,
 }) => {
   return (
-    <section className="py-4 md:py-8">
-      <div className="mx-auto max-w-5xl space-y-8 px-6 md:space-y-16">
+    <section data-theme="dark" className="py-4 md:py-32 bg-background">
+      <div className="mx-auto max-w-7xl space-y-8 px-6 md:space-y-16">
         {intro && (
-          <div className="relative z-10 mx-auto max-w-xl space-y-6 text-center">
-            <RichText data={intro} enableGutter={false} className="[&_h2]:type-headline-1 [&_h2]:text-type-body [&_h2]:leading-[1.1] [&_h2]:mb-6 [&_h3]:type-headline-3 [&_h3]:text-type-body [&_h3]:leading-tight [&_h3]:mb-4 [&_p]:text-type-secondary [&_p]:type-body-xl [&_p]:leading-snug" />
+          <div className="relative z-10 mx-auto max-w-3xl space-y-6 text-center">
+            <RichText data={intro} enableGutter={false} className="[&_h2]:type-headline-2 [&_h2]:text-type-heading [&_h2]:leading-[1.1] [&_h2]:mb-6 [&_h3]:type-headline-3 [&_h3]:text-type-heading [&_h3]:leading-tight [&_h3]:mb-4 [&_p]:text-type-body [&_p]:type-body-lg [&_p]:leading-snug" />
           </div>
         )}
 
@@ -23,7 +23,7 @@ export const StatsBlock: React.FC<StatsBlockType & { disableInnerContainer?: boo
                   <RichText
                     data={richText}
                     enableGutter={false}
-                    className="[&_h3]:type-stat-xl [&_h3]:leading-none [&_h4]:type-stat [&_h4]:leading-none [&_p]:mt-2 [&_p]:type-label-md [&_p]:text-type-secondary"
+                    className="[&_h3]:type-stat-xl [&_h3]:leading-none [&_h4]:type-stat [&_h4]:leading-none [&_p]:mt-2 [&_p]:type-label-lg [&_p]:text-type-secondary"
                   />
                 )}
               </div>

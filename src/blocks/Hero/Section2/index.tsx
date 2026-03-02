@@ -40,7 +40,7 @@ export const Section2Hero: React.FC<Section2HeroType> = ({
     (backgroundImage && typeof backgroundImage === 'object' && !!(backgroundImage as Media).url)
 
   return (
-    <div className="overflow-x-clip">
+    <div className="overflow-x-clip" data-theme="dark">
       {/* Decorative gradients */}
       <div
         aria-hidden
@@ -72,16 +72,6 @@ export const Section2Hero: React.FC<Section2HeroType> = ({
             />
           ) : null}
 
-          {/* Overlay - directional when bg media present, radial otherwise */}
-          <div
-            aria-hidden
-            className={
-              hasBgMedia
-                ? 'absolute inset-0 -z-10 size-full bg-gradient-to-r from-background via-background/80 to-transparent'
-                : 'absolute inset-0 -z-10 size-full [background:radial-gradient(125%_125%_at_50%_100%,transparent_0%,var(--color-background)_75%)]'
-            }
-          />
-
           <div className="mx-auto max-w-7xl px-6 w-full">
             <div className="sm:mx-auto lg:mr-auto lg:mt-0">
               {/* Badge */}
@@ -105,7 +95,7 @@ export const Section2Hero: React.FC<Section2HeroType> = ({
                   <RichText
                     data={richText}
                     enableGutter={false}
-                    className="text-balance [&_h1]:m-0 [&_h2]:m-0 [&_h1]:type-display [&_p]:mt-8 [&_p]:max-w-2xl [&_p]:mx-auto [&_p]:type-body-xl [&_p]:text-type-body"
+                    className="text-balance [&_h1]:m-0 [&_h2]:m-0 [&_h1]:type-display [&_p]:mt-8 [&_p]:max-w-2xl [&_p]:mx-auto [&_p]:type-body-xl [&_p]:text-foreground"
                   />
                 </AnimatedGroup>
               )}
