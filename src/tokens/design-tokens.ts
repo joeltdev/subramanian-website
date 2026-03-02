@@ -1,10 +1,14 @@
 /**
- * Design tokens — JavaScript source of truth.
+ * Design tokens — JavaScript/CMS layer.
  *
- * Parallel to globals.css but for JS contexts: Payload config, email
- * templates, server-side inline styles, framer-motion values.
+ * Used in JS contexts: Payload config, email templates, server-side inline
+ * styles, framer-motion values.
  *
- * Keep in sync with globals.css manually. Convention enforced by code review.
+ * `brandPalette` values here intentionally mirror `--color-brand-*` in
+ * `globals.css @theme`. CSS `@theme` is the canonical CSS source; this TS
+ * export is the JS/CMS layer (ThemeInjector, Payload options). The DB stores
+ * raw OKLCH strings from preset `value` fields — changing them requires a
+ * migration. Do not remove `brandPalette` without a migration.
  *
  * NOTE: Option values for Payload select fields are stored in the DB.
  * Changing a `value` string here requires a DB migration for existing content.
