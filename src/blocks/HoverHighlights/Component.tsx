@@ -90,7 +90,7 @@ export const HoverHighlightsBlock: React.FC<HoverHighlightsBlockType & { disable
                     ].join(' ')}
                   >
                     {typeof mediaTop === 'object' && mediaTop && (
-                      <div className="w-[90%] self-start overflow-hidden rounded-xl shadow-lg">
+                      <div className="w-[90%] self-start overflow-hidden rounded-none shadow-lg">
                         <Media
                           resource={mediaTop}
                           imgClassName="w-full h-auto object-cover"
@@ -98,7 +98,7 @@ export const HoverHighlightsBlock: React.FC<HoverHighlightsBlockType & { disable
                       </div>
                     )}
                     {typeof mediaBottom === 'object' && mediaBottom && (
-                      <div className="w-[90%] self-end overflow-hidden rounded-xl shadow-lg opacity-80">
+                      <div className="w-[90%] self-end overflow-hidden rounded-none shadow-lg opacity-80">
                         <Media
                           resource={mediaBottom}
                           imgClassName="w-full h-auto object-cover"

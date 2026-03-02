@@ -201,7 +201,7 @@ export async function Footer() {
               />
               <select
                 className={cn(
-                  'flex h-9 min-w-28 appearance-none rounded-md border border-border/60 bg-white/5 px-3 py-1 text-sm text-foreground outline-none transition-colors',
+                  'flex h-9 min-w-28 appearance-none rounded-none border border-border/60 bg-white/5 px-3 py-1 text-sm text-foreground outline-none transition-colors',
                   'hover:border-border focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/30',
                 )}
                 name="language"

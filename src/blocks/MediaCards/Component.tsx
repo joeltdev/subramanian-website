@@ -60,7 +60,7 @@ export const MediaCardsBlock: React.FC<MediaCardsBlockType> = ({ intro, items })
                 </>
               )
 
-              const cardClassName = "group relative min-h-[580px] overflow-hidden rounded-2xl bg-muted"
+              const cardClassName = "group relative min-h-[580px] overflow-hidden rounded-none bg-muted"
 
               if (hasLink) {
                 return (

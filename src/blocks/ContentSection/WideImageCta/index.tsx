@@ -16,7 +16,7 @@ export const WideImageCtaContentSection: React.FC<ContentSectionBlock> = ({
           {intro && <RichText data={intro} enableGutter={false} className="flex row-auto justify-center items-baseline-last **:m-0 **:flex-1 [&_h2]:type-headline-1 [&_h2]:text-type-body [&_h2]:leading-[1.1] [&_h2]:mb-6 [&_h3]:type-headline-3 [&_h3]:text-type-body [&_h3]:leading-tight [&_h3]:mb-4 [&_p]:text-type-secondary [&_p]:type-body-xl [&_p]:leading-snug" />}
         </div>
         {typeof image === 'object' && image && (
-          <div className="group relative aspect-video overflow-hidden rounded-2xl cursor-pointer">
+          <div className="group relative aspect-video overflow-hidden rounded-none cursor-pointer">
             {/* Full-cover image, subtle zoom on hover */}
             <Media
               resource={image}

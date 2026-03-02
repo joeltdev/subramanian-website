@@ -74,13 +74,13 @@ export const AccordionFeatureBento: React.FC<FeatureBentoBlock> = ({
           </motion.div>
 
           <motion.div
-            className="bg-background relative flex overflow-hidden rounded-3xl border p-2"
+            className="bg-background relative flex overflow-hidden rounded-none border p-2"
             initial={{ opacity: 0, scale: 0.98 }}
             animate={isContentInView ? { opacity: 1, scale: 1 } : undefined}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.35 }}
           >
             <div className="w-15 absolute inset-0 right-0 ml-auto border-l bg-[repeating-linear-gradient(-45deg,var(--color-border),var(--color-border)_1px,transparent_1px,transparent_8px)]" />
-            <div className="aspect-76/59 bg-background relative w-[calc(3/4*100%+3rem)] rounded-2xl">
+            <div className="aspect-76/59 bg-background relative w-[calc(3/4*100%+3rem)] rounded-none">
               <AnimatePresence mode="wait">
                 {typeof activeData?.image === 'object' && activeData?.image && (
                   <motion.div
@@ -89,7 +89,7 @@ export const AccordionFeatureBento: React.FC<FeatureBentoBlock> = ({
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 6, scale: 0.98 }}
                     transition={{ duration: 0.2 }}
-                    className="size-full overflow-hidden rounded-2xl border bg-background shadow-md"
+                    className="size-full overflow-hidden rounded-none border bg-background shadow-md"
                   >
                     <Media
                       resource={activeData.image}

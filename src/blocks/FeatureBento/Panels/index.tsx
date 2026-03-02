@@ -18,7 +18,7 @@ export const PanelsFeatureBento: React.FC<FeatureBentoBlock> = ({ imagePanels })
         <div className="mx-auto grid gap-2 sm:grid-cols-5">
 
           {/* Card 1 – large image panel (col-span-3) */}
-          <Card className="group overflow-hidden shadow-zinc-950/5 sm:col-span-3 sm:rounded-none sm:rounded-tl-xl">
+          <Card className="group overflow-hidden shadow-zinc-950/5 sm:col-span-3">
             <CardHeader>
               <div className="md:p-6">
                 {p0?.richText && <RichText data={p0.richText} enableGutter={false} className="[&_h2]:type-title-xl [&_h2]:text-type-body [&_h3]:type-title-lg [&_h3]:text-type-body [&_p]:type-body-sm [&_p]:text-type-secondary [&_p]:leading-relaxed" />}
@@ -26,7 +26,7 @@ export const PanelsFeatureBento: React.FC<FeatureBentoBlock> = ({ imagePanels })
             </CardHeader>
             {(p0?.imageDark || p0?.imageLight) && (
               <div className="mask-b-from-75% mask-b-to-95% relative h-fit pl-6 md:pl-12">
-                <div className="bg-background overflow-hidden rounded-tl-lg border-l border-t pl-2 pt-2 dark:bg-background">
+                <div className="bg-background overflow-hidden rounded-none border-l border-t pl-2 pt-2 dark:bg-background">
                   {typeof p0?.imageDark === 'object' && p0.imageDark && (
                     <Media
                       resource={p0.imageDark}
@@ -47,7 +47,7 @@ export const PanelsFeatureBento: React.FC<FeatureBentoBlock> = ({ imagePanels })
           </Card>
 
           {/* Card 2 – title + small image panel (col-span-2) */}
-          <Card className="group overflow-hidden shadow-zinc-950/5 sm:col-span-2 sm:rounded-none sm:rounded-tr-xl">
+          <Card className="group overflow-hidden shadow-zinc-950/5 sm:col-span-2">
             {p1?.richText && (
               <div className="mx-auto my-6 max-w-md text-balance px-6 text-center md:p-6">
                 <RichText data={p1.richText} enableGutter={false} className="[&_h2]:type-title-xl [&_h2]:text-type-body [&_h3]:type-title-lg [&_h3]:text-type-body [&_p]:type-body-sm [&_p]:text-type-secondary [&_p]:leading-relaxed" />
@@ -56,7 +56,7 @@ export const PanelsFeatureBento: React.FC<FeatureBentoBlock> = ({ imagePanels })
             {(p1?.imageDark || p1?.imageLight) && (
               <CardContent className="mt-auto h-fit">
                 <div className="mask-radial-at-right mask-radial-from-75% mask-radial-[75%_75%] relative max-sm:mb-6">
-                  <div className="aspect-76/59 overflow-hidden rounded-r-lg border">
+                  <div className="aspect-76/59 overflow-hidden rounded-none border">
                     {typeof p1?.imageDark === 'object' && p1.imageDark && (
                       <Media
                         resource={p1.imageDark}
@@ -78,25 +78,25 @@ export const PanelsFeatureBento: React.FC<FeatureBentoBlock> = ({ imagePanels })
           </Card>
 
           {/* Card 3 – title + keyboard shortcut decoration (col-span-2) */}
-          <Card className="group p-6 shadow-zinc-950/5 sm:col-span-2 sm:rounded-none sm:rounded-bl-xl md:p-12">
+          <Card className="group p-6 shadow-zinc-950/5 sm:col-span-2 md:p-12">
             {p2?.richText && (
               <div className="mx-auto mb-12 max-w-md text-balance text-center">
                 <RichText data={p2.richText} enableGutter={false} className="[&_h2]:type-title-xl [&_h2]:text-type-body [&_h3]:type-title-lg [&_h3]:text-type-body [&_p]:type-body-sm [&_p]:text-type-secondary [&_p]:leading-relaxed" />
               </div>
             )}
             <div aria-hidden className="flex justify-center gap-6">
-              <div className="inset-shadow-sm dark:inset-shadow-white/5 bg-muted/35 relative flex aspect-square size-16 items-center rounded-[7px] border p-3 shadow-lg ring dark:shadow-white/5 dark:ring-black">
+              <div className="inset-shadow-sm dark:inset-shadow-white/5 bg-muted/35 relative flex aspect-square size-16 items-center rounded-none border p-3 shadow-lg ring dark:shadow-white/5 dark:ring-black">
                 <span className="absolute right-2 top-1 block text-sm">fn</span>
                 <Globe className="mt-auto size-4" />
               </div>
-              <div className="inset-shadow-sm dark:inset-shadow-white/5 bg-muted/35 flex aspect-square size-16 items-center justify-center rounded-[7px] border p-3 shadow-lg ring dark:shadow-white/5 dark:ring-black">
+              <div className="inset-shadow-sm dark:inset-shadow-white/5 bg-muted/35 flex aspect-square size-16 items-center justify-center rounded-none border p-3 shadow-lg ring dark:shadow-white/5 dark:ring-black">
                 <span>K</span>
               </div>
             </div>
           </Card>
 
           {/* Card 4 – title + integration icons (col-span-3) */}
-          <Card className="group relative shadow-zinc-950/5 sm:col-span-3 sm:rounded-none sm:rounded-br-xl">
+          <Card className="group relative shadow-zinc-950/5 sm:col-span-3">
             <CardHeader className="p-6 md:p-12">
               {p3?.richText && <RichText data={p3.richText} enableGutter={false} className="[&_h2]:type-title-xl [&_h2]:text-type-body [&_h3]:type-title-lg [&_h3]:text-type-body [&_p]:type-body-sm [&_p]:text-type-secondary [&_p]:leading-relaxed" />}
             </CardHeader>

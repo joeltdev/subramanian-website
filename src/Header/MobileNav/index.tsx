@@ -71,7 +71,7 @@ export function MobileNav({ data }: { data: Header }) {
         <SheetTrigger asChild>
           <button
             aria-label="Open navigation menu"
-            className="p-2 rounded-md hover:bg-accent transition-colors"
+            className="p-2 rounded-none hover:bg-accent transition-colors"
           >
             <Menu className="h-5 w-5" />
           </button>
@@ -91,7 +91,7 @@ export function MobileNav({ data }: { data: Header }) {
                         {...tab.link}
                         appearance="inline"
                         onClick={() => setOpen(false)}
-                        className="flex items-center px-3 py-3 type-body-md rounded-md hover:bg-accent transition-colors"
+                        className="flex items-center px-3 py-3 type-body-md rounded-none hover:bg-accent transition-colors"
                       />
                     )
                   }
@@ -100,7 +100,7 @@ export function MobileNav({ data }: { data: Header }) {
                     return (
                       <button
                         key={i}
-                        className="flex items-center justify-between px-3 py-3 type-body-md rounded-md hover:bg-accent transition-colors w-full text-left"
+                        className="flex items-center justify-between px-3 py-3 type-body-md rounded-none hover:bg-accent transition-colors w-full text-left"
                         onClick={() => setActiveTab(i)}
                       >
                         {tab.label}

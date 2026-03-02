@@ -148,10 +148,10 @@ export const Section2Hero: React.FC<Section2HeroType> = ({
                 ...transitionVariants,
               }}>
               <div className="mask-b-from-55% relative -mr-56 mt-8 overflow-hidden px-2 sm:mr-0 sm:mt-12 md:mt-20">
-                <div className="inset-shadow-2xs ring-background dark:inset-shadow-white/20 bg-background relative mx-auto max-w-5xl overflow-hidden rounded-2xl border p-4 shadow-lg shadow-zinc-950/15 ring-1">
+                <div className="inset-shadow-2xs ring-background dark:inset-shadow-white/20 bg-background relative mx-auto max-w-5xl overflow-hidden rounded-none border p-4 shadow-lg shadow-zinc-950/15 ring-1">
                   <MediaComponent
-                    className="aspect-15/8 relative rounded-2xl"
-                    imgClassName="rounded-2xl"
+                    className="aspect-15/8 relative rounded-none"
+                    imgClassName="rounded-none"
                     resource={mediaPreview}
                   />
                 </div>

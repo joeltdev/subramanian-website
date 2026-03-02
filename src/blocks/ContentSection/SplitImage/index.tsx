@@ -19,10 +19,10 @@ export const SplitImageContentSection: React.FC<ContentSectionBlock> = ({
         <div className="grid gap-6 sm:grid-cols-2 md:gap-12 lg:gap-24">
           <div className="relative mb-6 sm:mb-0">
             {typeof imageLight === 'object' && imageLight && (
-              <Media resource={imageLight} className='bg-linear-to-b aspect-3/2 relative rounded-2xl from-border to-transparent p-px' pictureClassName="w-full h-full" imgClassName="w-full h-full rounded-[15px] object-cover shadow dark:hidden" />
+              <Media resource={imageLight} className='bg-linear-to-b aspect-3/2 relative rounded-none from-border to-transparent p-px' pictureClassName="w-full h-full" imgClassName="w-full h-full rounded-none object-cover shadow dark:hidden" />
             )}
             {typeof imageDark === 'object' && imageDark && (
-              <Media resource={imageDark} className='bg-linear-to-b aspect-3/2 relative rounded-2xl from-border to-transparent p-px' pictureClassName="w-full h-full" imgClassName="w-full h-full hidden rounded-[15px] object-cover dark:block" />
+              <Media resource={imageDark} className='bg-linear-to-b aspect-3/2 relative rounded-none from-border to-transparent p-px' pictureClassName="w-full h-full" imgClassName="w-full h-full hidden rounded-none object-cover dark:block" />
             )}
           </div>
 

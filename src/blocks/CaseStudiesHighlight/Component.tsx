@@ -69,7 +69,7 @@ export const CaseStudiesHighlightBlock: React.FC<
                     <Link
                       href={`/case-studies/${slug}`}
                       prefetch={false}
-                      className="relative block aspect-video overflow-hidden rounded-xl opacity-30 transition-all duration-200 ease-out hover:-translate-y-4 hover:opacity-100 hover:shadow-lg"
+                      className="relative block aspect-video overflow-hidden rounded-none opacity-30 transition-all duration-200 ease-out hover:-translate-y-4 hover:opacity-100 hover:shadow-lg"
                     >
                       {typeof featuredImage === 'object' && featuredImage && (
                         <Media

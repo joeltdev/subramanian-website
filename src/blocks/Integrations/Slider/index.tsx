@@ -18,7 +18,7 @@ const SliderCard = ({
   className?: string
   isCenter?: boolean
 }) => (
-  <div className={cn('bg-background relative z-20 flex size-12 rounded-full border', className)}>
+  <div className={cn('bg-background relative z-20 flex size-12 rounded-none border', className)}>
     <div className={cn('m-auto size-fit *:size-5', isCenter && '*:size-8')}>{children}</div>
   </div>
 )

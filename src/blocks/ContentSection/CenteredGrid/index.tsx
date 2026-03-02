@@ -19,8 +19,8 @@ export const CenteredGridContentSection: React.FC<ContentSectionBlock> = ({
         )}
 
         {typeof image === 'object' && image && (
-          <div className="bg-linear-to-b relative rounded-2xl from-border to-transparent p-px">
-            <Media resource={image} imgClassName="w-full rounded-[15px] object-cover grayscale shadow" />
+          <div className="bg-linear-to-b relative rounded-none from-border to-transparent p-px">
+            <Media resource={image} imgClassName="w-full rounded-none object-cover grayscale shadow" />
           </div>
         )}
 

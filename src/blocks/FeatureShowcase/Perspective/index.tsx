@@ -100,7 +100,7 @@ export const PerspectiveFeatureShowcase: React.FC<FeatureShowcaseBlock> = ({
             {items.map(({ id, icon, richText }) => {
               const Icon = icon ? iconMap[icon] : null
               return (
-                <div key={id} className="space-y-3 rounded-lg bg-card px-6 py-8">
+                <div key={id} className="space-y-3 rounded-none bg-card px-6 py-8">
                   {Icon && (
                     <div className="flex items-center gap-2">
                       <Icon className="size-5 text-slate-400" />

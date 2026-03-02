@@ -16,10 +16,10 @@ const TileCard = ({
   className?: string
   borderClassName?: string
 }) => (
-  <div className={cn('bg-background relative flex size-20 rounded-xl dark:bg-transparent', className)}>
+  <div className={cn('bg-background relative flex size-20 rounded-none dark:bg-transparent', className)}>
     <div
       role="presentation"
-      className={cn('absolute inset-0 rounded-xl border border-border', borderClassName)}
+      className={cn('absolute inset-0 rounded-none border border-border', borderClassName)}
     />
     <div className="relative z-20 m-auto size-fit *:size-8">{children}</div>
   </div>

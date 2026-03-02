@@ -76,7 +76,7 @@ export const StatsFeatureBento: React.FC<FeatureBentoBlock> = ({ stat, items }) 
                     {card3?.richText && <RichText data={card3.richText} enableGutter={false} className="[&_h3]:type-title-lg [&_h3]:text-type-body [&_p]:type-body-sm [&_p]:text-type-secondary [&_p]:leading-relaxed" />}
                   </div>
                 </div>
-                <div className="rounded-tl-(--radius) relative -mb-6 -mr-6 mt-6 h-fit border-l border-t p-6 py-6 sm:ml-6">
+                <div className="rounded-none relative -mb-6 -mr-6 mt-6 h-fit border-l border-t p-6 py-6 sm:ml-6">
                   <div className="absolute left-3 top-2 flex gap-1">
                     <span className="block size-2 rounded-full border dark:border-border dark:bg-muted" />
                     <span className="block size-2 rounded-full border dark:border-border dark:bg-muted" />

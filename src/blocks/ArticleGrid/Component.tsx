@@ -88,8 +88,8 @@ const ArticleCard: React.FC<{ post: Post }> = ({ post }) => {
     : null
 
   return (
-    <article className="ring-border bg-card text-card-foreground rounded-xl ring-1 bg-linear-to-b from-card shadow-black/[0.065] group relative row-span-5 grid grid-rows-subgrid gap-3 from-65% to-transparent p-6 shadow-xl">
-      <div className="-mx-6 -mt-6 aspect-video overflow-hidden rounded-xl">
+    <article className="ring-border bg-card text-card-foreground rounded-none ring-1 bg-linear-to-b from-card shadow-black/[0.065] group relative row-span-5 grid grid-rows-subgrid gap-3 from-65% to-transparent p-6 shadow-xl">
+      <div className="-mx-6 -mt-6 aspect-video overflow-hidden rounded-none">
         {heroImage && typeof heroImage === 'object' ? (
           <Media
             resource={heroImage}
@@ -119,7 +119,7 @@ const ArticleCard: React.FC<{ post: Post }> = ({ post }) => {
         {author && (
           <div className="space-y-2">
             <div className="grid grid-cols-[auto_1fr] items-center gap-2">
-              <div className="ring-border bg-muted aspect-square size-6 overflow-hidden rounded-md ring-1 flex items-center justify-center">
+              <div className="ring-border bg-muted aspect-square size-6 overflow-hidden rounded-none ring-1 flex items-center justify-center">
                 <span className="text-[9px] font-semibold text-muted-foreground leading-none">
                   {initials}
                 </span>
