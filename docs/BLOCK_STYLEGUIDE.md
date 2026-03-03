@@ -488,3 +488,222 @@ Configure the Lexical editor based on where the richText lives:
 - Image fields: **never** mark as `required: true` — editors need to save drafts without images
 - Link fields: use `linkGroup()` helper from `@/fields/linkGroup`; never build link fields manually
 - Icon select: import `ICON_OPTIONS` from `@/blocks/shared/featureIcons.ts`
+
+---
+
+## 6. CTA & Links
+
+### 6.1 Button Variants → Use Cases
+
+| Variant | Use case | Example context |
+|---|---|---|
+| `default` | Primary action (solid azure) | Hero CTA, main block action |
+| `outline` | Secondary action | Secondary block CTA alongside `default` |
+| `ghost` | Tertiary / subtle | Nav-level, card hover action |
+| `link` | Inline text link in prose | "Learn more" within body copy |
+| `secondary` | Card-surface soft action | Card CTA, form secondary action |
+| `destructive` | Destructive confirm | Delete, remove actions |
+
+**Sizes:**
+| Size | Use |
+|---|---|
+| `xl` | Hero / above-fold primary CTA |
+| `lg` | Block-level CTAs |
+| `default` | Standard inline actions |
+| `sm` | Card CTAs, tight contexts |
+| `xs` | Badge-level actions |
+| `icon` / `icon-sm` / `icon-lg` | Icon-only buttons |
+
+---
+
+### 6.2 CMSLink vs Button
+
+**RULE:** Use `CMSLink` whenever the link source comes from CMS fields (handles internal page reference vs external URL resolution). Use `Button` only for purely UI-driven actions with no CMS source.
+
+```tsx
+// ✅ CMS-sourced link
+<CMSLink
+  appearance="default"   // matches Button variant names
+  size="lg"
+  {...link}              // spread CMS link object (has url, reference, newTab, label)
+/>
+
+// ✅ UI-only action (no CMS field behind it)
+<Button variant="outline" size="sm" onClick={handler}>
+  Cancel
+</Button>
+```
+
+---
+
+### 6.3 Standard CTA Field
+
+Always use the `linkGroup` helper for CTA fields:
+
+```typescript
+import { linkGroup } from '@/fields/linkGroup'
+
+// In block config fields array:
+linkGroup({
+  appearances: ['default', 'outline'],
+  overrides: { maxRows: 2 },
+})
+```
+
+This generates a properly configured link array field with appearance selection baked in.
+
+---
+
+## 7. Responsiveness
+
+### 7.1 Breakpoints
+
+**RULE:** Mobile-first. The primary responsive boundary is `md:` (768px). Use `sm:`, `lg:`, `xl:`, `2xl:` only when `md:` is insufficient.
+
+| Prefix | Breakpoint | Common use |
+|---|---|---|
+| _(base)_ | 0px | Mobile layout |
+| `sm:` | 640px | Tablet adjustments (rare) |
+| `md:` | 768px | Primary desktop layout switch |
+| `lg:` | 1024px | Wide adjustments |
+| `xl:` | 1280px | Large screen refinements |
+| `2xl:` | 1376px | Max-width refinements |
+
+---
+
+### 7.2 Grid Column Patterns
+
+**Standard grid patterns — copy exactly:**
+
+```tsx
+// Feature items (icons + text cards)
+<div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+
+// 2-column content split (text + image)
+<div className="md:grid md:grid-cols-2 md:gap-32 space-y-12 md:space-y-0">
+
+// 3-column card grid
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+// 2-up card grid
+<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+// Centered single column (content sections)
+<div className="mx-auto max-w-3xl text-center">
+```
+
+---
+
+### 7.3 Images
+
+**RULE:** Use `fill` with a positioned parent for fluid responsive images. Use fixed aspect ratio containers for cards.
+
+```tsx
+// ✅ Fluid fill (hero, split layout)
+<div className="relative aspect-[4/3] md:aspect-auto md:h-full overflow-hidden">
+  <Media resource={image} fill className="object-cover" />
+</div>
+
+// ✅ Fixed aspect card image
+<div className="relative aspect-video overflow-hidden rounded-none">
+  <Media resource={image} fill className="object-cover" />
+</div>
+```
+
+**RULE:** Never manually add responsive text size overrides (`text-sm md:text-lg`). The type scale is already fluid via CSS clamp — just use the type utility.
+
+---
+
+### 7.4 Prose Responsiveness
+
+```tsx
+// Always add md:prose-md for proper scaling
+<RichText
+  data={intro}
+  className="prose md:prose-md [&_h2]:type-headline-1 ..."
+/>
+```
+
+---
+
+## 8. Animations
+
+### 8.1 Library & Setup
+
+**RULE:** Use `motion/react` (Framer Motion). Always add `'use client'` to any file that imports from `motion/react`.
+
+```typescript
+import { motion, useScroll, useTransform, useInView } from 'motion/react'
+```
+
+---
+
+### 8.2 Entry Animations
+
+**Standard entry animation (use for most blocks):**
+```tsx
+const ref = useRef(null)
+const isInView = useInView(ref, { once: true, margin: '-100px' })
+
+<motion.div
+  ref={ref}
+  initial={{ opacity: 0, y: 20 }}
+  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+  transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+>
+```
+
+**Staggered items (for arrays of cards/features):**
+```tsx
+{items.map((item, index) => (
+  <motion.div
+    key={index}
+    initial={{ opacity: 0, y: 20 }}
+    animate={isInView ? { opacity: 1, y: 0 } : {}}
+    transition={{
+      duration: 0.5,
+      delay: Math.min(index * 0.1, 0.5),  // Cap at 0.5s max delay
+      ease: [0.16, 1, 0.3, 1],
+    }}
+  >
+```
+
+---
+
+### 8.3 Parallax Scrolling
+
+**Standard parallax pattern:**
+```tsx
+const containerRef = useRef(null)
+const { scrollYProgress } = useScroll({
+  target: containerRef,
+  offset: ['start end', 'end start'],
+})
+
+// Background image drifts down
+const bgY = useTransform(scrollYProgress, [0, 1], ['0px', '30px'])
+// Foreground image counter-drifts up
+const fgY = useTransform(scrollYProgress, [0, 1], ['0px', '-50px'])
+
+<div ref={containerRef}>
+  <motion.div style={{ y: bgY }}>
+    <Media resource={imageDark} />
+  </motion.div>
+  <motion.div style={{ y: fgY }}>
+    <Media resource={imageForeground} />
+  </motion.div>
+</div>
+```
+
+**RULE:** Only use `useScroll` for parallax. Never use CSS `transform` on scroll via JS events — it causes layout jank.
+
+---
+
+### 8.4 Animation Rules
+
+- `once: true` on `useInView` — animations trigger once, do not re-animate on scroll up
+- Easing: always use `[0.16, 1, 0.3, 1]` for a natural feel
+- Max stagger delay: `Math.min(index * 0.1, 0.5)` — cap at 500ms for large arrays
+- Background parallax: `'0px' → '30px'` (subtle drift)
+- Foreground parallax: `'0px' → '-50px'` (stronger counter-drift for depth)
+- `useInView` margin: `'-100px'` to trigger slightly before element enters viewport
