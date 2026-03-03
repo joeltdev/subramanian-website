@@ -241,6 +241,7 @@ export interface Page {
     | CaseStudiesHighlightBlock
     | ArticleGridBlock
     | MediaCardsBlock
+    | YouTubeBlock
   )[];
   meta?: {
     title?: string | null;
@@ -1870,6 +1871,23 @@ export interface MediaCardsBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "YouTubeBlock".
+ */
+export interface YouTubeBlock {
+  /**
+   * Paste any YouTube link (watch, share, embed, shorts).
+   */
+  url: string;
+  /**
+   * Used for the iframe title attribute (accessibility).
+   */
+  title?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'youtube';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "product-categories".
  */
 export interface ProductCategory {
@@ -2380,6 +2398,7 @@ export interface PagesSelect<T extends boolean = true> {
         caseStudiesHighlight?: T | CaseStudiesHighlightBlockSelect<T>;
         articleGrid?: T | ArticleGridBlockSelect<T>;
         mediaCards?: T | MediaCardsBlockSelect<T>;
+        youtube?: T | YouTubeBlockSelect<T>;
       };
   meta?:
     | T
@@ -2774,6 +2793,16 @@ export interface MediaCardsBlockSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "YouTubeBlock_select".
+ */
+export interface YouTubeBlockSelect<T extends boolean = true> {
+  url?: T;
+  title?: T;
   id?: T;
   blockName?: T;
 }
