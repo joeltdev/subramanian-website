@@ -20,6 +20,7 @@ import { CaseStudiesHighlight } from '../../blocks/CaseStudiesHighlight/config'
 import { ArticleGrid } from '../../blocks/ArticleGrid/config'
 import { MediaCards } from '../../blocks/MediaCards/config'
 import { YouTube } from '../../blocks/YouTube/config'
+import { ParallaxShowcase } from '../../blocks/ParallaxShowcase/config'
 import { hero } from '@/blocks/Hero/config'
 import { slugField } from 'payload'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
@@ -86,7 +87,7 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, LogoCloud, FeatureCards, FeatureShowcase, FeatureBento, Integrations, ContentSection, Stats, Testimonials, HoverHighlights, CaseStudiesHighlight, ArticleGrid, MediaCards, YouTube],
+              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, LogoCloud, FeatureCards, FeatureShowcase, FeatureBento, Integrations, ContentSection, Stats, Testimonials, HoverHighlights, CaseStudiesHighlight, ArticleGrid, MediaCards, YouTube, ParallaxShowcase],
               required: true,
               admin: {
                 initCollapsed: true,
