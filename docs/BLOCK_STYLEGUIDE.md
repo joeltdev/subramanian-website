@@ -707,3 +707,124 @@ const fgY = useTransform(scrollYProgress, [0, 1], ['0px', '-50px'])
 - Background parallax: `'0px' → '30px'` (subtle drift)
 - Foreground parallax: `'0px' → '-50px'` (stronger counter-drift for depth)
 - `useInView` margin: `'-100px'` to trigger slightly before element enters viewport
+
+---
+
+## 9. Payload Migrations
+
+### 9.1 When to Run Migrations
+
+**RULE:** Run `pnpm payload migrate:create` after ANY change to a block's fields in `config.ts`. This includes adding fields, changing labels, or modifying options.
+
+```bash
+# After changing block config:
+pnpm payload migrate:create --name add-featureShowcase-badge-field
+
+# Apply locally before testing:
+pnpm payload migrate
+```
+
+Migration files are auto-generated in `src/migrations/`. Always commit them with the feature branch.
+
+---
+
+### 9.2 Additive-Only Rule
+
+**RULE:** Only additive changes are safe without data migration scripts. Anything else requires a migration plan.
+
+| Change type | Safe? | Action required |
+|---|---|---|
+| Add a new field | ✅ Safe | Create migration, default value optional |
+| Add a new select option | ✅ Safe | Create migration |
+| Add a new variant | ✅ Safe | Create migration, update component |
+| Rename a field | ❌ Breaking | See rename pattern below |
+| Remove a field | ❌ Breaking | See removal pattern below |
+| Change field `type` | ❌ Breaking | Create new field, migrate, remove old |
+| Reorder fields | ✅ Safe (UI only) | No migration needed |
+
+---
+
+### 9.3 Field Rename Pattern
+
+Never rename a field directly — it destroys existing content.
+
+```
+Step 1: Add new field with the new name
+Step 2: Create migration → pnpm payload migrate:create --name rename-fieldOld-to-fieldNew
+Step 3: Write data migration in the migration file to copy old → new values
+Step 4: Mark old field as hidden: admin: { hidden: true }
+Step 5: Create final migration to remove old field after data confirmed
+Step 6: Remove old field from config.ts
+```
+
+---
+
+### 9.4 Deployment Order
+
+**RULE:** Always run migrations before deploying new component code.
+
+```
+1. Deploy migration (pnpm payload migrate) on staging
+2. Verify data in admin UI
+3. Deploy component code
+4. Test in staging
+5. Repeat for production
+```
+
+---
+
+## 10. New Block Checklist
+
+Copy this checklist when creating a new block.
+
+```
+## Block: [BlockName]
+### Slug: [blockName]
+
+### Config
+[ ] Create src/blocks/BlockName/config.ts
+    [ ] slug (camelCase)
+    [ ] interfaceName = PascalCase + "Block"
+    [ ] labels.singular + labels.plural
+    [ ] variant field with defaultValue (if multiple variants)
+    [ ] intro richText (required: false, h2/h3, Fixed+Inline toolbar)
+    [ ] items array with minRows + maxRows (if applicable)
+    [ ] icon select uses ICON_OPTIONS from shared/featureIcons.ts
+    [ ] upload fields: relationTo: 'media', required: false
+    [ ] linkGroup() helper for CTA fields
+    [ ] Optional fields grouped in collapsible
+    [ ] All fields have label + admin.description
+
+### Component
+[ ] Create src/blocks/BlockName/Component.tsx (variant router)
+[ ] Create src/blocks/BlockName/VariantName/index.tsx
+    [ ] 'use client' at top (if using motion or hooks)
+    [ ] Section wrapper: py-16 md:py-24
+    [ ] Container: mx-auto max-w-7xl px-6 md:px-8
+    [ ] intro wrapped in conditional: {intro && <RichText ... />}
+    [ ] RichText has correct className overrides for this context
+    [ ] Mobile-first responsive grid
+    [ ] Dark/light image variants with dark:hidden / dark:block
+    [ ] CMSLink for all CMS-sourced links
+    [ ] Cards use: bg-muted px-6 py-8 rounded-none
+
+### Registration
+[ ] Add to src/blocks/RenderBlocks.tsx (import + blockComponents entry)
+[ ] Add to src/collections/Pages/index.ts (blocks array)
+
+### Migration
+[ ] pnpm payload migrate:create --name add-blockname-block
+[ ] pnpm payload migrate (apply locally)
+[ ] Commit migration file with feature branch
+
+### Testing
+[ ] Create block in CMS admin UI
+[ ] Fill all fields, verify no console errors
+[ ] Check light mode (default)
+[ ] Check dark mode (toggle data-theme)
+[ ] Check section-theme variants if block supports them
+[ ] Verify mobile layout (375px viewport)
+[ ] Verify desktop layout (1280px viewport)
+[ ] Verify animations trigger on scroll
+[ ] Check with all field combinations (empty intro, no images, etc.)
+```
