@@ -243,6 +243,7 @@ export interface Page {
     | MediaCardsBlock
     | YouTubeBlock
     | ParallaxShowcaseBlock
+    | GalleryBlock
   )[];
   meta?: {
     title?: string | null;
@@ -1970,6 +1971,163 @@ export interface ParallaxShowcaseBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "GalleryBlock".
+ */
+export interface GalleryBlock {
+  type: 'scrollable' | 'parallax' | 'apple';
+  /**
+   * Section heading and supporting text
+   */
+  intro?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Optional link displayed next to the section heading (e.g. "Book a demo")
+   */
+  cta?:
+    | {
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null);
+          url?: string | null;
+          label: string;
+          /**
+           * Choose how the link should be rendered.
+           */
+          appearance?: ('default' | 'outline') | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  galleryItems?:
+    | {
+        image: number | Media;
+        /**
+         * Item title and summary — use h3/h4 for the title, then a paragraph for the summary
+         */
+        richText?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null);
+          url?: string | null;
+          label: string;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  slides?:
+    | {
+        /**
+         * Background image for this slide
+         */
+        image: number | Media;
+        /**
+         * Slide heading text
+         */
+        title: string;
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null);
+          url?: string | null;
+          label: string;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  appleItems?:
+    | {
+        /**
+         * Card background image
+         */
+        image: number | Media;
+        /**
+         * Short category label shown above the card title (e.g. "Product", "Case Study")
+         */
+        category?: string | null;
+        /**
+         * Card title text
+         */
+        title: string;
+        /**
+         * Content shown in the expanded panel when the card is clicked
+         */
+        expandedContent?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'gallery';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "product-categories".
  */
 export interface ProductCategory {
@@ -2482,6 +2640,7 @@ export interface PagesSelect<T extends boolean = true> {
         mediaCards?: T | MediaCardsBlockSelect<T>;
         youtube?: T | YouTubeBlockSelect<T>;
         parallaxShowcase?: T | ParallaxShowcaseBlockSelect<T>;
+        gallery?: T | GalleryBlockSelect<T>;
       };
   meta?:
     | T
@@ -2912,6 +3071,72 @@ export interface ParallaxShowcaseBlockSelect<T extends boolean = true> {
               url?: T;
               label?: T;
             };
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "GalleryBlock_select".
+ */
+export interface GalleryBlockSelect<T extends boolean = true> {
+  type?: T;
+  intro?: T;
+  cta?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+              appearance?: T;
+            };
+        id?: T;
+      };
+  galleryItems?:
+    | T
+    | {
+        image?: T;
+        richText?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+            };
+        id?: T;
+      };
+  slides?:
+    | T
+    | {
+        image?: T;
+        title?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+            };
+        id?: T;
+      };
+  appleItems?:
+    | T
+    | {
+        image?: T;
+        category?: T;
+        title?: T;
+        expandedContent?: T;
         id?: T;
       };
   id?: T;

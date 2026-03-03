@@ -16,6 +16,8 @@ import * as migration_20260301_remove_nav_items_featured_style from './20260301_
 import * as migration_20260302_add_theme_settings_global from './20260302_add_theme_settings_global';
 import * as migration_20260303_add_media_cards_background_media from './20260303_add_media_cards_background_media';
 import * as migration_20260303_add_youtube_block from './20260303_add_youtube_block';
+import * as migration_20260304_add_parallax_showcase_block from './20260304_add_parallax_showcase_block';
+import * as migration_20260304_add_gallery_block from './20260304_add_gallery_block';
 
 export const migrations = [
   {
@@ -107,5 +109,15 @@ export const migrations = [
     up: migration_20260303_add_youtube_block.up,
     down: migration_20260303_add_youtube_block.down,
     name: '20260303_add_youtube_block',
+  },
+  {
+    up: migration_20260304_add_parallax_showcase_block.up,
+    down: migration_20260304_add_parallax_showcase_block.down,
+    name: '20260304_add_parallax_showcase_block',
+  },
+  {
+    up: migration_20260304_add_gallery_block.up,
+    down: migration_20260304_add_gallery_block.down,
+    name: '20260304_add_gallery_block',
   },
 ];

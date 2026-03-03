@@ -43,7 +43,7 @@ export const PerspectiveFeatureShowcase: React.FC<FeatureShowcaseBlock> = ({
 
       {/* Background — entry fade, then parallax drifts down on scroll */}
       <motion.div
-        className="h-auto aspect-88/24 px-6 max-w-7xl w-full mx-auto relative"
+        className="h-auto aspect-88/24 px-6 w-full mx-auto relative"
         initial={{ opacity: 0 }}
         animate={isImageInView ? { opacity: 1 } : undefined}
         transition={{ duration: 0.9, ease: 'easeOut', delay: 0.25 }}
@@ -102,7 +102,7 @@ export const PerspectiveFeatureShowcase: React.FC<FeatureShowcaseBlock> = ({
                 <div key={id} className="space-y-3 bg-background shadow-xs rounded px-6 py-8">
                   {Icon && (
                     <div className="flex items-center gap-2">
-                      <Icon className="size-6 text-blue-600" />
+                      <Icon className="size-6 text-primary" />
                     </div>
                   )}
                   {richText && <RichText data={richText} enableGutter={false} className="space-y-2 [&_h4]:text-type-heading [&_h4]:type-title-sm [&_h3]:text-type-heading [&_h3]:type-title-md [&_p]:type-body-md [&_p]:text-type-body [&_p]:leading-relaxed" />}
