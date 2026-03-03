@@ -1,7 +1,7 @@
 // src/blocks/ParallaxShowcase/index.tsx
 'use client'
 
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { motion } from 'motion/react'
 
 import type { ParallaxShowcaseBlock } from '@/payload-types'
@@ -24,29 +24,49 @@ export const ParallaxShowcaseCarousel: React.FC<Props> = ({
   slides,
 }) => {
   const safeSlides = slides ?? []
-  const middle = Math.floor(safeSlides.length / 2)
+  const n = safeSlides.length
 
-  const [currentIndex, setCurrentIndex] = useState(middle)
+  // Pad only if there are multiple slides
+  const paddedSlides = n > 1
+    ? [safeSlides[n - 1], ...safeSlides, safeSlides[0]]
+    : safeSlides
+
+  // trackIndex: position in paddedSlides (1 = first real slide)
+  const [trackIndex, setTrackIndex] = useState(n > 1 ? 1 : 0)
+  // activeReal: 0-based index into safeSlides — drives tab nav
+  const [activeReal, setActiveReal] = useState(0)
+
+  // Ref that suppresses spring for the teleport step
+  const skipNextAnimation = useRef(false)
+
   const [isPaused, setIsPaused] = useState(false)
   const trackRef = useRef<HTMLDivElement>(null)
 
   // ── Auto-scroll ───────────────────────────────────────────────────────────
   useEffect(() => {
-    if (isPaused || safeSlides.length <= 1) return
+    if (isPaused || n <= 1) return
     const interval = Math.max(2, autoScrollInterval ?? 5) * 1000
     const id = setInterval(() => {
-      setCurrentIndex((i) => (i + 1) % safeSlides.length)
+      setTrackIndex((i) => i + 1)
+      setActiveReal((i) => (i + 1) % n)
     }, interval)
     return () => clearInterval(id)
-  }, [isPaused, autoScrollInterval, safeSlides.length])
+  }, [isPaused, autoScrollInterval, n])
 
-  const advance = () =>
-    setCurrentIndex((i) => (i + 1) % safeSlides.length)
+  const advance = () => {
+    setTrackIndex((i) => i + 1)
+    setActiveReal((i) => (i + 1) % n)
+  }
 
   // ── Track translation ─────────────────────────────────────────────────────
-  // Each slide occupies ACTIVE_SLIDE_WIDTH; CSS scale handles the visual size.
-  // The track translateX centers slide[currentIndex] in the viewport.
-  const translateX = -(currentIndex * (ACTIVE_SLIDE_WIDTH + SLIDE_GAP))
+  const translateX = -(trackIndex * (ACTIVE_SLIDE_WIDTH + SLIDE_GAP))
+
+  // Clear skip flag after teleport render so next transition uses spring again
+  useLayoutEffect(() => {
+    if (skipNextAnimation.current) {
+      skipNextAnimation.current = false
+    }
+  }, [trackIndex])
 
   return (
     <section
@@ -55,32 +75,36 @@ export const ParallaxShowcaseCarousel: React.FC<Props> = ({
       onMouseLeave={() => setIsPaused(false)}
     >
       {/* ── Block intro + tab nav ──────────────────────────────────────────── */}
-      <div className="mx-auto max-w-7xl px-6 mb-10 space-y-8">
+      <div className="mx-auto max-w-5xl px-6 mb-10 space-y-8">
         {intro && (
           <RichText
             data={intro}
             enableGutter={false}
             className={cn(
-              '[&_h2]:type-title-xl [&_h2]:text-type-heading [&_h2]:mb-0',
+              'max-w-4xl flex flex-col gap-4 items-center',
+              '[&_h2]:type-headline-2 [&_h2]:text-type-heading [&_h2]:mb-0',
               '[&_h3]:type-headline-3 [&_h3]:text-type-heading [&_h3]:mb-0',
-              '[&_p]:type-body-lg [&_p]:text-type-body [&_p]:leading-snug',
+              '[&_p]:type-body-xl [&_p]:text-type-body [&_p]:leading-snug [&_p]:text-center [&_p]:mx-auto [&_p]:max-w-2xl',
             )}
           />
         )}
 
         {/* Tab navigation */}
         {safeSlides.length > 0 && (
-          <div className="flex flex-wrap gap-2" role="tablist">
+          <div className="flex flex-wrap gap-2 items-center justify-center" role="tablist">
             {safeSlides.map((slide, i) => (
               <button
                 key={slide.id ?? i}
                 role="tab"
-                aria-selected={i === currentIndex}
-                onClick={() => setCurrentIndex(i)}
+                aria-selected={i === activeReal}
+                onClick={() => {
+                  setTrackIndex(i + 1)
+                  setActiveReal(i)
+                }}
                 className={cn(
-                  'px-4 py-2 rounded-full type-label-sm transition-colors duration-200',
+                  'px-4 py-2 rounded-full type-label-sm transition-colors duration-200 cursor-pointer',
                   'border border-border',
-                  i === currentIndex
+                  i === activeReal
                     ? 'bg-primary text-primary-foreground border-primary'
                     : 'bg-transparent text-foreground hover:bg-muted',
                 )}
@@ -100,25 +124,54 @@ export const ParallaxShowcaseCarousel: React.FC<Props> = ({
           ref={trackRef}
           className="flex items-center"
           style={{ gap: SLIDE_GAP }}
-          // Center the track: start offset brings first slide to center, then shift by index
           animate={{
             x: `calc(50vw - ${ACTIVE_SLIDE_WIDTH / 2}px + ${translateX}px)`,
           }}
-          transition={{ type: 'spring', stiffness: 300, damping: 40 }}
+          transition={
+            skipNextAnimation.current
+              ? { duration: 0 }
+              : { type: 'spring', stiffness: 300, damping: 40 }
+          }
+          onAnimationComplete={() => {
+            if (n <= 1) return
+            if (trackIndex === 0) {
+              // settled on leading clone (copy of last real slide) → jump to real last
+              skipNextAnimation.current = true
+              setTrackIndex(n)
+              setActiveReal(n - 1)
+            } else if (trackIndex === n + 1) {
+              // settled on trailing clone (copy of first real slide) → jump to real first
+              skipNextAnimation.current = true
+              setTrackIndex(1)
+              setActiveReal(0)
+            }
+          }}
         >
-          {safeSlides.map((slide, i) => {
+          {paddedSlides.map((slide, i) => {
             const direction =
-              i < currentIndex ? 'prev' : i > currentIndex ? 'next' : 'active'
+              i < trackIndex ? 'prev' : i > trackIndex ? 'next' : 'active'
             return (
               <div
-                key={slide.id ?? i}
+                key={
+                  i === 0
+                    ? 'clone-head'
+                    : i === paddedSlides.length - 1
+                      ? 'clone-tail'
+                      : (slide.id ?? i)
+                }
                 style={{ width: ACTIVE_SLIDE_WIDTH, flexShrink: 0 }}
               >
                 <ParallaxSlide
                   slide={slide}
-                  isActive={i === currentIndex}
+                  isActive={i === trackIndex}
                   direction={direction}
-                  onClick={() => setCurrentIndex(i)}
+                  onClick={() => {
+                    // Clone clicks navigate to their real counterpart
+                    const realIndex =
+                      i === 0 ? n - 1 : i === paddedSlides.length - 1 ? 0 : i - 1
+                    setTrackIndex(realIndex + 1)
+                    setActiveReal(realIndex)
+                  }}
                   onAdvance={advance}
                 />
               </div>

@@ -95,9 +95,9 @@ export const ParallaxSlide: React.FC<SlideProps> = ({
     <motion.div
       ref={slideRef}
       className={cn(
-        'relative aspect-[3/2] shrink-0 rounded-2xl overflow-hidden cursor-pointer',
+        'relative aspect-[7/4] shrink-0 rounded-2xl overflow-hidden cursor-pointer',
         'w-full transition-[opacity,transform] duration-500',
-        isActive ? 'opacity-100 scale-100 z-10' : 'opacity-60 scale-[0.85] z-0',
+        isActive ? 'opacity-100 scale-100 z-10' : 'opacity-50 scale-[0.97] z-0',
       )}
       onClick={isActive ? undefined : onClick}
       onMouseMove={handleMouseMove}
@@ -122,18 +122,18 @@ export const ParallaxSlide: React.FC<SlideProps> = ({
       )}
 
       {/* ── Gradient scrim ───────────────────────────────────────────── */}
-      <div className="absolute inset-0 bg-gradient-to-br from-black/55 via-black/20 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-br from-black/95 via-black/20 to-transparent pointer-events-none" />
 
       {/* ── Slide content — top-left ─────────────────────────────────── */}
       {content && (
-        <div className="absolute top-6 left-6 z-10 max-w-xs">
+        <div className="absolute top-16 left-16 z-10 max-w-md">
           <RichText
             data={content}
             enableGutter={false}
             className={cn(
-              '[&_h3]:type-headline-3 [&_h3]:text-white [&_h3]:mb-2',
-              '[&_h4]:type-title-md [&_h4]:text-white [&_h4]:mb-2',
-              '[&_p]:type-body-md [&_p]:text-white/80 [&_p]:leading-snug',
+              '[&_h3]:type-headline-2 [&_h3]:font-normal [&_h3]:text-white [&_h3]:mb-2',
+              '[&_h4]:type-headline-3 [&_h4]:font-normal [&_h4]:text-white [&_h4]:mb-1',
+              '[&_p]:type-body-lg [&_p]:text-white [&_p]:leading-snug',
             )}
           />
         </div>
@@ -142,7 +142,7 @@ export const ParallaxSlide: React.FC<SlideProps> = ({
       {/* ── Foreground image layer ───────────────────────────────────── */}
       {hasFg && (
         <motion.div
-          className="absolute bottom-0 left-6 right-6 h-1/2 pointer-events-none"
+          className="absolute bottom-0 left-[50%] -translate-x-1/2 aspect-3/2 w-3/5 pointer-events-none"
           style={{
             y: fgScrollY,
             x: isActive ? fgMouseX : undefined,
@@ -162,12 +162,13 @@ export const ParallaxSlide: React.FC<SlideProps> = ({
           <button
             onClick={(e) => {
               e.stopPropagation()
+              e.preventDefault()
               onAdvance()
             }}
             className={cn(
               'bg-background/80 backdrop-blur-sm border border-border',
               'rounded-full px-4 py-2 type-label-sm text-foreground',
-              'hover:bg-background/95 transition-colors duration-150',
+              'hover:bg-background/95 transition-colors duration-150 cursor-pointer',
             )}
           >
             Next →
