@@ -29,22 +29,21 @@ export const PerspectiveFeatureShowcase: React.FC<FeatureShowcaseBlock> = ({
   const hasImages = imageForeground || imageDark || imageLight
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden py-4 md:py-8">
-      <div className="mx-auto max-w-7xl space-y-8 px-6 md:space-y-12 pb-8">
-
+    <section ref={sectionRef} className="relative md:py-16 md:space-y-8 overflow-hidden bg-blue-50 dark:bg-slate-900">
+      <div className="mx-auto w-full max-w-7xl space-y-8 px-6 md:space-y-12">
         <motion.div
-          className="relative z-10 max-w-2xl"
+          className="relative z-10"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : undefined}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
         >
-          {intro && <RichText data={intro} enableGutter={false} className="[&_h2]:type-headline-1 [&_h2]:text-type-body [&_h2]:leading-[1.1] [&_h2]:mb-6 [&_h3]:type-headline-3 [&_h3]:text-type-body [&_h3]:leading-tight [&_h3]:mb-4 [&_p]:text-type-secondary [&_p]:type-body-xl [&_p]:leading-snug" />}
+          {intro && <RichText data={intro} enableGutter={false} className="flex gap-8 [&_h2]:flex-1 [&_h3]:flex-1 [&_p]:flex-1 [&_h2]:type-title-xl [&_h2]:text-type-heading [&_h2]:mb-0 [&_h3]:type-headline-3 [&_h3]:text-type-heading [&_h3]:mb-0 [&_p]:text-type-body [&_p]:type-body-lg [&_p]:leading-snug" />}
         </motion.div>
       </div>
 
       {/* Background — entry fade, then parallax drifts down on scroll */}
       <motion.div
-        className="h-auto aspect-88/32 w-full mx-auto relative"
+        className="h-auto aspect-88/24 w-full mx-auto relative"
         initial={{ opacity: 0 }}
         animate={isImageInView ? { opacity: 1 } : undefined}
         transition={{ duration: 0.9, ease: 'easeOut', delay: 0.25 }}
@@ -89,7 +88,7 @@ export const PerspectiveFeatureShowcase: React.FC<FeatureShowcaseBlock> = ({
           </motion.div>
         )}
       </motion.div>
-      <div className="mx-auto max-w-7xl space-y-8 px-6 md:space-y-12 py-16">
+      <div className="mx-auto max-w-7xl space-y-8 px-6 md:pt-20">
         {Array.isArray(items) && items.length > 0 && (
           <motion.div
             className="relative mx-auto grid grid-cols-2 gap-x-2 gap-y-6 sm:gap-4 lg:grid-cols-4"
@@ -100,13 +99,13 @@ export const PerspectiveFeatureShowcase: React.FC<FeatureShowcaseBlock> = ({
             {items.map(({ id, icon, richText }) => {
               const Icon = icon ? iconMap[icon] : null
               return (
-                <div key={id} className="space-y-3 rounded-none bg-card px-6 py-8">
+                <div key={id} className="space-y-3 bg-background shadow-xs rounded px-6 py-8">
                   {Icon && (
                     <div className="flex items-center gap-2">
-                      <Icon className="size-5 text-slate-400" />
+                      <Icon className="size-6 text-blue-600" />
                     </div>
                   )}
-                  {richText && <RichText data={richText} enableGutter={false} className="space-y-2 [&_h4]:py-1 [&_h4]:type-title-md [&_h4]:text-slate-800 [&_h3]:type-title-xl [&_h3]:text-slate-800 [&_h3]:py-1 [&_p]:type-body-md [&_p]:text-type-secondary [&_p]:leading-relaxed" />}
+                  {richText && <RichText data={richText} enableGutter={false} className="space-y-2 [&_h4]:text-type-heading [&_h4]:type-title-sm [&_h3]:text-type-heading [&_h3]:type-title-md [&_p]:type-body-md [&_p]:text-type-body [&_p]:leading-relaxed" />}
                 </div>
               )
             })}
