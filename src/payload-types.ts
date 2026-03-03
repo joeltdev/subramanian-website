@@ -242,6 +242,7 @@ export interface Page {
     | ArticleGridBlock
     | MediaCardsBlock
     | YouTubeBlock
+    | ParallaxShowcaseBlock
   )[];
   meta?: {
     title?: string | null;
@@ -1888,6 +1889,87 @@ export interface YouTubeBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ParallaxShowcaseBlock".
+ */
+export interface ParallaxShowcaseBlock {
+  /**
+   * Block-level heading and supporting text (shown above the carousel)
+   */
+  intro?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Seconds between automatic slide advances (2–15). Default: 5.
+   */
+  autoScrollInterval?: number | null;
+  slides?:
+    | {
+        /**
+         * Tab label shown in the navigation row
+         */
+        name: string;
+        /**
+         * Top-left slide content — use h3/h4 for heading, paragraph for body text
+         */
+        content?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        /**
+         * Full-slide background. Use 3:2 landscape images (e.g. 1800×1200px)
+         */
+        backgroundImage: number | Media;
+        /**
+         * Optional foreground layer with counter-parallax. PNG with transparency recommended.
+         */
+        foregroundImage?: (number | null) | Media;
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null);
+          url?: string | null;
+          label: string;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'parallaxShowcase';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "product-categories".
  */
 export interface ProductCategory {
@@ -2399,6 +2481,7 @@ export interface PagesSelect<T extends boolean = true> {
         articleGrid?: T | ArticleGridBlockSelect<T>;
         mediaCards?: T | MediaCardsBlockSelect<T>;
         youtube?: T | YouTubeBlockSelect<T>;
+        parallaxShowcase?: T | ParallaxShowcaseBlockSelect<T>;
       };
   meta?:
     | T
@@ -2803,6 +2886,34 @@ export interface MediaCardsBlockSelect<T extends boolean = true> {
 export interface YouTubeBlockSelect<T extends boolean = true> {
   url?: T;
   title?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ParallaxShowcaseBlock_select".
+ */
+export interface ParallaxShowcaseBlockSelect<T extends boolean = true> {
+  intro?: T;
+  autoScrollInterval?: T;
+  slides?:
+    | T
+    | {
+        name?: T;
+        content?: T;
+        backgroundImage?: T;
+        foregroundImage?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+            };
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }

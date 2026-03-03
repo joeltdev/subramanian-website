@@ -29,7 +29,7 @@ export const PerspectiveFeatureShowcase: React.FC<FeatureShowcaseBlock> = ({
   const hasImages = imageForeground || imageDark || imageLight
 
   return (
-    <section ref={sectionRef} className="relative md:py-16 md:space-y-8 overflow-hidden bg-blue-50 dark:bg-slate-900">
+    <section ref={sectionRef} className="relative md:py-16 md:space-y-8 overflow-hidden bg-slate-100 dark:bg-slate-900">
       <div className="mx-auto w-full max-w-7xl space-y-8 px-6 md:space-y-12">
         <motion.div
           className="relative z-10"
@@ -43,7 +43,7 @@ export const PerspectiveFeatureShowcase: React.FC<FeatureShowcaseBlock> = ({
 
       {/* Background — entry fade, then parallax drifts down on scroll */}
       <motion.div
-        className="h-auto aspect-88/24 w-full mx-auto relative"
+        className="h-auto aspect-88/24 px-6 max-w-7xl w-full mx-auto relative"
         initial={{ opacity: 0 }}
         animate={isImageInView ? { opacity: 1 } : undefined}
         transition={{ duration: 0.9, ease: 'easeOut', delay: 0.25 }}
