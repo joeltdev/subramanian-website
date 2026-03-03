@@ -19,6 +19,7 @@ import { CaseStudiesHighlightBlock } from '@/blocks/CaseStudiesHighlight/Compone
 import { HoverHighlightsBlock } from '@/blocks/HoverHighlights/Component'
 import { ArticleGridBlock } from '@/blocks/ArticleGrid/Component'
 import { MediaCardsBlock } from '@/blocks/MediaCards/Component'
+import { YouTubeBlock } from '@/blocks/YouTube/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -38,6 +39,7 @@ const blockComponents = {
   caseStudiesHighlight: CaseStudiesHighlightBlock,
   articleGrid: ArticleGridBlock,
   mediaCards: MediaCardsBlock,
+  youtube: YouTubeBlock,
 }
 
 export const RenderBlocks: React.FC<{
