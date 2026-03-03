@@ -233,3 +233,258 @@
   {/* card content */}
 </div>
 ```
+
+---
+
+## 4. Block Architecture
+
+### 4.1 File Structure
+
+**RULE:** Every block lives in its own directory under `src/blocks/`. The structure is:
+
+```
+src/blocks/BlockName/
+  config.ts              # Payload CMS field definitions
+  Component.tsx          # Entry point: variant router or direct component
+  VariantA/
+    index.tsx            # Variant implementation
+  VariantB/
+    index.tsx
+```
+
+Single-variant blocks: skip the variant subdirectory, put the implementation directly in `Component.tsx`.
+
+---
+
+### 4.2 config.ts Shape
+
+**RULE:** Every config.ts exports a named `Block` constant matching this shape:
+
+```typescript
+import type { Block } from 'payload'
+import { lexicalEditor, HeadingFeature, FixedToolbarFeature, InlineToolbarFeature } from '@payloadcms/richtext-lexical'
+
+export const BlockName: Block = {
+  slug: 'blockName',                    // camelCase, matches RenderBlocks key
+  interfaceName: 'BlockNameBlock',      // PascalCase + Block suffix
+  labels: {
+    singular: 'Block Name',
+    plural: 'Block Names',
+  },
+  fields: [
+    {
+      name: 'variant',
+      type: 'select',
+      defaultValue: 'default',          // Always provide a defaultValue
+      options: [
+        { label: 'Default', value: 'default' },
+        { label: 'Alternate', value: 'alternate' },
+      ],
+    },
+    {
+      name: 'intro',
+      type: 'richText',
+      required: false,                  // Intro is always optional
+      editor: lexicalEditor({
+        features: ({ rootFeatures }) => [
+          ...rootFeatures,
+          HeadingFeature({ enabledHeadingSizes: ['h2', 'h3'] }),
+          FixedToolbarFeature(),
+          InlineToolbarFeature(),
+        ],
+      }),
+    },
+    {
+      name: 'items',
+      type: 'array',
+      minRows: 1,
+      maxRows: 8,
+      fields: [
+        {
+          name: 'icon',
+          type: 'select',
+          options: ICON_OPTIONS,         // From src/blocks/shared/featureIcons.ts
+        },
+        {
+          name: 'richText',
+          type: 'richText',
+          editor: lexicalEditor({
+            features: ({ rootFeatures }) => [
+              ...rootFeatures,
+              HeadingFeature({ enabledHeadingSizes: ['h3', 'h4'] }),
+              InlineToolbarFeature(),
+            ],
+          }),
+        },
+      ],
+    },
+    // Optional image group — use collapsible
+    {
+      type: 'collapsible',
+      label: 'Images',
+      fields: [
+        { name: 'imageLight', type: 'upload', relationTo: 'media', required: false },
+        { name: 'imageDark',  type: 'upload', relationTo: 'media', required: false },
+      ],
+    },
+  ],
+}
+```
+
+---
+
+### 4.3 Component.tsx — Variant Router
+
+**RULE:** When a block has multiple variants, Component.tsx is a thin router. All logic lives in the variant files.
+
+```typescript
+import React from 'react'
+import type { BlockNameBlock } from '@/payload-types'
+import { VariantA } from './VariantA'
+import { VariantB } from './VariantB'
+
+const variants = {
+  variantA: VariantA,
+  variantB: VariantB,
+}
+
+export const BlockNameComponent: React.FC<BlockNameBlock> = (props) => {
+  const Variant = variants[props.variant ?? 'variantA'] ?? VariantA
+  return <Variant {...props} />
+}
+```
+
+---
+
+### 4.4 Variant index.tsx Shape
+
+```typescript
+'use client'  // Required if using motion, hooks, or browser APIs
+
+import React from 'react'
+import { motion, useScroll, useTransform, useInView } from 'motion/react'
+import type { BlockNameBlock } from '@/payload-types'
+import { RichText } from '@/components/RichText'
+import { CMSLink } from '@/components/Link'
+import { Media } from '@/components/Media'
+
+export const VariantA: React.FC<BlockNameBlock> = ({ intro, items, imageLight, imageDark }) => {
+  return (
+    <section className="py-16 md:py-24">
+      <div className="mx-auto max-w-7xl px-6 md:px-8">
+        {intro && (
+          <RichText
+            data={intro}
+            enableGutter={false}
+            className="[&_h2]:type-headline-1 [&_h2]:text-type-heading [&_p]:type-body-xl [&_p]:text-type-secondary"
+          />
+        )}
+        {/* main content */}
+      </div>
+    </section>
+  )
+}
+```
+
+---
+
+### 4.5 Registration
+
+After creating the block, register it in two places:
+
+**`src/blocks/RenderBlocks.tsx`** — add import and entry to `blockComponents`:
+```typescript
+import { BlockNameComponent as BlockNameBlock } from './BlockName/Component'
+
+const blockComponents = {
+  // ...existing blocks
+  blockName: BlockNameBlock,
+}
+```
+
+**`src/collections/Pages/index.ts`** — add to `blocks` array in the layout field:
+```typescript
+import { BlockName } from '@/blocks/BlockName/config'
+
+// Inside fields → layout → blocks array:
+blocks: [
+  // ...existing blocks
+  BlockName,
+],
+```
+
+---
+
+## 5. Field Standards
+
+### 5.1 Admin UI Structure
+
+**RULE — flat vs collapsible vs tabs:**
+
+| Situation | Pattern |
+|---|---|
+| ≤ 5 fields, single concern | Flat field list |
+| Optional related fields (images, settings) | `type: 'collapsible'` |
+| 2+ distinct concerns (content / media / settings) | `type: 'tabs'` with named tabs |
+
+**RULE:** Always add `label` and `description` on fields that editors interact with. They have no code context.
+
+```typescript
+{
+  name: 'variant',
+  type: 'select',
+  label: 'Layout Variant',
+  admin: {
+    description: 'Controls the visual layout of this block.',
+  },
+  defaultValue: 'split',
+  options: [...],
+}
+```
+
+---
+
+### 5.2 Field Naming Conventions
+
+**RULE:** Use these canonical names. Never invent synonyms.
+
+| Field purpose | Name |
+|---|---|
+| Section intro richText | `intro` |
+| Array of feature/card items | `items` |
+| Primary image | `image` |
+| Light-mode background image | `imageLight` |
+| Dark-mode background image | `imageDark` |
+| Foreground layered image | `imageForeground` |
+| Layout/style selector | `variant` |
+| Icon picker (select) | `icon` |
+| Single link field | `link` |
+| Multiple links (linkGroup) | `links` |
+| Background color/theme | `theme` |
+| Badge / eyebrow label | `badge` |
+
+---
+
+### 5.3 RichText Defaults by Context
+
+Configure the Lexical editor based on where the richText lives:
+
+| Context | Enabled headings | Toolbar |
+|---|---|---|
+| Section intro | `h2`, `h3` | Fixed + Inline |
+| Feature/card body | `h3`, `h4` | Inline only |
+| CTA richText | `h3` only | Inline only |
+| Stats (number + label) | `h3`, `h4` | Inline only |
+| Testimonial / quote | none | Inline only |
+
+---
+
+### 5.4 Field Rules
+
+- `variant` select: **always** has `defaultValue`
+- `intro` richText: **always** `required: false` — blocks must work without a heading
+- `items` arrays: **always** set both `minRows` and `maxRows`
+- Upload fields: **always** `relationTo: 'media'`, `required: false`
+- Image fields: **never** mark as `required: true` — editors need to save drafts without images
+- Link fields: use `linkGroup()` helper from `@/fields/linkGroup`; never build link fields manually
+- Icon select: import `ICON_OPTIONS` from `@/blocks/shared/featureIcons.ts`
