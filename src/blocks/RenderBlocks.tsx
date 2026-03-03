@@ -20,6 +20,7 @@ import { HoverHighlightsBlock } from '@/blocks/HoverHighlights/Component'
 import { ArticleGridBlock } from '@/blocks/ArticleGrid/Component'
 import { MediaCardsBlock } from '@/blocks/MediaCards/Component'
 import { YouTubeBlock } from '@/blocks/YouTube/Component'
+import { ParallaxShowcaseBlockComponent } from '@/blocks/ParallaxShowcase/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -40,6 +41,7 @@ const blockComponents = {
   articleGrid: ArticleGridBlock,
   mediaCards: MediaCardsBlock,
   youtube: YouTubeBlock,
+  parallaxShowcase: ParallaxShowcaseBlockComponent,
 }
 
 export const RenderBlocks: React.FC<{
