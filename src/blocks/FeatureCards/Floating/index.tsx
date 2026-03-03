@@ -5,12 +5,12 @@ import { iconMap } from '@/blocks/shared/featureIcons'
 import RichText from '@/components/RichText'
 
 const CardDecorator = ({ children }: { children: React.ReactNode }) => (
-  <div className="mask-radial-from-40% mask-radial-to-60% relative mx-auto size-36 duration-200 [--color-border:color-mix(in_oklab,var(--color-foreground)10%,transparent)] group-hover:[--color-border:color-mix(in_oklab,var(--color-foreground)20%,transparent)] dark:[--color-border:color-mix(in_oklab,var(--color-white)15%,transparent)] dark:group-hover:[--color-border:color-mix(in_oklab,var(--color-white)20%,transparent)]">
+  <div className="mask-radial-from-40% mask-radial-to-60% relative mx-auto size-[13.5rem] duration-200 [--color-border:color-mix(in_oklab,var(--color-brand-500)28%,transparent)] group-hover:[--color-border:color-mix(in_oklab,var(--color-brand-500)50%,transparent)] dark:[--color-border:color-mix(in_oklab,var(--color-brand-400)35%,transparent)] dark:group-hover:[--color-border:color-mix(in_oklab,var(--color-brand-400)55%,transparent)]">
     <div
       aria-hidden
-      className="absolute inset-0 bg-[linear-gradient(to_right,var(--color-border)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-border)_1px,transparent_1px)] bg-[size:24px_24px] dark:opacity-50"
+      className="absolute inset-0 bg-[linear-gradient(to_right,var(--color-border)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-border)_1px,transparent_1px)] bg-[size:24px_24px]"
     />
-    <div className="bg-background absolute inset-0 m-auto flex size-12 items-center justify-center border-l border-t">
+    <div className="bg-background absolute inset-0 m-auto flex size-[4.5rem] items-center justify-center border-l border-t">
       {children}
     </div>
   </div>
@@ -32,7 +32,7 @@ export const FloatingFeatureCards: React.FC<FeatureCardsBlock> = ({ intro, items
                 <Card key={id} className="bg-background border group shadow-sm shadow-black/5 rounded-2xl">
                   <CardHeader className="pb-3">
                     <CardDecorator>
-                      {Icon && <Icon className="size-8 text-muted-foreground" aria-hidden />}
+                      {Icon && <Icon className="size-12 text-primary" aria-hidden />}
                     </CardDecorator>
                   </CardHeader>
                   {richText && (
