@@ -97,7 +97,7 @@ function mapProductRow(row: Row): ProductRow {
 
   return {
     oldId: row[0] as number,
-    slug: ((row[3] as string) || '').replace(/^\//, ''),
+    slug: ((row[3] as string) || '').replace(/^\//, '') || slugify((row[6] as string) || ''),
     name: (row[6] as string) || '',
     description: (row[8] as string) || '',
     productCode: (row[15] as string) || '',
@@ -154,10 +154,10 @@ function buildCategoryImageUrls(
 async function seedCategories(
   payload: Payload,
   categories: CategoryRow[],
-  mediaMap: Map<number, string>,
+  mediaMap: Map<number, number | string>,
   failedImages: string[],
-): Promise<Map<number, string>> {
-  const catMap = new Map<number, string>() // oldId → newPayloadId
+): Promise<Map<number, number | string>> {
+  const catMap = new Map<number, number | string>() // oldId → newPayloadId
   const catById = new Map(categories.map(c => [c.oldId, c]))
 
   // Pass 1: roots
@@ -177,10 +177,10 @@ async function seedCategories(
 async function upsertCategory(
   payload: Payload,
   cat: CategoryRow,
-  parentNewId: string | null,
-  catMap: Map<number, string>,
+  parentNewId: number | string | null,
+  catMap: Map<number, number | string>,
   catById: Map<number, CategoryRow>,
-  mediaMap: Map<number, string>,
+  mediaMap: Map<number, number | string>,
   failedImages: string[],
 ): Promise<void> {
   const slug = cat.slug || slugify(cat.name)
@@ -191,13 +191,13 @@ async function upsertCategory(
     limit: 1,
   })
   if (existing.docs.length > 0) {
-    catMap.set(cat.oldId, String(existing.docs[0].id))
+    catMap.set(cat.oldId, existing.docs[0].id)
     payload.logger.info(`  [skip] category "${cat.name}" already exists`)
     return
   }
 
   // Upload image if present
-  let imageId: string | null = null
+  let imageId: number | string | null = null
   if (cat.imageUploadId !== null) {
     const parentRow = cat.parentOldId != null ? catById.get(cat.parentOldId) : undefined
     const urls = buildCategoryImageUrls(cat, parentRow)
@@ -211,7 +211,7 @@ async function upsertCategory(
             data: { alt: cat.imageAlt || cat.name },
             file: { data: buf, mimetype: `image/${ext}`, name: `cat-${cat.oldId}.${ext}`, size: buf.length },
           })
-          imageId = String(media.id)
+          imageId = media.id
           mediaMap.set(cat.imageUploadId, imageId)
           break
         } catch { /* ignore */ }
@@ -232,7 +232,7 @@ async function upsertCategory(
   }
 
   const created = await payload.create({ collection: 'product-categories', data })
-  catMap.set(cat.oldId, String(created.id))
+  catMap.set(cat.oldId, created.id)
   payload.logger.info(`  ✓ category "${cat.name}" → ${created.id}`)
 }
 
@@ -241,8 +241,8 @@ async function upsertCategory(
 async function seedTags(
   payload: Payload,
   tags: TagRow[],
-): Promise<Map<number, string>> {
-  const tagMap = new Map<number, string>()
+): Promise<Map<number, number | string>> {
+  const tagMap = new Map<number, number | string>()
 
   for (const tag of tags) {
     const existing = await payload.find({
@@ -251,7 +251,7 @@ async function seedTags(
       limit: 1,
     })
     if (existing.docs.length > 0) {
-      tagMap.set(tag.oldId, String(existing.docs[0].id))
+      tagMap.set(tag.oldId, existing.docs[0].id)
       payload.logger.info(`  [skip] tag "${tag.label}" already exists`)
       continue
     }
@@ -260,7 +260,7 @@ async function seedTags(
       collection: 'product-tags',
       data: { label: tag.label, value: tag.value },
     })
-    tagMap.set(tag.oldId, String(created.id))
+    tagMap.set(tag.oldId, created.id)
     payload.logger.info(`  ✓ tag "${tag.label}" → ${created.id}`)
   }
 
@@ -293,7 +293,7 @@ async function uploadProductImages(
   payload: Payload,
   products: ProductRow[],
   catRows: CategoryRow[],
-  mediaMap: Map<number, string>,
+  mediaMap: Map<number, number | string>,
   failedImages: string[],
 ): Promise<void> {
   const catById = new Map(catRows.map(c => [c.oldId, c]))
@@ -331,7 +331,7 @@ async function uploadProductImages(
           data: { alt: info.alt },
           file: { data: buffer, mimetype: `image/${ext}`, name: `prod-${uploadId}.${ext}`, size: buffer.length },
         })
-        mediaMap.set(uploadId, String(media.id))
+        mediaMap.set(uploadId, media.id)
         payload.logger.info(`  ✓ image uploadId=${uploadId} → ${media.id} (${url})`)
         uploaded = true
         break
@@ -352,8 +352,8 @@ async function uploadProductImages(
 async function seedProducts(
   payload: Payload,
   products: ProductRow[],
-  catMap: Map<number, string>,
-  mediaMap: Map<number, string>,
+  catMap: Map<number, number | string>,
+  mediaMap: Map<number, number | string>,
   failedProducts: string[],
 ): Promise<{ created: number; skipped: number }> {
   let created = 0
@@ -434,7 +434,7 @@ async function main() {
 
   payload.logger.info(`Parsed: ${catRows.length} categories, ${tagRows.length} tags, ${productRows.length} products`)
 
-  const mediaMap = new Map<number, string>()  // oldUploadId → newMediaId
+  const mediaMap = new Map<number, number | string>()  // oldUploadId → newMediaId
   const failedImages: string[] = []
   const failedProducts: string[] = []
 
