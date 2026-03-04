@@ -37,7 +37,7 @@ export const AccordionFeatureBento: React.FC<FeatureBentoBlock> = ({
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
         >
-          {intro && <RichText data={intro} enableGutter={false} className="[&_h2]:type-headline-1 [&_h2]:text-type-heading [&_h3]:type-headline-3 [&_h3]:text-type-heading [&_p]:type-body-xl [&_p]:text-type-secondary" />}
+          {intro && <RichText data={intro} enableGutter={false} className="[&_h2]:type-headline-1 [&_h2]:text-type-heading [&_h2]:mb-2 [&_h3]:mb-2 [&_h3]:type-headline-3 [&_h3]:text-type-heading [&_p]:type-body-xl [&_p]:text-type-body" />}
         </motion.div>
 
         <div ref={contentRef} className="grid gap-12 sm:px-12 md:grid-cols-2 lg:gap-20 lg:px-0">
@@ -46,41 +46,40 @@ export const AccordionFeatureBento: React.FC<FeatureBentoBlock> = ({
             animate={isContentInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
           >
-          <Accordion
-            type="single"
-            value={activeItem}
-            onValueChange={(value) => setActiveItem(value)}
-            className="w-full"
-          >
-            {items.map((item) => {
-              const Icon = item.icon ? iconMap[item.icon] : null
-              return (
-                <AccordionItem key={item.id} value={item.id ?? ''}>
-                  <AccordionTrigger>
-                    <div className="flex items-center gap-2 type-body-md text-type-body">
-                      {Icon && <Icon className="size-4 text-type-tertiary" />}
-                      {item.title}
-                    </div>
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    {item.richText && (
-                      <RichText data={item.richText} enableGutter={false} className="[&_h3]:type-title-md [&_h3]:text-type-heading [&_p]:type-body-sm [&_p]:text-type-secondary" />
-                    )}
-                  </AccordionContent>
-                </AccordionItem>
-              )
-            })}
-          </Accordion>
+            <Accordion
+              type="single"
+              value={activeItem}
+              onValueChange={(value) => setActiveItem(value)}
+              className="w-full"
+            >
+              {items.map((item) => {
+                const Icon = item.icon ? iconMap[item.icon] : null
+                return (
+                  <AccordionItem key={item.id} value={item.id ?? ''}>
+                    <AccordionTrigger className='hover:no-underline hover:bg-muted rounded-lg px-4 cursor-pointer'>
+                      <div className="flex items-center gap-6 type-title-lg text-type-body">
+                        {Icon && <Icon className="size-6 text-brand-600" />}
+                        {item.title}
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent className='pl-16'>
+                      {item.richText && (
+                        <RichText data={item.richText} enableGutter={false} className="[&_h3]:type-title-md [&_h3]:text-type-body [&_p]:type-body-lg [&_p]:text-type-body" />
+                      )}
+                    </AccordionContent>
+                  </AccordionItem>
+                )
+              })}
+            </Accordion>
           </motion.div>
 
           <motion.div
-            className="bg-card relative flex overflow-hidden rounded-none border p-2"
+            className="w-full rounded-xl aspect-76/59 bg-card relative flex overflow-hidden rounded-none border p-2"
             initial={{ opacity: 0, scale: 0.98 }}
             animate={isContentInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.35 }}
           >
-            <div className="w-15 absolute inset-0 right-0 ml-auto border-l bg-[repeating-linear-gradient(-45deg,var(--color-border),var(--color-border)_1px,transparent_1px,transparent_8px)]" />
-            <div className="aspect-76/59 bg-card relative w-[calc(3/4*100%+3rem)] rounded-none">
+            <div className="bg-card relative rounded-none">
               <AnimatePresence mode="wait">
                 {typeof activeData?.image === 'object' && activeData?.image && (
                   <motion.div
@@ -89,10 +88,11 @@ export const AccordionFeatureBento: React.FC<FeatureBentoBlock> = ({
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 6, scale: 0.98 }}
                     transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                    className="size-full overflow-hidden rounded-none border bg-background shadow-md"
+                    className="size-full overflow-hidden rounded-none border bg-background shadow-md rounded-xl"
                   >
                     <Media
                       resource={activeData.image}
+                      className=' w-full h-full'
                       imgClassName="size-full object-cover object-left-top dark:mix-blend-lighten"
                     />
                   </motion.div>

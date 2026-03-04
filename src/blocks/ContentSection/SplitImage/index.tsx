@@ -12,17 +12,17 @@ export const SplitImageContentSection: React.FC<ContentSectionBlock> = ({
   quoteLogo,
 }) => {
   return (
-    <section className="py-4 md:py-8">
+    <section className="py-4 md:py-24">
       <div className="mx-auto max-w-7xl space-y-8 px-6 md:space-y-16">
-        {intro && <RichText data={intro} enableGutter={false} className="relative z-10 max-w-4xl ml-0 [&_h2]:type-headline-1 [&_h2]:text-slate-800 [&_h2]:mb-8 [&_h3]:type-headline-3 [&_h3]:text-type-body [&_h3]:leading-tight [&_h3]:mb-6 [&_p]:text-type-secondary [&_p]:type-body-xl [&_p]:leading-snug" />}
+        {intro && <RichText data={intro} enableGutter={false} className="relative z-10 max-w-4xl ml-0 mb-8 [&_h2]:type-headline-2 [&_h2]:text-type-heading [&_h2]:mb-4 [&_h3]:type-headline-3 [&_h3]:text-type-heading [&_h3]:leading-tight [&_h3]:mb-2 [&_p]:text-type-body [&_p]:type-body-xl [&_p]:leading-snug" />}
 
         <div className="grid gap-6 sm:grid-cols-2 md:gap-12 lg:gap-24">
-          <div className="relative mb-6 sm:mb-0">
+          <div className="relative mb-2 sm:mb-0">
             {typeof imageLight === 'object' && imageLight && (
-              <Media resource={imageLight} className='bg-linear-to-b aspect-3/2 relative rounded-none from-border to-transparent p-px' pictureClassName="w-full h-full" imgClassName="w-full h-full rounded-none object-cover shadow dark:hidden" />
+              <Media resource={imageLight} className='dark:hidden bg-linear-to-b aspect-3/2 relative rounded-none from-border to-transparent p-px' pictureClassName="w-full h-full" imgClassName="w-full h-full rounded-none object-cover shadow dark:hidden" />
             )}
             {typeof imageDark === 'object' && imageDark && (
-              <Media resource={imageDark} className='bg-linear-to-b aspect-3/2 relative rounded-none from-border to-transparent p-px' pictureClassName="w-full h-full" imgClassName="w-full h-full hidden rounded-none object-cover dark:block" />
+              <Media resource={imageDark} className='hidden dark:block bg-linear-to-b aspect-3/2 relative rounded-none from-border to-transparent p-px' pictureClassName="w-full h-full" imgClassName="w-full h-full hidden rounded-none object-cover dark:block" />
             )}
           </div>
 
@@ -32,7 +32,7 @@ export const SplitImageContentSection: React.FC<ContentSectionBlock> = ({
                 <RichText
                   data={quote}
                   enableGutter={false}
-                  className="[&_p]:type-quote [&_p]:leading-normal [&_p]:text-slate-400"
+                  className="[&_p]:type-quote [&_p]:leading-normal [&_p]:text-type-secondary"
                 />
                 <footer className="mt-8 space-y-2">
                   {quoteAuthor && (

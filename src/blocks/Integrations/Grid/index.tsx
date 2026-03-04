@@ -40,7 +40,7 @@ export const GridIntegrations: React.FC<IntegrationsBlock> = ({ intro, integrati
                       <Button
                         asChild
                         variant="ghost"
-                        size="sm"
+                        size="lg"
                         className="gap-1 pr-2 shadow-none -translate-x-4 hover:translate-x-0 transition-transform duration-300">
                         <CMSLink {...link} appearance="inline">
 

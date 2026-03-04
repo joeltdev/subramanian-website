@@ -92,7 +92,7 @@ export const SliderIntegrations: React.FC<IntegrationsBlock> = ({
 
         <div className="mx-auto mt-12 max-w-lg space-y-6 text-center">
           {intro && <RichText data={intro} enableGutter={false} className="[&_h2]:mb-4 [&_h3]:mb-2 [&_h2]:type-headline-3 [&_h2]:text-type-heading [&_h3]:type-headline-4 [&_h3]:text-type-heading [&_p]:type-body-base [&_p]:text-type-secondary [&_p]:max-w-2xl [&_p]:mx-auto" />}
-          {ctaLink && <CMSLink {...ctaLink} appearance="outline" size="sm" />}
+          {ctaLink && <CMSLink {...ctaLink} appearance="outline" size="lg" />}
         </div>
       </div>
     </section>

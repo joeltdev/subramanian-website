@@ -532,12 +532,12 @@ html[data-theme='light'] {
 @utility type-stat {
   font-size: var(--type-size-stat);
   line-height: var(--type-leading-stat);
-  font-weight: var(--type-weight-heavy);
+  font-weight: var(--type-weight-medium);
   letter-spacing: var(--type-tracking-stat);
 }
 @utility type-stat-xl {
   font-size: var(--type-size-stat-xl);
   line-height: var(--type-leading-stat-xl);
-  font-weight: var(--type-weight-heavy);
+  font-weight: var(--type-weight-medium);
   letter-spacing: var(--type-tracking-stat-xl);
 }

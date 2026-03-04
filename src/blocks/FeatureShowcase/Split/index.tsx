@@ -30,7 +30,7 @@ export const SplitFeatureShowcase: React.FC<FeatureShowcaseBlock> = ({
   const hasForeground = typeof imageForeground === 'object' && imageForeground
 
   return (
-    <section ref={sectionRef} className="relative py-4 md:py-8 overflow-hidden">
+    <section ref={sectionRef} className="relative py-4 md:py-24 overflow-hidden">
 
       {/* Full-viewport-width background image with subtle parallax */}
       {hasBgImages && (
@@ -61,7 +61,7 @@ export const SplitFeatureShowcase: React.FC<FeatureShowcaseBlock> = ({
           animate={isInView ? { opacity: 1, y: 0 } : undefined}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
         >
-          {intro && <RichText data={intro} enableGutter={false} className="[&_h2]:type-headline-1 [&_h2]:text-type-body [&_h2]:leading-[1.1] [&_h2]:mb-6 [&_h3]:type-headline-3 [&_h3]:text-type-body [&_h3]:leading-tight [&_h3]:mb-4 [&_p]:text-type-secondary [&_p]:type-body-xl [&_p]:leading-snug" />}
+          {intro && <RichText data={intro} enableGutter={false} className="[&_h2]:type-headline-2 [&_h2]:text-type-body [&_h2]:leading-[1.1] [&_h2]:mb-6 [&_h3]:type-headline-3 [&_h3]:text-type-body [&_h3]:leading-tight [&_h3]:mb-4 [&_p]:text-type-secondary [&_p]:type-body-xl [&_p]:leading-snug" />}
         </motion.div>
 
         {hasForeground && (
@@ -86,7 +86,7 @@ export const SplitFeatureShowcase: React.FC<FeatureShowcaseBlock> = ({
 
       </div>
 
-      <div className="relative z-10 mx-auto mt-4 max-w-7xl space-y-12 px-6 md:mt-8">
+      <div className="relative z-10 mx-auto mt-4 max-w-7xl space-y-12 px-6 md:mt-8" data-theme="dark">
         {Array.isArray(items) && items.length > 0 && (
           <motion.div
             className="relative mx-auto grid grid-cols-2 gap-x-2 gap-y-6 sm:gap-4 lg:grid-cols-4"
@@ -97,13 +97,13 @@ export const SplitFeatureShowcase: React.FC<FeatureShowcaseBlock> = ({
             {items.map(({ id, icon, richText }) => {
               const Icon = icon ? iconMap[icon] : null
               return (
-                <div key={id} className="space-y-3 rounded-none bg-muted px-6 py-8">
+                <div key={id} className="space-y-3 bg-background shadow-xs rounded px-6 py-8">
                   {Icon && (
                     <div className="flex items-center gap-2">
-                      <Icon className="size-5 text-slate-400" />
+                      <Icon className="size-6 text-primary" />
                     </div>
                   )}
-                  {richText && <RichText data={richText} enableGutter={false} className="space-y-2 [&_h4]:py-1 [&_h4]:type-title-md [&_h4]:text-slate-800 [&_h3]:type-title-xl [&_h3]:text-slate-800 [&_h3]:py-1 [&_p]:type-body-md [&_p]:text-type-secondary [&_p]:leading-relaxed" />}
+                  {richText && <RichText data={richText} enableGutter={false} className="space-y-2 [&_h4]:text-type-heading [&_h4]:type-title-sm [&_h3]:text-type-heading [&_h3]:type-title-md [&_p]:type-body-md [&_p]:text-type-body [&_p]:leading-relaxed" />}
                 </div>
               )
             })}

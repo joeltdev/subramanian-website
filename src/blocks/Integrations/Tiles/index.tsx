@@ -92,8 +92,8 @@ export const TilesIntegrations: React.FC<IntegrationsBlock> = ({
             </div>
           </div>
           <div className="mx-auto mt-6 max-w-lg space-y-6 text-center sm:mt-0 sm:text-left">
-            {intro && <RichText data={intro} enableGutter={false} className="[&_h2]:mb-4 [&_h3]:mb-2 [&_h2]:type-headline-3 [&_h2]:text-type-heading [&_h3]:type-headline-4 [&_h3]:text-type-heading [&_p]:type-body-base [&_p]:text-type-secondary [&_p]:max-w-2xl [&_p]:mx-auto" />}
-            {ctaLink && <CMSLink {...ctaLink} appearance="outline" size="sm" />}
+            {intro && <RichText data={intro} enableGutter={false} className="[&_h2]:mb-4 [&_h3]:mb-2 [&_h2]:type-headline-3 [&_h2]:text-type-heading [&_h3]:type-headline-4 [&_h3]:text-type-heading [&_p]:type-body-lg [&_p]:text-type-secondary [&_p]:max-w-2xl [&_p]:mx-auto" />}
+            {ctaLink && <CMSLink {...ctaLink} appearance="outline" size="lg" />}
           </div>
         </div>
       </div>
