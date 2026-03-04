@@ -25,6 +25,7 @@ import { Gallery } from '../../blocks/Gallery/config'
 import { Faq } from '../../blocks/Faq/config'
 import { ProductHero } from '../../blocks/ProductHero/config'
 import { ProductListing } from '../../blocks/ProductListing/config'
+import { NewsletterSubscription } from '../../blocks/NewsletterSubscription/config'
 import { hero } from '@/blocks/Hero/config'
 import { slugField } from 'payload'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
@@ -91,7 +92,32 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, LogoCloud, FeatureCards, FeatureShowcase, FeatureBento, Integrations, ContentSection, Stats, Testimonials, HoverHighlights, CaseStudiesHighlight, ArticleGrid, MediaCards, YouTube, ParallaxShowcase, Gallery, Faq, ProductHero, ProductListing],
+              blocks: [
+                CallToAction,
+                Content,
+                MediaBlock,
+                Archive,
+                FormBlock,
+                LogoCloud,
+                FeatureCards,
+                FeatureShowcase,
+                FeatureBento,
+                Integrations,
+                ContentSection,
+                Stats,
+                Testimonials,
+                HoverHighlights,
+                CaseStudiesHighlight,
+                ArticleGrid,
+                MediaCards,
+                YouTube,
+                ParallaxShowcase,
+                Gallery,
+                Faq,
+                ProductHero,
+                ProductListing,
+                NewsletterSubscription,
+              ],
               required: true,
               admin: {
                 initCollapsed: true,

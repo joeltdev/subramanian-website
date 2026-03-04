@@ -247,6 +247,7 @@ export interface Page {
     | FaqBlock
     | ProductHeroBlock
     | ProductListingBlock
+    | NewsletterSubscriptionBlock
   )[];
   meta?: {
     title?: string | null;
@@ -2136,7 +2137,54 @@ export interface GalleryBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+<<<<<<< HEAD
  * via the `definition` "FaqBlock".
+=======
+ * via the `definition` "NewsletterSubscriptionBlock".
+ */
+export interface NewsletterSubscriptionBlock {
+  /**
+   * Small label above the headline, e.g. "News"
+   */
+  badge?: string | null;
+  /**
+   * Main heading, e.g. "Stay informed with iNELS."
+   */
+  intro?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Label for the subscribe button
+   */
+  submitButtonLabel?: string | null;
+  /**
+   * Optional URL to POST the form to (e.g. newsletter API). Leave empty to handle client-side.
+   */
+  formActionUrl?: string | null;
+  /**
+   * Image shown on the right side of the block
+   */
+  image?: (number | null) | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'newsletterSubscription';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "product-categories".
+>>>>>>> c752782 (feat: Add newsletter subscription content block with responsive layout)
  */
 export interface FaqBlock {
   /**
@@ -2803,9 +2851,13 @@ export interface PagesSelect<T extends boolean = true> {
         youtube?: T | YouTubeBlockSelect<T>;
         parallaxShowcase?: T | ParallaxShowcaseBlockSelect<T>;
         gallery?: T | GalleryBlockSelect<T>;
+<<<<<<< HEAD
         faq?: T | FaqBlockSelect<T>;
         productHero?: T | ProductHeroBlockSelect<T>;
         productListing?: T | ProductListingBlockSelect<T>;
+=======
+        newsletterSubscription?: T | NewsletterSubscriptionBlockSelect<T>;
+>>>>>>> c752782 (feat: Add newsletter subscription content block with responsive layout)
       };
   meta?:
     | T
@@ -3308,6 +3360,7 @@ export interface GalleryBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+<<<<<<< HEAD
  * via the `definition` "FaqBlock_select".
  */
 export interface FaqBlockSelect<T extends boolean = true> {
@@ -3361,6 +3414,16 @@ export interface ProductListingBlockSelect<T extends boolean = true> {
   category?: T;
   productsPerPage?: T;
   showPagination?: T;
+=======
+ * via the `definition` "NewsletterSubscriptionBlock_select".
+ */
+export interface NewsletterSubscriptionBlockSelect<T extends boolean = true> {
+  badge?: T;
+  intro?: T;
+  submitButtonLabel?: T;
+  formActionUrl?: T;
+  image?: T;
+>>>>>>> c752782 (feat: Add newsletter subscription content block with responsive layout)
   id?: T;
   blockName?: T;
 }
