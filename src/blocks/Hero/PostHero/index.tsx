@@ -39,13 +39,13 @@ export const PostHero: React.FC<{
           </div>
 
           <div className="">
-            <h1 className="mb-6 type-page-title">{title}</h1>
+            <h1 className="mb-6 type-page-title text-background">{title}</h1>
           </div>
 
           <div className="flex flex-col md:flex-row gap-4 md:gap-16">
             {hasAuthors && (
               <div className="flex flex-col gap-4">
-                <div className="flex flex-col gap-1">
+                <div className="flex flex-col gap-1 text-background/80">
                   <p className="type-body-sm">Author</p>
 
                   <p>{formatAuthors(populatedAuthors)}</p>
@@ -53,7 +53,7 @@ export const PostHero: React.FC<{
               </div>
             )}
             {publishedAt && (
-              <div className="flex flex-col gap-1">
+              <div className="flex flex-col gap-1 text-background/80">
                 <p className="type-body-sm">Date Published</p>
 
                 <time dateTime={publishedAt}>{formatDateTime(publishedAt)}</time>

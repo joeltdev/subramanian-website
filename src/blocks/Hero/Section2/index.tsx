@@ -53,24 +53,27 @@ export const Section2Hero: React.FC<Section2HeroType> = ({
       <section>
         <div className={`relative py-24 ${hasBgMedia ? 'min-h-[85svh] flex flex-col justify-center' : ''}`}>
           {/* Background video */}
-          {backgroundVideo && typeof backgroundVideo === 'object' && backgroundVideo.url ? (
-            <video
-              className="absolute inset-0 size-full object-cover -z-20"
-              src={backgroundVideo.url}
-              autoPlay
-              muted
-              loop
-              playsInline
-              aria-hidden
-            />
-          ) : backgroundImage && typeof backgroundImage === 'object' && (backgroundImage as Media).url ? (
-            <img
-              className="absolute inset-0 size-full object-cover -z-20"
-              src={(backgroundImage as Media).url!}
-              alt={(backgroundImage as Media).alt ?? ''}
-              aria-hidden
-            />
-          ) : null}
+          <>
+            {backgroundVideo && typeof backgroundVideo === 'object' && backgroundVideo.url ? (
+              <video
+                className="absolute inset-0 size-full object-cover -z-20"
+                src={backgroundVideo.url}
+                autoPlay
+                muted
+                loop
+                playsInline
+                aria-hidden
+              />
+            ) : backgroundImage && typeof backgroundImage === 'object' && (backgroundImage as Media).url ? (
+              <img
+                className="absolute inset-0 size-full object-cover -z-20"
+                src={(backgroundImage as Media).url!}
+                alt={(backgroundImage as Media).alt ?? ''}
+                aria-hidden
+              />
+            ) : null}
+            <div className="absolute pointer-events-none left-0 bottom-0 w-full h-full bg-linear-to-t from-black/70 to-transparent" />
+          </>
 
           <div className="mx-auto max-w-7xl px-6 w-full">
             <div className="sm:mx-auto lg:mr-auto lg:mt-0">
@@ -95,7 +98,7 @@ export const Section2Hero: React.FC<Section2HeroType> = ({
                   <RichText
                     data={richText}
                     enableGutter={false}
-                    className="text-balance [&_h1]:m-0 [&_h2]:m-0 [&_h1]:type-display [&_p]:mt-8 [&_p]:max-w-2xl [&_p]:mx-auto [&_p]:type-body-xl [&_p]:text-foreground"
+                    className="text-balance [&_h1]:m-0 [&_h2]:m-0 [&_h1]:type-display [&_h1]:drop-shadow [&_p]:mt-8 [&_p]:max-w-2xl [&_p]:mx-auto [&_p]:type-body-lg [&_p]:text-foreground [&_p]:drop-shadow-sm"
                   />
                 </AnimatedGroup>
               )}
@@ -111,7 +114,7 @@ export const Section2Hero: React.FC<Section2HeroType> = ({
                     },
                     ...transitionVariants,
                   }}
-                  className="mt-12 flex items-center gap-2">
+                  className="mt-8 flex items-center gap-2">
                   {links.map(({ link }, i) => (
                     <CMSLink
                       key={i}

@@ -128,6 +128,21 @@ async function downloadImage(url: string): Promise<Buffer | null> {
   }
 }
 
+async function ensureFolder(payload: Payload, name: string): Promise<number | string> {
+  const existing = await payload.find({
+    collection: 'payload-folders',
+    where: { name: { equals: name } },
+    limit: 1,
+  })
+  if (existing.docs.length > 0) return existing.docs[0].id
+  const folder = await payload.create({
+    collection: 'payload-folders',
+    data: { name },
+  })
+  payload.logger.info(`  ✓ created media folder "${name}" → ${folder.id}`)
+  return folder.id
+}
+
 // ── Category URL builder ──────────────────────────────────────────────────────
 
 function slugify(name: string): string {
@@ -215,6 +230,17 @@ async function wipeCollections(payload: Payload): Promise<void> {
     try { await payload.delete({ collection: 'media', id }); deletedMedia++ } catch { /* ignore */ }
   }
   payload.logger.info(`  ✓ deleted ${deletedMedia} media files`)
+
+  // Delete the Products folder if it exists
+  const existingFolder = await payload.find({
+    collection: 'payload-folders',
+    where: { name: { equals: 'Products' } },
+    limit: 1,
+  })
+  if (existingFolder.docs.length > 0) {
+    await payload.delete({ collection: 'payload-folders', id: existingFolder.docs[0].id })
+    payload.logger.info(`  ✓ deleted "Products" media folder`)
+  }
 }
 
 // ── Phase 3 & 4: Seed categories ─────────────────────────────────────────────
@@ -388,6 +414,7 @@ async function uploadProductImages(
   catRows: CategoryRow[],
   mediaMap: Map<number, number | string>,
   failedImages: string[],
+  folderId: number | string | null,
 ): Promise<void> {
   const catById = new Map(catRows.map(c => [c.oldId, c]))
 
@@ -423,7 +450,7 @@ async function uploadProductImages(
         const ext = url.split('.').pop() || 'png'
         const media = await payload.create({
           collection: 'media',
-          data: { alt: info.alt },
+          data: { alt: info.alt, ...(folderId ? { folder: folderId as number } : {}) },
           file: { data: buffer, mimetype: `image/${ext}`, name: `prod-${uploadId}.${ext}`, size: buffer.length },
         })
         mediaMap.set(uploadId, media.id)
@@ -558,7 +585,8 @@ async function main() {
 
   // Phase 6: Upload product images
   payload.logger.info('--- Uploading product images ---')
-  await uploadProductImages(payload, productRows, catRows, mediaMap, failedImages)
+  const productsFolderId = await ensureFolder(payload, 'Products')
+  await uploadProductImages(payload, productRows, catRows, mediaMap, failedImages, productsFolderId)
 
   payload.logger.info(`  mediaMap has ${mediaMap.size} entries after image upload phase`)
 
