@@ -26,6 +26,22 @@ export const ParallaxShowcaseCarousel: React.FC<Props> = ({
   const safeSlides = slides ?? []
   const n = safeSlides.length
 
+  // Responsive slide width: viewport-width on mobile, 1024px on md+
+  const [slideWidth, setSlideWidth] = useState(() =>
+    typeof window !== 'undefined' && window.innerWidth < 768
+      ? window.innerWidth
+      : ACTIVE_SLIDE_WIDTH,
+  )
+  const slideGap = slideWidth < ACTIVE_SLIDE_WIDTH ? 0 : SLIDE_GAP
+
+  useEffect(() => {
+    const onResize = () => {
+      setSlideWidth(window.innerWidth < 768 ? window.innerWidth : ACTIVE_SLIDE_WIDTH)
+    }
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [])
+
   // Pad only if there are multiple slides
   const paddedSlides = n > 1
     ? [safeSlides[n - 1], ...safeSlides, safeSlides[0]]
@@ -41,6 +57,7 @@ export const ParallaxShowcaseCarousel: React.FC<Props> = ({
 
   const [isPaused, setIsPaused] = useState(false)
   const trackRef = useRef<HTMLDivElement>(null)
+  const pointerStartX = useRef<number | null>(null)
 
   // ── Auto-scroll ───────────────────────────────────────────────────────────
   useEffect(() => {
@@ -58,8 +75,13 @@ export const ParallaxShowcaseCarousel: React.FC<Props> = ({
     setActiveReal((i) => (i + 1) % n)
   }
 
+  const retreat = () => {
+    setTrackIndex((i) => i - 1)
+    setActiveReal((i) => (i - 1 + n) % n)
+  }
+
   // ── Track translation ─────────────────────────────────────────────────────
-  const translateX = -(trackIndex * (ACTIVE_SLIDE_WIDTH + SLIDE_GAP))
+  const translateX = -(trackIndex * (slideWidth + slideGap))
 
   // Clear skip flag after teleport render so next transition uses spring again
   useLayoutEffect(() => {
@@ -68,11 +90,28 @@ export const ParallaxShowcaseCarousel: React.FC<Props> = ({
     }
   }, [trackIndex])
 
+  const handlePointerDown = (e: React.PointerEvent<HTMLElement>) => {
+    pointerStartX.current = e.clientX
+  }
+  const handlePointerUp = (e: React.PointerEvent<HTMLElement>) => {
+    if (pointerStartX.current === null) return
+    const delta = e.clientX - pointerStartX.current
+    pointerStartX.current = null
+    if (delta > 50) retreat()
+    else if (delta < -50) advance()
+  }
+  const handlePointerCancel = () => {
+    pointerStartX.current = null
+  }
+
   return (
     <section
       className="relative py-12 md:py-20 overflow-hidden"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
+      onPointerDown={handlePointerDown}
+      onPointerUp={handlePointerUp}
+      onPointerCancel={handlePointerCancel}
     >
       {/* ── Block intro + tab nav ──────────────────────────────────────────── */}
       <div className="mx-auto max-w-5xl px-6 mb-10 space-y-8">
@@ -123,9 +162,9 @@ export const ParallaxShowcaseCarousel: React.FC<Props> = ({
         <motion.div
           ref={trackRef}
           className="flex items-center"
-          style={{ gap: SLIDE_GAP }}
+          style={{ gap: slideGap }}
           animate={{
-            x: `calc(50vw - ${ACTIVE_SLIDE_WIDTH / 2}px + ${translateX}px)`,
+            x: `calc(50vw - ${slideWidth / 2}px + ${translateX}px)`,
           }}
           transition={
             skipNextAnimation.current
@@ -159,7 +198,7 @@ export const ParallaxShowcaseCarousel: React.FC<Props> = ({
                       ? 'clone-tail'
                       : (slide.id ?? i)
                 }
-                style={{ width: ACTIVE_SLIDE_WIDTH, flexShrink: 0 }}
+                style={{ width: slideWidth, flexShrink: 0 }}
               >
                 <ParallaxSlide
                   slide={slide}

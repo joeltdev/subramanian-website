@@ -126,7 +126,7 @@ export const ParallaxSlide: React.FC<SlideProps> = ({
 
       {/* ── Slide content — top-left ─────────────────────────────────── */}
       {content && (
-        <div className="absolute top-16 left-16 z-10 max-w-md">
+        <div className="absolute top-4 left-4 right-4 z-10 max-w-full md:top-16 md:left-16 md:right-auto md:max-w-md">
           <RichText
             data={content}
             enableGutter={false}

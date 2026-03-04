@@ -31,12 +31,10 @@ const buttonVariants = cva(
           "border border-foreground dark:border-foreground/15",
           "hover:bg-foreground hover:text-background dark:hover:bg-primary",
         ],
-        // Secondary — same card-surface treatment on secondary bg
+        // Secondary — similar to primary styles, white bg, black text, hover primary bg and white text
         secondary: [
-          "bg-secondary text-secondary-foreground",
-          "shadow-sm shadow-black/10",
-          "border border-foreground/10 dark:border-foreground/15",
-          "hover:bg-secondary/80",
+          "bg-background text-foreground",
+          "hover:bg-primary hover:text-white",
         ],
         // Ghost — no chrome, just hover fill
         ghost: "hover:bg-accent hover:text-accent-foreground",
@@ -59,16 +57,16 @@ const buttonVariants = cva(
       { variant: "default", size: ["xs", "sm", "default", "lg", "xl"], class: "justify-start [&_svg]:ml-auto [&_svg]:box-content hover:[&_svg]:translate-x-0.5" },
       { variant: "outline", size: ["xs", "sm", "default", "lg", "xl"], class: "justify-start [&_svg]:ml-auto [&_svg]:box-content hover:[&_svg]:translate-x-0.5" },
       // Icon left-padding scales with size (creates visual breathing room between text and icon)
-      { variant: "default",  size: "xs",      class: "[&_svg]:pl-2" },
-      { variant: "default",  size: "sm",      class: "[&_svg]:pl-3" },
-      { variant: "default",  size: "default", class: "[&_svg]:pl-4" },
-      { variant: "default",  size: "lg",      class: "[&_svg]:pl-6" },
-      { variant: "default",  size: "xl",      class: "[&_svg]:pl-8" },
-      { variant: "outline",  size: "xs",      class: "[&_svg]:pl-2" },
-      { variant: "outline",  size: "sm",      class: "[&_svg]:pl-3" },
-      { variant: "outline",  size: "default", class: "[&_svg]:pl-4" },
-      { variant: "outline",  size: "lg",      class: "[&_svg]:pl-6" },
-      { variant: "outline",  size: "xl",      class: "[&_svg]:pl-8" },
+      { variant: "default", size: "xs", class: "[&_svg]:pl-2" },
+      { variant: "default", size: "sm", class: "[&_svg]:pl-3" },
+      { variant: "default", size: "default", class: "[&_svg]:pl-4" },
+      { variant: "default", size: "lg", class: "[&_svg]:pl-6" },
+      { variant: "default", size: "xl", class: "[&_svg]:pl-8" },
+      { variant: "outline", size: "xs", class: "[&_svg]:pl-2" },
+      { variant: "outline", size: "sm", class: "[&_svg]:pl-3" },
+      { variant: "outline", size: "default", class: "[&_svg]:pl-4" },
+      { variant: "outline", size: "lg", class: "[&_svg]:pl-6" },
+      { variant: "outline", size: "xl", class: "[&_svg]:pl-8" },
     ],
     defaultVariants: {
       variant: "default",
