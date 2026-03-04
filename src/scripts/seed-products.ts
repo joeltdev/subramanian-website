@@ -134,12 +134,26 @@ function slugify(name: string): string {
   return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 }
 
+/**
+ * Derive the CDN path segment for a category name.
+ * The old CMS stripped "iNELS " prefixes and the word "wireless" from names.
+ * e.g. "iNELS BUS" → "bus", "Switching wireless units" → "switching-units"
+ */
+function getCdnSlug(name: string): string {
+  return slugify(
+    name
+      .replace(/^iNELS\s+/i, '')     // "iNELS BUS" → "BUS", "iNELS Wireless" → "Wireless"
+      .replace(/\bwireless\s+/gi, '') // "Wireless dimmers" → "dimmers", "Switching wireless units" → "Switching units"
+      .trim(),
+  )
+}
+
 function buildCategoryImageUrls(
   catRow: CategoryRow,
   parentRow: CategoryRow | undefined,
 ): string[] {
-  const catSlug = slugify(catRow.name)
-  const parentSlug = parentRow ? slugify(parentRow.name) : null
+  const catSlug = getCdnSlug(catRow.name)
+  const parentSlug = parentRow ? getCdnSlug(parentRow.name) : null
   if (parentSlug) {
     return [
       `${OLD_MEDIA_BASE}/${parentSlug}/${catSlug}.png`,
@@ -147,6 +161,60 @@ function buildCategoryImageUrls(
     ]
   }
   return [`${OLD_MEDIA_BASE}/${catSlug}.png`]
+}
+
+// ── Phase 2: Wipe existing data ──────────────────────────────────────────────
+
+async function deleteAll(payload: Payload, collection: string): Promise<number> {
+  let total = 0
+  // eslint-disable-next-line no-constant-condition
+  while (true) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const page = await payload.find({ collection: collection as any, limit: 100, depth: 0 })
+    if (page.docs.length === 0) break
+    for (const doc of page.docs) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      await payload.delete({ collection: collection as any, id: doc.id })
+      total++
+    }
+  }
+  return total
+}
+
+async function wipeCollections(payload: Payload): Promise<void> {
+  payload.logger.info('--- Wiping existing data ---')
+
+  // Collect media IDs referenced by products and categories before deleting
+  const products = await payload.find({ collection: 'products', limit: 10000, depth: 1 })
+  const mediaIds = new Set<string>()
+  for (const p of products.docs) {
+    const gallery = (p as Record<string, unknown>).productGallery as Array<Record<string, unknown>> ?? []
+    for (const g of gallery) {
+      const img = g.image as Record<string, unknown> | string | null
+      if (img) mediaIds.add(typeof img === 'object' ? String(img.id) : String(img))
+    }
+  }
+
+  const cats = await payload.find({ collection: 'product-categories', limit: 10000, depth: 1 })
+  for (const c of cats.docs) {
+    const img = (c as Record<string, unknown>).image as Record<string, unknown> | string | null
+    if (img) mediaIds.add(typeof img === 'object' ? String(img.id) : String(img))
+  }
+
+  const n1 = await deleteAll(payload, 'products')
+  payload.logger.info(`  ✓ deleted ${n1} products`)
+
+  const n2 = await deleteAll(payload, 'product-categories')
+  payload.logger.info(`  ✓ deleted ${n2} product categories`)
+
+  const n3 = await deleteAll(payload, 'product-tags')
+  payload.logger.info(`  ✓ deleted ${n3} product tags`)
+
+  let deletedMedia = 0
+  for (const id of mediaIds) {
+    try { await payload.delete({ collection: 'media', id }); deletedMedia++ } catch { /* ignore */ }
+  }
+  payload.logger.info(`  ✓ deleted ${deletedMedia} media files`)
 }
 
 // ── Phase 3 & 4: Seed categories ─────────────────────────────────────────────
@@ -269,22 +337,47 @@ async function seedTags(
 
 // ── Phase 6: Upload product images ───────────────────────────────────────────
 
+/**
+ * Build candidate CDN URLs for a product image.
+ *
+ * The old CMS always stored images at {root-slug}/{level-2-slug}/{product}.png,
+ * regardless of how many levels deep the actual leaf category is.
+ *   depth-2 product: root=parentRow, level2=catRow
+ *   depth-3 product: root=grandparentRow, level2=parentRow (leaf catRow is ignored)
+ */
 function buildProductImageUrls(
-  product: ProductRow,
+  productSlug: string,
   catRow: CategoryRow | undefined,
-  parentCatRow: CategoryRow | undefined,
+  parentRow: CategoryRow | undefined,
+  grandparentRow: CategoryRow | undefined,
 ): string[] {
-  const productSlug = product.slug  // already has leading / stripped
-  const catSlug = catRow ? slugify(catRow.name) : null
-  const parentSlug = parentCatRow ? slugify(parentCatRow.name) : null
-
   const urls: string[] = []
-  if (parentSlug && catSlug) {
-    urls.push(`${OLD_MEDIA_BASE}/${parentSlug}/${catSlug}/${productSlug}.png`)
+
+  let rootRow: CategoryRow | undefined
+  let level2Row: CategoryRow | undefined
+
+  if (grandparentRow) {
+    rootRow = grandparentRow
+    level2Row = parentRow
+  } else if (parentRow) {
+    rootRow = parentRow
+    level2Row = catRow
   }
-  if (catSlug) {
-    urls.push(`${OLD_MEDIA_BASE}/${catSlug}/${productSlug}.png`)
+
+  if (rootRow && level2Row) {
+    const rootSlug = getCdnSlug(rootRow.name)
+    const catSlug = getCdnSlug(level2Row.name)
+    urls.push(`${OLD_MEDIA_BASE}/${rootSlug}/${catSlug}/${productSlug}.png`)
+    urls.push(`${OLD_MEDIA_BASE}/${rootSlug}/${catSlug}/${productSlug}.jpg`)
   }
+
+  // Fallback: try with the leaf category directly
+  if (catRow && rootRow && level2Row && catRow !== level2Row) {
+    const rootSlug = getCdnSlug(rootRow.name)
+    const leafSlug = getCdnSlug(catRow.name)
+    urls.push(`${OLD_MEDIA_BASE}/${rootSlug}/${leafSlug}/${productSlug}.png`)
+  }
+
   urls.push(`${OLD_MEDIA_BASE}/${productSlug}.png`)
   return urls
 }
@@ -299,14 +392,15 @@ async function uploadProductImages(
   const catById = new Map(catRows.map(c => [c.oldId, c]))
 
   // Collect all unique uploadIds across all product galleries
-  const toUpload = new Map<number, { productSlug: string; catRow?: CategoryRow; parentRow?: CategoryRow; alt: string }>()
+  const toUpload = new Map<number, { productSlug: string; catRow?: CategoryRow; parentRow?: CategoryRow; grandparentRow?: CategoryRow; alt: string }>()
 
   for (const product of products) {
     const catRow = product.categoryOldId != null ? catById.get(product.categoryOldId) : undefined
     const parentRow = catRow?.parentOldId != null ? catById.get(catRow.parentOldId) : undefined
+    const grandparentRow = parentRow?.parentOldId != null ? catById.get(parentRow.parentOldId) : undefined
     for (const g of product.gallery) {
       if (!mediaMap.has(g.uploadId) && !toUpload.has(g.uploadId)) {
-        toUpload.set(g.uploadId, { productSlug: product.slug, catRow, parentRow, alt: g.alt })
+        toUpload.set(g.uploadId, { productSlug: product.slug, catRow, parentRow, grandparentRow, alt: g.alt })
       }
     }
   }
@@ -315,9 +409,10 @@ async function uploadProductImages(
 
   for (const [uploadId, info] of toUpload) {
     const urls = buildProductImageUrls(
-      { slug: info.productSlug } as ProductRow,
+      info.productSlug,
       info.catRow,
       info.parentRow,
+      info.grandparentRow,
     )
 
     let uploaded = false
@@ -423,7 +518,12 @@ async function seedProducts(
 async function main() {
   const payload = await getPayload({ config })
 
-  payload.logger.info('=== Product migration starting ===')
+  const wipe = process.argv.includes('--wipe')
+  payload.logger.info(`=== Product migration starting${wipe ? ' (WIPE MODE)' : ''} ===`)
+
+  if (wipe) {
+    await wipeCollections(payload)
+  }
 
   // Parse SQL
   const sqlPath = resolve(process.cwd(), 'product-data.sql')
