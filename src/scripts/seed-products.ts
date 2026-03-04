@@ -474,10 +474,17 @@ async function seedProducts(
       const productGallery = product.gallery
         .map(g => {
           const newId = mediaMap.get(g.uploadId)
-          if (!newId) return null
+          if (!newId) {
+            payload.logger.warn(`  [gallery] product "${product.slug}" uploadId=${g.uploadId} NOT in mediaMap (map has ${mediaMap.size} entries)`)
+            return null
+          }
           return { image: newId, alt: g.alt }
         })
         .filter((g): g is { image: string; alt: string } => g !== null)
+
+      if (product.gallery.length > 0) {
+        payload.logger.info(`  [gallery] "${product.slug}": ${product.gallery.length} raw → ${productGallery.length} resolved`)
+      }
 
       const ecDeclaration = product.ecDeclaration.length > 0
         ? product.ecDeclaration
@@ -502,7 +509,10 @@ async function seedProducts(
       }
 
       const doc = await payload.create({ collection: 'products', data })
-      payload.logger.info(`  ✓ product "${product.slug}" → ${doc.id}`)
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const savedGallery = (doc as any).productGallery
+      const galleryNote = savedGallery?.length ? `gallery=${savedGallery.length}` : 'gallery=EMPTY'
+      payload.logger.info(`  ✓ product "${product.slug}" → ${doc.id} (${galleryNote})`)
       created++
     } catch (err) {
       payload.logger.error(`  ✗ product "${product.slug}" FAILED: ${err}`)
@@ -549,6 +559,8 @@ async function main() {
   // Phase 6: Upload product images
   payload.logger.info('--- Uploading product images ---')
   await uploadProductImages(payload, productRows, catRows, mediaMap, failedImages)
+
+  payload.logger.info(`  mediaMap has ${mediaMap.size} entries after image upload phase`)
 
   // Phase 7: Seed products
   payload.logger.info('--- Seeding products ---')
