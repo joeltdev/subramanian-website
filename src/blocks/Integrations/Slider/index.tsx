@@ -18,7 +18,7 @@ const SliderCard = ({
   className?: string
   isCenter?: boolean
 }) => (
-  <div className={cn('bg-background relative z-20 flex size-12 rounded-none border', className)}>
+  <div className={cn('bg-background relative z-20 flex size-12 rounded-xl border', className)}>
     <div className={cn('m-auto size-fit *:size-5', isCenter && '*:size-8')}>{children}</div>
   </div>
 )
@@ -34,66 +34,66 @@ export const SliderIntegrations: React.FC<IntegrationsBlock> = ({
 
   return (
     <section className="bg-muted py-4 md:py-8 dark:bg-background">
-      <div className="mx-auto max-w-5xl px-6">
-          <div className="bg-muted/25 group relative mx-auto max-w-[22rem] items-center justify-between space-y-6 [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] sm:max-w-md">
-            <div
-              role="presentation"
-              className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,var(--color-border)_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:32px_32px] opacity-50"
-            />
+      <div className="mx-auto max-w-5xl px-6 py-16">
+        <div className="bg-muted/25 group relative mx-auto max-w-[22rem] items-center justify-between space-y-6 [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] sm:max-w-md">
+          <div
+            role="presentation"
+            className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,var(--color-border)_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:32px_32px] opacity-30"
+          />
 
-            <div>
-              <InfiniteSlider gap={24} speed={20} speedOnHover={10}>
-                {items.map(({ id, logo }) => (
-                  <SliderCard key={id}>
-                    {typeof logo === 'object' && logo && (
-                      <Media resource={logo} imgClassName="size-5 object-contain" />
-                    )}
-                  </SliderCard>
-                ))}
-              </InfiniteSlider>
-            </div>
-
-            <div>
-              <InfiniteSlider gap={24} speed={20} speedOnHover={10} reverse>
-                {items.map(({ id, logo }) => (
-                  <SliderCard key={id}>
-                    {typeof logo === 'object' && logo && (
-                      <Media resource={logo} imgClassName="size-5 object-contain" />
-                    )}
-                  </SliderCard>
-                ))}
-              </InfiniteSlider>
-            </div>
-
-            <div>
-              <InfiniteSlider gap={24} speed={20} speedOnHover={10}>
-                {items.map(({ id, logo }) => (
-                  <SliderCard key={id}>
-                    {typeof logo === 'object' && logo && (
-                      <Media resource={logo} imgClassName="size-5 object-contain" />
-                    )}
-                  </SliderCard>
-                ))}
-              </InfiniteSlider>
-            </div>
-
-            <div className="absolute inset-0 m-auto flex size-fit justify-center gap-2">
-              <SliderCard
-                className="shadow-black-950/10 size-16 bg-muted/25 shadow-xl backdrop-blur-md backdrop-grayscale dark:border-border"
-                isCenter>
-                {typeof centerLogo === 'object' && centerLogo ? (
-                  <Media resource={centerLogo} imgClassName="size-8 object-contain" />
-                ) : (
-                  <LogoIcon />
-                )}
-              </SliderCard>
-            </div>
+          <div>
+            <InfiniteSlider gap={24} speed={20} speedOnHover={10}>
+              {items.map(({ id, logo }) => (
+                <SliderCard key={id}>
+                  {typeof logo === 'object' && logo && (
+                    <Media resource={logo} imgClassName="size-5 object-contain" />
+                  )}
+                </SliderCard>
+              ))}
+            </InfiniteSlider>
           </div>
 
-          <div className="mx-auto mt-12 max-w-lg space-y-6 text-center">
-            {intro && <RichText data={intro} enableGutter={false} className="[&_h2]:type-headline-1 [&_h2]:text-type-body [&_h2]:leading-[1.1] [&_h2]:mb-6 [&_h3]:type-headline-3 [&_h3]:text-type-body [&_h3]:leading-tight [&_h3]:mb-4 [&_p]:type-body-xl [&_p]:text-type-secondary [&_p]:leading-snug" />}
-            {ctaLink && <CMSLink {...ctaLink} appearance="outline" size="sm" />}
+          <div>
+            <InfiniteSlider gap={24} speed={20} speedOnHover={10} reverse>
+              {items.map(({ id, logo }) => (
+                <SliderCard key={id}>
+                  {typeof logo === 'object' && logo && (
+                    <Media resource={logo} imgClassName="size-5 object-contain" />
+                  )}
+                </SliderCard>
+              ))}
+            </InfiniteSlider>
           </div>
+
+          <div>
+            <InfiniteSlider gap={24} speed={20} speedOnHover={10}>
+              {items.map(({ id, logo }) => (
+                <SliderCard key={id}>
+                  {typeof logo === 'object' && logo && (
+                    <Media resource={logo} imgClassName="size-5 object-contain" />
+                  )}
+                </SliderCard>
+              ))}
+            </InfiniteSlider>
+          </div>
+
+          <div className="absolute inset-0 m-auto flex size-fit justify-center gap-2">
+            <SliderCard
+              className="shadow-black-950/10 size-16 bg-muted/25 shadow-xl backdrop-blur-md backdrop-grayscale dark:border-border"
+              isCenter>
+              {typeof centerLogo === 'object' && centerLogo ? (
+                <Media resource={centerLogo} imgClassName="size-8 object-contain" />
+              ) : (
+                <LogoIcon />
+              )}
+            </SliderCard>
+          </div>
+        </div>
+
+        <div className="mx-auto mt-12 max-w-lg space-y-6 text-center">
+          {intro && <RichText data={intro} enableGutter={false} className="[&_h2]:mb-4 [&_h3]:mb-2 [&_h2]:type-headline-3 [&_h2]:text-type-heading [&_h3]:type-headline-4 [&_h3]:text-type-heading [&_p]:type-body-base [&_p]:text-type-secondary [&_p]:max-w-2xl [&_p]:mx-auto" />}
+          {ctaLink && <CMSLink {...ctaLink} appearance="outline" size="lg" />}
+        </div>
       </div>
     </section>
   )

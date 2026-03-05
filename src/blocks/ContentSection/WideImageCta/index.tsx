@@ -10,13 +10,13 @@ export const WideImageCtaContentSection: React.FC<ContentSectionBlock> = ({
   links,
 }) => {
   return (
-    <section className="py-4 md:py-8">
+    <section className="py-4 md:py-24">
       <div className="mx-auto max-w-7xl space-y-8 px-6 md:space-y-12">
         <div className="grid gap-6 md:gap-12">
-          {intro && <RichText data={intro} enableGutter={false} className="flex row-auto justify-center items-baseline-last **:m-0 **:flex-1 [&_h2]:type-headline-1 [&_h2]:text-type-body [&_h2]:leading-[1.1] [&_h2]:mb-6 [&_h3]:type-headline-3 [&_h3]:text-type-body [&_h3]:leading-tight [&_h3]:mb-4 [&_p]:text-type-secondary [&_p]:type-body-xl [&_p]:leading-snug" />}
+          {intro && <RichText data={intro} enableGutter={false} className="flex row-auto justify-center items-baseline-last **:m-0 **:flex-1 [&_h2]:type-headline-2 [&_h2]:text-type-heading [&_h2]:mb-6 [&_h3]:type-headline-3 [&_h3]:text-type-heading [&_h3]:mb-4 [&_p]:text-type-body [&_p]:type-body-xl" />}
         </div>
         {typeof image === 'object' && image && (
-          <div className="group relative aspect-video overflow-hidden rounded-none cursor-pointer">
+          <div className="group relative aspect-5/2 overflow-hidden rounded-none cursor-pointer">
             {/* Full-cover image, subtle zoom on hover */}
             <Media
               resource={image}
@@ -33,7 +33,7 @@ export const WideImageCtaContentSection: React.FC<ContentSectionBlock> = ({
               <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
                 <div className="flex flex-wrap gap-4 justify-center">
                   {links.map(({ link }, i) => (
-                    <CMSLink key={i} size="sm" {...link} />
+                    <CMSLink key={i} size="xl" {...link} />
                   ))}
                 </div>
               </div>

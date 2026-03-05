@@ -19,13 +19,13 @@ export const MediaCardsBlock: React.FC<MediaCardsBlockType> = ({ backgroundMedia
             className="absolute inset-0 -inset-y-20"
             videoClassName="absolute inset-0 w-full h-full object-cover"
           />
+          <div className="w-full h-3/4 absolute -z-10 inset-0  bg-linear-to-b from-white to-transparent pointer-events-none" />
         </div>
       )}
       <div className="mx-auto max-w-7xl px-6 z-0 relative">
         <div className="mx-auto max-w-6xl text-center pt-24 pb-120 relative">
           {intro && (
             <>
-              <div className="absolute -z-10 inset-0 bg-background/60 backdrop-blur-xs pointer-events-none" />
               <RichText
                 data={intro}
                 enableGutter={false}

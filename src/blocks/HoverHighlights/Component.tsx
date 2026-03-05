@@ -15,12 +15,12 @@ export const HoverHighlightsBlock: React.FC<HoverHighlightsBlockType & { disable
   const [active, setActive] = useState(0)
 
   return (
-    <section className="py-4 md:py-8">
+    <section className="py-4 md:py-24">
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-8">
 
           {/* Left: text content */}
-          <div className="flex flex-col justify-center gap-6 md:col-span-7 md:gap-8">
+          <div className="flex flex-col justify-center gap-6 md:col-span-5 md:gap-8">
             {beforeHighlights && (
               <p className="type-body-xl text-type-secondary">{beforeHighlights}</p>
             )}
@@ -30,7 +30,7 @@ export const HoverHighlightsBlock: React.FC<HoverHighlightsBlockType & { disable
                 highlights.map(({ id, text, link, mediaTop, mediaBottom }, i) => {
                   const isActive = i === active
                   const lineClass = [
-                    'flex cursor-pointer items-center gap-3 type-headline-1 transition-all duration-700 md:gap-4',
+                    'flex cursor-pointer items-center gap-3 type-headline-2 transition-all duration-700 md:gap-4',
                     isActive ? 'opacity-100 text-slate-800' : 'opacity-25 text-type-body hover:opacity-50',
                   ].join(' ')
                   const arrowClass = [
@@ -66,14 +66,14 @@ export const HoverHighlightsBlock: React.FC<HoverHighlightsBlockType & { disable
             {Array.isArray(links) && links.length > 0 && (
               <div className="flex flex-wrap gap-4">
                 {links.map(({ link }, i) => (
-                  <CMSLink key={i} size="sm" {...link} />
+                  <CMSLink key={i} size="lg" {...link} />
                 ))}
               </div>
             )}
           </div>
 
           {/* Right: images (one set per highlight, overlaid) */}
-          <div className="relative hidden min-h-[420px] md:col-span-5 md:block">
+          <div className="relative hidden min-h-[420px] md:col-span-7 md:block">
             {Array.isArray(highlights) &&
               highlights.map(({ id, mediaTop, mediaBottom }, i) => {
                 const isActive = i === active
@@ -89,19 +89,19 @@ export const HoverHighlightsBlock: React.FC<HoverHighlightsBlockType & { disable
                           : 'translate-y-8 pointer-events-none opacity-0',
                     ].join(' ')}
                   >
-                    {typeof mediaTop === 'object' && mediaTop && (
-                      <div className="w-[90%] self-start overflow-hidden rounded-none shadow-lg">
+                    {typeof mediaBottom === 'object' && mediaBottom && (
+                      <div className="absolute w-full self-end overflow-hidden rounded-none shadow-lg opacity-80">
                         <Media
-                          resource={mediaTop}
+                          resource={mediaBottom}
                           imgClassName="w-full h-auto object-cover"
                         />
                       </div>
                     )}
-                    {typeof mediaBottom === 'object' && mediaBottom && (
-                      <div className="w-[90%] self-end overflow-hidden rounded-none shadow-lg opacity-80">
+                    {typeof mediaTop === 'object' && mediaTop && (
+                      <div className="w-full self-start overflow-hidden rounded-none shadow-lg">
                         <Media
-                          resource={mediaBottom}
-                          imgClassName="w-full h-auto object-cover"
+                          resource={mediaTop}
+                          imgClassName="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-3/4 h-auto object-contain"
                         />
                       </div>
                     )}

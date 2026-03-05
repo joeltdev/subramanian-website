@@ -1,0 +1,93 @@
+   ▲ Next.js 15.4.11
+   - Environments: .env
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 22.0s
+   Linting and checking validity of types ...
+
+./src/Footer/Component.tsx
+97:17  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/Header/Component.client.tsx
+43:15  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/(frontend)/products/[slug]/page.tsx
+7:15  Warning: 'Product' is defined but never used. Allowed unused vars must match /^_/u.  @typescript-eslint/no-unused-vars
+
+./src/blocks/FeatureBento/Panels/index.tsx
+107:19  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+117:19  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+127:19  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/blocks/Hero/Section2/index.tsx
+68:15  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/blocks/HoverHighlights/Component.tsx
+30:51  Warning: 'mediaTop' is defined but never used. Allowed unused args must match /^_/u.  @typescript-eslint/no-unused-vars
+30:61  Warning: 'mediaBottom' is defined but never used. Allowed unused args must match /^_/u.  @typescript-eslint/no-unused-vars
+
+./src/blocks/Integrations/Tiles/index.tsx
+9:10  Warning: 'DotPattern' is defined but never used. Allowed unused vars must match /^_/u.  @typescript-eslint/no-unused-vars
+
+./src/blocks/MediaCards/Component.tsx
+89:50  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/blocks/ParallaxShowcase/Slide.tsx
+57:9  Warning: 'bgMouseY' is assigned a value but never used. Allowed unused vars must match /^_/u.  @typescript-eslint/no-unused-vars
+59:9  Warning: 'fgMouseY' is assigned a value but never used. Allowed unused vars must match /^_/u.  @typescript-eslint/no-unused-vars
+203:38  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/collections/Posts/hooks/populateAuthors.ts
+8:71  Warning: 'req' is defined but never used. Allowed unused args must match /^_/u.  @typescript-eslint/no-unused-vars
+
+./src/components/ArticleCard/index.tsx
+1:41  Warning: 'ArticleGridBlockProps' is defined but never used. Allowed unused vars must match /^_/u.  @typescript-eslint/no-unused-vars
+2:8  Warning: 'configPromise' is defined but never used. Allowed unused vars must match /^_/u.  @typescript-eslint/no-unused-vars
+3:10  Warning: 'getPayload' is defined but never used. Allowed unused vars must match /^_/u.  @typescript-eslint/no-unused-vars
+
+./src/components/RelatedPosts/index.tsx
+4:10  Warning: 'ArticleCard' is defined but never used. Allowed unused vars must match /^_/u.  @typescript-eslint/no-unused-vars
+
+./src/components/ui/aceternity-parallax-carousel.tsx
+93:11  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/components/ui/apple-cards-carousel.tsx
+16:8  Warning: 'Image' is defined but never used. Allowed unused vars must match /^_/u.  @typescript-eslint/no-unused-vars
+166:24  Warning: 'currentIndex' is assigned a value but never used. Allowed unused vars must match /^_/u.  @typescript-eslint/no-unused-vars
+183:6  Warning: React Hook useEffect has a missing dependency: 'handleClose'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+279:5  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/components/ui/dot-pattern.tsx
+67:5  Warning: 'x' is assigned a value but never used. Allowed unused args must match /^_/u.  @typescript-eslint/no-unused-vars
+68:5  Warning: 'y' is assigned a value but never used. Allowed unused args must match /^_/u.  @typescript-eslint/no-unused-vars
+127:29  Warning: 'index' is defined but never used. Allowed unused args must match /^_/u.  @typescript-eslint/no-unused-vars
+
+./src/endpoints/seed/index.ts
+24:7  Warning: 'globals' is assigned a value but never used. Allowed unused vars must match /^_/u.  @typescript-eslint/no-unused-vars
+
+./src/migrations/20260225_054934.ts
+3:32  Warning: 'payload' is defined but never used. Allowed unused args must match /^_/u.  @typescript-eslint/no-unused-vars
+3:41  Warning: 'req' is defined but never used. Allowed unused args must match /^_/u.  @typescript-eslint/no-unused-vars
+1866:34  Warning: 'payload' is defined but never used. Allowed unused args must match /^_/u.  @typescript-eslint/no-unused-vars
+1866:43  Warning: 'req' is defined but never used. Allowed unused args must match /^_/u.  @typescript-eslint/no-unused-vars
+
+./src/migrations/20260225_102735.ts
+3:32  Warning: 'payload' is defined but never used. Allowed unused args must match /^_/u.  @typescript-eslint/no-unused-vars
+3:41  Warning: 'req' is defined but never used. Allowed unused args must match /^_/u.  @typescript-eslint/no-unused-vars
+124:34  Warning: 'payload' is defined but never used. Allowed unused args must match /^_/u.  @typescript-eslint/no-unused-vars
+124:43  Warning: 'req' is defined but never used. Allowed unused args must match /^_/u.  @typescript-eslint/no-unused-vars
+
+./src/providers/Theme/index.tsx
+8:10  Warning: 'defaultTheme' is defined but never used. Allowed unused vars must match /^_/u.  @typescript-eslint/no-unused-vars
+9:10  Warning: 'themeIsValid' is defined but never used. Allowed unused vars must match /^_/u.  @typescript-eslint/no-unused-vars
+
+./src/scripts/seed-products.ts
+185:3  Warning: Unused eslint-disable directive (no problems were reported from 'no-constant-condition').
+328:90  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+538:80  Warning: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules
+   Collecting page data ...
+   Generating static pages (0/170) ...
+Error occurred prerendering page "/showcase". Read more: https://nextjs.org/docs/messages/prerender-error
+Error: Failed query: select "pages"."id", "pages"."title", "pages"."hero_type", "pages"."hero_badge_label", "pages"."hero_rich_text", "pages"."hero_media_preview_id", "pages"."hero_background_video_id", "pages"."hero_background_image_id", "pages"."meta_title", "pages"."meta_image_id", "pages"."meta_description", "pages"."published_at", "pages"."generate_slug", "pages"."slug", "pages"."updated_at", "pages"."created_at", "pages"."_status", "pages_hero_links"."data" as "hero_links", "pages__blocks_cta"."data" as "_blocks_cta", "pages__blocks_content"."data" as "_blocks_content", "pages__blocks_mediaBlock"."data" as "_blocks_mediaBlock", "pages__blocks_archive"."data" as "_blocks_archive", "pages__blocks_formBlock"."data" as "_blocks_formBlock", "pages__blocks_logoCloud"."data" as "_blocks_logoCloud", "pages__blocks_featureCards"."data" as "_blocks_featureCards", "pages__blocks_featureShowcase"."data" as "_blocks_featureShowcase", "pages__blocks_featureBento"."data" as "_blocks_featureBento", "pages__blocks_integrations"."data" as "_blocks_integrations", "pages__blocks_contentSection"."data" as "_blocks_contentSection", "pages__blocks_stats"."data" as "_blocks_stats", "pages__blocks_testimonials"."data" as "_blocks_testimonials", "pages__blocks_hoverHighlights"."data" as "_blocks_hoverHighlights", "pages__blocks_caseStudiesHighlight"."data" as "_blocks_caseStudiesHighlight", "pages__blocks_articleGrid"."data" as "_blocks_articleGrid", "pages__blocks_mediaCards"."data" as "_blocks_mediaCards", "pages__blocks_youtube"."data" as "_blocks_youtube", "pages__blocks_parallaxShowcase"."data" as "_blocks_parallaxShowcase", "pages__blocks_gallery"."data" as "_blocks_gallery", "pages__blocks_faq"."data" as "_blocks_faq", "pages__blocks_productHero"."data" as "_blocks_productHero", "pages__blocks_productListing"."data" as "_blocks_productListing", "pages__rels"."data" as "_rels" from "pages" "pages" left join lateral (select coalesce(json_agg(json_build_array("pages_hero_links"."_order", "pages_hero_links"."id", "pages_hero_links"."link_type", "pages_hero_links"."link_new_tab", "pages_hero_links"."link_url", "pages_hero_links"."link_label", "pages_hero_links"."link_appearance") order by "pages_hero_links"."_order" asc), '[]'::json) as "data" from (select * from "pages_hero_links" "pages_hero_links" where "pages_hero_links"."_parent_id" = "pages"."id" order by "pages_hero_links"."_order" asc) "pages_hero_links") "pages_hero_links" on true left join lateral (select coalesce(json_agg(json_build_array("pages__blocks_cta"."_order", "pages__blocks_cta"."_path", "pages__blocks_cta"."id", "pages__blocks_cta"."rich_text", "pages__blocks_cta"."block_name", "pages__blocks_cta_links"."data") order by "pages__blocks_cta"."_order" asc), '[]'::json) as "data" from (select * from "pages_blocks_cta" "pages__blocks_cta" where "pages__blocks_cta"."_parent_id" = "pages"."id" order by "pages__blocks_cta"."_order" asc) "pages__blocks_cta" left join lateral (select coalesce(json_agg(json_build_array("pages__blocks_cta_links"."_order", "pages__blocks_cta_links"."id", "pages__blocks_cta_links"."link_type", "pages__blocks_cta_links"."link_new_tab", "pages__blocks_cta_links"."link_url", "pages__blocks_cta_links"."link_label", "pages__blocks_cta_links"."link_appearance") order by "pages__blocks_cta_links"."_order" asc), '[]'::json) as "data" from (select * from "pages_blocks_cta_links" "pages__blocks_cta_links" where "pages__blocks_cta_links"."_parent_id" = "pages__blocks_cta"."id" order by "pages__blocks_cta_links"."_order" asc) "pages__blocks_cta_links") "pages__blocks_cta_links" on true) "pages__blocks_cta" on true left join lateral (select coalesce(json_agg(json_build_array("pages__blocks_content"."_order", "pages__blocks_content"."_path", "pages__blocks_content"."id", "pages__blocks_content"."block_name", "pages__blocks_content_columns"."data") order by "pages__blocks_content"."_order" asc), '[]'::json) as "data" from (select * from "pages_blocks_content" "pages__blocks_content" where "pages__blocks_content"."_parent_id" = "pages"."id" order by "pages__blocks_content"."_order" asc) "pages__blocks_content" left join lateral (select coalesce(json_agg(json_build_array("pages__blocks_content_columns"."_order", "pages__blocks_content_columns"."id", "pages__blocks_content_columns"."size", "pages__blocks_content_columns"."rich_text", "pages__blocks_content_columns"."enable_link", "pages__blocks_content_columns"."link_type", "pages__blocks_content_columns"."link_new_tab", "pages__blocks_content_columns"."link_url", "pages__blocks_content_columns"."link_label", "pages__blocks_content_columns"."link_appearance") order by "pages__blocks_content_columns"."_order" asc), '[]'::json) as "data" from (select * from "pages_blocks_content_columns" "pages__blocks_content_columns" where "pages__blocks_content_columns"."_parent_id" = "pages__blocks_content"."id" order by "pages__blocks_content_columns"."_order" asc) "pages__blocks_content_columns") "pages__blocks_content_columns" on true) "pages__blocks_content" on true left join lateral (select coalesce(json_agg(json_build_array("pages__blocks_mediaBlock"."_order", "pages__blocks_mediaBlock"."_path", "pages__blocks_mediaBlock"."id", "pages__blocks_mediaBlock"."media_id", "pages__blocks_mediaBlock"."block_name") order by "pages__blocks_mediaBlock"."_order" asc), '[]'::json) as "data" from (select * from "pages_blocks_media_block" "pages__blocks_mediaBlock" where "pages__blocks_mediaBlock"."_parent_id" = "pages"."id" order by "pages__blocks_mediaBlock"."_order" asc) "pages__blocks_mediaBlock") "pages__blocks_mediaBlock" on true left join lateral (select coalesce(json_agg(json_build_array("pages__blocks_archive"."_order", "pages__blocks_archive"."_path", "pages__blocks_archive"."id", "pages__blocks_archive"."intro_content", "pages__blocks_archive"."populate_by", "pages__blocks_archive"."relation_to", "pages__blocks_archive"."limit", "pages__blocks_archive"."block_name") order by "pages__blocks_archive"."_order" asc), '[]'::json) as "data" from (select * from "pages_blocks_archive" "pages__blocks_archive" where "pages__blocks_archive"."_parent_id" = "pages"."id" order by "pages__blocks_archive"."_order" asc) "pages__blocks_archive") "pages__blocks_archive" on true left join lateral (select coalesce(json_agg(json_build_array("pages__blocks_formBlock"."_order", "pages__blocks_formBlock"."_path", "pages__blocks_formBlock"."id", "pages__blocks_formBlock"."form_id", "pages__blocks_formBlock"."enable_intro", "pages__blocks_formBlock"."intro_content", "pages__blocks_formBlock"."block_name") order by "pages__blocks_formBlock"."_order" asc), '[]'::json) as "data" from (select * from "pages_blocks_form_block" "pages__blocks_formBlock" where "pages__blocks_formBlock"."_parent_id" = "pages"."id" order by "pages__blocks_formBlock"."_order" asc) "pages__blocks_formBlock") "pages__blocks_formBlock" on true left join lateral (select coalesce(json_agg(json_build_array("pages__blocks_logoCloud"."_order", "pages__blocks_logoCloud"."_path", "pages__blocks_logoCloud"."id", "pages__blocks_logoCloud"."type", "pages__blocks_logoCloud"."heading", "pages__blocks_logoCloud"."block_name", "pages__blocks_logoCloud_logos"."data") order by "pages__blocks_logoCloud"."_order" asc), '[]'::json) as "data" from (select * from "pages_blocks_logo_cloud" "pages__blocks_logoCloud" where "pages__blocks_logoCloud"."_parent_id" = "pages"."id" order by "pages__blocks_logoCloud"."_order" asc) "pages__blocks_logoCloud" left join lateral (select coalesce(json_agg(json_build_array("pages__blocks_logoCloud_logos"."_order", "pages__blocks_logoCloud_logos"."id", "pages__blocks_logoCloud_logos"."logo_id") order by "pages__blocks_logoCloud_logos"."_order" asc), '[]'::json) as "data" from (select * from "pages_blocks_logo_cloud_logos" "pages__blocks_logoCloud_logos" where "pages__blocks_logoCloud_logos"."_parent_id" = "pages__blocks_logoCloud"."id" order by "pages__blocks_logoCloud_logos"."_order" asc) "pages__blocks_logoCloud_logos") "pages__blocks_logoCloud_logos" on true) "pages__blocks_logoClou ⨯ Next.js build worker exited with code: 1 and signal: null

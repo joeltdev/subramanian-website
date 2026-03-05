@@ -29,7 +29,7 @@ export const PerspectiveFeatureShowcase: React.FC<FeatureShowcaseBlock> = ({
   const hasImages = imageForeground || imageDark || imageLight
 
   return (
-    <section ref={sectionRef} className="relative md:py-16 md:space-y-8 overflow-hidden bg-slate-100 dark:bg-slate-900">
+    <section ref={sectionRef} className="relative md:py-24 md:space-y-8 overflow-hidden bg-slate-100 dark:bg-slate-900">
       <div className="mx-auto w-full max-w-7xl space-y-8 px-6 md:space-y-12">
         <motion.div
           className="relative z-10"
@@ -37,7 +37,7 @@ export const PerspectiveFeatureShowcase: React.FC<FeatureShowcaseBlock> = ({
           animate={isInView ? { opacity: 1, y: 0 } : undefined}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
         >
-          {intro && <RichText data={intro} enableGutter={false} className="flex gap-8 [&_h2]:flex-1 [&_h3]:flex-1 [&_p]:flex-1 [&_h2]:type-title-xl [&_h2]:text-type-heading [&_h2]:mb-0 [&_h3]:type-headline-3 [&_h3]:text-type-heading [&_h3]:mb-0 [&_p]:text-type-body [&_p]:type-body-lg [&_p]:leading-snug" />}
+          {intro && <RichText data={intro} enableGutter={false} className="flex gap-8 [&_h2]:flex-1 [&_h3]:flex-1 [&_p]:flex-1 [&_h2]:type-heading-2 [&_h2]:font-medium [&_h2]:text-type-heading [&_h2]:mb-0 [&_h3]:type-headline-3 [&_h3]:text-type-heading [&_h3]:mb-0 [&_p]:text-type-body [&_p]:type-body-lg [&_p]:leading-snug" />}
         </motion.div>
       </div>
 

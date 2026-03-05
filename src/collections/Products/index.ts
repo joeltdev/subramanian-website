@@ -18,6 +18,19 @@ import {
   OverviewField,
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
+import { CallToAction } from '../../blocks/CallToAction/config'
+import { Content } from '../../blocks/Content/config'
+import { MediaBlock } from '../../blocks/MediaBlock/config'
+import { LogoCloud } from '../../blocks/LogoCloud/config'
+import { FeatureCards } from '../../blocks/FeatureCards/config'
+import { FeatureShowcase } from '../../blocks/FeatureShowcase/config'
+import { ContentSection } from '../../blocks/ContentSection/config'
+import { Stats } from '../../blocks/Stats/config'
+import { Testimonials } from '../../blocks/Testimonials/config'
+import { ArticleGrid } from '../../blocks/ArticleGrid/config'
+import { YouTube } from '../../blocks/YouTube/config'
+import { Gallery } from '../../blocks/Gallery/config'
+import { ProductListing } from '../../blocks/ProductListing/config'
 
 export const Products: CollectionConfig = {
   slug: 'products',
@@ -252,6 +265,31 @@ export const Products: CollectionConfig = {
         position: 'sidebar',
         description: 'Purchase URL',
       },
+    },
+    {
+      name: 'layout',
+      type: 'blocks',
+      label: 'Additional Content',
+      admin: {
+        description:
+          'Optional marketing content shown below the product detail (hero + tabs). For featured products only.',
+        initCollapsed: true,
+      },
+      blocks: [
+        CallToAction,
+        Content,
+        MediaBlock,
+        LogoCloud,
+        FeatureCards,
+        FeatureShowcase,
+        ContentSection,
+        Stats,
+        Testimonials,
+        ArticleGrid,
+        YouTube,
+        Gallery,
+        ProductListing,
+      ],
     },
   ],
 }
