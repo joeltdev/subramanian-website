@@ -552,10 +552,13 @@ async function seedProducts(
 
 // ── Main ──────────────────────────────────────────────────────────────────────
 
-async function main() {
-  const payload = await getPayload({ config })
-
-  const wipe = process.argv.includes('--wipe')
+export const seed = async ({
+  payload,
+  wipe = false,
+}: {
+  payload: Payload
+  wipe?: boolean
+}): Promise<void> => {
   payload.logger.info(`=== Product migration starting${wipe ? ' (WIPE MODE)' : ''} ===`)
 
   if (wipe) {
@@ -571,7 +574,7 @@ async function main() {
 
   payload.logger.info(`Parsed: ${catRows.length} categories, ${tagRows.length} tags, ${productRows.length} products`)
 
-  const mediaMap = new Map<number, number | string>()  // oldUploadId → newMediaId
+  const mediaMap = new Map<number, number | string>() // oldUploadId → newMediaId
   const failedImages: string[] = []
   const failedProducts: string[] = []
 
@@ -592,8 +595,13 @@ async function main() {
 
   // Phase 7: Seed products
   payload.logger.info('--- Seeding products ---')
-  const { created: createdProducts, skipped: skippedProducts } =
-    await seedProducts(payload, productRows, catMap, mediaMap, failedProducts)
+  const { created: createdProducts, skipped: skippedProducts } = await seedProducts(
+    payload,
+    productRows,
+    catMap,
+    mediaMap,
+    failedProducts,
+  )
 
   // ── Summary ──────────────────────────────────────────────────────────────────
   payload.logger.info('')
@@ -602,7 +610,9 @@ async function main() {
   payload.logger.info('════════════════════════════════')
   payload.logger.info(`  Categories : ${catMap.size}/${catRows.length}`)
   payload.logger.info(`  Tags       : ${tagMap.size}/${tagRows.length}`)
-  payload.logger.info(`  Products   : ${createdProducts} created, ${skippedProducts} skipped, ${failedProducts.length} failed`)
+  payload.logger.info(
+    `  Products   : ${createdProducts} created, ${skippedProducts} skipped, ${failedProducts.length} failed`,
+  )
   payload.logger.info(`  Images     : ${mediaMap.size} uploaded, ${failedImages.length} failed`)
   if (failedProducts.length > 0) {
     payload.logger.info('  Failed products:')
@@ -613,8 +623,22 @@ async function main() {
     for (const img of failedImages) payload.logger.info(`    - ${img}`)
   }
   payload.logger.info('════════════════════════════════')
+}
 
+async function main() {
+  const payload = await getPayload({ config })
+  const wipe = process.argv.includes('--wipe')
+  await seed({ payload, wipe })
   process.exit(0)
 }
 
-await main().catch(err => { console.error(err); process.exit(1) })
+// Only run main if this file is executed directly
+if (import.meta.url.startsWith('file:')) {
+  const modulePath = resolve(process.cwd(), 'src/scripts/seed-products.ts')
+  if (process.argv[1] === modulePath || process.argv[1].endsWith('seed-products.ts')) {
+    await main().catch((err) => {
+      console.error(err)
+      process.exit(1)
+    })
+  }
+}

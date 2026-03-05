@@ -16,29 +16,27 @@ export const FormBlock: Block = {
       type: 'relationship',
       relationTo: 'forms',
       required: true,
-    },
-    {
-      name: 'enableIntro',
-      type: 'checkbox',
-      label: 'Enable Intro Content',
-    },
-    {
-      name: 'introContent',
-      type: 'richText',
       admin: {
-        condition: (_, { enableIntro }) => Boolean(enableIntro),
+        description: 'Select the form to display in this block.',
+      },
+    },
+    {
+      name: 'intro',
+      type: 'richText',
+      label: 'Intro',
+      admin: {
+        description: 'Optional heading and supporting text shown above the form.',
       },
       editor: lexicalEditor({
         features: ({ rootFeatures }) => {
           return [
             ...rootFeatures,
-            HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
+            HeadingFeature({ enabledHeadingSizes: ['h2', 'h3'] }),
             FixedToolbarFeature(),
             InlineToolbarFeature(),
           ]
         },
       }),
-      label: 'Intro Content',
     },
   ],
   graphQL: {

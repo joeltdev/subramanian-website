@@ -11,12 +11,13 @@ import type { DefaultTypedEditorState } from '@payloadcms/richtext-lexical'
 import { fields } from './fields'
 import { getClientSideURL } from '@/utilities/getURL'
 
+import { motion, useInView } from 'motion/react'
+
 export type FormBlockType = {
   blockName?: string
   blockType?: 'formBlock'
-  enableIntro: boolean
   form: FormType
-  introContent?: DefaultTypedEditorState
+  intro?: DefaultTypedEditorState
 }
 
 export const FormBlock: React.FC<
@@ -25,10 +26,9 @@ export const FormBlock: React.FC<
   } & FormBlockType
 > = (props) => {
   const {
-    enableIntro,
     form: formFromProps,
     form: { id: formID, confirmationMessage, confirmationType, redirect, submitButtonLabel } = {},
-    introContent,
+    intro,
   } = props
 
   const formMethods = useForm({
@@ -45,6 +45,9 @@ export const FormBlock: React.FC<
   const [hasSubmitted, setHasSubmitted] = useState<boolean>()
   const [error, setError] = useState<{ message: string; status?: string } | undefined>()
   const router = useRouter()
+
+  const ref = React.useRef(null)
+  const isInView = useInView(ref, { once: true, margin: '-100px' })
 
   const onSubmit = useCallback(
     (data: FormFieldBlock[]) => {
@@ -114,50 +117,75 @@ export const FormBlock: React.FC<
   )
 
   return (
-    <div className="container lg:max-w-[48rem]">
-      {enableIntro && introContent && !hasSubmitted && (
-        <RichText className="mb-8 lg:mb-12" data={introContent} enableGutter={false} />
-      )}
-      <div className="p-4 lg:p-6 border border-border rounded-none">
-        <FormProvider {...formMethods}>
-          {!isLoading && hasSubmitted && confirmationType === 'message' && (
-            <RichText data={confirmationMessage} />
+    <section className="py-16 md:py-24">
+      <div className="mx-auto max-w-7xl px-6 md:px-8">
+        <motion.div
+          ref={ref}
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          className="grid grid-cols-2 md:gap-x-24 w-full"
+        >
+          {intro && !hasSubmitted && (
+            <RichText
+              className="pt-16 mb-8 md:mb-12 [&_h2]:type-headline-2 [&_h2]:text-type-heading [&_h3]:type-label-lg [&_h3]:text-type-body [&_p]:type-body-xl [&_p]:text-type-secondary [&_a]:text-type-body [&_a]:hover:underline"
+              data={intro}
+              enableGutter={false}
+            />
           )}
-          {isLoading && !hasSubmitted && <p>Loading, please wait...</p>}
-          {error && <div>{`${error.status || '500'}: ${error.message || ''}`}</div>}
-          {!hasSubmitted && (
-            <form id={formID} onSubmit={handleSubmit(onSubmit)}>
-              <div className="mb-4 last:mb-0">
-                {formFromProps &&
-                  formFromProps.fields &&
-                  formFromProps.fields?.map((field, index) => {
-                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                    const Field: React.FC<any> = fields?.[field.blockType as keyof typeof fields]
-                    if (Field) {
-                      return (
-                        <div className="mb-6 last:mb-0" key={index}>
-                          <Field
-                            form={formFromProps}
-                            {...field}
-                            {...formMethods}
-                            control={control}
-                            errors={errors}
-                            register={register}
-                          />
-                        </div>
-                      )
-                    }
-                    return null
-                  })}
-              </div>
+          <div className="bg-background px-6 py-8 md:px-12 md:py-16">
+            <FormProvider {...formMethods}>
+              {!isLoading && hasSubmitted && confirmationType === 'message' && (
+                <RichText
+                  data={confirmationMessage}
+                  enableGutter={false}
+                  className="[&_h3]:type-headline-3 [&_h3]:text-type-heading [&_p]:type-body-lg [&_p]:text-type-body"
+                />
+              )}
+              {isLoading && !hasSubmitted && (
+                <p className="type-body-md text-type-secondary animate-pulse">
+                  Loading, please wait...
+                </p>
+              )}
+              {error && (
+                <div className="p-4 bg-destructive/10 text-destructive type-body-sm border border-destructive/20 mb-6">
+                  {`${error.status || '500'}: ${error.message || ''}`}
+                </div>
+              )}
+              {!hasSubmitted && (
+                <form id={formID} onSubmit={handleSubmit(onSubmit)}>
+                  <div className="mb-8 md:mb-12 last:mb-0">
+                    {formFromProps &&
+                      formFromProps.fields &&
+                      formFromProps.fields?.map((field, index) => {
+                        const Field: React.FC<any> = fields?.[field.blockType as keyof typeof fields]
+                        if (Field) {
+                          return (
+                            <div className="mb-6 last:mb-0" key={index}>
+                              <Field
+                                form={formFromProps}
+                                {...field}
+                                {...formMethods}
+                                control={control}
+                                errors={errors}
+                                register={register}
+                              />
+                            </div>
+                          )
+                        }
+                        return null
+                      })}
+                  </div>
 
-              <Button form={formID} type="submit" variant="default">
-                {submitButtonLabel}
-              </Button>
-            </form>
-          )}
-        </FormProvider>
+                  <Button form={formID} type="submit" variant="default" size="lg" className="w-full md:w-auto">
+                    {submitButtonLabel}
+                  </Button>
+                </form>
+              )}
+            </FormProvider>
+          </div>
+        </motion.div>
       </div>
-    </div>
+    </section>
   )
 }

@@ -6,7 +6,7 @@ import { cn } from "@/utilities/ui"
 
 const buttonVariants = cva(
   // Base: layout, typography, interactivity, svg handling
-  "cursor-pointer inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-none text-base font-medium transition-[color,background-color,box-shadow,transform,opacity] duration-200 ease-out focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 active:scale-[0.98] [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:drop-shadow-sm [&_svg]:transition-transform [&_svg]:duration-200 [&_svg]:ease-out",
+  "cursor-pointer inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg shadow text-base font-normal transition-[color,background-color,box-shadow,transform,opacity] duration-200 ease-out focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 active:scale-[0.98] [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:drop-shadow-sm [&_svg]:transition-transform [&_svg]:duration-200 [&_svg]:ease-out",
   {
     variants: {
       variant: {

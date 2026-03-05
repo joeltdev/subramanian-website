@@ -19,7 +19,7 @@ export const MediaCardsBlock: React.FC<MediaCardsBlockType> = ({ backgroundMedia
             className="absolute inset-0 -inset-y-20"
             videoClassName="absolute inset-0 w-full h-full object-cover"
           />
-          <div className="w-full h-3/4 absolute -z-10 inset-0  bg-linear-to-b from-white to-transparent pointer-events-none" />
+          <div className="w-full h-3/4 absolute z-0 inset-0  bg-linear-to-b from-white to-transparent pointer-events-none" />
         </div>
       )}
       <div className="mx-auto max-w-7xl px-6 z-0 relative">
@@ -29,7 +29,7 @@ export const MediaCardsBlock: React.FC<MediaCardsBlockType> = ({ backgroundMedia
               <RichText
                 data={intro}
                 enableGutter={false}
-                className="[&_h2]:type-headline-1 [&_h2]:text-foreground [&_h2]:leading-[1.1] [&_h2]:mb-6 [&_h3]:type-headline-3 [&_h3]:text-foreground [&_h3]:leading-tight [&_h3]:mb-4 [&_p]:text-foreground [&_p]:type-body-xl [&_p]:leading-snug"
+                className="[&_h2]:type-headline-1 [&_h2]:text-foreground [&_h2]:leading-[1.1] [&_h2]:mb-6 [&_h3]:type-headline-3 [&_h3]:text-foreground [&_h3]:leading-tight [&_h3]:mb-4 [&_p]:text-foreground [&_p]:type-body-xl [&_p]:leading-snug drop-shadow-md"
               />
             </>
           )}
@@ -59,14 +59,12 @@ export const MediaCardsBlock: React.FC<MediaCardsBlockType> = ({ backgroundMedia
                     <div className="absolute inset-0 bg-gradient-to-br from-border to-muted" />
                   )}
 
-                  <div className="absolute z-10 bottom-4 right-4 opacity-90 transition-all duration-300 ease-out group-hover:opacity-100">
-                    <ChevronRight className="size-8 text-background" />
-                  </div>
+
                   {/* Bottom gradient */}
-                  <div className="absolute inset-x-0 top-0 h-2/3 bg-gradient-to-b from-black/90 to-transparent transition-opacity duration-300 group-hover:opacity-100 group-hover:from-black" />
+                  <div className="absolute inset-x-0 bottom-0 h-2/3 bg-linear-to-t from-black/90 to-transparent transition-opacity duration-300 group-hover:opacity-100 group-hover:from-black" />
 
                   {/* Bottom: text */}
-                  <div className="absolute inset-x-0 top-6 flex items-end justify-between gap-3 p-4">
+                  <div className="flex items-end justify-between gap-3 px-4 py-8 z-0">
                     {richText && (
                       <RichText
                         data={richText}
@@ -78,7 +76,7 @@ export const MediaCardsBlock: React.FC<MediaCardsBlockType> = ({ backgroundMedia
                 </>
               )
 
-              const cardClassName = "group border-4 border-background shadow-md relative min-h-[580px] overflow-hidden rounded-2xl bg-muted inline-block"
+              const cardClassName = "group border-4 border-background shadow-md relative min-h-[580px] overflow-hidden rounded-2xl bg-muted inline-flex flex-col justify-end"
 
               if (hasLink) {
                 return (

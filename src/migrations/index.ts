@@ -126,11 +126,6 @@ export const migrations = [
     name: '20260304_add_parallax_showcase_block',
   },
   {
-    up: migration_20260305_173436.up,
-    down: migration_20260305_173436.down,
-    name: '20260305_173436',
-  },
-  {
     up: migration_20260305_add_faq_block.up,
     down: migration_20260305_add_faq_block.down,
     name: '20260305_add_faq_block',
@@ -149,5 +144,10 @@ export const migrations = [
     up: migration_20260305_consolidate_link_enums.up,
     down: migration_20260305_consolidate_link_enums.down,
     name: '20260305_consolidate_link_enums'
+  },
+  {
+    up: migration_20260305_173436.up,
+    down: migration_20260305_173436.down,
+    name: '20260305_173436',
   },
 ];

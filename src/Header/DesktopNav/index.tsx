@@ -77,10 +77,7 @@ export function DesktopNav({ data }: { data: Header }) {
                 appearance="inline"
                 className={cn(
                   'relative px-4 py-2.5 type-body-md font-medium transition-colors duration-200',
-                  'text-foreground hover:text-primary',
-                  'after:absolute after:bottom-1.5 after:inset-x-4 after:h-px after:bg-primary',
-                  'after:origin-left after:scale-x-0 hover:after:scale-x-100',
-                  'after:transition-transform after:duration-300',
+                  'text-foreground hover:text-brand-600 hover:bg-muted rounded-xl',
                 )}
               />
             )
@@ -102,7 +99,7 @@ export function DesktopNav({ data }: { data: Header }) {
             >
               <button
                 className={cn(
-                  'relative flex items-center gap-1.5 px-4 py-2.5 type-body-md font-medium transition-colors duration-200',
+                  'relative flex items-center gap-1.5 px-4 py-2.5 type-body-md font-medium transition-colors duration-200 hover:text-brand-600 hover:bg-muted rounded-md',
                   isActive ? 'text-primary hover:text-primary' : 'text-foreground hover:text-primary',
                 )}
               >
