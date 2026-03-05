@@ -40,14 +40,14 @@ export const ArticleGridBlock: React.FC<ArticleGridBlockProps & { id?: string }>
   }
 
   return (
-    <section className="bg-accent py-4 md:py-24" id={`block-${id}`}>
-      <div className="mx-auto max-w-7xl px-6">
+    <section className="py-16 md:py-24" id={`block-${id}`}>
+      <div className="mx-auto max-w-7xl px-6 md:px-8">
         {intro && (
-          <div className="mb-12 max-w-2xl">
+          <div className="mb-12 md:mb-16">
             <RichText
               data={intro}
               enableGutter={false}
-              className="[&_h2]:type-headline-2 [&_h2]:text-foreground [&_h2]:mb-3 [&_h3]:type-headline-4 [&_h3]:text-foreground [&_h3]:mb-3 [&_p]:text-muted-foreground [&_p]:type-body-lg"
+              className="[&_h2]:type-headline-1 [&_h2]:text-type-heading [&_p]:type-body-xl [&_p]:text-type-secondary"
             />
           </div>
         )}

@@ -37,23 +37,25 @@ export const ScrollableGallery: React.FC<GalleryBlock> = ({ intro, cta, galleryI
 
   return (
     <section className="py-16 md:py-24">
-      <div className="container mx-auto max-w-7xl px-6">
+      <div className="mx-auto max-w-7xl px-6 md:px-8">
         <div className="mb-8 flex flex-col justify-between md:mb-14 md:flex-row md:items-end lg:mb-16">
-          <div>
+          <div className="max-w-3xl">
             {intro && (
               <RichText
                 data={intro}
                 enableGutter={false}
-                className="[&_h2]:type-headline-1 [&_h2]:text-type-body [&_h2]:mb-3 [&_h3]:type-headline-2 [&_h3]:text-type-body [&_h3]:mb-3"
+                className="[&_h2]:type-headline-1 [&_h2]:text-type-heading [&_p]:type-body-xl [&_p]:text-type-secondary"
               />
             )}
             {ctaLink && (
-              <CMSLink
-                {...ctaLink}
-                className="group flex items-center gap-1 text-sm font-medium md:text-base lg:text-lg"
-              >
-                <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
-              </CMSLink>
+              <div className="mt-6">
+                <CMSLink
+                  {...ctaLink}
+                  className="group flex items-center gap-1 text-sm font-medium md:text-base lg:text-lg"
+                >
+                  <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+                </CMSLink>
+              </div>
             )}
           </div>
           <div className="mt-8 flex shrink-0 items-center justify-start gap-2">
@@ -62,7 +64,7 @@ export const ScrollableGallery: React.FC<GalleryBlock> = ({ intro, cta, galleryI
               variant="outline"
               onClick={() => carouselApi?.scrollPrev()}
               disabled={!canScrollPrev}
-              className="disabled:pointer-events-auto"
+              className="disabled:pointer-events-auto rounded-none"
             >
               <ArrowLeft className="size-5" />
             </Button>
@@ -71,7 +73,7 @@ export const ScrollableGallery: React.FC<GalleryBlock> = ({ intro, cta, galleryI
               variant="outline"
               onClick={() => carouselApi?.scrollNext()}
               disabled={!canScrollNext}
-              className="disabled:pointer-events-auto"
+              className="disabled:pointer-events-auto rounded-none"
             >
               <ArrowRight className="size-5" />
             </Button>
@@ -99,7 +101,7 @@ export const ScrollableGallery: React.FC<GalleryBlock> = ({ intro, cta, galleryI
                     className="group flex flex-col justify-between"
                   >
                     {typeof image === 'object' && image && (
-                      <div className="relative aspect-3/2 overflow-hidden rounded-xl">
+                      <div className="relative aspect-3/2 overflow-hidden rounded-none">
                         <Media
                           fill
                           resource={image}
@@ -110,17 +112,17 @@ export const ScrollableGallery: React.FC<GalleryBlock> = ({ intro, cta, galleryI
                       </div>
                     )}
                     {richText && (
-                      <div className="pt-4">
+                      <div className="pt-6">
                         <RichText
                           data={richText}
                           enableGutter={false}
-                          className="[&_h3]:mb-2 [&_h3]:text-lg [&_h3]:font-medium [&_h4]:mb-2 [&_h4]:text-lg [&_h4]:font-medium [&_p]:mb-8 [&_p]:line-clamp-2 [&_p]:text-sm [&_p]:text-muted-foreground md:[&_p]:text-base"
+                          className="[&_h3]:type-title-lg [&_h3]:text-type-heading [&_h3]:mb-2 [&_p]:type-body-sm [&_p]:text-type-secondary [&_p]:line-clamp-2 md:[&_p]:type-body-md"
                         />
                       </div>
                     )}
-                    <div className="flex items-center text-sm font-medium">
+                    <div className="flex items-center type-label-md mt-4 text-primary group-hover:text-type-heading transition-colors">
                       Read more
-                      <ArrowRight className="ml-2 size-5 transition-transform group-hover:translate-x-1" />
+                      <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
                     </div>
                   </CMSLink>
                 </CarouselItem>

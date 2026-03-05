@@ -708,14 +708,14 @@ export function showcasePageData(
       {
         blockType: 'archive',
         blockName: 'Knowledge Base',
-        introContent: richTextHeadingParagraph(
+        intro: richTextHeadingParagraph(
           'From the iNELS Knowledge Base',
           'Technical guides, case studies, and product documentation.',
           'h3',
         ),
         populateBy: 'collection',
         relationTo: 'posts',
-        categories: [],
+        limit: 4,
       },
 
       // ── Block 21: content (3 columns) ─────────────────────────────────────

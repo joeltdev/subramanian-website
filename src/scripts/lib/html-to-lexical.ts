@@ -1,11 +1,16 @@
 // src/scripts/lib/html-to-lexical.ts
-import { JSDOM } from 'jsdom'
+import { parse, HTMLElement, Node, NodeType } from 'node-html-parser'
 
 // ── Lexical node types ──────────────────────────────────────────────────────
 
 type TextNode = {
-  type: 'text'; text: string; format: number
-  detail: number; mode: string; style: string; version: 1
+  type: 'text'
+  text: string
+  format: number
+  detail: number
+  mode: string
+  style: string
+  version: 1
 }
 
 type LinebreakNode = { type: 'linebreak'; version: 1 }
@@ -13,39 +18,66 @@ type LinebreakNode = { type: 'linebreak'; version: 1 }
 type InlineNode = TextNode | LinebreakNode | LinkNode
 
 type LinkNode = {
-  type: 'link'; version: 2
+  type: 'link'
+  version: 2
   fields: { linkType: 'custom'; url: string; newTab: boolean }
   children: TextNode[]
-  direction: 'ltr'; format: string; indent: number
+  direction: 'ltr'
+  format: string
+  indent: number
 }
 
 type ParagraphNode = {
-  type: 'paragraph'; children: InlineNode[]
-  direction: 'ltr'; format: string; indent: number; version: 1
+  type: 'paragraph'
+  children: InlineNode[]
+  direction: 'ltr'
+  format: string
+  indent: number
+  version: 1
 }
 
 type HeadingNode = {
-  type: 'heading'; tag: 'h2' | 'h3' | 'h4'; children: InlineNode[]
-  direction: 'ltr'; format: string; indent: number; version: 1
+  type: 'heading'
+  tag: 'h2' | 'h3' | 'h4'
+  children: InlineNode[]
+  direction: 'ltr'
+  format: string
+  indent: number
+  version: 1
 }
 
 type ListitemNode = {
-  type: 'listitem'; value: number; children: InlineNode[]
-  direction: 'ltr'; format: string; indent: number; version: 1
+  type: 'listitem'
+  value: number
+  children: InlineNode[]
+  direction: 'ltr'
+  format: string
+  indent: number
+  version: 1
 }
 
 type ListNode = {
-  type: 'list'; listType: 'bullet' | 'number'; tag: 'ul' | 'ol'
-  start: number; children: ListitemNode[]
-  direction: 'ltr'; format: string; indent: number; version: 1
+  type: 'list'
+  listType: 'bullet' | 'number'
+  tag: 'ul' | 'ol'
+  start: number
+  children: ListitemNode[]
+  direction: 'ltr'
+  format: string
+  indent: number
+  version: 1
 }
 
 type BlockNode = ParagraphNode | HeadingNode | ListNode
 
 type LexicalDocument = {
   root: {
-    type: 'root'; children: BlockNode[]
-    direction: 'ltr'; format: string; indent: number; version: 1
+    type: 'root'
+    children: BlockNode[]
+    direction: 'ltr'
+    format: string
+    indent: number
+    version: 1
   }
 }
 
@@ -63,67 +95,70 @@ function normalizeText(text: string): string {
 
 // ── Inline node extraction ───────────────────────────────────────────────────
 
-function extractInline(node: ChildNode, inheritedFormat = 0): InlineNode[] {
-  if (node.nodeType === 3 /* TEXT_NODE */) {
+function extractInline(node: Node, inheritedFormat = 0): InlineNode[] {
+  if (node.nodeType === NodeType.TEXT_NODE) {
     const text = normalizeText(node.textContent ?? '')
     if (!text) return []
     return [makeText(text, inheritedFormat)]
   }
 
-  if (node.nodeType !== 1 /* ELEMENT_NODE */) return []
+  if (node.nodeType !== NodeType.ELEMENT_NODE) return []
 
-  const el = node as Element
+  const el = node as HTMLElement
   const tag = el.tagName.toLowerCase()
 
   if (tag === 'br') return [{ type: 'linebreak', version: 1 }]
 
   if (tag === 'strong' || tag === 'b') {
-    return Array.from(el.childNodes).flatMap(c => extractInline(c, inheritedFormat | 1))
+    return el.childNodes.flatMap((c) => extractInline(c, inheritedFormat | 1))
   }
   if (tag === 'em' || tag === 'i') {
-    return Array.from(el.childNodes).flatMap(c => extractInline(c, inheritedFormat | 2))
+    return el.childNodes.flatMap((c) => extractInline(c, inheritedFormat | 2))
   }
 
   if (tag === 'a') {
     const url = el.getAttribute('href') ?? ''
-    const children = Array.from(el.childNodes)
-      .flatMap(c => extractInline(c, inheritedFormat))
+    const children = el.childNodes
+      .flatMap((c) => extractInline(c, inheritedFormat))
       .filter((n): n is TextNode => n.type === 'text')
-    return [{
-      type: 'link', version: 2,
-      fields: { linkType: 'custom', url, newTab: false },
-      children,
-      ...EMPTY_BLOCK_DEFAULTS,
-    }]
+    return [
+      {
+        type: 'link',
+        version: 2,
+        fields: { linkType: 'custom', url, newTab: false },
+        children,
+        ...EMPTY_BLOCK_DEFAULTS,
+      },
+    ]
   }
 
   // Fallthrough: recurse into children (handles <span> etc.)
-  return Array.from(el.childNodes).flatMap(c => extractInline(c, inheritedFormat))
+  return el.childNodes.flatMap((c) => extractInline(c, inheritedFormat))
 }
 
 // ── Block node extraction ────────────────────────────────────────────────────
 
-function convertElement(el: Element): BlockNode | null {
+function convertElement(el: HTMLElement): BlockNode | null {
   const tag = el.tagName.toLowerCase()
 
   if (tag === 'p') {
-    const children = Array.from(el.childNodes).flatMap(c => extractInline(c))
+    const children = el.childNodes.flatMap((c) => extractInline(c))
     if (children.length === 0) return null
     return { type: 'paragraph', children, ...EMPTY_BLOCK_DEFAULTS, version: 1 }
   }
 
   if (tag === 'h2' || tag === 'h3' || tag === 'h4') {
-    const children = Array.from(el.childNodes).flatMap(c => extractInline(c))
+    const children = el.childNodes.flatMap((c) => extractInline(c))
     return { type: 'heading', tag, children, ...EMPTY_BLOCK_DEFAULTS, version: 1 }
   }
 
   if (tag === 'ul' || tag === 'ol') {
     const listType = tag === 'ul' ? 'bullet' : 'number'
-    const items = Array.from(el.querySelectorAll(':scope > li'))
+    const items = el.querySelectorAll(':scope > li')
     const children: ListitemNode[] = items.map((li, idx) => ({
       type: 'listitem',
       value: idx + 1,
-      children: Array.from(li.childNodes).flatMap(c => extractInline(c)),
+      children: li.childNodes.flatMap((c) => extractInline(c)),
       ...EMPTY_BLOCK_DEFAULTS,
       version: 1,
     }))
@@ -136,11 +171,12 @@ function convertElement(el: Element): BlockNode | null {
 // ── Public API ───────────────────────────────────────────────────────────────
 
 export function htmlToLexical(html: string): LexicalDocument {
-  const dom = new JSDOM(`<body>${html}</body>`)
-  const body = dom.window.document.body
+  const root = parse(`<body>${html}</body>`)
+  const body = root.querySelector('body')!
 
-  const children: BlockNode[] = Array.from(body.children)
-    .map(el => convertElement(el))
+  const children: BlockNode[] = body.childNodes
+    .filter((node): node is HTMLElement => node.nodeType === NodeType.ELEMENT_NODE)
+    .map((el) => convertElement(el))
     .filter((n): n is BlockNode => n !== null)
 
   // Ensure at least one paragraph so Payload's required validation passes

@@ -38,18 +38,20 @@ export const CaseStudiesHighlightBlock: React.FC<
   })
 
   return (
-    <section className="overflow-hidden">
-      <div className="mx-auto max-w-7xl px-6 pt-16 md:pt-32">
+    <section className="overflow-hidden py-16 md:py-24">
+      <div className="mx-auto max-w-7xl px-6 md:px-8">
         {intro && (
-          <RichText
-            data={intro}
-            enableGutter={false}
-            className="[&_h2]:type-headline-1 [&_h2]:text-type-heading [&_p]:type-body-xl [&_p]:text-type-secondary"
-          />
+          <div className="mb-12 md:mb-16 max-w-3xl">
+            <RichText
+              data={intro}
+              enableGutter={false}
+              className="[&_h2]:type-headline-1 [&_h2]:text-type-heading [&_p]:type-body-xl [&_p]:text-type-secondary"
+            />
+          </div>
         )}
       </div>
 
-      <div className="pb-16 pt-8 md:pb-32">
+      <div className="pt-8">
         <div
           className="w-[150vw] -ml-[25vw]"
           style={{ transform: `translate3d(${(xPercent - 50) * -0.1}%, 0, 0)` }}
@@ -69,7 +71,7 @@ export const CaseStudiesHighlightBlock: React.FC<
                     <Link
                       href={`/case-studies/${slug}`}
                       prefetch={false}
-                      className="group relative block aspect-video overflow-hidden rounded-xl opacity-60 transition-all duration-300 ease-out hover:-translate-y-4 hover:opacity-100 hover:shadow-2xl"
+                      className="group relative block aspect-video overflow-hidden rounded-none opacity-60 transition-all duration-300 ease-out hover:-translate-y-4 hover:opacity-100 hover:shadow-2xl"
                     >
                       {typeof featuredImage === 'object' && featuredImage && (
                         <Media
