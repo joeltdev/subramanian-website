@@ -5,21 +5,21 @@ import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import { ProductHero } from '@/components/Product/ProductHero'
 
-export const ProductHeroBlock: React.FC<
-  ProductHeroBlockProps & { disableInnerContainer?: boolean }
-> = async (props) => {
+export const ProductHeroBlock: React.FC<ProductHeroBlockProps> = async (props) => {
   const { helpline, technicalSupportEmail, knowledgeBaseUrl } = props
 
   // Use populated object if available; fetch only if bare ID came through
   let product: Product | null =
-    typeof props.product === 'object' ? (props.product as Product) : null
+    typeof props.product === 'object' && props.product !== null
+      ? (props.product as Product)
+      : null
 
   if (!product) {
     const payload = await getPayload({ config: configPromise })
     product = await payload.findByID({
       collection: 'products',
       id: props.product as number,
-      depth: 2,
+      depth: 1,
     })
   }
 
