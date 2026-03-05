@@ -1,4 +1,5 @@
 import { Banner } from '@payloadcms/ui/elements/Banner'
+import Link from 'next/link'
 import React from 'react'
 
 import { SeedButton } from './SeedButton'
@@ -26,7 +27,7 @@ const BeforeDashboard: React.FC = () => {
         <li>
           <SeedProductsButton />
           {' to import products, categories, and tags without losing your existing data. Once finished, '}
-          <a href="/admin/collections/products">view your products</a>
+          <Link href="/admin/collections/products">view your products</Link>
           {'.'}
         </li>
         <li>

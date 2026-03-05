@@ -17,9 +17,8 @@ export const contact: (args: ContactArgs) => RequiredDataFromCollectionSlug<'pag
     layout: [
       {
         blockType: 'formBlock',
-        enableIntro: true,
         form: contactForm,
-        introContent: {
+        intro: {
           root: {
             type: 'root',
             children: [
