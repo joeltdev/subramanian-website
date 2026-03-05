@@ -244,6 +244,7 @@ export interface Page {
     | YouTubeBlock
     | ParallaxShowcaseBlock
     | GalleryBlock
+    | FaqBlock
   )[];
   meta?: {
     title?: string | null;
@@ -2128,6 +2129,98 @@ export interface GalleryBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FaqBlock".
+ */
+export interface FaqBlock {
+  /**
+   * Single: title, subtitle and accordion in one column. Split: title and subtitle on the left, accordion on the right.
+   */
+  variant: 'single' | 'split';
+  /**
+   * Section heading and supporting text — e.g. "Frequently Asked Questions" and a short description.
+   */
+  intro?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Optional. Add a subtitle below the intro (plain text). When a subtitle is set, you can optionally add a link with its own label (e.g. "visit our support page") that appears in blue after the subtitle.
+   */
+  supportLine?: {
+    /**
+     * Optional. Plain text shown below the intro, e.g. "You don't see what you're looking for?"
+     */
+    subtitle?: string | null;
+    /**
+     * Text shown as the blue, clickable link (e.g. "visit our support page", "customer support team").
+     */
+    linkLabel?: string | null;
+    type?: ('reference' | 'custom') | null;
+    reference?:
+      | ({
+          relationTo: 'pages';
+          value: number | Page;
+        } | null)
+      | ({
+          relationTo: 'posts';
+          value: number | Post;
+        } | null);
+    url?: string | null;
+    newTab?: boolean | null;
+  };
+  /**
+   * Group questions by category (e.g. General, Shipping). Each category has a label and a list of Q&A items.
+   */
+  groups?:
+    | {
+        /**
+         * Optional. e.g. "General", "Shipping". Leave empty to show questions without a category heading.
+         */
+        name?: string | null;
+        items?:
+          | {
+              /**
+               * The accordion trigger text
+               */
+              question: string;
+              answer?: {
+                root: {
+                  type: string;
+                  children: {
+                    type: any;
+                    version: number;
+                    [k: string]: unknown;
+                  }[];
+                  direction: ('ltr' | 'rtl') | null;
+                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                  indent: number;
+                  version: number;
+                };
+                [k: string]: unknown;
+              } | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'faq';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "product-categories".
  */
 export interface ProductCategory {
@@ -2641,6 +2734,7 @@ export interface PagesSelect<T extends boolean = true> {
         youtube?: T | YouTubeBlockSelect<T>;
         parallaxShowcase?: T | ParallaxShowcaseBlockSelect<T>;
         gallery?: T | GalleryBlockSelect<T>;
+        faq?: T | FaqBlockSelect<T>;
       };
   meta?:
     | T
@@ -3137,6 +3231,39 @@ export interface GalleryBlockSelect<T extends boolean = true> {
         category?: T;
         title?: T;
         expandedContent?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FaqBlock_select".
+ */
+export interface FaqBlockSelect<T extends boolean = true> {
+  variant?: T;
+  intro?: T;
+  supportLine?:
+    | T
+    | {
+        subtitle?: T;
+        linkLabel?: T;
+        type?: T;
+        reference?: T;
+        url?: T;
+        newTab?: T;
+      };
+  groups?:
+    | T
+    | {
+        name?: T;
+        items?:
+          | T
+          | {
+              question?: T;
+              answer?: T;
+              id?: T;
+            };
         id?: T;
       };
   id?: T;

@@ -22,6 +22,7 @@ import { MediaCardsBlock } from '@/blocks/MediaCards/Component'
 import { YouTubeBlock } from '@/blocks/YouTube/Component'
 import { ParallaxShowcaseBlockComponent } from '@/blocks/ParallaxShowcase/Component'
 import { GalleryBlock } from '@/blocks/Gallery/Component'
+import { FaqBlock } from '@/blocks/Faq/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -44,6 +45,7 @@ const blockComponents = {
   youtube: YouTubeBlock,
   parallaxShowcase: ParallaxShowcaseBlockComponent,
   gallery: GalleryBlock,
+  faq: FaqBlock,
 }
 
 export const RenderBlocks: React.FC<{
