@@ -10,6 +10,7 @@ import PageClient from './page.client'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 import { ProductHero } from '@/components/Product/ProductHero'
 import { ProductTabs } from '@/components/Product/ProductTabs'
+import { RenderProductBlocks } from '@/blocks/RenderProductBlocks'
 
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise })
@@ -53,6 +54,9 @@ export default async function ProductPage({ params: paramsPromise }: Args) {
         productVideo={product.productVideo}
         threeDModel={product.threeDModel}
       />
+      {product.layout && product.layout.length > 0 && (
+        <RenderProductBlocks blocks={product.layout} />
+      )}
     </article>
   )
 }

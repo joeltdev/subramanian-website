@@ -2388,6 +2388,25 @@ export interface Product {
    * Purchase URL
    */
   buyLink?: string | null;
+  /**
+   * Optional marketing content shown below the product detail (hero + tabs). For featured products only.
+   */
+  layout?:
+    | (
+        | CallToActionBlock
+        | ContentBlock
+        | MediaBlock
+        | LogoCloudBlock
+        | FeatureCardsBlock
+        | FeatureShowcaseBlock
+        | ContentSectionBlock
+        | StatsBlock
+        | TestimonialsBlock
+        | ArticleGridBlock
+        | YouTubeBlock
+        | GalleryBlock
+      )[]
+    | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -3522,6 +3541,22 @@ export interface ProductsSelect<T extends boolean = true> {
   price?: T;
   currency?: T;
   buyLink?: T;
+  layout?:
+    | T
+    | {
+        cta?: T | CallToActionBlockSelect<T>;
+        content?: T | ContentBlockSelect<T>;
+        mediaBlock?: T | MediaBlockSelect<T>;
+        logoCloud?: T | LogoCloudBlockSelect<T>;
+        featureCards?: T | FeatureCardsBlockSelect<T>;
+        featureShowcase?: T | FeatureShowcaseBlockSelect<T>;
+        contentSection?: T | ContentSectionBlockSelect<T>;
+        stats?: T | StatsBlockSelect<T>;
+        testimonials?: T | TestimonialsBlockSelect<T>;
+        articleGrid?: T | ArticleGridBlockSelect<T>;
+        youtube?: T | YouTubeBlockSelect<T>;
+        gallery?: T | GalleryBlockSelect<T>;
+      };
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
