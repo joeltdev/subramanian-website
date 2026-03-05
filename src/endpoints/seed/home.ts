@@ -514,7 +514,7 @@ export const home: (args: HomeArgs) => RequiredDataFromCollectionSlug<'pages'> =
         blockName: 'Archive Block',
         blockType: 'archive',
         categories: [],
-        introContent: {
+        intro: {
           root: {
             type: 'root',
             children: [

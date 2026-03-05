@@ -12,19 +12,22 @@ export const Archive: Block = {
   interfaceName: 'ArchiveBlock',
   fields: [
     {
-      name: 'introContent',
+      name: 'intro',
       type: 'richText',
+      label: 'Intro',
+      admin: {
+        description: 'Optional section heading and supporting text shown above the archive grid.',
+      },
       editor: lexicalEditor({
         features: ({ rootFeatures }) => {
           return [
             ...rootFeatures,
-            HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
+            HeadingFeature({ enabledHeadingSizes: ['h2', 'h3'] }),
             FixedToolbarFeature(),
             InlineToolbarFeature(),
           ]
         },
       }),
-      label: 'Intro Content',
     },
     {
       name: 'populateBy',

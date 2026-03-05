@@ -16,11 +16,14 @@ export const Gallery: Block = {
   labels: { singular: 'Gallery', plural: 'Galleries' },
   fields: [
     {
-      name: 'type',
+      name: 'variant',
       type: 'select',
       defaultValue: 'scrollable',
       label: 'Variant',
       required: true,
+      admin: {
+        description: 'Choose the visual style of the gallery.',
+      },
       options: [
         { label: 'Scrollable Gallery', value: 'scrollable' },
         { label: 'Parallax Carousel', value: 'parallax' },
@@ -34,7 +37,7 @@ export const Gallery: Block = {
       label: 'Intro',
       admin: {
         description: 'Section heading and supporting text',
-        condition: (_, siblingData) => ['scrollable', 'apple'].includes(siblingData?.type),
+        condition: (_, siblingData) => ['scrollable', 'apple'].includes(siblingData?.variant),
       },
       editor: lexicalEditor({
         features: ({ rootFeatures }) => [
@@ -54,7 +57,7 @@ export const Gallery: Block = {
         admin: {
           initCollapsed: true,
           description: 'Optional link displayed next to the section heading (e.g. "Book a demo")',
-          condition: (_, siblingData) => siblingData?.type === 'scrollable',
+          condition: (_, siblingData) => siblingData?.variant === 'scrollable',
         },
       },
     }),
@@ -65,7 +68,7 @@ export const Gallery: Block = {
       label: 'Gallery Items',
       minRows: 1,
       admin: {
-        condition: (_, siblingData) => siblingData?.type === 'scrollable',
+        condition: (_, siblingData) => siblingData?.variant === 'scrollable',
       },
       fields: [
         {
@@ -100,7 +103,7 @@ export const Gallery: Block = {
       label: 'Slides',
       minRows: 1,
       admin: {
-        condition: (_, siblingData) => siblingData?.type === 'parallax',
+        condition: (_, siblingData) => siblingData?.variant === 'parallax',
       },
       fields: [
         {
@@ -126,7 +129,7 @@ export const Gallery: Block = {
       label: 'Cards',
       minRows: 1,
       admin: {
-        condition: (_, siblingData) => siblingData?.type === 'apple',
+        condition: (_, siblingData) => siblingData?.variant === 'apple',
       },
       fields: [
         {

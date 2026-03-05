@@ -12,7 +12,7 @@ export const ArchiveBlock: React.FC<
     id?: string
   }
 > = async (props) => {
-  const { id, categories, introContent, limit: limitFromProps, populateBy, selectedDocs } = props
+  const { id, categories, intro, limit: limitFromProps, populateBy, selectedDocs } = props
 
   const limit = limitFromProps || 3
 
@@ -44,22 +44,29 @@ export const ArchiveBlock: React.FC<
     posts = fetchedPosts.docs
   } else {
     if (selectedDocs?.length) {
-      const filteredSelectedPosts = selectedDocs.map((post) => {
-        if (typeof post.value === 'object') return post.value
-      }) as Post[]
-
-      posts = filteredSelectedPosts
+      posts = selectedDocs
+        .map((post) => {
+          if (typeof post.value === 'object') return post.value
+          return null
+        })
+        .filter((post): post is Post => Boolean(post))
     }
   }
 
   return (
-    <div className="my-16" id={`block-${id}`}>
-      {introContent && (
-        <div className="container mb-16">
-          <RichText className="ms-0 max-w-[48rem]" data={introContent} enableGutter={false} />
-        </div>
-      )}
-      <CollectionArchive posts={posts} />
-    </div>
+    <section className="py-16 md:py-24" id={`block-${id}`}>
+      <div className="mx-auto max-w-7xl px-6 md:px-8">
+        {intro && (
+          <div className="mb-12 md:mb-16">
+            <RichText
+              data={intro}
+              enableGutter={false}
+              className="[&_h2]:type-headline-1 [&_h2]:text-type-heading [&_p]:type-body-xl [&_p]:text-type-secondary"
+            />
+          </div>
+        )}
+        <CollectionArchive posts={posts} />
+      </div>
+    </section>
   )
 }

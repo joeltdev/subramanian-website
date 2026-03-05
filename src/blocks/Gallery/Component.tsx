@@ -12,7 +12,7 @@ const sections = {
 }
 
 export const GalleryBlock: React.FC<T & { disableInnerContainer?: boolean }> = (props) => {
-  const Section = sections[props.type as keyof typeof sections]
+  const Section = sections[props.variant as keyof typeof sections]
   if (!Section) return null
   return <Section {...props} />
 }

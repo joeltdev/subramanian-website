@@ -599,7 +599,10 @@ export interface MediaBlock {
  * via the `definition` "ArchiveBlock".
  */
 export interface ArchiveBlock {
-  introContent?: {
+  /**
+   * Optional section heading and supporting text shown above the archive grid.
+   */
+  intro?: {
     root: {
       type: string;
       children: {
@@ -1983,7 +1986,10 @@ export interface ParallaxShowcaseBlock {
  * via the `definition` "GalleryBlock".
  */
 export interface GalleryBlock {
-  type: 'scrollable' | 'parallax' | 'apple';
+  /**
+   * Choose the visual style of the gallery.
+   */
+  variant: 'scrollable' | 'parallax' | 'apple';
   /**
    * Section heading and supporting text
    */
@@ -2137,54 +2143,7 @@ export interface GalleryBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
-<<<<<<< HEAD
  * via the `definition` "FaqBlock".
-=======
- * via the `definition` "NewsletterSubscriptionBlock".
- */
-export interface NewsletterSubscriptionBlock {
-  /**
-   * Small label above the headline, e.g. "News"
-   */
-  badge?: string | null;
-  /**
-   * Main heading, e.g. "Stay informed with iNELS."
-   */
-  intro?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  /**
-   * Label for the subscribe button
-   */
-  submitButtonLabel?: string | null;
-  /**
-   * Optional URL to POST the form to (e.g. newsletter API). Leave empty to handle client-side.
-   */
-  formActionUrl?: string | null;
-  /**
-   * Image shown on the right side of the block
-   */
-  image?: (number | null) | Media;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'newsletterSubscription';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "product-categories".
->>>>>>> c752782 (feat: Add newsletter subscription content block with responsive layout)
  */
 export interface FaqBlock {
   /**
@@ -2508,6 +2467,49 @@ export interface ProductListingBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'productListing';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "NewsletterSubscriptionBlock".
+ */
+export interface NewsletterSubscriptionBlock {
+  /**
+   * Small label above the headline, e.g. "News"
+   */
+  badge?: string | null;
+  /**
+   * Main heading, e.g. "Stay informed with iNELS."
+   */
+  intro?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Label for the subscribe button
+   */
+  submitButtonLabel?: string | null;
+  /**
+   * Optional URL to POST the form to (e.g. newsletter API). Leave empty to handle client-side.
+   */
+  formActionUrl?: string | null;
+  /**
+   * Image shown on the right side of the block
+   */
+  image?: (number | null) | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'newsletterSubscription';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2851,13 +2853,10 @@ export interface PagesSelect<T extends boolean = true> {
         youtube?: T | YouTubeBlockSelect<T>;
         parallaxShowcase?: T | ParallaxShowcaseBlockSelect<T>;
         gallery?: T | GalleryBlockSelect<T>;
-<<<<<<< HEAD
         faq?: T | FaqBlockSelect<T>;
         productHero?: T | ProductHeroBlockSelect<T>;
         productListing?: T | ProductListingBlockSelect<T>;
-=======
         newsletterSubscription?: T | NewsletterSubscriptionBlockSelect<T>;
->>>>>>> c752782 (feat: Add newsletter subscription content block with responsive layout)
       };
   meta?:
     | T
@@ -2937,7 +2936,7 @@ export interface MediaBlockSelect<T extends boolean = true> {
  * via the `definition` "ArchiveBlock_select".
  */
 export interface ArchiveBlockSelect<T extends boolean = true> {
-  introContent?: T;
+  intro?: T;
   populateBy?: T;
   relationTo?: T;
   categories?: T;
@@ -3297,7 +3296,7 @@ export interface ParallaxShowcaseBlockSelect<T extends boolean = true> {
  * via the `definition` "GalleryBlock_select".
  */
 export interface GalleryBlockSelect<T extends boolean = true> {
-  type?: T;
+  variant?: T;
   intro?: T;
   cta?:
     | T
@@ -3360,7 +3359,6 @@ export interface GalleryBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
-<<<<<<< HEAD
  * via the `definition` "FaqBlock_select".
  */
 export interface FaqBlockSelect<T extends boolean = true> {
@@ -3414,7 +3412,11 @@ export interface ProductListingBlockSelect<T extends boolean = true> {
   category?: T;
   productsPerPage?: T;
   showPagination?: T;
-=======
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "NewsletterSubscriptionBlock_select".
  */
 export interface NewsletterSubscriptionBlockSelect<T extends boolean = true> {
@@ -3423,7 +3425,6 @@ export interface NewsletterSubscriptionBlockSelect<T extends boolean = true> {
   submitButtonLabel?: T;
   formActionUrl?: T;
   image?: T;
->>>>>>> c752782 (feat: Add newsletter subscription content block with responsive layout)
   id?: T;
   blockName?: T;
 }
