@@ -203,7 +203,7 @@ async function wipeCollections(payload: Payload): Promise<void> {
   const products = await payload.find({ collection: 'products', limit: 10000, depth: 1 })
   const mediaIds = new Set<string>()
   for (const p of products.docs) {
-    const gallery = (p as Record<string, unknown>).productGallery as Array<Record<string, unknown>> ?? []
+    const gallery = (p as unknown as Record<string, unknown>).productGallery as Array<Record<string, unknown>> ?? []
     for (const g of gallery) {
       const img = g.image as Record<string, unknown> | string | null
       if (img) mediaIds.add(typeof img === 'object' ? String(img.id) : String(img))
@@ -212,7 +212,7 @@ async function wipeCollections(payload: Payload): Promise<void> {
 
   const cats = await payload.find({ collection: 'product-categories', limit: 10000, depth: 1 })
   for (const c of cats.docs) {
-    const img = (c as Record<string, unknown>).image as Record<string, unknown> | string | null
+    const img = (c as unknown as Record<string, unknown>).image as Record<string, unknown> | string | null
     if (img) mediaIds.add(typeof img === 'object' ? String(img.id) : String(img))
   }
 
@@ -325,7 +325,7 @@ async function upsertCategory(
     ...(imageId ? { image: imageId } : {}),
   }
 
-  const created = await payload.create({ collection: 'product-categories', data })
+  const created = await payload.create({ collection: 'product-categories', data: data as any })
   catMap.set(cat.oldId, created.id)
   payload.logger.info(`  ✓ category "${cat.name}" → ${created.id}`)
 }
@@ -535,7 +535,7 @@ async function seedProducts(
         ...(categoryId ? { category: categoryId } : {}),
       }
 
-      const doc = await payload.create({ collection: 'products', data })
+      const doc = await payload.create({ collection: 'products', data: data as any })
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const savedGallery = (doc as any).productGallery
       const galleryNote = savedGallery?.length ? `gallery=${savedGallery.length}` : 'gallery=EMPTY'
