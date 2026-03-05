@@ -632,9 +632,14 @@ export interface ArchiveBlock {
  * via the `definition` "FormBlock".
  */
 export interface FormBlock {
+  /**
+   * Select the form to display in this block.
+   */
   form: number | Form;
-  enableIntro?: boolean | null;
-  introContent?: {
+  /**
+   * Optional heading and supporting text shown above the form.
+   */
+  intro?: {
     root: {
       type: string;
       children: {
@@ -2895,8 +2900,7 @@ export interface ArchiveBlockSelect<T extends boolean = true> {
  */
 export interface FormBlockSelect<T extends boolean = true> {
   form?: T;
-  enableIntro?: T;
-  introContent?: T;
+  intro?: T;
   id?: T;
   blockName?: T;
 }

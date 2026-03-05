@@ -63,6 +63,7 @@ export async function up({ db }: MigrateUpArgs): Promise<void> {
       "_order" integer NOT NULL,
       "_parent_id" integer NOT NULL,
       "id" serial PRIMARY KEY NOT NULL,
+      "_uuid" varchar,
       "name" varchar
     );
 
@@ -71,6 +72,7 @@ export async function up({ db }: MigrateUpArgs): Promise<void> {
       "_order" integer NOT NULL,
       "_parent_id" integer NOT NULL,
       "id" serial PRIMARY KEY NOT NULL,
+      "_uuid" varchar,
       "question" varchar,
       "answer" jsonb
     );

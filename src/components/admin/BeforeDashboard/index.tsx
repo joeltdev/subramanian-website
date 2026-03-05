@@ -1,7 +1,9 @@
 import { Banner } from '@payloadcms/ui/elements/Banner'
+import Link from 'next/link'
 import React from 'react'
 
 import { SeedButton } from './SeedButton'
+import { SeedProductsButton } from './SeedProductsButton'
 import './index.scss'
 
 const baseClass = 'before-dashboard'
@@ -21,6 +23,12 @@ const BeforeDashboard: React.FC = () => {
             visit your website
           </a>
           {' to see the results.'}
+        </li>
+        <li>
+          <SeedProductsButton />
+          {' to import products, categories, and tags without losing your existing data. Once finished, '}
+          <Link href="/admin/collections/products">view your products</Link>
+          {'.'}
         </li>
         <li>
           {'Modify your '}

@@ -775,8 +775,7 @@ export function showcasePageData(
       {
         blockType: 'formBlock',
         blockName: 'Contact Form',
-        enableIntro: true,
-        introContent: richTextHeadingParagraph(
+        intro: richTextHeadingParagraph(
           'Get in touch with our team',
           "Tell us about your project and we'll connect you with a certified iNELS partner in your region.",
         ),

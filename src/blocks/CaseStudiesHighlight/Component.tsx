@@ -39,12 +39,12 @@ export const CaseStudiesHighlightBlock: React.FC<
 
   return (
     <section className="overflow-hidden">
-      <div className="mx-auto max-w-5xl px-6 pt-16 md:pt-32">
+      <div className="mx-auto max-w-7xl px-6 pt-16 md:pt-32">
         {intro && (
           <RichText
             data={intro}
             enableGutter={false}
-            className="[&_h2]:type-headline-1 [&_h2]:text-type-body [&_h2]:leading-[1.1] [&_h2]:mb-6 [&_p]:text-type-secondary [&_p]:type-body-xl [&_p]:leading-snug"
+            className="[&_h2]:type-headline-1 [&_h2]:text-type-heading [&_p]:type-body-xl [&_p]:text-type-secondary"
           />
         )}
       </div>
@@ -63,21 +63,35 @@ export const CaseStudiesHighlightBlock: React.FC<
               ].join(' ')}
             >
               {row.map((caseStudy, j) => {
-                const { slug, featuredImage } = caseStudy
+                const { slug, featuredImage, industry, title, useCase } = caseStudy
                 return (
                   <li key={`${slug}-${j}`} className="w-1/3 p-4">
                     <Link
                       href={`/case-studies/${slug}`}
                       prefetch={false}
-                      className="relative block aspect-video overflow-hidden rounded-none opacity-30 transition-all duration-200 ease-out hover:-translate-y-4 hover:opacity-100 hover:shadow-lg"
+                      className="group relative block aspect-video overflow-hidden rounded-xl opacity-60 transition-all duration-300 ease-out hover:-translate-y-4 hover:opacity-100 hover:shadow-2xl"
                     >
                       {typeof featuredImage === 'object' && featuredImage && (
                         <Media
                           resource={featuredImage}
                           fill
-                          imgClassName="object-cover"
+                          imgClassName="object-cover transition-transform duration-500 group-hover:scale-105"
                         />
                       )}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent p-8 flex flex-col justify-end">
+                        <div className="space-y-2">
+                          {(industry || useCase) && (
+                            <div className="flex flex-wrap gap-x-2 text-white/70 type-label-md uppercase tracking-wider">
+                              {industry && <span>{industry}</span>}
+                              {industry && useCase && <span className="opacity-50">•</span>}
+                              {useCase && <span>{useCase}</span>}
+                            </div>
+                          )}
+                          <h3 className="text-white type-headline-3 font-semibold leading-tight">
+                            {title}
+                          </h3>
+                        </div>
+                      </div>
                     </Link>
                   </li>
                 )
