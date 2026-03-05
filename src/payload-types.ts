@@ -246,6 +246,7 @@ export interface Page {
     | GalleryBlock
     | FaqBlock
     | ProductHeroBlock
+    | ProductListingBlock
   )[];
   meta?: {
     title?: string | null;
@@ -2367,6 +2368,7 @@ export interface Product {
         | ArticleGridBlock
         | YouTubeBlock
         | GalleryBlock
+        | ProductListingBlock
       )[]
     | null;
   updatedAt: string;
@@ -2430,6 +2432,29 @@ export interface ProductTag {
   color?: string | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ProductListingBlock".
+ */
+export interface ProductListingBlock {
+  /**
+   * Optional heading above the grid
+   */
+  title?: string | null;
+  /**
+   * Optional subheading
+   */
+  description?: string | null;
+  /**
+   * Filter to this category (leave empty for all products)
+   */
+  category?: (number | null) | ProductCategory;
+  productsPerPage?: number | null;
+  showPagination?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'productListing';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2775,6 +2800,7 @@ export interface PagesSelect<T extends boolean = true> {
         gallery?: T | GalleryBlockSelect<T>;
         faq?: T | FaqBlockSelect<T>;
         productHero?: T | ProductHeroBlockSelect<T>;
+        productListing?: T | ProductListingBlockSelect<T>;
       };
   meta?:
     | T
@@ -3323,6 +3349,19 @@ export interface ProductHeroBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ProductListingBlock_select".
+ */
+export interface ProductListingBlockSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  category?: T;
+  productsPerPage?: T;
+  showPagination?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "posts_select".
  */
 export interface PostsSelect<T extends boolean = true> {
@@ -3589,6 +3628,7 @@ export interface ProductsSelect<T extends boolean = true> {
         articleGrid?: T | ArticleGridBlockSelect<T>;
         youtube?: T | YouTubeBlockSelect<T>;
         gallery?: T | GalleryBlockSelect<T>;
+        productListing?: T | ProductListingBlockSelect<T>;
       };
   updatedAt?: T;
   createdAt?: T;

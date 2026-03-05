@@ -30,6 +30,7 @@ import { Testimonials } from '../../blocks/Testimonials/config'
 import { ArticleGrid } from '../../blocks/ArticleGrid/config'
 import { YouTube } from '../../blocks/YouTube/config'
 import { Gallery } from '../../blocks/Gallery/config'
+import { ProductListing } from '../../blocks/ProductListing/config'
 
 export const Products: CollectionConfig = {
   slug: 'products',
@@ -287,6 +288,7 @@ export const Products: CollectionConfig = {
         ArticleGrid,
         YouTube,
         Gallery,
+        ProductListing,
       ],
     },
   ],

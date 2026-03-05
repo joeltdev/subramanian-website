@@ -12,6 +12,7 @@ import { TestimonialsBlock } from '@/blocks/Testimonials/Component'
 import { ArticleGridBlock } from '@/blocks/ArticleGrid/Component'
 import { YouTubeBlock } from '@/blocks/YouTube/Component'
 import { GalleryBlock } from '@/blocks/Gallery/Component'
+import { ProductListingBlock } from '@/blocks/ProductListing/Component'
 
 const blockComponents = {
   cta: CallToActionBlock,
@@ -26,6 +27,7 @@ const blockComponents = {
   articleGrid: ArticleGridBlock,
   youtube: YouTubeBlock,
   gallery: GalleryBlock,
+  productListing: ProductListingBlock,
 }
 
 export const RenderProductBlocks: React.FC<{

@@ -3,23 +3,15 @@ import React from 'react'
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import { ProductListingClient } from './ProductListingClient'
+import type { ProductListingBlock as ProductListingBlockProps } from '@/payload-types'
 
-// ProductListingBlock type will be available after generate:types in Task 12
-// Use a local type for now to avoid import errors
-interface ProductListingBlockProps {
-  title?: string | null
-  description?: string | null
-  category?: number | { id: number; name: string } | null
-  productsPerPage?: number | null
-  showPagination?: boolean | null
-  disableInnerContainer?: boolean
-}
-
-export const ProductListingBlock: React.FC<ProductListingBlockProps> = async (props) => {
-  const { title, description, productsPerPage = 9, showPagination = true } = props
+export const ProductListingBlock: React.FC<
+  ProductListingBlockProps & { disableInnerContainer?: boolean }
+> = async (props) => {
+  const { title, description, productsPerPage, showPagination = true } = props
 
   const categoryId =
-    props.category && typeof props.category === 'object'
+    props.category && typeof props.category === 'object' && props.category !== null
       ? (props.category as { id: number }).id
       : typeof props.category === 'number'
         ? props.category
