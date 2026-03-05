@@ -18,7 +18,7 @@ const CardDecorator = ({ children }: { children: React.ReactNode }) => (
 
 export const FloatingFeatureCards: React.FC<FeatureCardsBlock> = ({ intro, items }) => {
   return (
-    <section className="py-4 md:py-8 bg-accent">
+    <section className="py-4 md:py-24 bg-accent">
       <div className="@container relative z-10 mx-auto max-w-5xl px-6">
         <div className="text-center mx-auto max-w-4xl">
           {intro && <RichText data={intro} enableGutter={false} className="[&_h2]:type-headline-2 [&_h2]:text-type-heading [&_h2]:leading-[1.1] [&_h2]:mb-6 [&_h3]:type-headline-3 [&_h3]:text-type-heading [&_h3]:leading-tight [&_h3]:mb-4 [&_p]:text-type-body [&_p]:type-body-xl [&_p]:leading-snug [&_p]:mx-auto [&_p]:w-[80%]" />}
@@ -29,7 +29,7 @@ export const FloatingFeatureCards: React.FC<FeatureCardsBlock> = ({ intro, items
             {items.map(({ id, icon, richText }) => {
               const Icon = icon ? iconMap[icon] : null
               return (
-                <Card key={id} className="bg-background border group shadow-sm shadow-black/5 rounded-2xl">
+                <Card key={id} className="bg-background border group shadow-xs rounded-xl">
                   <CardHeader className="pb-3">
                     <CardDecorator>
                       {Icon && <Icon className="size-12 text-primary" aria-hidden />}
@@ -37,7 +37,7 @@ export const FloatingFeatureCards: React.FC<FeatureCardsBlock> = ({ intro, items
                   </CardHeader>
                   {richText && (
                     <CardContent>
-                      <RichText data={richText} enableGutter={false} className="[&_h3]:type-title-lg [&_h3]:text-type-body [&_p]:type-body-sm [&_p]:text-type-secondary [&_p]:leading-relaxed" />
+                      <RichText data={richText} enableGutter={false} className="space-y-2 [&_h4]:text-type-heading [&_h4]:type-title-lg [&_h3]:text-type-heading [&_h3]:type-title-lg [&_p]:type-body-md [&_p]:text-type-body [&_p]:leading-relaxed" />
                     </CardContent>
                   )}
                 </Card>

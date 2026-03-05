@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import React from 'react'
 import RichText from '@/components/RichText'
+import { ArticleCard } from '@/components/ArticleCard'
 
 import type { Post } from '@/payload-types'
 
