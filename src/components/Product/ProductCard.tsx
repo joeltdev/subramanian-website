@@ -54,12 +54,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       <div className="flex flex-1 flex-col p-4">
         {category && (
           <span
-            className="mb-1 inline-block self-start rounded-full px-2 py-0.5 text-xs font-medium"
-            style={{
-              backgroundColor: category.color ? `${category.color}20` : '#3B82F620',
-              color: category.color ?? '#3B82F6',
-            }}
+            className="relative mb-1 inline-block self-start overflow-hidden rounded-full px-2 py-0.5 text-xs font-medium"
+            style={{ color: category.color ?? '#3B82F6' }}
           >
+            <span
+              className="absolute inset-0 opacity-15"
+              style={{ backgroundColor: category.color ?? '#3B82F6' }}
+              aria-hidden
+            />
             {category.name}
           </span>
         )}
