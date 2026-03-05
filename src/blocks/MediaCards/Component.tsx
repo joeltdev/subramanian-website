@@ -52,33 +52,33 @@ export const MediaCardsBlock: React.FC<MediaCardsBlockType> = ({ backgroundMedia
                         fill
                         imgClassName="object-cover"
                         className="w-full h-full"
-                        videoClassName="w-full h-full object-cover"
+                        videoClassName="w-full h-full object-cover rounded-xl"
                       />
                     </div>
                   ) : (
                     <div className="absolute inset-0 bg-gradient-to-br from-border to-muted" />
                   )}
 
+                  <div className="absolute z-10 bottom-4 right-4 opacity-90 transition-all duration-300 ease-out group-hover:opacity-100">
+                    <ChevronRight className="size-8 text-background" />
+                  </div>
                   {/* Bottom gradient */}
-                  <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-background/90 to-transparent transition-opacity duration-300 group-hover:opacity-100" />
+                  <div className="absolute inset-x-0 top-0 h-2/3 bg-gradient-to-b from-black/90 to-transparent transition-opacity duration-300 group-hover:opacity-100 group-hover:from-black" />
 
-                  {/* Bottom: text + chevron */}
-                  <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-6">
+                  {/* Bottom: text */}
+                  <div className="absolute inset-x-0 top-6 flex items-end justify-between gap-3 p-4">
                     {richText && (
                       <RichText
                         data={richText}
                         enableGutter={false}
-                        className="[&_h3]:text-4xl [&_h3]:font-normal [&_h3]:text-foreground [&_h3]:leading-snug [&_h4]:text-3xl [&_h4]:font-normal [&_h4]:text-foreground [&_p]:mt-2 [&_p]:type-body-sm [&_p]:text-muted-foreground [&_p]:leading-relaxed"
+                        className="mx-1 [&_h3]:type-headline-4 [&_h3]:font-normal [&_h3]:text-background [&_h4]:type-title-xl [&_h4]:font-normal [&_h4]:text-background [&_p]:type-body-md [&_p]:font-normal [&_p]:text-background/90 [&_p]:mt-2 [&_p]:leading-snug"
                       />
                     )}
-                    <div className="shrink-0 translate-x-1 opacity-0 transition-all duration-300 ease-out group-hover:translate-x-0 group-hover:opacity-100">
-                      <ChevronRight className="size-5 text-muted-foreground" />
-                    </div>
                   </div>
                 </>
               )
 
-              const cardClassName = "group relative min-h-[580px] overflow-hidden rounded-none bg-muted"
+              const cardClassName = "group border-4 border-background shadow-md relative min-h-[580px] overflow-hidden rounded-2xl bg-muted inline-block"
 
               if (hasLink) {
                 return (

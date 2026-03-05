@@ -23,3 +23,5 @@ node_modules/
 
 # Migration artifacts
 migration.log
+
+tsconfig.tsbuildinfo
