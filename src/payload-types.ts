@@ -245,6 +245,7 @@ export interface Page {
     | ParallaxShowcaseBlock
     | GalleryBlock
     | FaqBlock
+    | ProductHeroBlock
   )[];
   meta?: {
     title?: string | null;
@@ -2221,61 +2222,22 @@ export interface FaqBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "product-categories".
+ * via the `definition` "ProductHeroBlock".
  */
-export interface ProductCategory {
-  id: number;
-  name: string;
-  description?: string | null;
-  image?: (number | null) | Media;
+export interface ProductHeroBlock {
   /**
-   * Hex color code, e.g. #3B82F6
+   * The product to display
    */
-  color?: string | null;
+  product: number | Product;
   /**
-   * Display order among siblings at the same level. Lower = first.
+   * Support phone number (overrides default)
    */
-  sortOrder?: number | null;
-  meta?: {
-    title?: string | null;
-    /**
-     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
-     */
-    image?: (number | null) | Media;
-    description?: string | null;
-  };
-  /**
-   * When enabled, the slug will auto-generate from the title field on save and autosave.
-   */
-  generateSlug?: boolean | null;
-  slug: string;
-  parent?: (number | null) | ProductCategory;
-  breadcrumbs?:
-    | {
-        doc?: (number | null) | ProductCategory;
-        url?: string | null;
-        label?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  updatedAt: string;
-  createdAt: string;
-  _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "product-tags".
- */
-export interface ProductTag {
-  id: number;
-  label: string;
-  value: string;
-  /**
-   * Hex color code, e.g. #FF5733
-   */
-  color?: string | null;
-  updatedAt: string;
-  createdAt: string;
+  helpline?: string | null;
+  technicalSupportEmail?: string | null;
+  knowledgeBaseUrl?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'productHero';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2410,6 +2372,64 @@ export interface Product {
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "product-categories".
+ */
+export interface ProductCategory {
+  id: number;
+  name: string;
+  description?: string | null;
+  image?: (number | null) | Media;
+  /**
+   * Hex color code, e.g. #3B82F6
+   */
+  color?: string | null;
+  /**
+   * Display order among siblings at the same level. Lower = first.
+   */
+  sortOrder?: number | null;
+  meta?: {
+    title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
+    description?: string | null;
+  };
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  parent?: (number | null) | ProductCategory;
+  breadcrumbs?:
+    | {
+        doc?: (number | null) | ProductCategory;
+        url?: string | null;
+        label?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "product-tags".
+ */
+export interface ProductTag {
+  id: number;
+  label: string;
+  value: string;
+  /**
+   * Hex color code, e.g. #FF5733
+   */
+  color?: string | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2754,6 +2774,7 @@ export interface PagesSelect<T extends boolean = true> {
         parallaxShowcase?: T | ParallaxShowcaseBlockSelect<T>;
         gallery?: T | GalleryBlockSelect<T>;
         faq?: T | FaqBlockSelect<T>;
+        productHero?: T | ProductHeroBlockSelect<T>;
       };
   meta?:
     | T
@@ -3285,6 +3306,18 @@ export interface FaqBlockSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ProductHeroBlock_select".
+ */
+export interface ProductHeroBlockSelect<T extends boolean = true> {
+  product?: T;
+  helpline?: T;
+  technicalSupportEmail?: T;
+  knowledgeBaseUrl?: T;
   id?: T;
   blockName?: T;
 }

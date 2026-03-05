@@ -23,6 +23,7 @@ import { YouTubeBlock } from '@/blocks/YouTube/Component'
 import { ParallaxShowcaseBlockComponent } from '@/blocks/ParallaxShowcase/Component'
 import { GalleryBlock } from '@/blocks/Gallery/Component'
 import { FaqBlock } from '@/blocks/Faq/Component'
+import { ProductHeroBlock } from '@/blocks/ProductHero/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -46,6 +47,7 @@ const blockComponents = {
   parallaxShowcase: ParallaxShowcaseBlockComponent,
   gallery: GalleryBlock,
   faq: FaqBlock,
+  productHero: ProductHeroBlock,
 }
 
 export const RenderBlocks: React.FC<{
