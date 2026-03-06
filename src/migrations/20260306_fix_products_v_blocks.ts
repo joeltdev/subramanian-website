@@ -100,11 +100,25 @@ export async function up({ db }: MigrateUpArgs): Promise<void> {
           "_parent_id" integer NOT NULL,
           "_path" text NOT NULL,
           "id" serial PRIMARY KEY NOT NULL,
+          "type" varchar DEFAULT 'section1',
+          "heading" varchar,
           "intro" jsonb,
           "_uuid" varchar,
           "block_name" varchar
         );
         ALTER TABLE "_products_v_blocks_logo_cloud" ADD CONSTRAINT "_products_v_blocks_logo_cloud_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_products_v"("id") ON DELETE cascade ON UPDATE no action;
+      END IF;
+
+      -- logoCloud logos
+      IF NOT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = '_products_v_blocks_logo_cloud_logos') THEN
+        CREATE TABLE "_products_v_blocks_logo_cloud_logos" (
+          "_order" integer NOT NULL,
+          "_parent_id" integer NOT NULL,
+          "id" serial PRIMARY KEY NOT NULL,
+          "logo_id" integer,
+          "_uuid" varchar
+        );
+        ALTER TABLE "_products_v_blocks_logo_cloud_logos" ADD CONSTRAINT "_products_v_blocks_logo_cloud_logos_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_products_v_blocks_logo_cloud"("id") ON DELETE cascade ON UPDATE no action;
       END IF;
 
       -- featureCards
@@ -114,11 +128,25 @@ export async function up({ db }: MigrateUpArgs): Promise<void> {
           "_parent_id" integer NOT NULL,
           "_path" text NOT NULL,
           "id" serial PRIMARY KEY NOT NULL,
+          "variant" varchar DEFAULT 'floating',
           "intro" jsonb,
           "_uuid" varchar,
           "block_name" varchar
         );
         ALTER TABLE "_products_v_blocks_feature_cards" ADD CONSTRAINT "_products_v_blocks_feature_cards_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_products_v"("id") ON DELETE cascade ON UPDATE no action;
+      END IF;
+
+      -- featureCards items
+      IF NOT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = '_products_v_blocks_feature_cards_items') THEN
+        CREATE TABLE "_products_v_blocks_feature_cards_items" (
+          "_order" integer NOT NULL,
+          "_parent_id" integer NOT NULL,
+          "id" serial PRIMARY KEY NOT NULL,
+          "icon" varchar,
+          "rich_text" jsonb,
+          "_uuid" varchar
+        );
+        ALTER TABLE "_products_v_blocks_feature_cards_items" ADD CONSTRAINT "_products_v_blocks_feature_cards_items_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_products_v_blocks_feature_cards"("id") ON DELETE cascade ON UPDATE no action;
       END IF;
 
       -- featureShowcase
@@ -128,11 +156,28 @@ export async function up({ db }: MigrateUpArgs): Promise<void> {
           "_parent_id" integer NOT NULL,
           "_path" text NOT NULL,
           "id" serial PRIMARY KEY NOT NULL,
+          "variant" varchar DEFAULT 'split',
           "intro" jsonb,
+          "image_foreground_id" integer,
+          "image_dark_id" integer,
+          "image_light_id" integer,
           "_uuid" varchar,
           "block_name" varchar
         );
         ALTER TABLE "_products_v_blocks_feature_showcase" ADD CONSTRAINT "_products_v_blocks_feature_showcase_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_products_v"("id") ON DELETE cascade ON UPDATE no action;
+      END IF;
+
+      -- featureShowcase items
+      IF NOT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = '_products_v_blocks_feature_showcase_items') THEN
+        CREATE TABLE "_products_v_blocks_feature_showcase_items" (
+          "_order" integer NOT NULL,
+          "_parent_id" integer NOT NULL,
+          "id" serial PRIMARY KEY NOT NULL,
+          "icon" varchar,
+          "rich_text" jsonb,
+          "_uuid" varchar
+        );
+        ALTER TABLE "_products_v_blocks_feature_showcase_items" ADD CONSTRAINT "_products_v_blocks_feature_showcase_items_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_products_v_blocks_feature_showcase"("id") ON DELETE cascade ON UPDATE no action;
       END IF;
 
       -- contentSection
@@ -142,11 +187,47 @@ export async function up({ db }: MigrateUpArgs): Promise<void> {
           "_parent_id" integer NOT NULL,
           "_path" text NOT NULL,
           "id" serial PRIMARY KEY NOT NULL,
+          "variant" varchar DEFAULT 'splitImage',
           "intro" jsonb,
+          "image_dark_id" integer,
+          "image_light_id" integer,
+          "image_id" integer,
+          "quote" jsonb,
+          "quote_author" varchar,
+          "quote_logo_id" integer,
           "_uuid" varchar,
           "block_name" varchar
         );
         ALTER TABLE "_products_v_blocks_content_section" ADD CONSTRAINT "_products_v_blocks_content_section_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_products_v"("id") ON DELETE cascade ON UPDATE no action;
+      END IF;
+
+      -- contentSection items
+      IF NOT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = '_products_v_blocks_content_section_items') THEN
+        CREATE TABLE "_products_v_blocks_content_section_items" (
+          "_order" integer NOT NULL,
+          "_parent_id" integer NOT NULL,
+          "id" serial PRIMARY KEY NOT NULL,
+          "icon" varchar,
+          "rich_text" jsonb,
+          "_uuid" varchar
+        );
+        ALTER TABLE "_products_v_blocks_content_section_items" ADD CONSTRAINT "_products_v_blocks_content_section_items_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_products_v_blocks_content_section"("id") ON DELETE cascade ON UPDATE no action;
+      END IF;
+
+      -- contentSection links
+      IF NOT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = '_products_v_blocks_content_section_links') THEN
+        CREATE TABLE "_products_v_blocks_content_section_links" (
+          "_order" integer NOT NULL,
+          "_parent_id" integer NOT NULL,
+          "id" serial PRIMARY KEY NOT NULL,
+          "link_type" varchar DEFAULT 'custom',
+          "link_new_tab" boolean,
+          "link_url" varchar,
+          "link_label" varchar,
+          "link_appearance" varchar DEFAULT 'default',
+          "_uuid" varchar
+        );
+        ALTER TABLE "_products_v_blocks_content_section_links" ADD CONSTRAINT "_products_v_blocks_content_section_links_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_products_v_blocks_content_section"("id") ON DELETE cascade ON UPDATE no action;
       END IF;
 
       -- stats
@@ -163,6 +244,18 @@ export async function up({ db }: MigrateUpArgs): Promise<void> {
         ALTER TABLE "_products_v_blocks_stats" ADD CONSTRAINT "_products_v_blocks_stats_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_products_v"("id") ON DELETE cascade ON UPDATE no action;
       END IF;
 
+      -- stats stats
+      IF NOT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = '_products_v_blocks_stats_stats') THEN
+        CREATE TABLE "_products_v_blocks_stats_stats" (
+          "_order" integer NOT NULL,
+          "_parent_id" integer NOT NULL,
+          "id" serial PRIMARY KEY NOT NULL,
+          "rich_text" jsonb,
+          "_uuid" varchar
+        );
+        ALTER TABLE "_products_v_blocks_stats_stats" ADD CONSTRAINT "_products_v_blocks_stats_stats_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_products_v_blocks_stats"("id") ON DELETE cascade ON UPDATE no action;
+      END IF;
+
       -- testimonials
       IF NOT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = '_products_v_blocks_testimonials') THEN
         CREATE TABLE "_products_v_blocks_testimonials" (
@@ -177,6 +270,22 @@ export async function up({ db }: MigrateUpArgs): Promise<void> {
         ALTER TABLE "_products_v_blocks_testimonials" ADD CONSTRAINT "_products_v_blocks_testimonials_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_products_v"("id") ON DELETE cascade ON UPDATE no action;
       END IF;
 
+      -- testimonials testimonials
+      IF NOT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = '_products_v_blocks_testimonials_testimonials') THEN
+        CREATE TABLE "_products_v_blocks_testimonials_testimonials" (
+          "_order" integer NOT NULL,
+          "_parent_id" integer NOT NULL,
+          "id" serial PRIMARY KEY NOT NULL,
+          "logo_id" integer,
+          "rich_text" jsonb,
+          "author" varchar,
+          "role" varchar,
+          "avatar_id" integer,
+          "_uuid" varchar
+        );
+        ALTER TABLE "_products_v_blocks_testimonials_testimonials" ADD CONSTRAINT "_products_v_blocks_testimonials_testimonials_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_products_v_blocks_testimonials"("id") ON DELETE cascade ON UPDATE no action;
+      END IF;
+
       -- articleGrid
       IF NOT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = '_products_v_blocks_article_grid') THEN
         CREATE TABLE "_products_v_blocks_article_grid" (
@@ -185,25 +294,91 @@ export async function up({ db }: MigrateUpArgs): Promise<void> {
           "_path" text NOT NULL,
           "id" serial PRIMARY KEY NOT NULL,
           "intro" jsonb,
+          "populate_by" varchar DEFAULT 'collection',
           "_uuid" varchar,
           "block_name" varchar
         );
         ALTER TABLE "_products_v_blocks_article_grid" ADD CONSTRAINT "_products_v_blocks_article_grid_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_products_v"("id") ON DELETE cascade ON UPDATE no action;
       END IF;
 
-      -- youtube
-      IF NOT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = '_products_v_blocks_youtube') THEN
-        CREATE TABLE "_products_v_blocks_youtube" (
+      -- gallery
+      IF NOT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = '_products_v_blocks_gallery') THEN
+        CREATE TABLE "_products_v_blocks_gallery" (
           "_order" integer NOT NULL,
           "_parent_id" integer NOT NULL,
           "_path" text NOT NULL,
           "id" serial PRIMARY KEY NOT NULL,
-          "url" varchar,
-          "caption" jsonb,
+          "variant" varchar DEFAULT 'scrollable',
+          "intro" jsonb,
           "_uuid" varchar,
           "block_name" varchar
         );
-        ALTER TABLE "_products_v_blocks_youtube" ADD CONSTRAINT "_products_v_blocks_youtube_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_products_v"("id") ON DELETE cascade ON UPDATE no action;
+        ALTER TABLE "_products_v_blocks_gallery" ADD CONSTRAINT "_products_v_blocks_gallery_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_products_v"("id") ON DELETE cascade ON UPDATE no action;
+      END IF;
+
+      -- gallery cta (linkGroup overrides name to cta)
+      IF NOT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = '_products_v_blocks_gallery_cta') THEN
+        CREATE TABLE "_products_v_blocks_gallery_cta" (
+          "_order" integer NOT NULL,
+          "_parent_id" integer NOT NULL,
+          "id" serial PRIMARY KEY NOT NULL,
+          "link_type" varchar DEFAULT 'custom',
+          "link_new_tab" boolean,
+          "link_url" varchar,
+          "link_label" varchar,
+          "link_appearance" varchar DEFAULT 'default',
+          "_uuid" varchar
+        );
+        ALTER TABLE "_products_v_blocks_gallery_cta" ADD CONSTRAINT "_products_v_blocks_gallery_cta_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_products_v_blocks_gallery"("id") ON DELETE cascade ON UPDATE no action;
+      END IF;
+
+      -- gallery galleryItems
+      IF NOT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = '_products_v_blocks_gallery_gallery_items') THEN
+        CREATE TABLE "_products_v_blocks_gallery_gallery_items" (
+          "_order" integer NOT NULL,
+          "_parent_id" integer NOT NULL,
+          "id" serial PRIMARY KEY NOT NULL,
+          "image_id" integer,
+          "rich_text" jsonb,
+          "link_type" varchar DEFAULT 'custom',
+          "link_new_tab" boolean,
+          "link_url" varchar,
+          "link_label" varchar,
+          "_uuid" varchar
+        );
+        ALTER TABLE "_products_v_blocks_gallery_gallery_items" ADD CONSTRAINT "_products_v_blocks_gallery_gallery_items_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_products_v_blocks_gallery"("id") ON DELETE cascade ON UPDATE no action;
+      END IF;
+
+      -- gallery slides
+      IF NOT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = '_products_v_blocks_gallery_slides') THEN
+        CREATE TABLE "_products_v_blocks_gallery_slides" (
+          "_order" integer NOT NULL,
+          "_parent_id" integer NOT NULL,
+          "id" serial PRIMARY KEY NOT NULL,
+          "image_id" integer,
+          "title" varchar,
+          "link_type" varchar DEFAULT 'custom',
+          "link_new_tab" boolean,
+          "link_url" varchar,
+          "link_label" varchar,
+          "_uuid" varchar
+        );
+        ALTER TABLE "_products_v_blocks_gallery_slides" ADD CONSTRAINT "_products_v_blocks_gallery_slides_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_products_v_blocks_gallery"("id") ON DELETE cascade ON UPDATE no action;
+      END IF;
+
+      -- gallery appleItems
+      IF NOT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = '_products_v_blocks_gallery_apple_items') THEN
+        CREATE TABLE "_products_v_blocks_gallery_apple_items" (
+          "_order" integer NOT NULL,
+          "_parent_id" integer NOT NULL,
+          "id" serial PRIMARY KEY NOT NULL,
+          "image_id" integer,
+          "category" varchar,
+          "title" varchar,
+          "expanded_content" jsonb,
+          "_uuid" varchar
+        );
+        ALTER TABLE "_products_v_blocks_gallery_apple_items" ADD CONSTRAINT "_products_v_blocks_gallery_apple_items_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_products_v_blocks_gallery"("id") ON DELETE cascade ON UPDATE no action;
       END IF;
     END
     $$;
