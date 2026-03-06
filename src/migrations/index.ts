@@ -26,6 +26,7 @@ import * as migration_20260305_add_product_blocks from './20260305_add_product_b
 import * as migration_20260305_add_product_blocks_fk_columns from './20260305_add_product_blocks_fk_columns';
 import * as migration_20260305_consolidate_link_enums from './20260305_consolidate_link_enums';
 import * as migration_20260306_fix_products_v_blocks from './20260306_fix_products_v_blocks';
+import * as migration_20260306_fix_products_v_blocks_v2 from './20260306_fix_products_v_blocks_v2';
 
 export const migrations = [
   {
@@ -167,5 +168,10 @@ export const migrations = [
     up: migration_20260306_fix_products_v_blocks.up,
     down: migration_20260306_fix_products_v_blocks.down,
     name: '20260306_fix_products_v_blocks',
+  },
+  {
+    up: migration_20260306_fix_products_v_blocks_v2.up,
+    down: migration_20260306_fix_products_v_blocks_v2.down,
+    name: '20260306_fix_products_v_blocks_v2',
   },
 ];

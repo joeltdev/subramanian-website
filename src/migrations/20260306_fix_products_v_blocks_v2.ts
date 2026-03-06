@@ -423,5 +423,5 @@ export async function up({ db }: MigrateUpArgs): Promise<void> {
 }
 
 export async function down({ db }: MigrateDownArgs): Promise<void> {
-  // Manual migration for production fix. Down migration left empty to avoid accidental data loss.
+  // Manual migration for production fix.
 }
