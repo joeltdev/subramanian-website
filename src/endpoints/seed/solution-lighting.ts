@@ -1,9 +1,9 @@
 import type { RequiredDataFromCollectionSlug } from 'payload'
 import { rt, rt3 } from './helpers'
 
-type Args = { hero: number; feature: number; logo: number; caseStudyIds: number[] }
+type Args = { hero: number; feature: number; caseStudyIds: number[] }
 
-export function solutionLighting({ hero, feature, logo, caseStudyIds }: Args): RequiredDataFromCollectionSlug<'pages'> {
+export function solutionLighting({ hero, feature, caseStudyIds }: Args): RequiredDataFromCollectionSlug<'pages'> {
   return {
     title: 'Lighting Control',
     slug: 'lighting-control',

@@ -1,9 +1,18 @@
 import type { RequiredDataFromCollectionSlug } from 'payload'
 import { rt, rt3, rtp } from './helpers'
 
-type Args = { hero: number; logo: number }
+type Args = {
+  hero: number
+  logo: number
+  lighting: number
+  shading: number
+  climate: number
+  energy: number
+  remote: number
+  integration: number
+}
 
-export function solutionsHub({ hero, logo }: Args): RequiredDataFromCollectionSlug<'pages'> {
+export function solutionsHub(args: Args): RequiredDataFromCollectionSlug<'pages'> {
   return {
     title: 'Solutions',
     slug: 'solutions',
@@ -20,7 +29,7 @@ export function solutionsHub({ hero, logo }: Args): RequiredDataFromCollectionSl
         { link: { type: 'custom', appearance: 'default', label: 'Explore Solutions', url: '#solutions' } },
         { link: { type: 'custom', appearance: 'outline', label: 'Book a Demo', url: '/get-demo' } },
       ],
-      mediaPreview: hero,
+      mediaPreview: args.hero,
     },
     meta: {
       title: 'Solutions — iNELS Smart Building Automation',
@@ -28,17 +37,16 @@ export function solutionsHub({ hero, logo }: Args): RequiredDataFromCollectionSl
     },
     layout: [
       {
-        blockType: 'featureCards',
+        blockType: 'mediaCards',
         blockName: 'Solutions Grid',
-        variant: 'floating',
         intro: rt('Six solutions. One ecosystem.', 'Choose the capabilities you need — or deploy them all for complete building intelligence.'),
         items: [
-          { icon: 'Zap', richText: rt3('Lighting Control', 'Scenes, dimming, presence-adaptive automation. Create the perfect light for every moment.') },
-          { icon: 'Layers', richText: rt3('Shading Automation', 'Sun-tracking blinds and curtains that protect comfort, privacy, and thermal efficiency.') },
-          { icon: 'Settings2', richText: rt3('Climate Control', 'Room-by-room heating and cooling that adapts to occupancy and schedule.') },
-          { icon: 'BarChart', richText: rt3('Energy Management', 'Monitor, analyse, and optimise energy consumption across every zone.') },
-          { icon: 'Globe', richText: rt3('Remote Control', 'Manage any building from mobile, cloud, or touch panel — wherever you are.') },
-          { icon: 'Code', richText: rt3('Open Integration', 'KNX, BACnet, MQTT, REST API. iNELS connects with any BMS, PMS, or third-party platform.') },
+          { media: args.lighting, richText: rt3('Lighting Control', 'Scenes, dimming, presence-adaptive automation. Create the perfect light for every moment.'), link: { type: 'custom', url: '/solutions/lighting-control' } },
+          { media: args.shading, richText: rt3('Shading Automation', 'Sun-tracking blinds and curtains that protect comfort, privacy, and thermal efficiency.'), link: { type: 'custom', url: '/solutions/shading-automation' } },
+          { media: args.climate, richText: rt3('Climate Control', 'Room-by-room heating and cooling that adapts to occupancy and schedule.'), link: { type: 'custom', url: '/solutions/climate-control' } },
+          { media: args.energy, richText: rt3('Energy Management', 'Monitor, analyse, and optimise energy consumption across every zone.'), link: { type: 'custom', url: '/solutions/energy-management' } },
+          { media: args.remote, richText: rt3('Remote Control', 'Manage any building from mobile, cloud, or touch panel — wherever you are.'), link: { type: 'custom', url: '/solutions/remote-control' } },
+          { media: args.integration, richText: rt3('Open Integration', 'KNX, BACnet, MQTT, REST API. iNELS connects with any BMS, PMS, or third-party platform.'), link: { type: 'custom', url: '/solutions/open-integration' } },
         ],
       },
       {
