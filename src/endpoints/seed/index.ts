@@ -9,6 +9,32 @@ import { post1 } from './post-1'
 import { post2 } from './post-2'
 import { post3 } from './post-3'
 import { showcasePageData } from './showcase'
+import { solutionsHub } from './solutions-hub'
+import { solutionLighting } from './solution-lighting'
+import { solutionShading } from './solution-shading'
+import { solutionClimate } from './solution-climate'
+import { solutionEnergy } from './solution-energy'
+import { solutionRemote } from './solution-remote'
+import { solutionIntegration } from './solution-integration'
+import { industriesHub } from './industries-hub'
+import { industryVillas } from './industry-villas'
+import { industryResidential } from './industry-residential'
+import { industryCommercial } from './industry-commercial'
+import { industryGrms } from './industry-grms'
+import { industryHresk } from './industry-hresk'
+import { industrySmartCities } from './industry-smart-cities'
+import { industrySmartFactories } from './industry-smart-factories'
+import { platformPage } from './platform'
+import { getDemoPage } from './get-demo'
+import { aboutPage } from './about'
+import { partnersPage } from './partners'
+import { findInstallerPage } from './find-installer'
+import { careersPage } from './careers'
+import { productsLandingPage } from './products-landing'
+import { resourcesHubPage } from './resources-hub'
+import { supportPage } from './support'
+import { pressPage } from './press'
+import { termsPage, privacyPage, cookiePage } from './legal-pages'
 
 const collections: CollectionSlug[] = [
   'categories',
@@ -479,6 +505,210 @@ export const seed = async ({
     ),
   })
 
+  payload.logger.info(`— Seeding solution pages...`)
+
+  const caseStudyIds = [caseStudy1.id, caseStudy2.id, caseStudy3.id]
+
+  await Promise.all([
+    payload.create({
+      collection: 'pages',
+      depth: 0,
+      context: { disableRevalidate: true },
+      data: solutionsHub({
+        hero: solutionsHeroDoc.id,
+        logo: logoDoc.id,
+        lighting: lightingDoc.id,
+        shading: shadingDoc.id,
+        climate: climateDoc.id,
+        energy: energyDoc.id,
+        remote: remoteDoc.id,
+        integration: integrationDoc.id,
+      }),
+    }),
+    payload.create({
+      collection: 'pages',
+      depth: 0,
+      context: { disableRevalidate: true },
+      data: solutionLighting({ hero: lightingDoc.id, feature: smartHomeDoc.id, caseStudyIds }),
+    }),
+    payload.create({
+      collection: 'pages',
+      depth: 0,
+      context: { disableRevalidate: true },
+      data: solutionShading({ hero: shadingDoc.id, feature: buildingDoc.id, logo: logoDoc.id, caseStudyIds }),
+    }),
+    payload.create({
+      collection: 'pages',
+      depth: 0,
+      context: { disableRevalidate: true },
+      data: solutionClimate({ hero: climateDoc.id, feature: officeDoc.id, logo: logoDoc.id, caseStudyIds }),
+    }),
+    payload.create({
+      collection: 'pages',
+      depth: 0,
+      context: { disableRevalidate: true },
+      data: solutionEnergy({ hero: energyDoc.id, feature: datacenterDoc.id, logo: logoDoc.id, caseStudyIds }),
+    }),
+    payload.create({
+      collection: 'pages',
+      depth: 0,
+      context: { disableRevalidate: true },
+      data: solutionRemote({ hero: remoteDoc.id, feature: smartHomeDoc.id, logo: logoDoc.id, caseStudyIds }),
+    }),
+    payload.create({
+      collection: 'pages',
+      depth: 0,
+      context: { disableRevalidate: true },
+      data: solutionIntegration({ hero: integrationDoc.id, feature: buildingDoc.id, logo: logoDoc.id, caseStudyIds }),
+    }),
+  ])
+
+  payload.logger.info(`— Seeding industry pages...`)
+
+  await Promise.all([
+    payload.create({
+      collection: 'pages',
+      depth: 0,
+      context: { disableRevalidate: true },
+      data: industriesHub({
+        hero: solutionsHeroDoc.id,
+        villa: villaDoc.id,
+        residentialBuilding: residentialBuildingDoc.id,
+        commercial: commercialDoc.id,
+        grms: grmsDoc.id,
+        hresk: hreskDoc.id,
+        smartCity: smartCityDoc.id,
+        factory: factoryDoc.id,
+        logo: logoDoc.id,
+      }),
+    }),
+    payload.create({
+      collection: 'pages',
+      depth: 0,
+      context: { disableRevalidate: true },
+      data: industryVillas({ hero: villaDoc.id, feature: smartHomeDoc.id, logo: logoDoc.id, caseStudyIds }),
+    }),
+    payload.create({
+      collection: 'pages',
+      depth: 0,
+      context: { disableRevalidate: true },
+      data: industryResidential({ hero: residentialBuildingDoc.id, feature: buildingDoc.id, logo: logoDoc.id, caseStudyIds }),
+    }),
+    payload.create({
+      collection: 'pages',
+      depth: 0,
+      context: { disableRevalidate: true },
+      data: industryCommercial({ hero: commercialDoc.id, feature: officeDoc.id, logo: logoDoc.id, caseStudyIds }),
+    }),
+    payload.create({
+      collection: 'pages',
+      depth: 0,
+      context: { disableRevalidate: true },
+      data: industryGrms({ hero: grmsDoc.id, feature: hotelDoc.id, logo: logoDoc.id, caseStudyIds }),
+    }),
+    payload.create({
+      collection: 'pages',
+      depth: 0,
+      context: { disableRevalidate: true },
+      data: industryHresk({ hero: hreskDoc.id, feature: hotelDoc.id, logo: logoDoc.id, caseStudyIds }),
+    }),
+    payload.create({
+      collection: 'pages',
+      depth: 0,
+      context: { disableRevalidate: true },
+      data: industrySmartCities({ hero: smartCityDoc.id, feature: buildingDoc.id, logo: logoDoc.id, caseStudyIds }),
+    }),
+    payload.create({
+      collection: 'pages',
+      depth: 0,
+      context: { disableRevalidate: true },
+      data: industrySmartFactories({ hero: factoryDoc.id, feature: industrialDoc.id, logo: logoDoc.id, caseStudyIds }),
+    }),
+  ])
+
+  payload.logger.info(`— Seeding corporate pages...`)
+
+  await Promise.all([
+    payload.create({
+      collection: 'pages',
+      depth: 0,
+      context: { disableRevalidate: true },
+      data: platformPage({ hero: solutionsHeroDoc.id, diagram: platformDiagramDoc.id, logo: logoDoc.id }),
+    }),
+    payload.create({
+      collection: 'pages',
+      depth: 0,
+      context: { disableRevalidate: true },
+      data: getDemoPage({ contactFormId: contactForm.id, logo: logoDoc.id }),
+    }),
+    payload.create({
+      collection: 'pages',
+      depth: 0,
+      context: { disableRevalidate: true },
+      data: aboutPage({ hero: heroImgDoc.id, team: teamDoc.id, logo: logoDoc.id }),
+    }),
+    payload.create({
+      collection: 'pages',
+      depth: 0,
+      context: { disableRevalidate: true },
+      data: partnersPage({ hero: partnerDoc.id, logo: logoDoc.id, contactFormId: contactForm.id }),
+    }),
+    payload.create({
+      collection: 'pages',
+      depth: 0,
+      context: { disableRevalidate: true },
+      data: findInstallerPage({ contactFormId: contactForm.id }),
+    }),
+    payload.create({
+      collection: 'pages',
+      depth: 0,
+      context: { disableRevalidate: true },
+      data: careersPage({ hero: teamDoc.id, logo: logoDoc.id, contactFormId: contactForm.id }),
+    }),
+    payload.create({
+      collection: 'pages',
+      depth: 0,
+      context: { disableRevalidate: true },
+      data: productsLandingPage({ hero: productDoc.id, logo: logoDoc.id }),
+    }),
+    payload.create({
+      collection: 'pages',
+      depth: 0,
+      context: { disableRevalidate: true },
+      data: resourcesHubPage({ hero: downloadDoc.id }),
+    }),
+    payload.create({
+      collection: 'pages',
+      depth: 0,
+      context: { disableRevalidate: true },
+      data: supportPage({ logo: logoDoc.id, contactFormId: contactForm.id }),
+    }),
+    payload.create({
+      collection: 'pages',
+      depth: 0,
+      context: { disableRevalidate: true },
+      data: pressPage(),
+    }),
+    payload.create({
+      collection: 'pages',
+      depth: 0,
+      context: { disableRevalidate: true },
+      data: termsPage(),
+    }),
+    payload.create({
+      collection: 'pages',
+      depth: 0,
+      context: { disableRevalidate: true },
+      data: privacyPage(),
+    }),
+    payload.create({
+      collection: 'pages',
+      depth: 0,
+      context: { disableRevalidate: true },
+      data: cookiePage(),
+    }),
+  ])
+
   payload.logger.info(`— Seeding globals...`)
 
   await Promise.all([
@@ -487,33 +717,162 @@ export const seed = async ({
       data: {
         tabs: [
           {
-            label: 'Posts',
+            label: 'Solutions',
             enableDirectLink: true,
-            link: {
-              type: 'custom',
-              label: 'Posts',
-              url: '/posts',
-            },
+            enableDropdown: true,
+            link: { type: 'custom', label: 'Solutions', url: '/solutions' },
+            description: 'End-to-end building automation for every need.',
+            navItems: [
+              {
+                listLinks: {
+                  tag: 'By Function',
+                  links: [
+                    { link: { type: 'custom', label: 'Lighting Control', url: '/solutions/lighting-control' } },
+                    { link: { type: 'custom', label: 'Shading Automation', url: '/solutions/shading-automation' } },
+                    { link: { type: 'custom', label: 'Climate Control', url: '/solutions/climate-control' } },
+                    { link: { type: 'custom', label: 'Energy Management', url: '/solutions/energy-management' } },
+                    { link: { type: 'custom', label: 'Remote Control', url: '/solutions/remote-control' } },
+                    { link: { type: 'custom', label: 'Open Integration', url: '/solutions/open-integration' } },
+                  ],
+                },
+              },
+            ],
           },
           {
-            label: 'Contact',
+            label: 'Industries',
             enableDirectLink: true,
-            link: {
-              type: 'reference',
-              label: 'Contact',
-              reference: {
-                relationTo: 'pages',
-                value: contactPage.id,
+            enableDropdown: true,
+            link: { type: 'custom', label: 'Industries', url: '/industries' },
+            description: 'Tailored automation for every building type.',
+            navItems: [
+              {
+                listLinks: {
+                  tag: 'By Sector',
+                  links: [
+                    { link: { type: 'custom', label: 'Villas & Apartments', url: '/industries/villas-apartments' } },
+                    { link: { type: 'custom', label: 'Residential Buildings', url: '/industries/residential-buildings' } },
+                    { link: { type: 'custom', label: 'Commercial', url: '/industries/commercial' } },
+                    { link: { type: 'custom', label: 'Hotels (GRMS)', url: '/industries/grms' } },
+                    { link: { type: 'custom', label: 'Healthcare & Education', url: '/industries/hresk' } },
+                    { link: { type: 'custom', label: 'Smart Cities', url: '/industries/smart-cities' } },
+                    { link: { type: 'custom', label: 'Smart Factories', url: '/industries/smart-factories' } },
+                  ],
+                },
               },
-            },
+            ],
+          },
+          {
+            label: 'Products',
+            enableDirectLink: true,
+            link: { type: 'custom', label: 'Products', url: '/products' },
+          },
+          {
+            label: 'Platform',
+            enableDirectLink: true,
+            link: { type: 'custom', label: 'Platform', url: '/platform' },
+          },
+          {
+            label: 'Resources',
+            enableDirectLink: true,
+            enableDropdown: true,
+            link: { type: 'custom', label: 'Resources', url: '/resources' },
+            description: 'Documentation, case studies, and tools for integrators.',
+            navItems: [
+              {
+                listLinks: {
+                  tag: 'Learn',
+                  links: [
+                    { link: { type: 'custom', label: 'Case Studies', url: '/case-studies' } },
+                    { link: { type: 'custom', label: 'Blog', url: '/posts' } },
+                    { link: { type: 'custom', label: 'Downloads', url: '/resources/downloads' } },
+                    { link: { type: 'custom', label: 'Support', url: '/support' } },
+                  ],
+                },
+              },
+            ],
+          },
+          {
+            label: 'Company',
+            enableDirectLink: false,
+            enableDropdown: true,
+            description: 'Building smarter spaces since 1991.',
+            navItems: [
+              {
+                listLinks: {
+                  tag: 'About iNELS',
+                  links: [
+                    { link: { type: 'custom', label: 'About', url: '/about' } },
+                    { link: { type: 'custom', label: 'Partners', url: '/partners' } },
+                    { link: { type: 'custom', label: 'Careers', url: '/careers' } },
+                    { link: { type: 'custom', label: 'Press', url: '/press' } },
+                    { link: { type: 'custom', label: 'Find an Installer', url: '/find-installer' } },
+                  ],
+                },
+              },
+            ],
           },
         ],
+        enableMenuCta: true,
+        menuCta: {
+          type: 'custom',
+          appearance: 'default',
+          label: 'Book a Demo',
+          url: '/get-demo',
+        },
       },
     }),
     payload.updateGlobal({
       slug: 'footer',
       data: {
-        columns: [],
+        columns: [
+          {
+            heading: 'Solutions',
+            links: [
+              { link: { type: 'custom', label: 'Lighting Control', url: '/solutions/lighting-control' } },
+              { link: { type: 'custom', label: 'Shading Automation', url: '/solutions/shading-automation' } },
+              { link: { type: 'custom', label: 'Climate Control', url: '/solutions/climate-control' } },
+              { link: { type: 'custom', label: 'Energy Management', url: '/solutions/energy-management' } },
+              { link: { type: 'custom', label: 'Remote Control', url: '/solutions/remote-control' } },
+              { link: { type: 'custom', label: 'Open Integration', url: '/solutions/open-integration' } },
+            ],
+          },
+          {
+            heading: 'Industries',
+            links: [
+              { link: { type: 'custom', label: 'Villas & Apartments', url: '/industries/villas-apartments' } },
+              { link: { type: 'custom', label: 'Residential Buildings', url: '/industries/residential-buildings' } },
+              { link: { type: 'custom', label: 'Commercial', url: '/industries/commercial' } },
+              { link: { type: 'custom', label: 'Hotels (GRMS)', url: '/industries/grms' } },
+              { link: { type: 'custom', label: 'Healthcare & Education', url: '/industries/hresk' } },
+              { link: { type: 'custom', label: 'Smart Cities', url: '/industries/smart-cities' } },
+              { link: { type: 'custom', label: 'Smart Factories', url: '/industries/smart-factories' } },
+            ],
+          },
+          {
+            heading: 'Resources',
+            links: [
+              { link: { type: 'custom', label: 'Products', url: '/products' } },
+              { link: { type: 'custom', label: 'Platform', url: '/platform' } },
+              { link: { type: 'custom', label: 'Case Studies', url: '/case-studies' } },
+              { link: { type: 'custom', label: 'Blog', url: '/posts' } },
+              { link: { type: 'custom', label: 'Downloads', url: '/resources/downloads' } },
+              { link: { type: 'custom', label: 'Support', url: '/support' } },
+            ],
+          },
+          {
+            heading: 'Company',
+            links: [
+              { link: { type: 'custom', label: 'About', url: '/about' } },
+              { link: { type: 'custom', label: 'Partners', url: '/partners' } },
+              { link: { type: 'custom', label: 'Careers', url: '/careers' } },
+              { link: { type: 'custom', label: 'Press', url: '/press' } },
+              { link: { type: 'custom', label: 'Find an Installer', url: '/find-installer' } },
+              { link: { type: 'custom', label: 'Contact', url: '/contact' } },
+              { link: { type: 'custom', label: 'Privacy Policy', url: '/privacy' } },
+              { link: { type: 'custom', label: 'Terms of Service', url: '/terms' } },
+            ],
+          },
+        ],
       },
     }),
   ])

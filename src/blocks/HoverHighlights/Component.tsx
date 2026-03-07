@@ -101,7 +101,7 @@ export const HoverHighlightsBlock: React.FC<HoverHighlightsBlockType & { disable
                       <div className="w-full self-start overflow-hidden rounded-none shadow-lg">
                         <Media
                           resource={mediaTop}
-                          imgClassName="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-3/4 h-auto object-contain"
+                          imgClassName="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-1/2 h-auto object-contain"
                         />
                       </div>
                     )}
