@@ -87,93 +87,32 @@ export async function Footer() {
 
   return (
     <footer data-theme="dark" className="bg-black text-foreground">
-      <div className="mx-auto max-w-7xl px-6">
-        {/* Top section: Logo */}
-        <div className="flex justify-center pt-16 pb-8">
-          <Link href="/" aria-label="go home" className="block size-fit">
-            {typeof logo === 'object' && logo && (logo as Media).url ? (
-              <img
-                src={(logo as Media).url!}
-                alt={(logo as Media).alt ?? 'Logo'}
-                width={(logo as Media).width ?? 193}
-                height={(logo as Media).height ?? 34}
-                loading="lazy"
-                decoding="async"
-                className="max-h-8 w-auto opacity-90 transition-opacity hover:opacity-100"
-              />
-            ) : (
-              <Logo />
-            )}
-          </Link>
-        </div>
-
-        {/* Nav columns */}
-        {Array.isArray(columns) && columns.length > 0 && (
-          <div className="grid md:grid-cols-4 gap-10 border-b border-border pb-14 pt-8">
-            {columns.map(({ id, heading, links }) => (
-              <div key={id} className="space-y-5 py-8">
-                {heading && (
-                  <h4 className="type-label-md text-muted-foreground">
-                    {heading}
-                  </h4>
-                )}
-                {Array.isArray(links) && links.length > 0 && (
-                  <ul className="space-y-3.5">
-                    {links.map(({ id: linkId, link }) => (
-                      <li key={linkId}>
-                        <CMSLink
-                          {...link}
-                          className="text-sm text-muted-foreground transition-colors duration-150 hover:text-primary"
-                        />
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-            ))}
-
-            {/* Newsletter */}
-            {(newsletterHeading || newsletterNote) && (
-              <form className="space-y-5 py-8">
-                <div className="space-y-3">
-                  <p className="type-label-md text-muted-foreground">
-                    {newsletterHeading ?? 'Newsletter'}
-                  </p>
-                  {newsletterNote && (
-                    <p className="type-body-md text-muted-foreground">{newsletterNote}</p>
-                  )}
-                </div>
-                <div className="flex gap-2.5">
-                  <Input
-                    type="email"
-                    id="footer-mail"
-                    name="mail"
-                    placeholder="your@email.com"
-                    className="h-10 border-border/60 bg-white/5 text-sm placeholder:text-muted-foreground/50 focus-visible:border-ring"
-                  />
-                  <Button 
-                    type="submit" 
-                    size="icon"
-                    className="h-10 w-10 shrink-0"
-                    aria-label="Subscribe to newsletter"
-                  >
-                    <Send className="h-4 w-4" />
-                  </Button>
-                </div>
-              </form>
-            )}
-          </div>
-        )}
-
-        {/* Bottom bar: Copyright + Social + Language */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8 py-10 border-t border-border/50">
-          <div className="order-3 md:order-1">
+      <div className="mx-auto max-w-7xl px-6 py-12 md:py-16">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-10">
+          {/* Left side: Logo + Copyright */}
+          <div className="flex flex-col gap-4">
+            <Link href="/" aria-label="go home" className="block size-fit">
+              {typeof logo === 'object' && logo && (logo as Media).url ? (
+                <img
+                  src={(logo as Media).url!}
+                  alt={(logo as Media).alt ?? 'Logo'}
+                  width={(logo as Media).width ?? 193}
+                  height={(logo as Media).height ?? 34}
+                  loading="lazy"
+                  decoding="async"
+                  className="max-h-7 w-auto opacity-90 transition-opacity hover:opacity-100"
+                />
+              ) : (
+                <Logo />
+              )}
+            </Link>
             <small className="type-body-xs text-muted-foreground">
               {copyright ?? `© ${new Date().getFullYear()} All rights reserved`}
             </small>
           </div>
 
-          <div className="order-1 md:order-2">
+          {/* Right side: Social + Language */}
+          <div className="flex flex-col items-end gap-6">
             {Array.isArray(socialLinks) && socialLinks.length > 0 && (
               <div className="flex gap-6">
                 {socialLinks.map(({ id, platform, url }) => {
@@ -192,9 +131,7 @@ export async function Footer() {
                 })}
               </div>
             )}
-          </div>
 
-          <div className="order-2 md:order-3">
             <div className="relative">
               <ChevronsUpDown
                 className="pointer-events-none absolute inset-y-0 right-2 my-auto opacity-50"
