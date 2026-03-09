@@ -66,7 +66,7 @@ export const OverlayFeaturesContentSection: React.FC<ContentSectionBlock> = ({
                       <div key={id} className="space-y-5">
                         {Icon && (
                           <div className="flex items-center">
-                            <Icon className="size-10 text-primary/80" />
+                            <Icon className="size-10 text-stone-500" />
                           </div>
                         )}
                         {richText && (
