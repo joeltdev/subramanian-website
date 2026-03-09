@@ -88,31 +88,28 @@ export async function Footer() {
   return (
     <footer data-theme="dark" className="bg-black text-foreground">
       <div className="mx-auto max-w-7xl px-6">
-        {/* Top section: Logo + Newsletter */}
-        <div className="grid gap-16 pt-24 md:grid-cols-2 md:items-end md:gap-24">
-          {/* Logo */}
-          <div>
-            <Link href="/" aria-label="go home" className="block size-fit">
-              {typeof logo === 'object' && logo && (logo as Media).url ? (
-                <img
-                  src={(logo as Media).url!}
-                  alt={(logo as Media).alt ?? 'Logo'}
-                  width={(logo as Media).width ?? 193}
-                  height={(logo as Media).height ?? 34}
-                  loading="lazy"
-                  decoding="async"
-                  className="max-h-10 w-auto"
-                />
-              ) : (
-                <Logo />
-              )}
-            </Link>
-          </div>
+        {/* Top section: Logo */}
+        <div className="flex justify-center pt-16 pb-8">
+          <Link href="/" aria-label="go home" className="block size-fit">
+            {typeof logo === 'object' && logo && (logo as Media).url ? (
+              <img
+                src={(logo as Media).url!}
+                alt={(logo as Media).alt ?? 'Logo'}
+                width={(logo as Media).width ?? 193}
+                height={(logo as Media).height ?? 34}
+                loading="lazy"
+                decoding="async"
+                className="max-h-8 w-auto opacity-90 transition-opacity hover:opacity-100"
+              />
+            ) : (
+              <Logo />
+            )}
+          </Link>
         </div>
 
         {/* Nav columns */}
         {Array.isArray(columns) && columns.length > 0 && (
-          <div className="grid md:grid-cols-4 gap-10 border-b border-border py-14 ">
+          <div className="grid md:grid-cols-4 gap-10 border-b border-border pb-14 pt-8">
             {columns.map(({ id, heading, links }) => (
               <div key={id} className="space-y-5 py-8">
                 {heading && (
@@ -169,14 +166,16 @@ export async function Footer() {
         )}
 
         {/* Bottom bar: Copyright + Social + Language */}
-        <div className="flex flex-wrap items-center justify-between gap-6 py-8">
-          <small className="type-body-xs text-muted-foreground">
-            {copyright ?? `© ${new Date().getFullYear()} All rights reserved`}
-          </small>
+        <div className="flex flex-col md:flex-row items-center justify-between gap-8 py-10 border-t border-border/50">
+          <div className="order-3 md:order-1">
+            <small className="type-body-xs text-muted-foreground">
+              {copyright ?? `© ${new Date().getFullYear()} All rights reserved`}
+            </small>
+          </div>
 
-          <div className="flex flex-wrap items-center gap-6">
+          <div className="order-1 md:order-2">
             {Array.isArray(socialLinks) && socialLinks.length > 0 && (
-              <div className="flex gap-5">
+              <div className="flex gap-6">
                 {socialLinks.map(({ id, platform, url }) => {
                   if (!platform || !url) return null
                   return (
@@ -193,7 +192,9 @@ export async function Footer() {
                 })}
               </div>
             )}
+          </div>
 
+          <div className="order-2 md:order-3">
             <div className="relative">
               <ChevronsUpDown
                 className="pointer-events-none absolute inset-y-0 right-2 my-auto opacity-50"
