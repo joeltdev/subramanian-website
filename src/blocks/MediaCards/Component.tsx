@@ -63,20 +63,20 @@ export const MediaCardsBlock: React.FC<MediaCardsBlockType> = ({ backgroundMedia
                   {/* Bottom gradient */}
                   <div className="absolute inset-x-0 bottom-0 h-2/3 bg-linear-to-t from-black/90 to-transparent transition-opacity duration-300 group-hover:opacity-100 group-hover:from-black" />
 
-                  {/* Bottom: text */}
-                  <div className="flex items-end justify-between gap-3 px-4 py-8 z-0">
+                  {/* Bottom: text content with fixed title alignment */}
+                  <div className="relative flex flex-col justify-start gap-3 px-6 py-10 z-10 w-full min-h-[240px]">
                     {richText && (
                       <RichText
                         data={richText}
                         enableGutter={false}
-                        className="mx-1 [&_h3]:type-headline-4 [&_h3]:font-normal [&_h3]:text-background [&_h4]:type-title-xl [&_h4]:font-normal [&_h4]:text-background [&_p]:type-body-md [&_p]:font-normal [&_p]:text-background/90 [&_p]:mt-2 [&_p]:leading-snug"
+                        className="mx-1 [&_h3]:type-headline-4 [&_h3]:font-normal [&_h3]:text-background [&_h3]:min-h-[4rem] [&_h3]:leading-tight [&_h3]:flex [&_h3]:items-start [&_h4]:type-title-xl [&_h4]:font-normal [&_h4]:text-background [&_h4]:min-h-[4rem] [&_h4]:leading-tight [&_h4]:flex [&_h4]:items-start [&_p]:type-body-md [&_p]:font-normal [&_p]:text-background/90 [&_p]:mt-2 [&_p]:leading-snug [&_p]:line-clamp-3"
                       />
                     )}
                   </div>
                 </>
               )
 
-              const cardClassName = "group border-4 border-background shadow-md relative min-h-[580px] overflow-hidden rounded-2xl bg-muted inline-flex flex-col justify-end"
+              const cardClassName = "group border-4 border-background shadow-md relative min-h-[580px] h-full overflow-hidden rounded-2xl bg-muted flex flex-col justify-end"
 
               if (hasLink) {
                 return (
