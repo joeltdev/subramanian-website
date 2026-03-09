@@ -69,7 +69,7 @@ export const MediaCardsBlock: React.FC<MediaCardsBlockType> = ({ backgroundMedia
                       <RichText
                         data={richText}
                         enableGutter={false}
-                        className="mx-1 [&_h3]:type-headline-4 [&_h3]:font-normal [&_h3]:text-background [&_h3]:min-h-[4rem] [&_h3]:leading-tight [&_h3]:flex [&_h3]:items-start [&_h4]:type-title-xl [&_h4]:font-normal [&_h4]:text-background [&_h4]:min-h-[4rem] [&_h4]:leading-tight [&_h4]:flex [&_h4]:items-start [&_p]:type-body-md [&_p]:font-normal [&_p]:text-background/90 [&_p]:mt-2 [&_p]:leading-snug [&_p]:line-clamp-3"
+                        className="mx-1 [&_h3]:type-headline-4 [&_h3]:font-normal [&_h3]:text-background [&_h3]:truncate [&_h3]:min-h-[2.5rem] [&_h3]:leading-tight [&_h4]:type-title-xl [&_h4]:font-normal [&_h4]:text-background [&_h4]:truncate [&_h4]:min-h-[2.5rem] [&_h4]:leading-tight [&_p]:type-body-md [&_p]:font-normal [&_p]:text-background/90 [&_p]:mt-2 [&_p]:leading-snug [&_p]:line-clamp-3"
                       />
                     )}
                   </div>
