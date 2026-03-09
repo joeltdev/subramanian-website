@@ -35,7 +35,7 @@ export const FaqAccordion: React.FC<{ groups: Groups }> = ({ groups }) => {
               const value = item.id != null ? String(item.id) : `faq-${categoryName}-${idx}`
               return (
                 <AccordionItem key={value} value={value} className="border-border border-b">
-                  <AccordionTrigger className="type-body-md text-type-body text-left hover:no-underline [&[data-state=open]]:border-border">
+                  <AccordionTrigger className="type-body-lg font-medium text-type-body text-left hover:no-underline [&[data-state=open]]:border-border">
                     {item.question}
                   </AccordionTrigger>
                   <AccordionContent>
@@ -43,7 +43,7 @@ export const FaqAccordion: React.FC<{ groups: Groups }> = ({ groups }) => {
                       <RichText
                         data={item.answer}
                         enableGutter={false}
-                        className="[&_p]:type-body-sm [&_p]:text-type-secondary [&_p]:leading-relaxed"
+                        className="[&_p]:type-body-md [&_p]:text-type-secondary [&_p]:leading-relaxed"
                       />
                     )}
                   </AccordionContent>
