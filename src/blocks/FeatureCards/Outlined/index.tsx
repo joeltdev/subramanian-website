@@ -37,8 +37,7 @@ export const OutlinedFeatureCards: React.FC<FeatureCardsBlock> = ({ intro, items
                   </CardHeader>
                   {richText && (
                     <CardContent>
-                      <RichText data={richText} enableGutter={false} className="[&_h3]:type-title-lg [&_h3]:text-type-body [&_p]:type-body-sm [&_p]:text-type-secondary [&_p]:leading-relaxed" />
-                    </CardContent>
+                      <RichText data={richText} enableGutter={false} className="[&_h3]:type-title-lg [&_h3]:text-type-body [&_p]:type-body-lg [&_p]:text-type-body [&_p]:leading-relaxed" />                    </CardContent>
                   )}
                 </div>
               )

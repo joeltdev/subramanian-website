@@ -21,11 +21,10 @@ export const StatsBlock: React.FC<StatsBlockType & { disableInnerContainer?: boo
               <div key={id} className="space-y-1 px-8 py-8 md:py-0">
                 {richText && (
                   <RichText
-                    data={richText}
-                    enableGutter={false}
-                    className="[&_h3]:type-stat-xl [&_h3]:leading-none [&_h4]:type-stat [&_h4]:leading-none [&_p]:mt-2 [&_p]:type-body-xl [&_p]:text-type-body"
-                  />
-                )}
+                   data={richText}
+                   enableGutter={false}
+                   className="[&_h3]:type-stat-xl [&_h3]:leading-none [&_h4]:type-stat [&_h4]:leading-none [&_p]:mt-2 [&_p]:type-body-lg [&_p]:text-type-body"
+                  />                )}
               </div>
             ))}
           </div>
