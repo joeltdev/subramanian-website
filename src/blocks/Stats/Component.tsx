@@ -23,7 +23,7 @@ export const StatsBlock: React.FC<StatsBlockType & { disableInnerContainer?: boo
                   <RichText
                     data={richText}
                     enableGutter={false}
-                    className="[&_h3]:type-stat-xl [&_h3]:leading-none [&_h4]:type-stat [&_h4]:leading-none [&_p]:mt-2 [&_p]:type-label-lg [&_p]:text-type-secondary"
+                    className="[&_h3]:type-stat-xl [&_h3]:leading-none [&_h4]:type-stat [&_h4]:leading-none [&_p]:mt-2 [&_p]:type-body-xl [&_p]:text-type-body"
                   />
                 )}
               </div>
