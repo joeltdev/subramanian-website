@@ -121,19 +121,19 @@ export const ParallaxSlide: React.FC<SlideProps> = ({
         </motion.div>
       )}
 
-      {/* ── Gradient scrim ───────────────────────────────────────────── */}
-      <div className="absolute inset-0 bg-gradient-to-br from-black/95 via-black/20 to-transparent pointer-events-none" />
+      {/* ── Gradient scrim — refined for better text contrast ───────────────── */}
+      <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/20 to-transparent pointer-events-none" />
 
       {/* ── Slide content — top-left ─────────────────────────────────── */}
       {content && (
-        <div className="absolute top-4 left-4 right-4 z-10 max-w-full md:top-16 md:left-16 md:right-auto md:max-w-md">
+        <div className="absolute top-8 left-6 right-6 z-10 max-w-full md:top-20 md:left-20 md:right-auto md:max-w-lg">
           <RichText
             data={content}
             enableGutter={false}
             className={cn(
-              '[&_h3]:type-headline-2 [&_h3]:font-normal [&_h3]:text-white [&_h3]:mb-2',
-              '[&_h4]:type-headline-3 [&_h4]:font-normal [&_h4]:text-white [&_h4]:mb-1',
-              '[&_p]:type-body-lg [&_p]:text-white [&_p]:leading-snug',
+              '[&_h3]:type-headline-3 [&_h3]:font-bold [&_h3]:text-white [&_h3]:mb-4 [&_h3]:leading-tight',
+              '[&_h4]:type-title-xl [&_h4]:font-bold [&_h4]:text-white [&_h4]:mb-3 [&_h4]:leading-tight',
+              '[&_p]:type-body-md [&_p]:text-white/90 [&_p]:leading-relaxed [&_p]:max-w-sm',
             )}
           />
         </div>
