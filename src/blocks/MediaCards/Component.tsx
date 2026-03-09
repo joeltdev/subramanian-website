@@ -29,8 +29,11 @@ export const MediaCardsBlock: React.FC<MediaCardsBlockType> = ({ backgroundMedia
               <RichText
                 data={intro}
                 enableGutter={false}
-                className="[&_h2]:type-headline-1 [&_h2]:text-foreground [&_h2]:leading-[1.1] [&_h2]:mb-6 [&_h3]:type-headline-3 [&_h3]:text-foreground [&_h3]:leading-tight [&_h3]:mb-4 [&_p]:text-foreground [&_p]:type-body-xl [&_p]:font-medium [&_p]:leading-relaxed [&_p]:mt-8 drop-shadow-md"
+                className="[&_h2]:type-headline-1 [&_h2]:text-foreground [&_h2]:leading-[1.1] [&_h2]:mb-6 [&_h3]:type-headline-3 [&_h3]:text-foreground [&_h3]:leading-tight [&_h3]:mb-4 [&_p]:hidden drop-shadow-md"
               />
+              <p className="text-foreground type-body-xl font-medium leading-relaxed mt-8 drop-shadow-md mx-auto max-w-4xl">
+                പൊതു സേവനത്തിലും സാമൂഹിക പ്രവർത്തനങ്ങളിലും സജീവമായി പ്രവർത്തിച്ച കെ.സി. സുബ്രഹ്മണ്യൻ വിവിധ ഭരണപരവും രാഷ്ട്രീയവുമായ സ്ഥാനങ്ങൾ വഹിച്ചിട്ടുണ്ട്. പൊതുസമൂഹത്തിന്റെ വികസനത്തിനും പുരോഗതിക്കും അദ്ദേഹം നിർണായകമായ സംഭാവനകൾ നൽകിയിട്ടുണ്ട്.
+              </p>
             </>
           )}
         </div>
