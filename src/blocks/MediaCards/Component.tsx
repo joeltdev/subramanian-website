@@ -63,8 +63,11 @@ export const MediaCardsBlock: React.FC<MediaCardsBlockType> = ({ backgroundMedia
                   {/* Bottom gradient */}
                   <div className="absolute inset-x-0 bottom-0 h-2/3 bg-linear-to-t from-black/90 to-transparent transition-opacity duration-300 group-hover:opacity-100 group-hover:from-black" />
 
-                  {/* Bottom: text content with fixed title alignment */}
-                  <div className="relative flex flex-col justify-start gap-3 px-6 py-10 z-10 w-full min-h-[240px]">
+                  {/* Spacer to push text to a consistent starting position from the top */}
+                  <div className="flex-none h-[280px] md:h-[320px]" />
+
+                  {/* Text content with fixed title alignment */}
+                  <div className="relative flex flex-col justify-start gap-3 px-6 py-10 z-10 w-full">
                     {richText && (
                       <RichText
                         data={richText}
@@ -76,7 +79,7 @@ export const MediaCardsBlock: React.FC<MediaCardsBlockType> = ({ backgroundMedia
                 </>
               )
 
-              const cardClassName = "group border-4 border-background shadow-md relative min-h-[580px] h-full overflow-hidden rounded-2xl bg-muted flex flex-col justify-end"
+              const cardClassName = "group border-4 border-background shadow-md relative min-h-[580px] h-full overflow-hidden rounded-2xl bg-muted flex flex-col justify-start"
 
               if (hasLink) {
                 return (
