@@ -67,12 +67,12 @@ export const MediaCardsBlock: React.FC<MediaCardsBlockType> = ({ backgroundMedia
                   <div className="flex-none h-[280px] md:h-[320px]" />
 
                   {/* Text content with fixed title alignment */}
-                  <div className="relative flex flex-col justify-start gap-3 px-6 py-10 z-10 w-full">
+                  <div className="relative flex flex-col justify-start gap-4 px-6 py-10 z-10 w-full text-center">
                     {richText && (
                       <RichText
                         data={richText}
                         enableGutter={false}
-                        className="mx-1 [&_h3]:type-title-xl [&_h3]:font-normal [&_h3]:text-background [&_h3]:truncate [&_h3]:min-h-[2.5rem] [&_h3]:leading-tight [&_h4]:type-title-lg [&_h4]:font-normal [&_h4]:text-background [&_h4]:truncate [&_h4]:min-h-[2.5rem] [&_h4]:leading-tight [&_p]:type-body-md [&_p]:font-normal [&_p]:text-background/90 [&_p]:mt-2 [&_p]:leading-snug"
+                        className="mx-1 [&_h3]:type-headline-4 [&_h3]:font-bold [&_h3]:text-background [&_h3]:min-h-[2.5rem] [&_h3]:leading-tight [&_h4]:type-title-xl [&_h4]:font-bold [&_h4]:text-background [&_h4]:min-h-[2.5rem] [&_h4]:leading-tight [&_p]:type-body-lg [&_p]:font-medium [&_p]:text-background/90 [&_p]:mt-2 [&_p]:leading-relaxed"
                       />
                     )}
                   </div>
