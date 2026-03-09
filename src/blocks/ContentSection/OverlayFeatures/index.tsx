@@ -49,21 +49,33 @@ export const OverlayFeaturesContentSection: React.FC<ContentSectionBlock> = ({
           </div>
 
           {/* Constrained text content */}
-          <div className="relative z-10 mx-auto max-w-7xl space-y-8 px-6 md:space-y-16">
-            <div className="space-y-4 md:w-1/2">
-              {intro && <RichText data={intro} enableGutter={false} className="relative z-10 max-w-xl [&_h2]:text-slate-800 [&_h2]:type-headline-1 [&_h2]:mb-8 [&_h3]:type-headline-3 [&_h3]:text-type-body [&_h3]:leading-tight [&_h3]:mb-6 [&_p]:text-type-secondary [&_p]:type-body-xl [&_p]:leading-snug mb-8 mx-0" />}
+          <div className="relative z-10 mx-auto max-w-7xl space-y-12 px-6 md:space-y-20">
+            <div className="space-y-10 md:w-3/5 lg:w-1/2">
+              {intro && (
+                <RichText
+                  data={intro}
+                  enableGutter={false}
+                  className="relative z-10 max-w-[55ch] [&_h2]:text-type-heading [&_h2]:type-display [&_h2]:mb-10 [&_h3]:type-headline-3 [&_h3]:text-type-body [&_h3]:leading-tight [&_h3]:mb-8 [&_p]:text-type-body [&_p]:type-body-xl [&_p]:leading-relaxed mb-12 mx-0"
+                />
+              )}
               {Array.isArray(items) && items.length > 0 && (
-                <div className="grid grid-cols-2 gap-3 pt-6 sm:gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 pt-10 md:gap-x-12 md:gap-y-10">
                   {items.map(({ id, icon, richText }) => {
                     const Icon = icon ? iconMap[icon] : null
                     return (
-                      <div key={id} className="space-y-3">
+                      <div key={id} className="space-y-5">
                         {Icon && (
-                          <div className="flex items-center gap-2">
-                            <Icon className="size-8 text-slate-500" />
+                          <div className="flex items-center">
+                            <Icon className="size-10 text-primary/80" />
                           </div>
                         )}
-                        {richText && <RichText data={richText} enableGutter={false} className="[&_h3]:type-title-xl [&_h3]:text-type-body [&_h4]:type-title-sm [&_h4]:text-type-secondary [&_p]:type-body-md [&_p]:text-type-secondary [&_p]:leading-relaxed" />}
+                        {richText && (
+                          <RichText
+                            data={richText}
+                            enableGutter={false}
+                            className="[&_h3]:type-title-xl [&_h3]:text-type-heading [&_h3]:font-bold [&_h3]:mb-3 [&_h4]:type-title-md [&_h4]:text-type-body [&_h4]:font-semibold [&_h4]:mb-2 [&_p]:type-body-md [&_p]:text-type-secondary [&_p]:leading-relaxed"
+                          />
+                        )}
                       </div>
                     )
                   })}
