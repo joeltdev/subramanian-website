@@ -21,7 +21,7 @@ export const FloatingFeatureCards: React.FC<FeatureCardsBlock> = ({ intro, items
     <section className="py-4 md:py-24 bg-accent">
       <div className="@container relative z-10 mx-auto max-w-5xl px-6">
         <div className="text-center mx-auto max-w-4xl">
-          {intro && <RichText data={intro} enableGutter={false} className="[&_h2]:type-headline-2 [&_h2]:text-type-heading [&_h2]:leading-[1.1] [&_h2]:mb-6 [&_h3]:type-headline-3 [&_h3]:text-type-heading [&_h3]:leading-tight [&_h3]:mb-4 [&_p]:text-type-body [&_p]:type-body-xl [&_p]:leading-snug [&_p]:mx-auto [&_p]:w-[80%]" />}
+          {intro && <RichText data={intro} enableGutter={false} className="[&_h2]:type-headline-1 [&_h2]:text-type-heading [&_h2]:leading-[1.1] [&_h2]:mb-8 [&_h3]:type-headline-3 [&_h3]:text-type-heading [&_h3]:leading-tight [&_h3]:mb-4 [&_p]:text-type-body [&_p]:type-body-xl [&_p]:font-medium [&_p]:leading-snug [&_p]:mx-auto [&_p]:max-w-xl" />}
         </div>
 
         {Array.isArray(items) && items.length > 0 && (

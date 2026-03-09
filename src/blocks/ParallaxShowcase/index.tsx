@@ -114,16 +114,16 @@ export const ParallaxShowcaseCarousel: React.FC<Props> = ({
       onPointerCancel={handlePointerCancel}
     >
       {/* ── Block intro + tab nav ──────────────────────────────────────────── */}
-      <div className="mx-auto max-w-5xl px-6 mb-10 space-y-8">
+      <div className="mx-auto max-w-5xl px-6 mb-10 space-y-12">
         {intro && (
           <RichText
             data={intro}
             enableGutter={false}
             className={cn(
-              'max-w-4xl flex flex-col gap-4 items-center',
-              '[&_h2]:type-headline-2 [&_h2]:text-type-heading [&_h2]:mb-0',
+              'max-w-4xl flex flex-col gap-6 items-center',
+              '[&_h2]:type-headline-1 [&_h2]:text-type-heading [&_h2]:mb-0',
               '[&_h3]:type-headline-3 [&_h3]:text-type-heading [&_h3]:mb-0',
-              '[&_p]:type-body-xl [&_p]:text-type-body [&_p]:leading-snug [&_p]:text-center [&_p]:mx-auto [&_p]:max-w-2xl',
+              '[&_p]:type-body-xl [&_p]:font-medium [&_p]:text-type-body [&_p]:leading-snug [&_p]:text-center [&_p]:mx-auto [&_p]:max-w-xl',
             )}
           />
         )}
