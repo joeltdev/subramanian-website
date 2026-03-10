@@ -1,5 +1,4 @@
-'use client'
-import React from 'react'
+import React, { useMemo } from 'react'
 import { ArrowRight } from 'lucide-react'
 
 import type { Media, Page } from '@/payload-types'
@@ -8,6 +7,7 @@ import { Media as MediaComponent } from '@/components/Media'
 import RichText from '@/components/RichText'
 import { AnimatedGroup } from '@/components/ui/animated-group'
 import type { Variants } from 'motion/react'
+import type { JSXConvertersFunction } from '@payloadcms/richtext-lexical/react'
 
 const transitionVariants: { container?: Variants; item?: Variants } = {
   item: {
@@ -38,6 +38,40 @@ export const Section2Hero: React.FC<Section2HeroType> = ({
   const hasBgMedia =
     (backgroundVideo && typeof backgroundVideo === 'object' && !!backgroundVideo.url) ||
     (backgroundImage && typeof backgroundImage === 'object' && !!(backgroundImage as Media).url)
+
+  const heroConverters: JSXConvertersFunction = useMemo(() => ({
+    heading: ({ node }) => {
+      if (node.tag === 'h1') {
+        // Extract text content from children
+        const text = node.children
+          .map((child: any) => child.text || '')
+          .join('')
+          .trim()
+
+        // Split by the first space to create two lines
+        const firstSpaceIndex = text.indexOf(' ')
+
+        if (firstSpaceIndex !== -1) {
+          const firstLine = text.substring(0, firstSpaceIndex).trim()
+          const secondLine = text.substring(firstSpaceIndex).trim()
+
+          return (
+            <h1 className="m-0 font-bold drop-shadow-md flex flex-col items-start gap-1 leading-none">
+              <span className="type-headline-1 text-foreground/90">{firstLine}</span>
+              <span className="type-display text-foreground">{secondLine}</span>
+            </h1>
+          )
+        }
+
+        return (
+          <h1 className="m-0 type-headline-1 font-bold drop-shadow-md">
+            {text}
+          </h1>
+        )
+      }
+      return null
+    }
+  }), [])
 
   return (
     <div className="overflow-x-clip" data-theme="dark">
@@ -98,7 +132,8 @@ export const Section2Hero: React.FC<Section2HeroType> = ({
                   <RichText
                     data={richText}
                     enableGutter={false}
-                    className="text-balance [&_h1]:m-0 [&_h2]:m-0 [&_h1]:type-headline-1 [&_h1]:font-bold [&_h1]:drop-shadow-md [&_p]:mt-10 [&_p]:max-w-2xl [&_p]:type-body-xl [&_p]:text-foreground [&_p]:leading-relaxed [&_p]:drop-shadow-sm"
+                    converters={heroConverters}
+                    className="text-balance [&_h1]:m-0 [&_h2]:m-0 [&_p]:mt-10 [&_p]:max-w-2xl [&_p]:type-body-xl [&_p]:text-foreground [&_p]:leading-relaxed [&_p]:drop-shadow-sm"
                   />
                 </AnimatedGroup>
               )}
