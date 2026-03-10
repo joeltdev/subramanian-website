@@ -59,7 +59,6 @@ export function careersPage({ hero, logo, contactFormId: _contactFormId }: Args)
           { richText: rt3('150+', 'Team members') },
           { richText: rt3('12', 'Nationalities represented') },
           { richText: rt3('30 years', 'Of company stability') },
-          { richText: rt3('3', 'Offices across Europe') },
         ],
       },
       {

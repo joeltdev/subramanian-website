@@ -271,7 +271,7 @@
   --primary: var(--color-brand-400);
   --ring: var(--color-brand-400);
   --type-color-heading: var(--color-stone-50);
-  --type-color-body: var(--color-stone-300);
+  --type-color-body: var(--color-stone-50);
   --type-color-secondary: var(--color-stone-400);
   --type-color-inverse: var(--color-stone-950);
   color-scheme: dark;

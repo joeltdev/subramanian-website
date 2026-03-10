@@ -29,7 +29,6 @@ export function getDemoPage({ contactFormId, logo }: Args): RequiredDataFromColl
           { richText: rt3('500+', 'Certified integration partners') },
           { richText: rt3('40+', 'Countries deployed') },
           { richText: rt3('30 min', 'Focused demo — no sales pitch') },
-          { richText: rt3('< 24h', 'Response time guaranteed') },
         ],
       },
       {
@@ -42,7 +41,7 @@ export function getDemoPage({ contactFormId, logo }: Args): RequiredDataFromColl
         blockType: 'testimonials',
         blockName: 'Demo Social Proof',
         intro: rt('What others say after their demo'),
-        testimonials: [
+        items: [
           {
             logo,
             richText: rtp('The demo was the most useful 30 minutes in our entire procurement process. We had answers to every technical question.'),

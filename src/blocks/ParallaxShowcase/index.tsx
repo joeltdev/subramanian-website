@@ -58,12 +58,34 @@ export const ParallaxShowcaseCarousel: React.FC<Props> = ({
   const [isPaused, setIsPaused] = useState(false)
   const trackRef = useRef<HTMLDivElement>(null)
   const pointerStartX = useRef<number | null>(null)
+  // Ref so the visibilitychange handler always sees the current activeReal
+  const activeRealRef = useRef(activeReal)
+  useEffect(() => {
+    activeRealRef.current = activeReal
+  }, [activeReal])
+
+  // ── Page visibility: reset position when tab becomes visible again ─────────
+  // Framer Motion pauses animations on hidden tabs, so onAnimationComplete
+  // never fires to reset an out-of-bounds trackIndex. We guard the interval
+  // AND snap back to the correct position when the user returns.
+  useEffect(() => {
+    if (n <= 1) return
+    const onVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        skipNextAnimation.current = true
+        setTrackIndex(activeRealRef.current + 1)
+      }
+    }
+    document.addEventListener('visibilitychange', onVisibilityChange)
+    return () => document.removeEventListener('visibilitychange', onVisibilityChange)
+  }, [n])
 
   // ── Auto-scroll ───────────────────────────────────────────────────────────
   useEffect(() => {
     if (isPaused || n <= 1) return
     const interval = Math.max(2, autoScrollInterval ?? 5) * 1000
     const id = setInterval(() => {
+      if (document.visibilityState === 'hidden') return
       setTrackIndex((i) => i + 1)
       setActiveReal((i) => (i + 1) % n)
     }, interval)

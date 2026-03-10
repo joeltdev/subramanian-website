@@ -38,6 +38,32 @@ export const FormBlock: Block = {
         },
       }),
     },
+    {
+      type: 'collapsible',
+      label: 'Background Image',
+      fields: [
+        {
+          name: 'imageLight',
+          type: 'upload',
+          relationTo: 'media',
+          required: false,
+          label: 'Background Image (Light Mode)',
+          admin: {
+            description: 'Optional background image shown in light mode.',
+          },
+        },
+        {
+          name: 'imageDark',
+          type: 'upload',
+          relationTo: 'media',
+          required: false,
+          label: 'Background Image (Dark Mode)',
+          admin: {
+            description: 'Optional background image shown in dark mode.',
+          },
+        },
+      ],
+    },
   ],
   graphQL: {
     singularName: 'FormBlock',

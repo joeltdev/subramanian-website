@@ -56,7 +56,6 @@ export function solutionsHub(args: Args): RequiredDataFromCollectionSlug<'pages'
           { richText: rt3('50,000+', 'Smart installations worldwide') },
           { richText: rt3('40+', 'Countries deployed') },
           { richText: rt3('30%', 'Average energy cost reduction') },
-          { richText: rt3('500+', 'Certified integration partners') },
         ],
       },
       {

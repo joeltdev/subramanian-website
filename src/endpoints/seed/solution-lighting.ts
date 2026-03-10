@@ -9,7 +9,7 @@ export function solutionLighting({ hero, feature, caseStudyIds }: Args): Require
     slug: 'lighting-control',
     _status: 'published',
     hero: {
-      type: 'section2',
+      type: 'section1',
       badgeLabel: 'Lighting Control',
       richText: rt(
         'Lights left on in empty rooms cost thousands every year. iNELS ends that.',
@@ -20,7 +20,6 @@ export function solutionLighting({ hero, feature, caseStudyIds }: Args): Require
         { link: { type: 'custom', appearance: 'default', label: 'Book a Demo', url: '/get-demo' } },
         { link: { type: 'custom', appearance: 'outline', label: 'Download Datasheet', url: '/resources/downloads' } },
       ],
-      backgroundImage: hero,
     },
     meta: {
       title: 'Lighting Control — iNELS Smart Building Automation',
@@ -54,7 +53,6 @@ export function solutionLighting({ hero, feature, caseStudyIds }: Args): Require
           { icon: 'Sparkles', richText: rt3('Daylight Harvesting', 'Automatic dimming maintains target lux levels as natural light changes throughout the day.') },
           { icon: 'Layers', richText: rt3('Scene Automation', 'One-tap scenes for Morning, Meeting, Presentation, Evening — consistent every time.') },
           { icon: 'Zap', richText: rt3('DALI & 0-10V Native', 'Full compatibility with LED drivers and fixtures from all major manufacturers.') },
-          { icon: 'Globe', richText: rt3('App & Voice Control', 'iNELS mobile app, Alexa, Google Home, and Apple HomeKit — residents choose their interface.') },
         ],
         imageLight: feature,
         imageDark: feature,
@@ -79,7 +77,6 @@ export function solutionLighting({ hero, feature, caseStudyIds }: Args): Require
           { richText: rt3('Up to 40%', 'Lighting energy reduction with presence detection') },
           { richText: rt3('2–3 years', 'Typical ROI payback period for commercial retrofit') },
           { richText: rt3('100,000+', 'DALI channels managed by iNELS worldwide') },
-          { richText: rt3('< 1 day', 'Commissioning time per floor with iNELS tooling') },
         ],
       },
       {

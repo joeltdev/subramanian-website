@@ -84,7 +84,8 @@ export function MobileNav({ data }: { data: Header }) {
             <div className="flex flex-col flex-1 overflow-y-auto">
               <nav className="flex flex-col px-4 pt-8 pb-4 gap-1 flex-1">
                 {tabs.map((tab, i) => {
-                  if (tab.enableDirectLink && tab.link) {
+                  // Plain link only (no dropdown)
+                  if (tab.enableDirectLink && tab.link && !tab.enableDropdown) {
                     return (
                       <CMSLink
                         key={i}

@@ -59,14 +59,13 @@ export function partnersPage({ hero: _hero, logo, contactFormId }: Args): Requir
           { richText: rt3('500+', 'Active partners worldwide') },
           { richText: rt3('40+', 'Countries in the partner network') },
           { richText: rt3('3-level', 'Certification programme') },
-          { richText: rt3('< 5 days', 'Onboarding to first certification') },
         ],
       },
       {
         blockType: 'testimonials',
         blockName: 'Partner Testimonials',
         intro: rt('What our partners say'),
-        testimonials: [
+        items: [
           {
             logo,
             richText: rtp(

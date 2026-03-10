@@ -31,7 +31,7 @@ export async function generateStaticParams() {
       return doc.slug !== 'home'
     })
     .map(({ slug }) => {
-      return { slug }
+      return { slug: [slug] }
     })
 
   return params
@@ -39,20 +39,22 @@ export async function generateStaticParams() {
 
 type Args = {
   params: Promise<{
-    slug?: string
+    slug?: string[]
   }>
 }
 
 export default async function Page({ params: paramsPromise }: Args) {
   const { isEnabled: draft } = await draftMode()
-  const { slug = 'home' } = await paramsPromise
-  // Decode to support slugs with special characters
-  const decodedSlug = decodeURIComponent(slug)
-  const url = '/' + decodedSlug
+  const { slug: slugSegments } = await paramsPromise
+  // Pages use flat slugs (e.g. 'lighting-control'). The URL may include a
+  // prefix segment for organisation (e.g. /solutions/lighting-control), so
+  // we query by the last segment only.
+  const slug = slugSegments ? decodeURIComponent(slugSegments[slugSegments.length - 1]) : 'home'
+  const url = '/' + (slugSegments ? slugSegments.map(decodeURIComponent).join('/') : slug)
   let page: RequiredDataFromCollectionSlug<'pages'> | null
 
   page = await queryPageBySlug({
-    slug: decodedSlug,
+    slug,
   })
 
   // Remove this code once your website is seeded
@@ -67,7 +69,7 @@ export default async function Page({ params: paramsPromise }: Args) {
   const { hero, layout } = page
 
   return (
-    <article className="pb-24">
+    <article>
       <PageClient />
       {/* Allows redirects for valid pages too */}
       <PayloadRedirects disableNotFound url={url} />
@@ -81,11 +83,10 @@ export default async function Page({ params: paramsPromise }: Args) {
 }
 
 export async function generateMetadata({ params: paramsPromise }: Args): Promise<Metadata> {
-  const { slug = 'home' } = await paramsPromise
-  // Decode to support slugs with special characters
-  const decodedSlug = decodeURIComponent(slug)
+  const { slug: slugSegments } = await paramsPromise
+  const slug = slugSegments ? decodeURIComponent(slugSegments[slugSegments.length - 1]) : 'home'
   const page = await queryPageBySlug({
-    slug: decodedSlug,
+    slug,
   })
 
   return generateMeta({ doc: page })

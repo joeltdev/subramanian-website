@@ -28,7 +28,7 @@ export const Testimonials: Block = {
       }),
     },
     {
-      name: 'testimonials',
+      name: 'items',
       type: 'array',
       label: 'Testimonials',
       minRows: 1,

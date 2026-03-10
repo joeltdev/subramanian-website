@@ -183,15 +183,6 @@ export function showcasePageData(
           {
             richText: richTextH3Paragraph('40+', 'Countries deployed'),
           },
-          {
-            richText: richTextH3Paragraph('500+', 'Product SKUs'),
-          },
-          {
-            richText: richTextH3Paragraph('2M+', 'Connected devices managed'),
-          },
-          {
-            richText: richTextH3Paragraph('99.9%', 'Cloud platform uptime'),
-          },
         ],
       },
 
@@ -265,13 +256,6 @@ export function showcasePageData(
             richText: richTextH3Paragraph(
               'Mobile & Voice Control',
               'Control everything from the iNELS app, Alexa, or Google Home.',
-            ),
-          },
-          {
-            icon: 'Zap',
-            richText: richTextH3Paragraph(
-              'Energy Monitoring',
-              'Real-time consumption graphs and automated load balancing.',
             ),
           },
         ],
@@ -367,13 +351,6 @@ export function showcasePageData(
             richText: richTextH3Paragraph(
               'Fire & Security Integration',
               'Certified fire panel and access control integration.',
-            ),
-          },
-          {
-            icon: 'Cpu',
-            richText: richTextH3Paragraph(
-              'Central Supervision Console',
-              'Full facility overview on a single dashboard.',
             ),
           },
         ],
@@ -633,7 +610,7 @@ export function showcasePageData(
         blockType: 'testimonials',
         blockName: 'Partner Testimonials',
         intro: richTextHeadingOnly('What our partners say'),
-        testimonials: [
+        items: [
           {
             logo: images.logo,
             richText: richTextParagraphOnly(

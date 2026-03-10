@@ -9,7 +9,7 @@ export function industryResidential({ hero, feature, logo, caseStudyIds }: Args)
     slug: 'residential-buildings',
     _status: 'published',
     hero: {
-      type: 'section2',
+      type: 'section1',
       badgeLabel: 'Residential Buildings',
       richText: rt(
         'Deploy smart home technology across an entire apartment block — in days, not months.',
@@ -20,7 +20,6 @@ export function industryResidential({ hero, feature, logo, caseStudyIds }: Args)
         { link: { type: 'custom', appearance: 'default', label: 'Book a Developer Demo', url: '/get-demo' } },
         { link: { type: 'custom', appearance: 'outline', label: 'Download Spec Pack', url: '/resources/downloads' } },
       ],
-      backgroundImage: hero,
     },
     meta: {
       title: 'Residential Buildings — iNELS Smart Building Automation',
@@ -97,13 +96,6 @@ export function industryResidential({ hero, feature, logo, caseStudyIds }: Args)
               'iNELS RF modules install behind existing switches — no new wiring, no rework.',
             ),
           },
-          {
-            icon: 'Fingerprint',
-            richText: rt3(
-              'Intercom & Access Control',
-              'Building-wide video intercom and smart access integrated into the resident app.',
-            ),
-          },
         ],
         imageLight: feature,
         imageDark: feature,
@@ -139,7 +131,6 @@ export function industryResidential({ hero, feature, logo, caseStudyIds }: Args)
           { richText: rt3('80 units in 3 days', 'Novák Residences deployment record') },
           { richText: rt3('40% faster', 'vs previous project timeline') },
           { richText: rt3('€150', 'Per unit hardware cost') },
-          { richText: rt3('Zero callbacks', 'In first 6 months post-deployment') },
         ],
       },
       {

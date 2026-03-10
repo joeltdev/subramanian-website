@@ -9,7 +9,7 @@ export function solutionEnergy({ hero, feature, logo, caseStudyIds }: Args): Req
     slug: 'energy-management',
     _status: 'published',
     hero: {
-      type: 'section2',
+      type: 'section1',
       badgeLabel: 'Energy Management',
       richText: rt(
         "You can't manage what you can't measure. Most buildings are flying blind on energy.",
@@ -20,7 +20,6 @@ export function solutionEnergy({ hero, feature, logo, caseStudyIds }: Args): Req
         { link: { type: 'custom', appearance: 'default', label: 'Book a Demo', url: '/get-demo' } },
         { link: { type: 'custom', appearance: 'outline', label: 'Download Datasheet', url: '/resources/downloads' } },
       ],
-      backgroundImage: hero,
     },
     meta: {
       title: 'Energy Management — iNELS Smart Building Automation',
@@ -54,7 +53,6 @@ export function solutionEnergy({ hero, feature, logo, caseStudyIds }: Args): Req
           { icon: 'Zap', richText: rt3('Automated Load Shedding', 'Programmatic load shedding prevents peak demand charges automatically.') },
           { icon: 'Pencil', richText: rt3('Tenant Billing Reports', 'Auto-generated monthly energy statements per tenant or cost centre.') },
           { icon: 'Globe', richText: rt3('ESG Dashboard', 'Carbon intensity, kWh/m², and trend data for sustainability reporting.') },
-          { icon: 'MessageCircle', richText: rt3('Anomaly Alerts', 'Consumption spikes trigger instant push notifications to facility managers.') },
         ],
         imageLight: feature,
         imageDark: feature,
@@ -79,7 +77,6 @@ export function solutionEnergy({ hero, feature, logo, caseStudyIds }: Args): Req
           { richText: rt3('Up to 35%', 'Energy cost reduction with sub-metering and automation') },
           { richText: rt3('18 months', 'Typical ROI payback period') },
           { richText: rt3('500,000+', 'Metering points monitored by iNELS') },
-          { richText: rt3('5-min resolution', 'Consumption data interval for anomaly detection') },
         ],
       },
       {

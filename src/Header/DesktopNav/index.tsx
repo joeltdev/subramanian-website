@@ -69,7 +69,8 @@ export function DesktopNav({ data }: { data: Header }) {
           const hasDropdown = tab.enableDropdown
           const isActive = activeTab === i
 
-          if (tab.enableDirectLink && tab.link) {
+          // Plain link only (no dropdown)
+          if (tab.enableDirectLink && tab.link && !hasDropdown) {
             return (
               <CMSLink
                 key={i}
@@ -103,7 +104,15 @@ export function DesktopNav({ data }: { data: Header }) {
                   isActive ? 'text-primary hover:text-primary' : 'text-foreground hover:text-primary',
                 )}
               >
-                {tab.label}
+                {tab.enableDirectLink && tab.link ? (
+                  <CMSLink
+                    {...tab.link}
+                    appearance="inline"
+                    className="text-inherit hover:text-inherit"
+                  />
+                ) : (
+                  tab.label
+                )}
                 {hasDropdown && (
                   <ChevronDown
                     className={cn(

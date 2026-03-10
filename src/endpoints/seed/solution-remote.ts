@@ -9,7 +9,7 @@ export function solutionRemote({ hero, feature, logo, caseStudyIds }: Args): Req
     slug: 'remote-control',
     _status: 'published',
     hero: {
-      type: 'section2',
+      type: 'section1',
       badgeLabel: 'Remote Control',
       richText: rt(
         "Your building shouldn't require you to be on-site to manage it.",
@@ -20,7 +20,6 @@ export function solutionRemote({ hero, feature, logo, caseStudyIds }: Args): Req
         { link: { type: 'custom', appearance: 'default', label: 'Book a Demo', url: '/get-demo' } },
         { link: { type: 'custom', appearance: 'outline', label: 'Download Datasheet', url: '/resources/downloads' } },
       ],
-      backgroundImage: hero,
     },
     meta: {
       title: 'Remote Control — iNELS Smart Building Automation',
@@ -54,7 +53,6 @@ export function solutionRemote({ hero, feature, logo, caseStudyIds }: Args): Req
           { icon: 'Globe', richText: rt3('Cloud Supervision Dashboard', 'Full building overview for facility managers — all sites, all zones, one screen.') },
           { icon: 'Layers', richText: rt3('Touch Panel Integration', 'Wall-mounted touch panels for local scene control and status.') },
           { icon: 'MessageCircle', richText: rt3('Push Alerts & Fault Notifications', 'Instant push notifications for temperature deviation, access events, and system faults.') },
-          { icon: 'Globe', richText: rt3('Multi-site Management', 'Manage multiple buildings from a single account — ideal for facility management companies.') },
         ],
         imageLight: feature,
         imageDark: feature,
@@ -79,7 +77,6 @@ export function solutionRemote({ hero, feature, logo, caseStudyIds }: Args): Req
           { richText: rt3('< 200ms', 'Command response time via iNELS cloud') },
           { richText: rt3('99.9%', 'Cloud platform uptime SLA') },
           { richText: rt3('150,000+', 'Active iNELS app users worldwide') },
-          { richText: rt3('5-min setup', 'App provisioning per residential unit') },
         ],
       },
       {

@@ -1,6 +1,8 @@
 // src/scripts/seed-products.ts
 import { getPayload, type Payload } from 'payload'
 import config from '@payload-config'
+import fs from 'fs'
+import path from 'path'
 import { readFileSync } from 'fs'
 import { resolve } from 'path'
 import { parseSqlInserts, type SqlValue } from './lib/parse-sql'
@@ -119,6 +121,17 @@ function mapProductRow(row: Row): ProductRow {
 const OLD_MEDIA_BASE = (process.env.OLD_CMS_MEDIA_BASE_URL || '').replace(/\/$/, '')
 
 async function downloadImage(url: string): Promise<Buffer | null> {
+  // Check for local file first (Proactive Seeding)
+  const stagingDir = process.env.NEW_MEDIA_STAGING
+  if (stagingDir) {
+    const fileName = path.basename(url)
+    const localPath = path.join(stagingDir, fileName)
+    if (fs.existsSync(localPath)) {
+      return fs.readFileSync(localPath)
+    }
+  }
+
+  // Fallback to URL
   try {
     const res = await fetch(url)
     if (!res.ok) return null
@@ -361,125 +374,23 @@ async function seedTags(
   return tagMap
 }
 
-// ── Phase 6: Upload product images ───────────────────────────────────────────
-
-/**
- * Build candidate CDN URLs for a product image.
- *
- * The old CMS always stored images at {root-slug}/{level-2-slug}/{product}.png,
- * regardless of how many levels deep the actual leaf category is.
- *   depth-2 product: root=parentRow, level2=catRow
- *   depth-3 product: root=grandparentRow, level2=parentRow (leaf catRow is ignored)
- */
-function buildProductImageUrls(
-  productSlug: string,
-  catRow: CategoryRow | undefined,
-  parentRow: CategoryRow | undefined,
-  grandparentRow: CategoryRow | undefined,
-): string[] {
-  const urls: string[] = []
-
-  let rootRow: CategoryRow | undefined
-  let level2Row: CategoryRow | undefined
-
-  if (grandparentRow) {
-    rootRow = grandparentRow
-    level2Row = parentRow
-  } else if (parentRow) {
-    rootRow = parentRow
-    level2Row = catRow
-  }
-
-  if (rootRow && level2Row) {
-    const rootSlug = getCdnSlug(rootRow.name)
-    const catSlug = getCdnSlug(level2Row.name)
-    urls.push(`${OLD_MEDIA_BASE}/${rootSlug}/${catSlug}/${productSlug}.png`)
-    urls.push(`${OLD_MEDIA_BASE}/${rootSlug}/${catSlug}/${productSlug}.jpg`)
-  }
-
-  // Fallback: try with the leaf category directly
-  if (catRow && rootRow && level2Row && catRow !== level2Row) {
-    const rootSlug = getCdnSlug(rootRow.name)
-    const leafSlug = getCdnSlug(catRow.name)
-    urls.push(`${OLD_MEDIA_BASE}/${rootSlug}/${leafSlug}/${productSlug}.png`)
-  }
-
-  urls.push(`${OLD_MEDIA_BASE}/${productSlug}.png`)
-  return urls
-}
-
-async function uploadProductImages(
-  payload: Payload,
-  products: ProductRow[],
-  catRows: CategoryRow[],
-  mediaMap: Map<number, number | string>,
-  failedImages: string[],
-  folderId: number | string | null,
-): Promise<void> {
-  const catById = new Map(catRows.map(c => [c.oldId, c]))
-
-  // Collect all unique uploadIds across all product galleries
-  const toUpload = new Map<number, { productSlug: string; catRow?: CategoryRow; parentRow?: CategoryRow; grandparentRow?: CategoryRow; alt: string }>()
-
-  for (const product of products) {
-    const catRow = product.categoryOldId != null ? catById.get(product.categoryOldId) : undefined
-    const parentRow = catRow?.parentOldId != null ? catById.get(catRow.parentOldId) : undefined
-    const grandparentRow = parentRow?.parentOldId != null ? catById.get(parentRow.parentOldId) : undefined
-    for (const g of product.gallery) {
-      if (!mediaMap.has(g.uploadId) && !toUpload.has(g.uploadId)) {
-        toUpload.set(g.uploadId, { productSlug: product.slug, catRow, parentRow, grandparentRow, alt: g.alt })
-      }
-    }
-  }
-
-  payload.logger.info(`Uploading ${toUpload.size} unique product images...`)
-
-  for (const [uploadId, info] of toUpload) {
-    const urls = buildProductImageUrls(
-      info.productSlug,
-      info.catRow,
-      info.parentRow,
-      info.grandparentRow,
-    )
-
-    let uploaded = false
-    for (const url of urls) {
-      const buffer = await downloadImage(url)
-      if (!buffer) continue
-      try {
-        const ext = url.split('.').pop() || 'png'
-        const media = await payload.create({
-          collection: 'media',
-          data: { alt: info.alt, ...(folderId ? { folder: folderId as number } : {}) },
-          file: { data: buffer, mimetype: `image/${ext}`, name: `prod-${uploadId}.${ext}`, size: buffer.length },
-        })
-        mediaMap.set(uploadId, media.id)
-        payload.logger.info(`  ✓ image uploadId=${uploadId} → ${media.id} (${url})`)
-        uploaded = true
-        break
-      } catch (err) {
-        payload.logger.warn(`  upload failed for ${url}: ${err}`)
-      }
-    }
-
-    if (!uploaded) {
-      failedImages.push(`uploadId=${uploadId} tried: ${urls.join(', ')}`)
-      payload.logger.warn(`  ✗ image uploadId=${uploadId} not found at any URL`)
-    }
-  }
-}
-
-// ── Phase 7: Seed products ────────────────────────────────────────────────────
+// ── Phase 6 & 7: Seed products ────────────────────────────────────────────────
 
 async function seedProducts(
   payload: Payload,
   products: ProductRow[],
+  catRows: CategoryRow[],
   catMap: Map<number, number | string>,
   mediaMap: Map<number, number | string>,
   failedProducts: string[],
+  failedImages: string[],
+  folderId: number | string | null,
 ): Promise<{ created: number; skipped: number }> {
   let created = 0
   let skipped = 0
+  const catById = new Map(catRows.map(c => [c.oldId, c]))
+
+  payload.logger.info(`Starting product seeding for ${products.length} products...`)
 
   for (const product of products) {
     try {
@@ -498,19 +409,53 @@ async function seedProducts(
         ? catMap.get(product.categoryOldId) ?? null
         : null
 
-      const productGallery = product.gallery
-        .map(g => {
-          const newId = mediaMap.get(g.uploadId)
-          if (!newId) {
-            payload.logger.warn(`  [gallery] product "${product.slug}" uploadId=${g.uploadId} NOT in mediaMap (map has ${mediaMap.size} entries)`)
-            return null
-          }
-          return { image: newId, alt: g.alt }
-        })
-        .filter((g): g is { image: string; alt: string } => g !== null)
+      // Proactively upload gallery images for THIS product
+      const productGallery: Array<{ image: string | number; alt: string }> = []
+      const catRow = product.categoryOldId != null ? catById.get(product.categoryOldId) : undefined
+      const parentRow = catRow?.parentOldId != null ? catById.get(catRow.parentOldId) : undefined
+      const grandparentRow = parentRow?.parentOldId != null ? catById.get(parentRow.parentOldId) : undefined
 
-      if (product.gallery.length > 0) {
-        payload.logger.info(`  [gallery] "${product.slug}": ${product.gallery.length} raw → ${productGallery.length} resolved`)
+      for (const g of product.gallery) {
+        let mediaId = mediaMap.get(g.uploadId)
+
+        // Check if media already exists in DB even if not in map (resume support)
+        if (!mediaId) {
+          const existingMedia = await payload.find({
+            collection: 'media',
+            where: { filename: { equals: `prod-${g.uploadId}.png` } }, // or .jpg
+            limit: 1,
+          })
+          if (existingMedia.docs.length > 0) {
+            mediaId = existingMedia.docs[0].id
+            mediaMap.set(g.uploadId, mediaId)
+          }
+        }
+
+        if (!mediaId) {
+          const urls = catRow ? buildCategoryImageUrls(catRow, parentRow) : []
+          for (const url of urls) {
+            const buffer = await downloadImage(url)
+            if (!buffer) continue
+            try {
+              const ext = url.split('.').pop() || 'png'
+              const media = await payload.create({
+                collection: 'media',
+                data: { alt: g.alt, ...(folderId ? { folder: folderId as number } : {}) },
+                file: { data: buffer, mimetype: `image/${ext}`, name: `prod-${g.uploadId}.${ext}`, size: buffer.length },
+              })
+              mediaId = media.id
+              mediaMap.set(g.uploadId, mediaId)
+              payload.logger.info(`    ✓ image uploadId=${g.uploadId} → ${media.id}`)
+              break
+            } catch (err) { /* ignore */ }
+          }
+        }
+
+        if (mediaId) {
+          productGallery.push({ image: mediaId, alt: g.alt })
+        } else {
+          failedImages.push(`prod-${product.slug}-img-${g.uploadId}`)
+        }
       }
 
       const ecDeclaration = product.ecDeclaration.length > 0
@@ -536,10 +481,7 @@ async function seedProducts(
       }
 
       const doc = await payload.create({ collection: 'products', data: data as any })
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const savedGallery = (doc as any).productGallery
-      const galleryNote = savedGallery?.length ? `gallery=${savedGallery.length}` : 'gallery=EMPTY'
-      payload.logger.info(`  ✓ product "${product.slug}" → ${doc.id} (${galleryNote})`)
+      payload.logger.info(`  ✓ product "${product.slug}" → ${doc.id} (gallery=${productGallery.length})`)
       created++
     } catch (err) {
       payload.logger.error(`  ✗ product "${product.slug}" FAILED: ${err}`)
@@ -586,21 +528,19 @@ export const seed = async ({
   payload.logger.info('--- Seeding tags ---')
   const tagMap = await seedTags(payload, tagRows)
 
-  // Phase 6: Upload product images
-  payload.logger.info('--- Uploading product images ---')
+  // Phase 6 & 7: Seed products (Images are now handled inline for Vercel stability)
+  payload.logger.info('--- Seeding products (with inline image uploads) ---')
   const productsFolderId = await ensureFolder(payload, 'Products')
-  await uploadProductImages(payload, productRows, catRows, mediaMap, failedImages, productsFolderId)
-
-  payload.logger.info(`  mediaMap has ${mediaMap.size} entries after image upload phase`)
-
-  // Phase 7: Seed products
-  payload.logger.info('--- Seeding products ---')
+  
   const { created: createdProducts, skipped: skippedProducts } = await seedProducts(
     payload,
     productRows,
+    catRows,
     catMap,
     mediaMap,
     failedProducts,
+    failedImages,
+    productsFolderId,
   )
 
   // ── Summary ──────────────────────────────────────────────────────────────────
@@ -613,17 +553,14 @@ export const seed = async ({
   payload.logger.info(
     `  Products   : ${createdProducts} created, ${skippedProducts} skipped, ${failedProducts.length} failed`,
   )
-  payload.logger.info(`  Images     : ${mediaMap.size} uploaded, ${failedImages.length} failed`)
+  payload.logger.info(`  Images     : ${mediaMap.size} unique resolved, ${failedImages.length} failed attempt segments`)
   if (failedProducts.length > 0) {
     payload.logger.info('  Failed products:')
     for (const slug of failedProducts) payload.logger.info(`    - ${slug}`)
   }
-  if (failedImages.length > 0) {
-    payload.logger.info('  Failed images:')
-    for (const img of failedImages) payload.logger.info(`    - ${img}`)
-  }
   payload.logger.info('════════════════════════════════')
 }
+
 
 async function main() {
   const payload = await getPayload({ config })

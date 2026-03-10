@@ -5,11 +5,11 @@ type Args = { hero: number; feature: number; logo: number; caseStudyIds: number[
 
 export function industryGrms({ hero, feature, logo, caseStudyIds }: Args): RequiredDataFromCollectionSlug<'pages'> {
   return {
-    title: 'GRMS — Guest Room Management',
+    title: 'GRMS',
     slug: 'grms',
     _status: 'published',
     hero: {
-      type: 'section2',
+      type: 'section1',
       badgeLabel: 'GRMS — Guest Room Management',
       richText: rt(
         'Every minute a guest room sits at full climate while empty costs you money.',
@@ -20,7 +20,6 @@ export function industryGrms({ hero, feature, logo, caseStudyIds }: Args): Requi
         { link: { type: 'custom', appearance: 'default', label: 'Book a Hotel Demo', url: '/get-demo' } },
         { link: { type: 'custom', appearance: 'outline', label: 'Download GRMS Datasheet', url: '/resources/downloads' } },
       ],
-      backgroundImage: hero,
     },
     meta: {
       title: 'GRMS Guest Room Management — iNELS Hotel Automation',
@@ -97,13 +96,6 @@ export function industryGrms({ hero, feature, logo, caseStudyIds }: Args): Requi
               'Room status, check-in, and check-out events synchronised with PMS for automated room preparation.',
             ),
           },
-          {
-            icon: 'Users',
-            richText: rt3(
-              'Centralised Housekeeping Dashboard',
-              'Real-time room status — occupied, vacant, DND, clean, dirty — for all floors in one view.',
-            ),
-          },
         ],
         imageLight: feature,
         imageDark: feature,
@@ -139,7 +131,6 @@ export function industryGrms({ hero, feature, logo, caseStudyIds }: Args): Requi
           { richText: rt3('Up to 40%', 'Room energy saving with GRMS') },
           { richText: rt3('< €200', 'Per room hardware cost') },
           { richText: rt3('250 rooms', 'Grand Hotel Praha deployment') },
-          { richText: rt3('< 1 day', 'PMS integration commissioning') },
         ],
       },
       {

@@ -41,13 +41,13 @@ export const Section1Hero: React.FC<Section1HeroType> = ({
       </div>
 
       <section>
-        <div className="relative pt-16 md:pt-24">
+        <div className="relative py-8 md:py-24">
           <div
             aria-hidden
             className="absolute inset-0 -z-10 size-full [background:radial-gradient(125%_125%_at_50%_100%,transparent_0%,var(--color-background)_75%)]"
           />
 
-          <div className="mx-auto max-w-7xl px-6 w-full">
+          <div className="mx-auto max-w-7xl px-8 w-full">
             <div className="text-center sm:mx-auto lg:mr-auto lg:mt-0">
               {/* Badge */}
               {badgeLabel && (
@@ -70,7 +70,7 @@ export const Section1Hero: React.FC<Section1HeroType> = ({
                   <RichText
                     data={richText}
                     enableGutter={false}
-                    className="text-balance [&_h1]:type-display [&_p]:mt-8 [&_p]:max-w-2xl [&_p]:mx-auto [&_p]:type-body-xl"
+                    className="text-balance [&_h1]:type-display [&_p]:mt-4 [&_p]:max-w-2xl [&_p]:mx-auto [&_p]:type-body-xl"
                   />
                 </AnimatedGroup>
               )}
@@ -86,7 +86,7 @@ export const Section1Hero: React.FC<Section1HeroType> = ({
                     },
                     ...transitionVariants,
                   }}
-                  className="mt-12 flex flex-col items-center justify-center gap-2 md:flex-row">
+                  className="mt-4 flex flex-col items-center justify-center gap-2 md:flex-row">
                   {links.map(({ link }, i) => (
                     <CMSLink
                       key={i}

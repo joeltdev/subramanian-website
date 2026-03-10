@@ -1,0 +1,1 @@
+ CREATE USER payload_user WITH PASSWORD 'elkoep@2026#Europe'; GRANT ALL PRIVILEGES ON DATABASE inels_payload TO payload_user;

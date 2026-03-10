@@ -9,7 +9,7 @@ export function industrySmartFactories({ hero, feature, logo, caseStudyIds }: Ar
     slug: 'smart-factories',
     _status: 'published',
     hero: {
-      type: 'section2',
+      type: 'section1',
       badgeLabel: 'Smart Factories',
       richText: rt(
         'Industrial facilities that cannot monitor and automate are losing competitive ground.',
@@ -20,7 +20,6 @@ export function industrySmartFactories({ hero, feature, logo, caseStudyIds }: Ar
         { link: { type: 'custom', appearance: 'default', label: 'Book an Industrial Demo', url: '/get-demo' } },
         { link: { type: 'custom', appearance: 'outline', label: 'Download Industrial Datasheet', url: '/resources/downloads' } },
       ],
-      backgroundImage: hero,
     },
     meta: {
       title: 'Smart Factories — iNELS Industrial Automation',
@@ -97,13 +96,6 @@ export function industrySmartFactories({ hero, feature, logo, caseStudyIds }: Ar
               'MQTT broker connects operational technology data to IT platforms, ERP, and cloud analytics.',
             ),
           },
-          {
-            icon: 'Database',
-            richText: rt3(
-              'SCADA Integration',
-              'iNELS integrates with major SCADA platforms via OPC-UA, Modbus, and REST API.',
-            ),
-          },
         ],
         imageLight: feature,
         imageDark: feature,
@@ -139,7 +131,6 @@ export function industrySmartFactories({ hero, feature, logo, caseStudyIds }: Ar
           { richText: rt3('35%', 'Energy visibility improvement after deployment') },
           { richText: rt3('Native protocols', 'Modbus, BACnet, and MQTT out of the box') },
           { richText: rt3('ISO 50001', 'Reporting-ready from commissioning') },
-          { richText: rt3('< 1 day', 'Per zone commissioning time') },
         ],
       },
       {

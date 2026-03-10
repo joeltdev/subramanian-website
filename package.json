@@ -18,6 +18,7 @@
     "seed": "cross-env NODE_OPTIONS=--no-deprecation payload run src/endpoints/seed/index.ts",
     "seed:products": "cross-env NODE_OPTIONS=--no-deprecation payload run src/scripts/seed-products.ts",
     "seed:products:wipe": "cross-env NODE_OPTIONS=--no-deprecation payload run src/scripts/seed-products.ts --wipe",
+    "media:prepare": "tsx src/scripts/prepare-media.ts",
     "ii": "cross-env NODE_OPTIONS=--no-deprecation pnpm --ignore-workspace install",
     "lint": "cross-env NODE_OPTIONS=--no-deprecation next lint",
     "lint:fix": "cross-env NODE_OPTIONS=--no-deprecation next lint --fix",

@@ -5,11 +5,11 @@ type Args = { hero: number; feature: number; logo: number; caseStudyIds: number[
 
 export function industryHresk({ hero, feature, logo, caseStudyIds }: Args): RequiredDataFromCollectionSlug<'pages'> {
   return {
-    title: 'HRESK — Hotel Energy Saving',
+    title: 'HRESK',
     slug: 'hresk',
     _status: 'published',
     hero: {
-      type: 'section2',
+      type: 'section1',
       badgeLabel: 'HRESK — Hotel Energy Saving',
       richText: rt(
         'A 250-room hotel wasting 30% of room energy is burning €60,000 a year. The iNELS HRESK kit pays back in 18 months.',
@@ -20,7 +20,6 @@ export function industryHresk({ hero, feature, logo, caseStudyIds }: Args): Requ
         { link: { type: 'custom', appearance: 'default', label: 'Download ROI Calculator', url: '/resources/downloads' } },
         { link: { type: 'custom', appearance: 'outline', label: 'Book a Hotel Demo', url: '/get-demo' } },
       ],
-      backgroundImage: hero,
     },
     meta: {
       title: 'HRESK Hotel Energy Saving — iNELS Hotel Automation',
@@ -97,13 +96,6 @@ export function industryHresk({ hero, feature, logo, caseStudyIds }: Args): Requ
               'Per-room energy data aggregated to a central dashboard for management reporting.',
             ),
           },
-          {
-            icon: 'Database',
-            richText: rt3(
-              'Compatible with All Major PMS',
-              'Opera, Protel, and custom PMS integration for automated room status and energy management.',
-            ),
-          },
         ],
         imageLight: feature,
         imageDark: feature,
@@ -139,7 +131,6 @@ export function industryHresk({ hero, feature, logo, caseStudyIds }: Args): Requ
           { richText: rt3('18 months', 'Payback period for HRESK deployment') },
           { richText: rt3('40%', 'Room energy reduction after installation') },
           { richText: rt3('< 2 hours', 'Per room installation time') },
-          { richText: rt3('50+ hotels', 'Deployed across Europe') },
         ],
       },
       {

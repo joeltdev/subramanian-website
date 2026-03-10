@@ -28,6 +28,8 @@ import * as migration_20260305_consolidate_link_enums from './20260305_consolida
 import * as migration_20260306_fix_products_v_blocks from './20260306_fix_products_v_blocks';
 import * as migration_20260306_fix_products_v_blocks_v2 from './20260306_fix_products_v_blocks_v2';
 import * as migration_20260306_fix_products_v_blocks_v3 from './20260306_fix_products_v_blocks_v3';
+import * as migration_20260307_051130 from './20260307_051130';
+import * as migration_20260307_074231 from './20260307_074231';
 
 export const migrations = [
   {
@@ -163,7 +165,7 @@ export const migrations = [
   {
     up: migration_20260305_consolidate_link_enums.up,
     down: migration_20260305_consolidate_link_enums.down,
-    name: '20260305_consolidate_link_enums'
+    name: '20260305_consolidate_link_enums',
   },
   {
     up: migration_20260306_fix_products_v_blocks.up,
@@ -179,5 +181,15 @@ export const migrations = [
     up: migration_20260306_fix_products_v_blocks_v3.up,
     down: migration_20260306_fix_products_v_blocks_v3.down,
     name: '20260306_fix_products_v_blocks_v3',
+  },
+  {
+    up: migration_20260307_051130.up,
+    down: migration_20260307_051130.down,
+    name: '20260307_051130',
+  },
+  {
+    up: migration_20260307_074231.up,
+    down: migration_20260307_074231.down,
+    name: '20260307_074231'
   },
 ];

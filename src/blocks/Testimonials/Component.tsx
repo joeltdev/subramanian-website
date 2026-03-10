@@ -17,19 +17,19 @@ function getInitials(name?: string | null): string {
 
 export const TestimonialsBlock: React.FC<
   TestimonialsBlockType & { disableInnerContainer?: boolean }
-> = ({ intro, testimonials }) => {
+> = ({ intro, items }) => {
   return (
-    <section className="py-4 md:py-8">
-      <div className="mx-auto max-w-5xl space-y-8 px-6 md:space-y-16">
+    <section className="py-16 md:py-24">
+      <div className="mx-auto max-w-7xl px-6 md:px-8 space-y-8 md:space-y-16">
         {intro && (
           <div className="relative z-10 mx-auto max-w-xl space-y-6 text-center md:space-y-12">
             <RichText data={intro} enableGutter={false} className="[&_h2]:type-headline-2 [&_h2]:text-type-heading [&_h2]:mb-6 [&_h3]:type-headline-3 [&_h3]:text-type-heading [&_h3]:mb-4 [&_p]:text-type-body [&_p]:type-body-xl" />
           </div>
         )}
 
-        {Array.isArray(testimonials) && testimonials.length > 0 && (
+        {Array.isArray(items) && items.length > 0 && (
           <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-rows-2">
-            {testimonials.map(({ id, logo, richText, author, role, avatar }, index) => {
+            {items.map(({ id, logo, richText, author, role, avatar }, index) => {
               const isFeature = index === 0
 
               return (
@@ -37,10 +37,10 @@ export const TestimonialsBlock: React.FC<
                   key={id}
                   className={
                     isFeature
-                      ? 'grid grid-rows-[auto_1fr] gap-8 sm:col-span-2 sm:p-6 lg:row-span-2  bg-background shadow-xs rounded px-6 py-8'
+                      ? 'grid grid-rows-[auto_1fr] gap-8 sm:col-span-2 sm:p-6 lg:row-span-2  bg-muted shadow-xs rounded-none px-6 py-8'
                       : index === 1
-                        ? ' bg-background shadow-xs rounded px-6 py-8 md:col-span-2'
-                        : ' bg-background shadow-xs rounded px-6 py-8'
+                        ? ' bg-muted shadow-xs rounded-none px-6 py-8 md:col-span-2'
+                        : ' bg-muted shadow-xs rounded-none px-6 py-8'
                   }>
                   {isFeature && typeof logo === 'object' && logo && (
                     <CardHeader>

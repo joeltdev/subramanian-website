@@ -136,6 +136,21 @@ export const ParallaxSlide: React.FC<SlideProps> = ({
               '[&_p]:type-body-md [&_p]:text-white/90 [&_p]:leading-relaxed [&_p]:max-w-sm',
             )}
           />
+          {isActive && hasLink && (
+            <CMSLink
+              type={link.type}
+              url={link.url}
+              reference={link.reference as any}
+              newTab={link.newTab}
+              label={link.label}
+              className={cn(
+                'inline-flex items-center mt-4',
+                'bg-white/15 hover:bg-white/25 backdrop-blur-sm border border-white/30',
+                'rounded-full px-4 py-2 type-label-sm text-white',
+                'transition-colors duration-150',
+              )}
+            />
+          )}
         </div>
       )}
 
@@ -193,21 +208,6 @@ export const ParallaxSlide: React.FC<SlideProps> = ({
       )}
     </motion.div>
   )
-
-  // Wrap the whole slide in CMSLink if there's a valid link on the active slide
-  if (hasLink && isActive) {
-    return (
-      <CMSLink
-        type={link.type}
-        url={link.url}
-        reference={link.reference as any}
-        newTab={link.newTab}
-        className="block"
-      >
-        {slideInner}
-      </CMSLink>
-    )
-  }
 
   return slideInner
 }

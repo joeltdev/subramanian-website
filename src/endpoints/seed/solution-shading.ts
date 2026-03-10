@@ -9,7 +9,7 @@ export function solutionShading({ hero, feature, logo, caseStudyIds }: Args): Re
     slug: 'shading-automation',
     _status: 'published',
     hero: {
-      type: 'section2',
+      type: 'section1',
       badgeLabel: 'Shading Automation',
       richText: rt(
         'Glare, overheating, and fading furniture cost more than motorised blinds ever will.',
@@ -20,7 +20,6 @@ export function solutionShading({ hero, feature, logo, caseStudyIds }: Args): Re
         { link: { type: 'custom', appearance: 'default', label: 'Book a Demo', url: '/get-demo' } },
         { link: { type: 'custom', appearance: 'outline', label: 'Download Datasheet', url: '/resources/downloads' } },
       ],
-      backgroundImage: hero,
     },
     meta: {
       title: 'Shading Automation — iNELS Smart Building Automation',
@@ -54,7 +53,6 @@ export function solutionShading({ hero, feature, logo, caseStudyIds }: Args): Re
           { icon: 'Cloud', richText: rt3('Wind & Rain Safety Retraction', 'Weather station integration automatically retracts blinds in wind or rain to prevent damage.') },
           { icon: 'RefreshCw', richText: rt3('Privacy Mode Scheduling', 'Scheduled privacy positions for evenings, meetings, and sensitive areas.') },
           { icon: 'Zap', richText: rt3('Daylight & Glare Control', 'Lux sensors trigger partial or full closure when glare threshold is exceeded.') },
-          { icon: 'Layers', richText: rt3('Integrated with Lighting Scenes', 'Shading and lighting scenes trigger together — one button for the perfect environment.') },
         ],
         imageLight: feature,
         imageDark: feature,
@@ -79,7 +77,6 @@ export function solutionShading({ hero, feature, logo, caseStudyIds }: Args): Re
           { richText: rt3('Up to 25%', 'Cooling load reduction with automated shading') },
           { richText: rt3('3-year payback', 'Typical ROI for commercial glazing retrofit') },
           { richText: rt3('10,000+', 'Motorised channels deployed by iNELS') },
-          { richText: rt3('< 2h per zone', 'Commissioning time with iNELS tooling') },
         ],
       },
       {

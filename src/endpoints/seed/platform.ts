@@ -49,7 +49,6 @@ export function platformPage({ hero, diagram, logo }: Args): RequiredDataFromCol
           { icon: 'Activity', richText: rt3('BACnet', 'BACnet/IP and BACnet MSTP for enterprise HVAC and BMS.') },
           { icon: 'Layers', richText: rt3('Modbus RTU/TCP', 'Industrial-grade Modbus for meters, PLCs, and legacy equipment.') },
           { icon: 'Zap', richText: rt3('MQTT v5', 'Lightweight pub/sub for IoT and cloud integration.') },
-          { icon: 'Globe', richText: rt3('REST API & Webhooks', 'Full API for third-party software, custom dashboards, and integrations.') },
         ],
         imageLight: hero,
         imageDark: diagram,

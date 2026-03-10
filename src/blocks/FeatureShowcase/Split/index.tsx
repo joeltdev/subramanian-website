@@ -30,7 +30,7 @@ export const SplitFeatureShowcase: React.FC<FeatureShowcaseBlock> = ({
   const hasForeground = typeof imageForeground === 'object' && imageForeground
 
   return (
-    <section ref={sectionRef} className="relative py-4 md:py-24 overflow-hidden">
+    <section ref={sectionRef} className="relative py-4 md:py-24 overflow-hidden" data-theme="dark">
 
       {/* Full-viewport-width background image with subtle parallax */}
       {hasBgImages && (
@@ -56,12 +56,12 @@ export const SplitFeatureShowcase: React.FC<FeatureShowcaseBlock> = ({
       <div className="relative z-10 mx-auto max-w-7xl space-y-12 px-6 md:grid md:max-w-7xl md:gap-32 md:grid-cols-2 md:space-y-0">
 
         <motion.div
-          className="relative w-full flex-1 z-10 md:py-24 items-center"
+          className="relative w-full flex-1 z-10 md:py-4 items-center"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : undefined}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
         >
-          {intro && <RichText data={intro} enableGutter={false} className="[&_h2]:type-headline-2 [&_h2]:text-type-body [&_h2]:leading-[1.1] [&_h2]:mb-6 [&_h3]:type-headline-3 [&_h3]:text-type-body [&_h3]:leading-tight [&_h3]:mb-4 [&_p]:text-type-body [&_p]:type-body-xl [&_p]:font-medium [&_p]:leading-relaxed" />}
+          {intro && <RichText data={intro} enableGutter={false} className="[&_h2]:type-headline-2 [&_h2]:text-type-heading [&_h2]:leading-[1.1] [&_h2]:mb-6 [&_h3]:type-headline-3 [&_h3]:text-type-heading [&_h3]:leading-tight [&_h3]:mb-4 [&_p]:text-type-body [&_p]:type-body-xl [&_p]:font-medium [&_p]:leading-relaxed" />}
         </motion.div>
 
         {hasForeground && (
@@ -86,7 +86,7 @@ export const SplitFeatureShowcase: React.FC<FeatureShowcaseBlock> = ({
 
       </div>
 
-      <div className="relative z-10 mx-auto mt-4 max-w-7xl space-y-12 px-6 md:mt-8" data-theme="dark">
+      <div className="relative z-10 mx-auto mt-4 max-w-7xl space-y-12 px-6 md:mt-8">
         {Array.isArray(items) && items.length > 0 && (
           <motion.div
             className="relative mx-auto grid grid-cols-2 gap-x-2 gap-y-6 sm:gap-4 lg:grid-cols-4"

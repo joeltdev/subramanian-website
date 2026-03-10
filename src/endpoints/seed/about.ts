@@ -50,9 +50,6 @@ export function aboutPage({ hero: _hero, team, logo }: Args): RequiredDataFromCo
           { richText: rt3('1993', 'Year founded') },
           { richText: rt3('30+', 'Years of innovation') },
           { richText: rt3('40+', 'Countries deployed') },
-          { richText: rt3('500+', 'Certified partners') },
-          { richText: rt3('2M+', 'Connected devices') },
-          { richText: rt3('500+', 'Product SKUs') },
         ],
       },
       {
@@ -87,7 +84,7 @@ export function aboutPage({ hero: _hero, team, logo }: Args): RequiredDataFromCo
         blockType: 'testimonials',
         blockName: 'Customer Testimonials',
         intro: rt('What our customers say'),
-        testimonials: [
+        items: [
           {
             logo,
             richText: rtp(

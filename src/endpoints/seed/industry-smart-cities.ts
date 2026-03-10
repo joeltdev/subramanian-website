@@ -9,7 +9,7 @@ export function industrySmartCities({ hero, feature, logo, caseStudyIds }: Args)
     slug: 'smart-cities',
     _status: 'published',
     hero: {
-      type: 'section2',
+      type: 'section1',
       badgeLabel: 'Smart Cities',
       richText: rt(
         'Cities that automate their infrastructure spend less and serve citizens better.',
@@ -20,7 +20,6 @@ export function industrySmartCities({ hero, feature, logo, caseStudyIds }: Args)
         { link: { type: 'custom', appearance: 'default', label: 'Book a City Consultation', url: '/get-demo' } },
         { link: { type: 'custom', appearance: 'outline', label: 'Download Smart City Brief', url: '/resources/downloads' } },
       ],
-      backgroundImage: hero,
     },
     meta: {
       title: 'Smart Cities — iNELS Urban Infrastructure Automation',
@@ -97,13 +96,6 @@ export function industrySmartCities({ hero, feature, logo, caseStudyIds }: Args)
               'All infrastructure points on a geographic map with real-time status and fault alerting.',
             ),
           },
-          {
-            icon: 'Code',
-            richText: rt3(
-              'Open Data API for City Platforms',
-              'REST API and MQTT bridge for integration with city digital twin and open data platforms.',
-            ),
-          },
         ],
         imageLight: feature,
         imageDark: feature,
@@ -139,7 +131,6 @@ export function industrySmartCities({ hero, feature, logo, caseStudyIds }: Args)
           { richText: rt3('50%', 'Street lighting energy saving') },
           { richText: rt3('20+', 'Smart city deployments worldwide') },
           { richText: rt3('Open API', 'REST API and MQTT native support') },
-          { richText: rt3('10,000+', 'Infrastructure points on one dashboard') },
         ],
       },
       {

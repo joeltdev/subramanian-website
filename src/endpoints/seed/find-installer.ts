@@ -46,7 +46,6 @@ export function findInstallerPage({ contactFormId }: Args): RequiredDataFromColl
           { richText: rt3('500+', 'Certified installers') },
           { richText: rt3('40+', 'Countries covered') },
           { richText: rt3('< 48h', 'Response time to enquiries') },
-          { richText: rt3('5-star avg', 'Partner satisfaction rating') },
         ],
       },
       {

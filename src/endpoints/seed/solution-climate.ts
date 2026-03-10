@@ -9,7 +9,7 @@ export function solutionClimate({ hero, feature, logo, caseStudyIds }: Args): Re
     slug: 'climate-control',
     _status: 'published',
     hero: {
-      type: 'section2',
+      type: 'section1',
       badgeLabel: 'Climate Control',
       richText: rt(
         "A building that's too hot in summer and too cold in winter is losing tenants, not just energy.",
@@ -20,7 +20,6 @@ export function solutionClimate({ hero, feature, logo, caseStudyIds }: Args): Re
         { link: { type: 'custom', appearance: 'default', label: 'Book a Demo', url: '/get-demo' } },
         { link: { type: 'custom', appearance: 'outline', label: 'Download Datasheet', url: '/resources/downloads' } },
       ],
-      backgroundImage: hero,
     },
     meta: {
       title: 'Climate Control — iNELS Smart Building Automation',
@@ -54,7 +53,6 @@ export function solutionClimate({ hero, feature, logo, caseStudyIds }: Args): Re
           { icon: 'Activity', richText: rt3('Presence-Based Setback', 'PIR and CO2 sensors trigger energy-saving setback in unoccupied rooms automatically.') },
           { icon: 'Settings2', richText: rt3('Multi-Zone Scheduling', 'Different temperature profiles for open plan, meeting rooms, server rooms, and reception.') },
           { icon: 'Zap', richText: rt3('Underfloor & Radiator Control', 'KNX actuators for underfloor heating manifolds and radiator valves.') },
-          { icon: 'Code', richText: rt3('BACnet/Modbus BMS Integration', 'Connects to any building management system for centralised HVAC supervision.') },
         ],
         imageLight: feature,
         imageDark: feature,
@@ -79,7 +77,6 @@ export function solutionClimate({ hero, feature, logo, caseStudyIds }: Args): Re
           { richText: rt3('Up to 30%', 'HVAC energy saving with room-level control') },
           { richText: rt3('2.5-year payback', 'Typical commercial retrofit ROI') },
           { richText: rt3('200,000+', 'Thermostats deployed by iNELS worldwide') },
-          { richText: rt3('±0.5°C', 'Temperature regulation accuracy') },
         ],
       },
       {

@@ -9,7 +9,7 @@ export function solutionIntegration({ hero, feature, logo, caseStudyIds }: Args)
     slug: 'open-integration',
     _status: 'published',
     hero: {
-      type: 'section2',
+      type: 'section1',
       badgeLabel: 'Open Integration',
       richText: rt(
         "A smart building shouldn't be a walled garden. iNELS is open by design.",
@@ -20,7 +20,6 @@ export function solutionIntegration({ hero, feature, logo, caseStudyIds }: Args)
         { link: { type: 'custom', appearance: 'default', label: 'Book a Demo', url: '/get-demo' } },
         { link: { type: 'custom', appearance: 'outline', label: 'Download Datasheet', url: '/resources/downloads' } },
       ],
-      backgroundImage: hero,
     },
     meta: {
       title: 'Open Integration — iNELS Smart Building Automation',
@@ -54,7 +53,6 @@ export function solutionIntegration({ hero, feature, logo, caseStudyIds }: Args)
           { icon: 'Cpu', richText: rt3('Modbus RTU/TCP', 'Industrial-grade Modbus for meters, PLCs, VFDs, and legacy building equipment.') },
           { icon: 'Cloud', richText: rt3('MQTT Broker', 'Built-in MQTT v5 broker for IoT device integration and cloud pub/sub.') },
           { icon: 'Globe', richText: rt3('REST API & Webhooks', 'Full REST API with webhooks for two-way integration with any software platform.') },
-          { icon: 'Map', richText: rt3('Hotel PMS Connectors', 'Certified connectors for Opera, Protel, and Mews — check-in/checkout triggers automation.') },
         ],
         imageLight: feature,
         imageDark: feature,
@@ -101,7 +99,6 @@ export function solutionIntegration({ hero, feature, logo, caseStudyIds }: Args)
           { richText: rt3('12+', 'Open protocols supported natively') },
           { richText: rt3('< 1 day', 'Typical integration time for certified protocols') },
           { richText: rt3('200+', 'Certified third-party integrations') },
-          { richText: rt3('< 50ms', 'Cloud API response time') },
         ],
       },
       {

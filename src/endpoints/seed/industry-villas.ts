@@ -9,7 +9,7 @@ export function industryVillas({ hero, feature, logo, caseStudyIds }: Args): Req
     slug: 'villas-apartments',
     _status: 'published',
     hero: {
-      type: 'section2',
+      type: 'section1',
       badgeLabel: 'Villas & Apartments',
       richText: rt(
         'Your home should work as hard as you do — without you lifting a finger.',
@@ -20,7 +20,6 @@ export function industryVillas({ hero, feature, logo, caseStudyIds }: Args): Req
         { link: { type: 'custom', appearance: 'default', label: 'Book a Demo', url: '/get-demo' } },
         { link: { type: 'custom', appearance: 'outline', label: 'Find an Installer', url: '/find-installer' } },
       ],
-      backgroundImage: hero,
     },
     meta: {
       title: 'Villas & Apartments — iNELS Smart Home Automation',
@@ -97,13 +96,6 @@ export function industryVillas({ hero, feature, logo, caseStudyIds }: Args): Req
               'Temporary app access for housekeepers, guests, or contractors — expires automatically.',
             ),
           },
-          {
-            icon: 'Zap',
-            richText: rt3(
-              'RF Retrofit — No New Cabling',
-              'iNELS RF modules fit behind existing switches and work over 868MHz — no new wiring needed.',
-            ),
-          },
         ],
         imageLight: feature,
         imageDark: feature,
@@ -139,7 +131,6 @@ export function industryVillas({ hero, feature, logo, caseStudyIds }: Args): Req
           { richText: rt3('40%', 'Energy saving vs unautomated homes') },
           { richText: rt3('1 day', 'Commissioning for a 4-bed villa') },
           { richText: rt3('10,000+', 'Premium residences automated') },
-          { richText: rt3('5-year', 'Product availability guarantee') },
         ],
       },
       {

@@ -658,6 +658,14 @@ export interface FormBlock {
     };
     [k: string]: unknown;
   } | null;
+  /**
+   * Optional background image shown in light mode.
+   */
+  imageLight?: (number | null) | Media;
+  /**
+   * Optional background image shown in dark mode.
+   */
+  imageDark?: (number | null) | Media;
   id?: string | null;
   blockName?: string | null;
   blockType: 'formBlock';
@@ -1593,7 +1601,7 @@ export interface TestimonialsBlock {
   /**
    * First item displays as the large featured card. Remaining items fill the smaller cards.
    */
-  testimonials?:
+  items?:
     | {
         /**
          * Optional company logo shown at the top of the card (SVG or PNG)
@@ -2952,6 +2960,8 @@ export interface ArchiveBlockSelect<T extends boolean = true> {
 export interface FormBlockSelect<T extends boolean = true> {
   form?: T;
   intro?: T;
+  imageLight?: T;
+  imageDark?: T;
   id?: T;
   blockName?: T;
 }
@@ -3152,7 +3162,7 @@ export interface StatsBlockSelect<T extends boolean = true> {
  */
 export interface TestimonialsBlockSelect<T extends boolean = true> {
   intro?: T;
-  testimonials?:
+  items?:
     | T
     | {
         logo?: T;

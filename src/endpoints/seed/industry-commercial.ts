@@ -9,7 +9,7 @@ export function industryCommercial({ hero, feature, logo, caseStudyIds }: Args):
     slug: 'commercial',
     _status: 'published',
     hero: {
-      type: 'section2',
+      type: 'section1',
       badgeLabel: 'Commercial',
       richText: rt(
         "Office buildings that waste energy and frustrate tenants don't retain them.",
@@ -20,7 +20,6 @@ export function industryCommercial({ hero, feature, logo, caseStudyIds }: Args):
         { link: { type: 'custom', appearance: 'default', label: 'Book a Commercial Demo', url: '/get-demo' } },
         { link: { type: 'custom', appearance: 'outline', label: 'Download Case Study', url: '/resources/case-studies' } },
       ],
-      backgroundImage: hero,
     },
     meta: {
       title: 'Commercial Buildings — iNELS Smart Building Automation',
@@ -97,13 +96,6 @@ export function industryCommercial({ hero, feature, logo, caseStudyIds }: Args):
               'Carbon intensity, kWh/m², and trend data for sustainability and investor reporting.',
             ),
           },
-          {
-            icon: 'Code',
-            richText: rt3(
-              'BMS/SCADA Integration',
-              'Open protocols connect iNELS to existing BMS and SCADA systems without rip-and-replace.',
-            ),
-          },
         ],
         imageLight: feature,
         imageDark: feature,
@@ -139,7 +131,6 @@ export function industryCommercial({ hero, feature, logo, caseStudyIds }: Args):
           { richText: rt3('30%', 'HVAC energy reduction — Penta Tower') },
           { richText: rt3('12 floors, 40 tenants', 'Metered and managed from a single platform') },
           { richText: rt3('3-year', 'Payback period for full deployment') },
-          { richText: rt3('Day 1', 'Full ESG reporting from commissioning') },
         ],
       },
       {

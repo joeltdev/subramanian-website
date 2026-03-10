@@ -40,7 +40,7 @@ export const ArticleGridBlock: React.FC<ArticleGridBlockProps & { id?: string }>
   }
 
   return (
-    <section className="py-16 md:py-24" id={`block-${id}`}>
+    <section className="py-16 md:py-24 bg-muted " id={`block-${id}`}>
       <div className="mx-auto max-w-7xl px-6 md:px-8">
         {intro && (
           <div className="mb-12 md:mb-16">
