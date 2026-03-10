@@ -39,7 +39,8 @@ export const Section2Hero: React.FC<Section2HeroType> = ({
     (backgroundVideo && typeof backgroundVideo === 'object' && !!backgroundVideo.url) ||
     (backgroundImage && typeof backgroundImage === 'object' && !!(backgroundImage as Media).url)
 
-  const heroConverters: JSXConvertersFunction = useMemo(() => ({
+  const heroConverters: JSXConvertersFunction = useMemo(() => ({ defaultConverters }) => ({
+    ...defaultConverters,
     heading: ({ node }) => {
       if (node.tag === 'h1') {
         // Extract text content from children
