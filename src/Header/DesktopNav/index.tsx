@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useRef, useState } from 'react'
+import Link from 'next/link'
 import { ChevronDown } from 'lucide-react'
 
 import type { Header } from '@/payload-types'
@@ -132,6 +133,15 @@ export function DesktopNav({ data }: { data: Header }) {
             </div>
           )
         })}
+        <Link
+          href="/gallery"
+          className={cn(
+            'relative px-4 py-2.5 type-body-md font-medium transition-colors duration-200',
+            'text-foreground hover:text-brand-600 hover:bg-muted rounded-xl',
+          )}
+        >
+          Gallery
+        </Link>
       </nav>
 
       {menuCta?.url || menuCta?.reference ? (

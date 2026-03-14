@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
+import Link from 'next/link'
 import { ChevronLeft, ChevronRight, Menu } from 'lucide-react'
 
 import type { Header } from '@/payload-types'
@@ -116,6 +117,13 @@ export function MobileNav({ data }: { data: Header }) {
                     </span>
                   )
                 })}
+                <Link
+                  href="/gallery"
+                  onClick={() => setOpen(false)}
+                  className="flex items-center px-3 py-3 type-body-md rounded-none hover:bg-accent transition-colors"
+                >
+                  Gallery
+                </Link>
               </nav>
 
               {/* Footer CTA */}
