@@ -1,18 +1,8 @@
 import React from 'react'
 
 import type { GalleryBlock as T } from '@/payload-types'
-import { ParallaxGallery } from './Parallax'
-import { ScrollableGallery } from './Scrollable'
-import { AppleGallery } from './Apple'
-
-const sections = {
-  parallax: ParallaxGallery,
-  scrollable: ScrollableGallery,
-  apple: AppleGallery,
-}
+import { GalleryGrid } from './Grid'
 
 export const GalleryBlock: React.FC<T & { disableInnerContainer?: boolean }> = (props) => {
-  const Section = sections[props.variant as keyof typeof sections]
-  if (!Section) return null
-  return <Section {...props} />
+  return <GalleryGrid {...props} />
 }
