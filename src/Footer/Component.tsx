@@ -137,17 +137,6 @@ export async function Footer() {
                 className="pointer-events-none absolute inset-y-0 right-2 my-auto opacity-50"
                 size="0.75rem"
               />
-              <select
-                className={cn(
-                  'flex h-9 min-w-28 appearance-none rounded-none border border-border/60 bg-white/5 px-3 py-1 text-sm text-foreground outline-none transition-colors',
-                  'hover:border-border focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/30',
-                )}
-                name="language"
-                defaultValue="en">
-                <option value="en" className="bg-background text-foreground">
-                  English
-                </option>
-              </select>
             </div>
           </div>
         </div>
