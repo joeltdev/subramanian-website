@@ -132,12 +132,7 @@ export async function Footer() {
               </div>
             )}
 
-            <div className="relative">
-              <ChevronsUpDown
-                className="pointer-events-none absolute inset-y-0 right-2 my-auto opacity-50"
-                size="0.75rem"
-              />
-            </div>
+          
           </div>
         </div>
       </div>
