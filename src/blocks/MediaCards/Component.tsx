@@ -57,24 +57,24 @@ export const MediaCardsBlock: React.FC<MediaCardsBlockType> = ({ backgroundMedia
                     )}
                     
                     {/* Multi-layer Gradient Overlay for maximum readability */}
-                    <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
-                    <div className="absolute inset-0 bg-linear-to-b from-black/20 to-transparent opacity-40" />
+                    <div className="absolute inset-0 bg-linear-to-t from-black/95 via-black/50 to-transparent opacity-85 group-hover:opacity-100 group-hover:via-black/70 transition-all duration-500" />
+                    <div className="absolute inset-0 bg-linear-to-b from-black/30 to-transparent opacity-40 group-hover:opacity-60 transition-opacity duration-500" />
                   </div>
 
                   {/* Content Container */}
                   <div className="relative z-10 flex flex-col h-full min-h-[420px] p-8 mt-auto justify-end">
                     {richText && (
-                      <div className="transform transition-transform duration-500 group-hover:-translate-y-2">
+                      <div className="relative transition-all duration-500 ease-in-out group-hover:-translate-y-1">
                         <RichText
                           data={richText}
                           enableGutter={false}
-                          className="[&_h3]:type-headline-4 [&_h3]:text-white [&_h3]:mb-3 [&_h4]:type-title-lg [&_h4]:text-white [&_h4]:mb-2 [&_p]:type-body-md [&_p]:text-white/90 [&_p]:leading-relaxed [&_p]:line-clamp-3"
+                          className="[&_h3]:type-headline-4 [&_h3]:text-white [&_h3]:mb-3 [&_h4]:type-title-lg [&_h4]:text-white [&_h4]:mb-2 [&_p]:type-body-md [&_p]:text-white/90 [&_p]:leading-relaxed [&_p]:line-clamp-4 md:[&_p]:line-clamp-2 group-hover:[&_p]:line-clamp-none transition-all duration-500"
                         />
                       </div>
                     )}
                     
                     {/* Decorative bar that expands on hover */}
-                    <div className="w-12 h-1 bg-brand-500 mt-6 transition-all duration-500 group-hover:w-24" />
+                    <div className="w-12 h-1 bg-brand-500 mt-6 transition-all duration-500 group-hover:w-24 group-hover:bg-brand-400" />
                   </div>
                 </div>
               )
