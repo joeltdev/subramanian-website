@@ -61,7 +61,17 @@ export const SplitFeatureShowcase: React.FC<FeatureShowcaseBlock> = ({
           animate={isInView ? { opacity: 1, y: 0 } : undefined}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
         >
-          {intro && <RichText data={intro} enableGutter={false} className="[&_h2]:type-headline-2 [&_h2]:text-type-heading [&_h2]:leading-[1.1] [&_h2]:mb-6 [&_h3]:type-headline-3 [&_h3]:text-type-heading [&_h3]:leading-tight [&_h3]:mb-4 [&_p]:text-type-body [&_p]:type-body-xl [&_p]:font-medium [&_p]:leading-relaxed" />}
+          {intro && (
+            <RichText
+              data={intro}
+              enableGutter={false}
+              className="
+      [&_h2]:type-headline-2 [&_h2]:text-black [&_h2]:leading-[1.1] [&_h2]:mb-6
+      [&_h3]:type-headline-3 [&_h3]:text-black [&_h3]:leading-tight [&_h3]:mb-4
+      [&_p]:text-black [&_p]:type-body-xl [&_p]:font-medium [&_p]:leading-relaxed
+    "
+            />
+          )}
         </motion.div>
 
         {hasForeground && (
