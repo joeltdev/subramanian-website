@@ -11,6 +11,7 @@ type CMSLinkType = {
   className?: string
   label?: string | null
   newTab?: boolean | null
+  noStyling?: boolean
   onClick?: () => void
   reference?: {
     relationTo: 'pages' | 'posts'
@@ -29,6 +30,7 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
     className,
     label,
     newTab,
+    noStyling,
     onClick,
     reference,
     size: sizeFromProps,
@@ -48,7 +50,7 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
   const newTabProps = newTab ? { rel: 'noopener noreferrer', target: '_blank' } : {}
 
   /* Ensure we don't break any styles set by richText */
-  if (appearance === 'inline') {
+  if (appearance === 'inline' || noStyling) {
     return (
       <Link className={cn(className)} href={href || url || ''} onClick={onClick} {...newTabProps}>
         {label && label}
