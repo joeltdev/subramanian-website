@@ -62,7 +62,7 @@ export const YouTubeBlock: React.FC<YouTubeBlockType & { disableInnerContainer?:
 
   return (
     <div className="container">
-      <div className="relative w-full aspect-video overflow-hidden rounded-none border border-border bg-muted">
+      <div className="relative w-full aspect-video overflow-hidden rounded-none border border-border bg-muted bg-yellow-500 p-8">
         <iframe
           className="absolute inset-0 h-full w-full"
           src={src}
