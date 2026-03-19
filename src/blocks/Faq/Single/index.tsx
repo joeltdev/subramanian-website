@@ -27,7 +27,7 @@ export const SingleFaq: React.FC<FaqBlock> = ({ intro, supportLine, groups }) =>
   return (
     <section ref={sectionRef} className="py-16 md:py-24">
       <div className="mx-auto max-w-7xl px-6 md:px-8">
-        <div className="mx-auto max-w-3xl space-y-8 md:space-y-8">
+        <div className="mx-auto max-w-3xl space-y-12 md:space-y-16">
           {intro && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -37,13 +37,13 @@ export const SingleFaq: React.FC<FaqBlock> = ({ intro, supportLine, groups }) =>
               <RichText
                 data={intro}
                 enableGutter={false}
-                className="[&_h2]:type-headline-1 [&_h2]:text-type-heading [&_p]:type-body-xl [&_p]:text-type-secondary"
+                className="[&_h2]:type-headline-1 [&_h2]:text-type-heading [&_p]:type-body-xl [&_p]:text-type-secondary [&_p]:mt-6"
               />
             </motion.div>
           )}
           {showSupportLine && (
             <motion.p
-              className="type-body-md text-type-secondary"
+              className="type-body-lg text-type-secondary"
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : undefined}
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}

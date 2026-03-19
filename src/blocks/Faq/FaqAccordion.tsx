@@ -24,10 +24,10 @@ export const FaqAccordion: React.FC<{ groups: Groups }> = ({ groups }) => {
         return (
           <div
             key={group.id ?? `group-${groupIdx}`}
-            className={groupIdx > 0 ? 'mt-12 space-y-1 md:mt-8' : 'space-y-1'}
+            className={groupIdx > 0 ? 'mt-16 space-y-2 md:mt-20' : 'space-y-2'}
           >
             {categoryName && (
-              <h3 className="type-title-lg text-type-heading pt-6 first:pt-0">
+              <h3 className="type-headline-4 text-type-heading pt-10 pb-4 first:pt-0">
                 {categoryName}
               </h3>
             )}
@@ -35,15 +35,15 @@ export const FaqAccordion: React.FC<{ groups: Groups }> = ({ groups }) => {
               const value = item.id != null ? String(item.id) : `faq-${categoryName}-${idx}`
               return (
                 <AccordionItem key={value} value={value} className="border-border border-b">
-                  <AccordionTrigger className="type-body-lg font-medium text-type-body text-left hover:no-underline [&[data-state=open]]:border-border">
+                  <AccordionTrigger className="type-title-lg font-semibold py-6 text-type-body text-left hover:no-underline [&[data-state=open]]:text-primary transition-colors">
                     {item.question}
                   </AccordionTrigger>
-                  <AccordionContent>
+                  <AccordionContent className="pb-8">
                     {item.answer && (
                       <RichText
                         data={item.answer}
                         enableGutter={false}
-                        className="[&_p]:type-body-md [&_p]:text-type-secondary [&_p]:leading-relaxed"
+                        className="[&_p]:type-body-lg [&_p]:text-type-secondary [&_p]:leading-relaxed"
                       />
                     )}
                   </AccordionContent>

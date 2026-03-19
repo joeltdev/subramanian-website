@@ -39,11 +39,11 @@ export const SplitFaq: React.FC<FaqBlock> = ({ intro, supportLine, groups }) => 
                 <RichText
                   data={intro}
                   enableGutter={false}
-                  className="text-left [&_h2]:type-headline-1 [&_h2]:text-type-heading [&_h2]:text-left [&_p]:type-body-xl [&_p]:text-type-secondary [&_p]:text-left"
+                  className="text-left [&_h2]:type-headline-1 [&_h2]:text-type-heading [&_h2]:text-left [&_p]:type-body-xl [&_p]:text-type-secondary [&_p]:text-left [&_p]:mt-8"
                 />
               )}
               {showSupportLine && (
-                <p className="mt-6 w-full md:mt-2 type-body-md text-type-secondary">
+                <p className="mt-8 w-full md:mt-10 type-body-lg text-type-secondary">
                   {asLink ? (
                     <>
                       {supportLine.subtitle}{' '}
