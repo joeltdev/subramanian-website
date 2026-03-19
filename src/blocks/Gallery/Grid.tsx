@@ -1,18 +1,75 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect, useCallback, useMemo } from 'react'
 import * as Dialog from '@radix-ui/react-dialog'
-import { motion, AnimatePresence } from 'motion/react'
-import { X } from 'lucide-react'
+import { motion, AnimatePresence, PanInfo } from 'motion/react'
+import { X, ChevronLeft, ChevronRight } from 'lucide-react'
 
 import type { GalleryBlock as GalleryBlockType, Media as MediaType } from '@/payload-types'
 import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
 
 export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro }) => {
-  const [selectedImage, setSelectedImage] = useState<MediaType | null>(null)
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
+  const [direction, setDirection] = useState(0)
 
-  const galleryImages = images?.filter((img): img is MediaType => typeof img === 'object') || []
+  const galleryImages = useMemo(() => 
+    images?.filter((img): img is MediaType => typeof img === 'object') || [],
+    [images]
+  )
+
+  const selectedImage = selectedIndex !== null ? galleryImages[selectedIndex] : null
+
+  const handleNext = useCallback(() => {
+    if (selectedIndex === null) return
+    setDirection(1)
+    setSelectedIndex((prev) => (prev !== null ? (prev + 1) % galleryImages.length : 0))
+  }, [selectedIndex, galleryImages.length])
+
+  const handlePrev = useCallback(() => {
+    if (selectedIndex === null) return
+    setDirection(-1)
+    setSelectedIndex((prev) => (prev !== null ? (prev - 1 + galleryImages.length) % galleryImages.length : 0))
+  }, [selectedIndex, galleryImages.length])
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (selectedIndex === null) return
+      if (e.key === 'ArrowRight') handleNext()
+      if (e.key === 'ArrowLeft') handlePrev()
+      if (e.key === 'Escape') setSelectedIndex(null)
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [selectedIndex, handleNext, handlePrev])
+
+  const onDragEnd = (e: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+    if (Math.abs(info.offset.x) > 50) {
+      if (info.offset.x > 0) handlePrev()
+      else handleNext()
+    }
+  }
+
+  const variants = {
+    enter: (direction: number) => ({
+      x: direction > 0 ? 300 : -300,
+      opacity: 0,
+      scale: 0.9,
+    }),
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1,
+      scale: 1,
+    },
+    exit: (direction: number) => ({
+      zIndex: 0,
+      x: direction < 0 ? 300 : -300,
+      opacity: 0,
+      scale: 0.9,
+    }),
+  }
 
   return (
     <div className="container mx-auto px-6 md:px-8 py-16 md:py-24">
@@ -21,7 +78,7 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro }) => {
           <RichText 
             data={intro} 
             enableGutter={false} 
-            className="[&_h2]:type-headline-1 [&_p]:type-body-lg [&_p]:mt-4"
+            className="[&_h2]:type-headline-1 [&_h2]:text-type-heading [&_p]:type-body-lg [&_p]:text-type-body [&_p]:mt-4"
           />
         </div>
       )}
@@ -35,7 +92,10 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro }) => {
             viewport={{ once: true }}
             transition={{ delay: index * 0.05 }}
             className="group relative aspect-square cursor-zoom-in overflow-hidden bg-muted"
-            onClick={() => setSelectedImage(image)}
+            onClick={() => {
+              setDirection(0)
+              setSelectedIndex(index)
+            }}
           >
             <Media
               resource={image}
@@ -47,45 +107,87 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro }) => {
         ))}
       </div>
 
-      <Dialog.Root open={!!selectedImage} onOpenChange={() => setSelectedImage(null)}>
-        <AnimatePresence>
-          {selectedImage && (
+      <Dialog.Root open={selectedIndex !== null} onOpenChange={(open) => !open && setSelectedIndex(null)}>
+        <AnimatePresence initial={false}>
+          {selectedIndex !== null && (
             <Dialog.Portal forceMount>
               <Dialog.Overlay asChild>
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm"
+                  className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md"
                 />
               </Dialog.Overlay>
               <Dialog.Content asChild>
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8"
-                >
-                  <div className="relative max-h-full max-w-full overflow-hidden">
-                    <Media
-                      resource={selectedImage}
-                      className="max-h-[85vh] w-auto object-contain shadow-2xl"
-                    />
-                    {selectedImage.alt && (
-                      <p className="mt-4 text-center text-white/80 type-body-sm">
-                        {selectedImage.alt}
+                <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 md:p-12 outline-none">
+                  <div className="relative flex h-full w-full items-center justify-center overflow-hidden">
+                    
+                    {/* Navigation Buttons - Desktop */}
+                    <button
+                      onClick={(e) => { e.stopPropagation(); handlePrev() }}
+                      className="absolute left-4 z-[70] hidden md:flex items-center justify-center rounded-full bg-white/5 p-4 text-white backdrop-blur-sm transition-all hover:bg-white/10 active:scale-95 focus:outline-none"
+                      aria-label="Previous image"
+                    >
+                      <ChevronLeft className="size-8" />
+                    </button>
+
+                    <button
+                      onClick={(e) => { e.stopPropagation(); handleNext() }}
+                      className="absolute right-4 z-[70] hidden md:flex items-center justify-center rounded-full bg-white/5 p-4 text-white backdrop-blur-sm transition-all hover:bg-white/10 active:scale-95 focus:outline-none"
+                      aria-label="Next image"
+                    >
+                      <ChevronRight className="size-8" />
+                    </button>
+
+                    {/* Image Container with Swipe */}
+                    <motion.div
+                      key={selectedIndex}
+                      custom={direction}
+                      variants={variants}
+                      initial="enter"
+                      animate="center"
+                      exit="exit"
+                      transition={{
+                        x: { type: "spring", stiffness: 300, damping: 30 },
+                        opacity: { duration: 0.2 },
+                        scale: { duration: 0.2 }
+                      }}
+                      drag="x"
+                      dragConstraints={{ left: 0, right: 0 }}
+                      dragElastic={0.8}
+                      onDragEnd={onDragEnd}
+                      className="relative flex h-full w-full max-w-5xl cursor-grab flex-col items-center justify-center active:cursor-grabbing"
+                    >
+                      <Media
+                        resource={selectedImage!}
+                        className="max-h-[75vh] md:max-h-[80vh] w-auto object-contain shadow-2xl pointer-events-none"
+                      />
+                      {selectedImage?.alt && (
+                        <motion.p 
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="mt-6 text-center text-white/70 type-body-md"
+                        >
+                          {selectedImage.alt}
+                        </motion.p>
+                      )}
+                      <p className="mt-2 text-white/40 type-body-sm font-medium tracking-wider">
+                        {selectedIndex + 1} / {galleryImages.length}
                       </p>
-                    )}
+                    </motion.div>
+
+                    {/* Controls */}
                     <Dialog.Close asChild>
                       <button
-                        className="fixed right-4 top-4 rounded-full bg-black/50 p-3 text-white transition-colors hover:bg-black/80 focus:outline-none"
+                        className="fixed right-4 top-4 z-[80] rounded-full bg-white/5 p-3 text-white backdrop-blur-sm transition-all hover:bg-white/10 active:scale-90 focus:outline-none md:right-8 md:top-8"
                         aria-label="Close dialog"
                       >
-                        <X className="size-6" />
+                        <X className="size-6 md:size-8" />
                       </button>
                     </Dialog.Close>
                   </div>
-                </motion.div>
+                </div>
               </Dialog.Content>
             </Dialog.Portal>
           )}
