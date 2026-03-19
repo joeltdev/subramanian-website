@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { cn } from '@/utilities/ui'
 import type { YouTubeBlock as YouTubeBlockType } from '@/payload-types'
 
 const getYouTubeVideoId = (input: string): string | null => {
@@ -55,25 +55,35 @@ const getEmbedSrc = (url: string): string | null => {
 export const YouTubeBlock: React.FC<YouTubeBlockType & { disableInnerContainer?: boolean }> = ({
   url,
   title,
+  disableInnerContainer,
 }) => {
   const src = getEmbedSrc(url)
 
   if (!src) return null
 
   return (
-    <div className="container">
-      <div className="relative w-full aspect-video overflow-hidden rounded-none border border-border bg-muted bg-yellow-500 p-8">
-        <iframe
-          className="absolute inset-0 h-full w-full"
-          src={src}
-          title={title || 'YouTube video'}
-          loading="lazy"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerPolicy="strict-origin-when-cross-origin"
-          allowFullScreen
-        />
+    <section className="pt-16 pb-8 md:pt-24 md:pb-12">
+      <div className={cn(!disableInnerContainer && 'mx-auto max-w-7xl px-6 md:px-8')}>
+        {title && (
+          <h2 className="type-headline-3 text-type-heading mb-8 md:mb-12 text-center">
+            {title}
+          </h2>
+        )}
+        <div className="mx-auto max-w-4xl w-full">
+          <div className="relative w-full aspect-video overflow-hidden rounded-xl border border-border bg-muted shadow-xl">
+            <iframe
+              className="absolute inset-0 h-full w-full"
+              src={src}
+              title={title || 'YouTube video'}
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            />
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   )
 }
 
