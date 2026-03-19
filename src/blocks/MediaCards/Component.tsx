@@ -3,91 +3,91 @@ import type { MediaCardsBlock as MediaCardsBlockType } from '@/payload-types'
 import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
 import { CMSLink } from '@/components/Link'
-import { ChevronRight } from 'lucide-react'
 
 export const MediaCardsBlock: React.FC<MediaCardsBlockType> = ({ backgroundMedia, intro, items }) => {
   const hasBackgroundMedia = backgroundMedia && typeof backgroundMedia === 'object'
 
   return (
-    <section className="py-4 md:py-8 relative">
+    <section className="relative py-16 md:py-24 overflow-hidden">
       {hasBackgroundMedia && (
-        <div className="absolute w-full aspect-16/7 overflow-hidden mb-8 md:mb-16">
+        <div className="absolute inset-0 w-full h-[40vh] md:h-[60vh] overflow-hidden">
           <Media
             resource={backgroundMedia}
             fill
             imgClassName="object-cover"
-            className="absolute inset-0 -inset-y-20"
+            className="absolute inset-0"
             videoClassName="absolute inset-0 w-full h-full object-cover"
           />
-          <div className="w-full h-3/4 absolute z-0 inset-0  bg-linear-to-b from-white to-transparent pointer-events-none" />
+          {/* Subtle overlay for the background media to ensure intro text readability */}
+          <div className="absolute inset-0 bg-linear-to-b from-background/80 via-background/40 to-transparent" />
         </div>
       )}
-      <div className="mx-auto max-w-7xl px-6 z-0 relative">
-        <div className="mx-auto max-w-6xl text-center pt-24 pb-120 relative">
-          {intro && (
+
+      <div className="container mx-auto px-6 md:px-8 relative z-10">
+        {intro && (
+          <div className="max-w-4xl mx-auto text-center mb-16 md:mb-24">
             <RichText
               data={intro}
               enableGutter={false}
-              className="[&_h2]:type-headline-1 [&_h2]:text-foreground [&_h2]:leading-[1.1] [&_h2]:mb-0 [&_h3]:type-headline-3 [&_h3]:text-foreground [&_h3]:leading-tight [&_h3]:mb-0 [&_p]:hidden drop-shadow-md"
+              className="[&_h2]:type-headline-1 [&_h2]:text-type-heading [&_h3]:type-headline-2 [&_h3]:text-type-heading [&_p]:type-body-xl [&_p]:text-type-body [&_p]:mt-6"
             />
-          )}
-        </div>
+          </div>
+        )}
 
         {Array.isArray(items) && items.length > 0 && (
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 -mt-100">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 md:gap-10">
             {items.map((item) => {
               const { id, richText, media, link } = item
               const hasImage = media && typeof media === 'object'
               const hasLink = link && (link.url || (link.type === 'reference' && link.reference))
 
               const cardContent = (
-                <>
-                  {/* Background image with zoom on hover */}
-                  {hasImage ? (
-                    <div className="absolute inset-0 transition-transform duration-500 ease-out group-hover:scale-105">
+                <div className="relative h-full flex flex-col group">
+                  {/* Background Media Container */}
+                  <div className="absolute inset-0 z-0 overflow-hidden">
+                    {hasImage ? (
                       <Media
                         resource={media}
                         fill
-                        imgClassName="object-cover"
+                        imgClassName="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                         className="w-full h-full"
-                        videoClassName="w-full h-full object-cover rounded-xl"
                       />
-                    </div>
-                  ) : (
-                    <div className="absolute inset-0 bg-gradient-to-br from-border to-muted" />
-                  )}
-
-
-                  {/* Bottom gradient */}
-                  <div className="absolute inset-x-0 bottom-0 h-2/3 bg-linear-to-t from-black/90 to-transparent transition-opacity duration-300 group-hover:opacity-100 group-hover:from-black" />
-
-                  {/* Spacer to push text to a consistent starting position from the top */}
-                  <div className="flex-none h-[280px] md:h-[320px]" />
-
-                  {/* Text content with fixed title alignment */}
-                  <div className="relative flex flex-col justify-start gap-4 px-6 py-10 z-10 w-full text-center">
-                    {richText && (
-                      <RichText
-                        data={richText}
-                        enableGutter={false}
-                        className="mx-1 [&_h3]:type-headline-4 [&_h3]:font-bold [&_h3]:text-background [&_h3]:min-h-[2.5rem] [&_h3]:leading-tight [&_h4]:type-title-xl [&_h4]:font-bold [&_h4]:text-background [&_h4]:min-h-[2.5rem] [&_h4]:leading-tight [&_p]:type-body-lg [&_p]:font-medium [&_p]:text-background/90 [&_p]:mt-2 [&_p]:leading-relaxed"
-                      />
+                    ) : (
+                      <div className="w-full h-full bg-muted" />
                     )}
+                    
+                    {/* Multi-layer Gradient Overlay for maximum readability */}
+                    <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute inset-0 bg-linear-to-b from-black/20 to-transparent opacity-40" />
                   </div>
-                </>
+
+                  {/* Content Container */}
+                  <div className="relative z-10 flex flex-col h-full min-h-[420px] p-8 mt-auto justify-end">
+                    {richText && (
+                      <div className="transform transition-transform duration-500 group-hover:-translate-y-2">
+                        <RichText
+                          data={richText}
+                          enableGutter={false}
+                          className="[&_h3]:type-headline-4 [&_h3]:text-white [&_h3]:mb-3 [&_h4]:type-title-lg [&_h4]:text-white [&_h4]:mb-2 [&_p]:type-body-md [&_p]:text-white/90 [&_p]:leading-relaxed [&_p]:line-clamp-3"
+                        />
+                      </div>
+                    )}
+                    
+                    {/* Decorative bar that expands on hover */}
+                    <div className="w-12 h-1 bg-brand-500 mt-6 transition-all duration-500 group-hover:w-24" />
+                  </div>
+                </div>
               )
 
-              const cardClassName = "group border-4 border-background shadow-md relative min-h-[580px] h-full overflow-hidden rounded-2xl bg-muted flex flex-col justify-start"
+              const cardWrapperClasses = "relative flex flex-col overflow-hidden rounded-2xl bg-card border border-border/50 shadow-sm transition-all duration-500 hover:shadow-2xl hover:shadow-brand-500/10 hover:-translate-y-2 group"
 
               if (hasLink) {
                 return (
                   <CMSLink
                     key={id}
-                    type={link.type}
-                    url={link.url}
-                    reference={link.reference as any}
-                    newTab={link.newTab}
-                    className={cardClassName}
+                    {...link}
+                    className={cardWrapperClasses}
+                    noStyling
                   >
                     {cardContent}
                   </CMSLink>
@@ -95,7 +95,7 @@ export const MediaCardsBlock: React.FC<MediaCardsBlockType> = ({ backgroundMedia
               }
 
               return (
-                <div key={id} className={cardClassName}>
+                <div key={id} className={cardWrapperClasses}>
                   {cardContent}
                 </div>
               )
