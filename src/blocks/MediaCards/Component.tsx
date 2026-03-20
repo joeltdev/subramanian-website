@@ -55,7 +55,7 @@ export const MediaCardsBlock: React.FC<MediaCardsBlockType> = ({ backgroundMedia
                       ) : (
                         <div className="w-full h-full bg-muted" />
                       )}
-                      
+
                       {/* Multi-layer Gradient Overlay for maximum readability */}
                       <div className="absolute inset-0 bg-linear-to-t from-black/95 via-black/70 to-transparent opacity-90 md:opacity-85 md:via-black/50 group-hover:opacity-100 group-hover:via-black/70 transition-all duration-500" />
                       <div className="absolute inset-0 bg-linear-to-b from-black/30 to-transparent opacity-50 md:opacity-40 group-hover:opacity-60 transition-opacity duration-500" />
@@ -72,7 +72,7 @@ export const MediaCardsBlock: React.FC<MediaCardsBlockType> = ({ backgroundMedia
                           />
                         </div>
                       )}
-                      
+
                       {/* Decorative bar that expands on hover */}
                       <div className="w-12 h-1 bg-brand-500 mt-6 transition-all duration-500 group-hover:w-24 group-hover:bg-brand-400" />
                     </div>
