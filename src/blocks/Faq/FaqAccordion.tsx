@@ -16,44 +16,39 @@ type Groups = FaqBlock['groups']
 
 const colorVariants = [
   {
-    bg: 'bg-blue-50/50',
-    border: 'border-blue-100',
-    hover: 'hover:bg-blue-100/50 hover:border-blue-200',
-    active: 'data-[state=open]:bg-blue-100/40 data-[state=open]:border-blue-200',
-    iconBg: 'bg-blue-100/50',
-    iconText: 'text-blue-600',
+    base: 'bg-blue-50 border-blue-100',
+    hover: 'hover:bg-blue-100/80 hover:shadow-md',
+    active: 'data-[state=open]:bg-blue-100/80 data-[state=open]:shadow-md',
+    accent: 'text-blue-600',
+    iconBg: 'bg-blue-200/40',
   },
   {
-    bg: 'bg-purple-50/50',
-    border: 'border-purple-100',
-    hover: 'hover:bg-purple-100/50 hover:border-purple-200',
-    active: 'data-[state=open]:bg-purple-100/40 data-[state=open]:border-purple-200',
-    iconBg: 'bg-purple-100/50',
-    iconText: 'text-purple-600',
+    base: 'bg-purple-50 border-purple-100',
+    hover: 'hover:bg-purple-100/80 hover:shadow-md',
+    active: 'data-[state=open]:bg-purple-100/80 data-[state=open]:shadow-md',
+    accent: 'text-purple-600',
+    iconBg: 'bg-purple-200/40',
   },
   {
-    bg: 'bg-green-50/50',
-    border: 'border-green-100',
-    hover: 'hover:bg-green-100/50 hover:border-green-200',
-    active: 'data-[state=open]:bg-green-100/40 data-[state=open]:border-green-200',
-    iconBg: 'bg-green-100/50',
-    iconText: 'text-green-600',
+    base: 'bg-green-50 border-green-100',
+    hover: 'hover:bg-green-100/80 hover:shadow-md',
+    active: 'data-[state=open]:bg-green-100/80 data-[state=open]:shadow-md',
+    accent: 'text-green-600',
+    iconBg: 'bg-green-200/40',
   },
   {
-    bg: 'bg-pink-50/50',
-    border: 'border-pink-100',
-    hover: 'hover:bg-pink-100/50 hover:border-pink-200',
-    active: 'data-[state=open]:bg-pink-100/40 data-[state=open]:border-pink-200',
-    iconBg: 'bg-pink-100/50',
-    iconText: 'text-pink-600',
+    base: 'bg-pink-50 border-pink-100',
+    hover: 'hover:bg-pink-100/80 hover:shadow-md',
+    active: 'data-[state=open]:bg-pink-100/80 data-[state=open]:shadow-md',
+    accent: 'text-pink-600',
+    iconBg: 'bg-pink-200/40',
   },
   {
-    bg: 'bg-stone-50/60',
-    border: 'border-stone-200',
-    hover: 'hover:bg-stone-100 hover:border-stone-300',
-    active: 'data-[state=open]:bg-stone-100 data-[state=open]:border-stone-300',
-    iconBg: 'bg-stone-200/50',
-    iconText: 'text-stone-600',
+    base: 'bg-stone-50 border-stone-200',
+    hover: 'hover:bg-stone-100 hover:shadow-md',
+    active: 'data-[state=open]:bg-stone-100 data-[state=open]:shadow-md',
+    accent: 'text-stone-600',
+    iconBg: 'bg-stone-200/40',
   },
 ]
 
@@ -62,17 +57,17 @@ export const FaqAccordion: React.FC<{ groups: Groups }> = ({ groups }) => {
   if (list.length === 0) return null
 
   return (
-    <Accordion type="multiple" className="w-full space-y-16">
+    <Accordion type="multiple" className="w-full space-y-12">
       {list.map((group, groupIdx) => {
         const categoryName = group.name ?? ''
         const items = group.items ?? []
         return (
           <div
             key={group.id ?? `group-${groupIdx}`}
-            className="space-y-8"
+            className="space-y-4"
           >
             {categoryName && (
-              <h3 className="type-title-lg font-bold text-type-heading px-2">
+              <h3 className="type-title-md font-bold text-type-heading px-1 mb-2">
                 {categoryName}
               </h3>
             )}
@@ -86,36 +81,35 @@ export const FaqAccordion: React.FC<{ groups: Groups }> = ({ groups }) => {
                     key={value} 
                     value={value} 
                     className={cn(
-                      "border rounded-2xl px-6 md:px-8 transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 shadow-sm group",
-                      variant.bg,
-                      variant.border,
+                      "border rounded-xl px-5 md:px-6 transition-all duration-300 shadow-sm group overflow-hidden",
+                      variant.base,
                       variant.hover,
                       variant.active
                     )}
                   >
                     <AccordionTrigger 
-                      className="type-title-md md:type-title-lg font-semibold py-6 text-type-heading text-left hover:no-underline flex justify-between items-center gap-6"
+                      className="type-title-md font-semibold py-5 text-type-heading text-left hover:no-underline flex justify-between items-center gap-4 group-data-[state=open]:pb-2"
                       chevron={false}
                     >
                       <span>{item.question}</span>
                       <div className={cn(
-                        "flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-colors",
+                        "flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-colors",
                         variant.iconBg,
-                        "group-data-[state=open]:bg-white/80"
+                        "group-data-[state=open]:bg-white/90"
                       )}>
                         <ChevronDown className={cn(
                           "w-4 h-4 shrink-0 transition-transform duration-300 group-data-[state=open]:rotate-180",
-                          variant.iconText
+                          variant.accent
                         )} />
                       </div>
                     </AccordionTrigger>
-                    <AccordionContent className="pb-8 pt-0">
+                    <AccordionContent className="pb-6 pt-2">
                       <div className="max-w-3xl">
                         {item.answer && (
                           <RichText
                             data={item.answer}
                             enableGutter={false}
-                            className="[&_p]:type-body-lg [&_p]:text-type-secondary [&_p]:leading-relaxed"
+                            className="[&_p]:type-body-md [&_p]:text-type-secondary [&_p]:leading-relaxed"
                           />
                         )}
                       </div>
