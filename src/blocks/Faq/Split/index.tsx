@@ -39,7 +39,7 @@ export const SplitFaq: React.FC<FaqBlock> = ({ intro, supportLine, groups }) => 
                 <RichText
                   data={intro}
                   enableGutter={false}
-                  className="text-left [&_h2]:type-headline-1 [&_h2]:text-type-heading [&_h2]:text-left [&_p]:type-body-xl [&_p]:text-type-secondary [&_p]:text-left [&_p]:mt-8"
+                  className="text-left [&_h2]:type-headline-1 [&_h2]:text-primary [&_h2]:font-bold [&_h2]:leading-tight [&_h2]:mb-10 [&_h2]:text-left [&_p]:type-body-xl [&_p]:text-type-secondary [&_p]:text-left"
                 />
               )}
               {showSupportLine && (

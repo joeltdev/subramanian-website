@@ -38,7 +38,8 @@ export const SingleFaq: React.FC<FaqBlock> = ({ intro, supportLine, groups }) =>
               <RichText
                 data={intro}
                 enableGutter={false}
-                className="[&_h2]:type-headline-2 [&_h2]:text-type-heading [&_p]:type-body-xl [&_p]:text-type-secondary [&_p]:mt-6 [&_p]:max-w-2xl [&_p]:mx-auto"
+                enableProse={false}
+                className="[&_h2]:type-headline-2 [&_h2]:text-primary [&_h2]:font-bold [&_h2]:leading-tight [&_h2]:mb-10 [&_h3]:type-headline-3 [&_h3]:text-primary [&_h3]:font-bold [&_h3]:leading-tight [&_h3]:mb-10 [&_p]:type-body-xl [&_p]:text-type-secondary [&_p]:max-w-2xl [&_p]:mx-auto"
               />
             </motion.div>
           )}
