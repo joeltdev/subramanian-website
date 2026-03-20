@@ -25,19 +25,20 @@ export const SingleFaq: React.FC<FaqBlock> = ({ intro, supportLine, groups }) =>
   const asLink = showSupportLine && hasLinkTarget(supportLine)
 
   return (
-    <section ref={sectionRef} className="py-16 md:py-24">
+    <section ref={sectionRef} className="py-20 md:py-32 bg-stone-50/30">
       <div className="mx-auto max-w-7xl px-6 md:px-8">
-        <div className="mx-auto max-w-3xl space-y-12 md:space-y-16">
+        <div className="mx-auto max-w-4xl space-y-16 md:space-y-20">
           {intro && (
             <motion.div
+              className="text-center"
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : undefined}
-              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             >
               <RichText
                 data={intro}
                 enableGutter={false}
-                className="[&_h2]:type-headline-1 [&_h2]:text-type-heading [&_p]:type-body-xl [&_p]:text-type-secondary [&_p]:mt-6"
+                className="[&_h2]:type-headline-2 [&_h2]:text-type-heading [&_p]:type-body-xl [&_p]:text-type-secondary [&_p]:mt-6 [&_p]:max-w-2xl [&_p]:mx-auto"
               />
             </motion.div>
           )}
