@@ -54,23 +54,33 @@ const getEmbedSrc = (url: string): string | null => {
 
 export const YouTubeBlock: React.FC<YouTubeBlockType & { disableInnerContainer?: boolean }> = ({
   url,
-  title,
+  title: rawTitle,
   disableInnerContainer,
 }) => {
   const src = getEmbedSrc(url)
 
   if (!src) return null
 
+  // Title override as requested - normalized for smart quotes
+  const oldTitleNormalized = "It's not about financial reservation, it's about social equality Unfiltered Ft K.C Subramanian !"
+  const currentTitleNormalized = (rawTitle || '').replace(/’/g, "'")
+  const title = currentTitleNormalized === oldTitleNormalized ? 'Social Equality Matters' : rawTitle
+
   return (
-    <section className="pt-16 pb-8 md:pt-24 md:pb-12">
+    <section className="pt-16 pb-12 md:pt-24 md:pb-16 bg-background">
       <div className={cn(!disableInnerContainer && 'mx-auto max-w-7xl px-6 md:px-8')}>
         {title && (
-          <h2 className="type-headline-3 text-type-heading mb-8 md:mb-12 text-center">
-            {title}
-          </h2>
+          <div className="text-center mb-10 md:mb-16">
+            <span className="type-label-lg text-primary uppercase tracking-widest mb-4 block font-semibold">
+              Featured Conversation
+            </span>
+            <h2 className="type-headline-2 text-type-heading max-w-4xl mx-auto leading-tight">
+              {title}
+            </h2>
+          </div>
         )}
         <div className="mx-auto max-w-4xl w-full">
-          <div className="relative w-full aspect-video overflow-hidden rounded-xl border border-border bg-muted shadow-xl">
+          <div className="relative w-full aspect-video overflow-hidden rounded-none border border-border bg-muted shadow-2xl">
             <iframe
               className="absolute inset-0 h-full w-full"
               src={src}
