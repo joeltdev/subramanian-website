@@ -3,12 +3,14 @@ import type { ContentSectionBlock } from '@/payload-types'
 import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
 import { iconMap } from '@/blocks/shared/featureIcons'
+import { CMSLink } from '@/components/Link'
 
 export const OverlayFeaturesContentSection: React.FC<ContentSectionBlock> = ({
   intro,
   imageDark,
   imageLight,
   items,
+  links,
 }) => {
   return (
     <>
@@ -79,6 +81,13 @@ export const OverlayFeaturesContentSection: React.FC<ContentSectionBlock> = ({
                       </div>
                     )
                   })}
+                </div>
+              )}
+              {Array.isArray(links) && links.length > 0 && (
+                <div className="flex flex-wrap gap-4 pt-10">
+                  {links.map(({ link }, i) => (
+                    <CMSLink key={i} size="xl" {...link} />
+                  ))}
                 </div>
               )}
             </div>

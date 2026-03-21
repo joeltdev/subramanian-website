@@ -11,7 +11,7 @@ import { ICON_OPTIONS } from '@/blocks/shared/featureIcons'
 const DARK_LIGHT_IMAGE_VARIANTS = ['splitImage', 'overlayFeatures']
 const SINGLE_IMAGE_VARIANTS = ['wideImageCta', 'centeredGrid']
 const ITEMS_VARIANTS = ['overlayFeatures', 'centeredGrid']
-const LINKS_VARIANTS = ['wideImageCta', 'textCta']
+const LINKS_VARIANTS = ['wideImageCta', 'textCta', 'overlayFeatures']
 
 export const ContentSection: Block = {
   slug: 'contentSection',
