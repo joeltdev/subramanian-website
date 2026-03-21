@@ -81,9 +81,11 @@ export async function Footer() {
     getCachedGlobal('header', 1)(),
   ])
 
-  const { columns, socialLinks, newsletterHeading, newsletterNote, copyright } =
+  const { columns, socialLinks, newsletterHeading, newsletterNote, copyright, logo: footerLogo } =
     footerData as Footer
-  const { logo } = headerData as Header
+  const { logo: headerLogo } = headerData as Header
+
+  const logo = footerLogo || headerLogo
 
   return (
     <footer data-theme="dark" className="bg-black text-foreground">
@@ -100,7 +102,7 @@ export async function Footer() {
                   height={(logo as Media).height ?? 34}
                   loading="lazy"
                   decoding="async"
-                  className="max-h-7 w-auto opacity-90 transition-opacity hover:opacity-100 invert"
+                  className="h-10 w-auto transition-opacity invert"
                 />
               ) : (
                 <Logo />
