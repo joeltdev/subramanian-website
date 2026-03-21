@@ -10,6 +10,14 @@ export const Footer: GlobalConfig = {
   },
   fields: [
     {
+      name: 'logo',
+      type: 'upload',
+      relationTo: 'media',
+      admin: {
+        description: 'Logo displayed in the footer. Falls back to the header logo if not set.',
+      },
+    },
+    {
       name: 'columns',
       type: 'array',
       label: 'Link Columns',

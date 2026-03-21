@@ -100,7 +100,7 @@ export async function Footer() {
                   height={(logo as Media).height ?? 34}
                   loading="lazy"
                   decoding="async"
-                  className="max-h-7 w-auto opacity-90 transition-opacity hover:opacity-100"
+                  className="max-h-7 w-auto opacity-90 transition-opacity hover:opacity-100 invert"
                 />
               ) : (
                 <Logo />

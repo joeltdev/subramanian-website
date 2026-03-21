@@ -3,6 +3,7 @@ import { useHeaderTheme } from '@/providers/HeaderTheme'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
+import clsx from 'clsx'
 
 import type { Header, Media } from '@/payload-types'
 
@@ -32,9 +33,8 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
 
   return (
     <header
-      className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/95 backdrop-blur-md"
+      className="sticky top-0 z-50 w-full border-b border-border/60 bg-white/95 backdrop-blur-md"
       style={{ '--header-height': '72px' } as React.CSSProperties}
-      {...(theme ? { 'data-theme': theme } : {})}
     >
       <div className="mx-auto w-full max-w-7xl px-6">
         <div className="py-4 flex items-center justify-between">
@@ -48,10 +48,14 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
                 loading="eager"
                 fetchPriority="high"
                 decoding="async"
-                className="max-h-10 w-auto"
+                className="max-h-12 w-auto transition-all"
               />
             ) : (
-              <Logo loading="eager" priority="high" className="invert dark:invert-0" />
+              <Logo
+                loading="eager"
+                priority="high"
+                className="transition-all"
+              />
             )}
           </Link>
           <DesktopNav data={data} />

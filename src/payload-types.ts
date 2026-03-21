@@ -3953,6 +3953,10 @@ export interface Header {
 export interface Footer {
   id: number;
   /**
+   * Logo displayed in the footer. Falls back to the header logo if not set.
+   */
+  logo?: (number | null) | Media;
+  /**
    * Footer navigation columns (e.g. Product, Company, Legal)
    */
   columns?:
@@ -4130,6 +4134,7 @@ export interface HeaderSelect<T extends boolean = true> {
  * via the `definition` "footer_select".
  */
 export interface FooterSelect<T extends boolean = true> {
+  logo?: T;
   columns?:
     | T
     | {
