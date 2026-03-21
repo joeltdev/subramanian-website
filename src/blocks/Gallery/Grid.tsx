@@ -72,9 +72,9 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro }) => {
   }
 
   return (
-    <div className="container mx-auto px-6 md:px-8 py-16 md:py-24">
+    <div className="container mx-auto px-6 md:px-8 pt-8 md:pt-12 pb-16 md:pb-24">
       {intro && (
-        <div className="mb-12 text-center max-w-2xl mx-auto">
+        <div className="mb-8 text-center max-w-2xl mx-auto">
           <RichText 
             data={intro} 
             enableGutter={false} 
