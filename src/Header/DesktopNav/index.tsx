@@ -101,8 +101,8 @@ export function DesktopNav({ data }: { data: Header }) {
             >
               <button
                 className={cn(
-                  'relative flex items-center gap-1.5 px-4 py-2.5 type-body-md font-medium transition-colors duration-200 hover:text-brand-600 hover:bg-muted rounded-md',
-                  isActive ? 'text-primary hover:text-primary' : 'text-foreground hover:text-primary',
+                  'relative flex items-center gap-1.5 px-4 py-2 text-base font-medium tracking-wide transition-all duration-200 hover:text-brand-600 hover:bg-muted/50 rounded-md',
+                  isActive ? 'text-primary' : 'text-foreground',
                 )}
               >
                 {tab.enableDirectLink && tab.link ? (
@@ -117,18 +117,11 @@ export function DesktopNav({ data }: { data: Header }) {
                 {hasDropdown && (
                   <ChevronDown
                     className={cn(
-                      'h-3.5 w-3.5 transition-transform duration-200',
-                      isActive && 'rotate-180',
+                      'h-3.5 w-3.5 transition-transform duration-200 opacity-50',
+                      isActive && 'rotate-180 opacity-100',
                     )}
                   />
                 )}
-                {/* Sliding underline */}
-                <span
-                  className={cn(
-                    'absolute bottom-1.5 left-4 right-4 h-px bg-primary origin-left transition-transform duration-300',
-                    isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100',
-                  )}
-                />
               </button>
             </div>
           )
@@ -139,7 +132,7 @@ export function DesktopNav({ data }: { data: Header }) {
         <CMSLink
           {...menuCta}
           appearance={menuCta.appearance ?? 'default'}
-          className="ml-2"
+          className="ml-8 font-mono font-medium tracking-widest text-sm"
         />
       ) : null}
 

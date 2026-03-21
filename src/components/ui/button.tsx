@@ -6,7 +6,7 @@ import { cn } from "@/utilities/ui"
 
 const buttonVariants = cva(
   // Base: layout, typography, interactivity, svg handling
-  "cursor-pointer inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg shadow text-base font-normal transition-[color,background-color,box-shadow,transform,opacity] duration-200 ease-out focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 active:scale-[0.98] [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:drop-shadow-sm [&_svg]:transition-transform [&_svg]:duration-200 [&_svg]:ease-out",
+  "cursor-pointer inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-none shadow-sm type-label-lg transition-[color,background-color,box-shadow,transform,opacity] duration-200 ease-out focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 active:scale-[0.98] [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:drop-shadow-sm [&_svg]:transition-transform [&_svg]:duration-200 [&_svg]:ease-out",
   {
     variants: {
       variant: {
@@ -42,31 +42,20 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
-        xs: "h-7 px-2.5 text-xs min-w-20",
-        sm: "h-8 px-3 text-xs min-w-28",
-        default: "h-10 px-4 py-2 min-w-36",
-        lg: "h-12 px-5 text-lg min-w-44",
-        xl: "h-15 px-6 text-lg min-w-52",
-        icon: "h-9 w-9",
-        "icon-sm": "h-7 w-7",
-        "icon-lg": "h-11 w-11",
+        xs: "h-7 px-3 min-w-20",
+        sm: "h-8 px-4 min-w-28",
+        default: "h-11 px-6 min-w-36",
+        lg: "h-13 px-8 min-w-44",
+        xl: "h-16 px-10 min-w-52",
+        icon: "h-11 w-11",
+        "icon-sm": "h-8 w-8",
+        "icon-lg": "h-13 w-13",
       },
     },
     compoundVariants: [
-      // Text-size buttons: left-align text, pin icon to the right with a hover nudge
-      { variant: "default", size: ["xs", "sm", "default", "lg", "xl"], class: "justify-start [&_svg]:ml-auto [&_svg]:box-content hover:[&_svg]:translate-x-0.5" },
-      { variant: "outline", size: ["xs", "sm", "default", "lg", "xl"], class: "justify-start [&_svg]:ml-auto [&_svg]:box-content hover:[&_svg]:translate-x-0.5" },
-      // Icon left-padding scales with size (creates visual breathing room between text and icon)
-      { variant: "default", size: "xs", class: "[&_svg]:pl-2" },
-      { variant: "default", size: "sm", class: "[&_svg]:pl-3" },
-      { variant: "default", size: "default", class: "[&_svg]:pl-4" },
-      { variant: "default", size: "lg", class: "[&_svg]:pl-6" },
-      { variant: "default", size: "xl", class: "[&_svg]:pl-8" },
-      { variant: "outline", size: "xs", class: "[&_svg]:pl-2" },
-      { variant: "outline", size: "sm", class: "[&_svg]:pl-3" },
-      { variant: "outline", size: "default", class: "[&_svg]:pl-4" },
-      { variant: "outline", size: "lg", class: "[&_svg]:pl-6" },
-      { variant: "outline", size: "xl", class: "[&_svg]:pl-8" },
+      // Text-size buttons: center text, pin icon to the right with a hover nudge
+      { variant: "default", size: ["xs", "sm", "default", "lg", "xl"], class: "justify-center [&_svg]:ml-2 [&_svg]:box-content hover:[&_svg]:translate-x-0.5" },
+      { variant: "outline", size: ["xs", "sm", "default", "lg", "xl"], class: "justify-center [&_svg]:ml-2 [&_svg]:box-content hover:[&_svg]:translate-x-0.5" },
     ],
     defaultVariants: {
       variant: "default",
