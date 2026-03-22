@@ -413,7 +413,7 @@ async function seedProducts(
       const productGallery: Array<{ image: string | number; alt: string }> = []
       const catRow = product.categoryOldId != null ? catById.get(product.categoryOldId) : undefined
       const parentRow = catRow?.parentOldId != null ? catById.get(catRow.parentOldId) : undefined
-      const grandparentRow = parentRow?.parentOldId != null ? catById.get(parentRow.parentOldId) : undefined
+      const _grandparentRow = parentRow?.parentOldId != null ? catById.get(parentRow.parentOldId) : undefined
 
       for (const g of product.gallery) {
         let mediaId = mediaMap.get(g.uploadId)
@@ -447,7 +447,7 @@ async function seedProducts(
               mediaMap.set(g.uploadId, mediaId)
               payload.logger.info(`    ✓ image uploadId=${g.uploadId} → ${media.id}`)
               break
-            } catch (err) { /* ignore */ }
+            } catch (_err) { /* ignore */ }
           }
         }
 
@@ -480,6 +480,7 @@ async function seedProducts(
         ...(categoryId ? { category: categoryId } : {}),
       }
 
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const doc = await payload.create({ collection: 'products', data: data as any })
       payload.logger.info(`  ✓ product "${product.slug}" → ${doc.id} (gallery=${productGallery.length})`)
       created++
