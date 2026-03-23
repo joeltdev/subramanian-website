@@ -6,6 +6,7 @@ import { Media } from '@/components/Media'
 import { CMSLink } from '@/components/Link'
 import RichText from '@/components/RichText'
 import { cn } from '@/utilities/ui'
+import { ArrowRight } from 'lucide-react'
 
 type ManifestoPromoBlockType = Extract<Page['layout'][0], { blockType: 'manifestoPromo' }>
 
@@ -22,7 +23,7 @@ export const ManifestoPromoBlock: React.FC<ManifestoPromoBlockType> = ({
   return (
     <section 
       ref={ref}
-      className="relative w-full overflow-hidden py-24 md:py-32"
+      className="relative w-full overflow-hidden py-32 md:py-48"
       data-section-theme={theme}
     >
       {/* Background Image with Overlay */}
@@ -92,12 +93,15 @@ export const ManifestoPromoBlock: React.FC<ManifestoPromoBlockType> = ({
               <CMSLink 
                 {...cta} 
                 className={cn(
-                  "h-14 px-10 rounded-none", // Sharp corners per GEMINI.md
+                  "group h-14 px-10 rounded-none", // Sharp corners per GEMINI.md
+                  "flex items-center justify-center gap-3",
                   "text-sm font-bold uppercase tracking-widest transition-all duration-300",
                   "bg-white text-brand-950 hover:bg-brand-500 hover:text-white",
                   theme === 'light' && "bg-brand-500 text-white hover:bg-black"
                 )}
-              />
+              >
+                <ArrowRight className="size-5 transition-transform duration-300 group-hover:translate-x-1" />
+              </CMSLink>
             </motion.div>
           )}
         </div>
