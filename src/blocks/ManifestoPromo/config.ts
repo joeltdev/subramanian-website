@@ -24,6 +24,31 @@ export const ManifestoPromo: Block = {
       },
     },
     {
+      name: 'mobileBackgroundImage',
+      type: 'upload',
+      relationTo: 'media',
+      required: false,
+      admin: {
+        description: 'Optional: Specifically cropped image for mobile portrait view.',
+      },
+    },
+    {
+      name: 'backgroundPosition',
+      type: 'select',
+      defaultValue: 'center',
+      label: 'Image Focal Point (Mobile)',
+      admin: {
+        description: 'Where the image should be focused on mobile screens.',
+      },
+      options: [
+        { label: 'Center', value: 'center' },
+        { label: 'Left Focus', value: 'left' },
+        { label: 'Right Focus', value: 'right' },
+        { label: 'Top Focus', value: 'top' },
+        { label: 'Bottom Focus', value: 'bottom' },
+      ],
+    },
+    {
       name: 'theme',
       type: 'select',
       defaultValue: 'brand',

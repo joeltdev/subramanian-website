@@ -339,6 +339,14 @@ export interface Page {
          */
         backgroundImage: number | Media;
         /**
+         * Optional: Specifically cropped image for mobile portrait view.
+         */
+        mobileBackgroundImage?: (number | null) | Media;
+        /**
+         * Where the image should be focused on mobile screens.
+         */
+        backgroundPosition?: ('center' | 'left' | 'right' | 'top' | 'bottom') | null;
+        /**
          * Controls the overlay and text color contrast.
          */
         theme?: ('brand' | 'dark' | 'light') | null;
@@ -2972,6 +2980,8 @@ export interface PagesSelect<T extends boolean = true> {
           | T
           | {
               backgroundImage?: T;
+              mobileBackgroundImage?: T;
+              backgroundPosition?: T;
               theme?: T;
               title?: T;
               description?: T;

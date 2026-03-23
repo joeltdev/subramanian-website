@@ -12,6 +12,8 @@ type ManifestoPromoBlockType = Extract<Page['layout'][0], { blockType: 'manifest
 
 export const ManifestoPromoBlock: React.FC<ManifestoPromoBlockType> = ({
   backgroundImage,
+  mobileBackgroundImage,
+  backgroundPosition = 'center',
   theme = 'brand',
   title,
   description,
@@ -19,6 +21,14 @@ export const ManifestoPromoBlock: React.FC<ManifestoPromoBlockType> = ({
 }) => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
+
+  const posClasses = {
+    center: 'object-center',
+    left: 'object-left',
+    right: 'object-right',
+    top: 'object-top',
+    bottom: 'object-bottom',
+  }
 
   return (
     <section 
@@ -28,14 +38,28 @@ export const ManifestoPromoBlock: React.FC<ManifestoPromoBlockType> = ({
     >
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 -z-10">
+        {/* Desktop Image */}
         {backgroundImage && typeof backgroundImage === 'object' && (
           <Media 
             resource={backgroundImage} 
             fill 
-            imgClassName="object-cover object-center"
+            className={cn(mobileBackgroundImage && "hidden md:block")}
+            imgClassName={cn("object-cover", mobileBackgroundImage ? "object-center" : posClasses[backgroundPosition])}
             priority
           />
         )}
+        
+        {/* Mobile-specific Image */}
+        {mobileBackgroundImage && typeof mobileBackgroundImage === 'object' && (
+          <Media 
+            resource={mobileBackgroundImage} 
+            fill 
+            className="md:hidden"
+            imgClassName={cn("object-cover", posClasses[backgroundPosition])}
+            priority
+          />
+        )}
+        
         {/* Overlay for readability - adjusts based on theme but usually dark for image promos */}
         <div className={cn(
           "absolute inset-0 bg-black/60", // Default dark overlay
