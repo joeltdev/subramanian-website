@@ -124,9 +124,9 @@ export const ManifestoBlock: React.FC<ManifestoBlockType> = ({
                     className={cn(
                       "group w-full md:w-auto min-w-[260px] h-[58px] px-8 rounded-full",
                       "flex items-center justify-start gap-3",
-                      "font-bold uppercase tracking-widest text-sm transition-all duration-300",
-                      "shadow-lg shadow-primary/10 hover:shadow-xl hover:shadow-primary/20",
-                      "bg-primary text-primary-foreground hover:scale-[1.02] active:scale-[0.98]",
+                      "font-sans font-extrabold uppercase tracking-[0.15em] text-xs transition-all duration-300",
+                      "shadow-lg shadow-brand-400/20 hover:shadow-xl hover:shadow-brand-400/40",
+                      "bg-brand-400 text-white hover:bg-brand-300 hover:scale-[1.02] active:scale-[0.98]",
                       "border-none"
                     )}
                   >
