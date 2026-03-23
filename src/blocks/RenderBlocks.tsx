@@ -55,7 +55,7 @@ const blockComponents = {
   productListing: ProductListingBlock,
   newsletterSubscription: NewsletterSubscriptionBlockComponent,
   promoHero: PromoHeroBlock,
-  manifesto: ManifestoBlock,
+  tharoorManifesto: ManifestoBlock,
 }
 
 export const RenderBlocks: React.FC<{

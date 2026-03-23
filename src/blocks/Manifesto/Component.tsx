@@ -1,12 +1,15 @@
 'use client'
 import React, { useRef } from 'react'
 import { motion, useInView } from 'motion/react'
-import type { ManifestoBlock as ManifestoBlockType } from '@/payload-types'
+import type { Page } from '@/payload-types'
 import { Media } from '@/components/Media'
 import { CMSLink } from '@/components/Link'
 import RichText from '@/components/RichText'
 import { cn } from '@/utilities/ui'
 import { Download } from 'lucide-react'
+
+// Local type for the block until types are regenerated
+type ManifestoBlockType = Extract<Page['layout'][0], { blockType: 'tharoorManifesto' }>
 
 export const ManifestoBlock: React.FC<ManifestoBlockType> = ({
   variant,
@@ -15,7 +18,7 @@ export const ManifestoBlock: React.FC<ManifestoBlockType> = ({
   content,
   image,
   linkTitle = 'Download PDF',
-  links,
+  manifestoLinks,
 }) => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
@@ -106,14 +109,14 @@ export const ManifestoBlock: React.FC<ManifestoBlockType> = ({
             </div>
 
             {/* Download Section: Title + Button */}
-            {links && links.length > 0 && (
+            {manifestoLinks && manifestoLinks.length > 0 && (
               <div className="flex flex-col items-center md:items-start space-y-5 pt-4 w-full max-w-sm md:max-w-md">
                 {linkTitle && (
                   <p className="type-title-md md:type-title-lg tracking-tight text-type-heading font-bold md:font-extrabold uppercase underline decoration-primary/30 underline-offset-8 decoration-2">
                     {linkTitle}
                   </p>
                 )}
-                {links.map(({ link, id }) => (
+                {manifestoLinks.map(({ link, id }) => (
                   <CMSLink 
                     key={id} 
                     {...link} 

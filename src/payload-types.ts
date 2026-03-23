@@ -249,7 +249,90 @@ export interface Page {
     | ProductHeroBlock
     | ProductListingBlock
     | NewsletterSubscriptionBlock
-    | ManifestoBlock
+    | {
+        /**
+         * Choose which side the text appears on.
+         */
+        variant?: ('textLeft' | 'textRight') | null;
+        /**
+         * Controls the background and text color contrast.
+         */
+        theme?: ('light' | 'dark' | 'brand') | null;
+        /**
+         * Primary heading for this document section.
+         */
+        intro?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        /**
+         * The long-form Malayalam text content.
+         */
+        content: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        /**
+         * Image of the document cover page.
+         */
+        image?: (number | null) | Media;
+        /**
+         * Small label shown above the download button.
+         */
+        linkTitle?: string | null;
+        /**
+         * Link to the PDF file for download.
+         */
+        manifestoLinks?:
+          | {
+              link: {
+                type?: ('reference' | 'custom') | null;
+                newTab?: boolean | null;
+                reference?:
+                  | ({
+                      relationTo: 'pages';
+                      value: number | Page;
+                    } | null)
+                  | ({
+                      relationTo: 'posts';
+                      value: number | Post;
+                    } | null);
+                url?: string | null;
+                label: string;
+                /**
+                 * Choose how the link should be rendered.
+                 */
+                appearance?: ('default' | 'outline') | null;
+              };
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'tharoorManifesto';
+      }
   )[];
   meta?: {
     title?: string | null;
@@ -2448,94 +2531,6 @@ export interface NewsletterSubscriptionBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ManifestoBlock".
- */
-export interface ManifestoBlock {
-  /**
-   * Choose which side the text appears on.
-   */
-  variant?: ('textLeft' | 'textRight') | null;
-  /**
-   * Controls the background and text color contrast.
-   */
-  theme?: ('light' | 'dark' | 'brand') | null;
-  /**
-   * Primary heading for this document section.
-   */
-  intro?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  /**
-   * The long-form Malayalam text content.
-   */
-  content: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  };
-  /**
-   * Image of the document cover page.
-   */
-  image?: (number | null) | Media;
-  /**
-   * Small label shown above the download button.
-   */
-  linkTitle?: string | null;
-  /**
-   * Link to the PDF file for download.
-   */
-  links?:
-    | {
-        link: {
-          type?: ('reference' | 'custom') | null;
-          newTab?: boolean | null;
-          reference?:
-            | ({
-                relationTo: 'pages';
-                value: number | Page;
-              } | null)
-            | ({
-                relationTo: 'posts';
-                value: number | Post;
-              } | null);
-          url?: string | null;
-          label: string;
-          /**
-           * Choose how the link should be rendered.
-           */
-          appearance?: ('default' | 'outline') | null;
-        };
-        id?: string | null;
-      }[]
-    | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'manifesto';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -2881,7 +2876,33 @@ export interface PagesSelect<T extends boolean = true> {
         productHero?: T | ProductHeroBlockSelect<T>;
         productListing?: T | ProductListingBlockSelect<T>;
         newsletterSubscription?: T | NewsletterSubscriptionBlockSelect<T>;
-        manifesto?: T | ManifestoBlockSelect<T>;
+        tharoorManifesto?:
+          | T
+          | {
+              variant?: T;
+              theme?: T;
+              intro?: T;
+              content?: T;
+              image?: T;
+              linkTitle?: T;
+              manifestoLinks?:
+                | T
+                | {
+                    link?:
+                      | T
+                      | {
+                          type?: T;
+                          newTab?: T;
+                          reference?: T;
+                          url?: T;
+                          label?: T;
+                          appearance?: T;
+                        };
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
       };
   meta?:
     | T
@@ -3420,35 +3441,6 @@ export interface NewsletterSubscriptionBlockSelect<T extends boolean = true> {
   submitButtonLabel?: T;
   formActionUrl?: T;
   image?: T;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ManifestoBlock_select".
- */
-export interface ManifestoBlockSelect<T extends boolean = true> {
-  variant?: T;
-  theme?: T;
-  intro?: T;
-  content?: T;
-  image?: T;
-  linkTitle?: T;
-  links?:
-    | T
-    | {
-        link?:
-          | T
-          | {
-              type?: T;
-              newTab?: T;
-              reference?: T;
-              url?: T;
-              label?: T;
-              appearance?: T;
-            };
-        id?: T;
-      };
   id?: T;
   blockName?: T;
 }

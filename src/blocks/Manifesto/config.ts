@@ -8,8 +8,7 @@ import {
 import { linkGroup } from '@/fields/linkGroup'
 
 export const Manifesto: Block = {
-  slug: 'manifesto',
-  interfaceName: 'ManifestoBlock',
+  slug: 'tharoorManifesto',
   labels: {
     singular: 'Manifesto Section',
     plural: 'Manifesto Sections',
@@ -96,6 +95,7 @@ export const Manifesto: Block = {
     linkGroup({
       appearances: ['default', 'outline'],
       overrides: {
+        name: 'manifestoLinks',
         maxRows: 1,
         admin: {
           description: 'Link to the PDF file for download.',
