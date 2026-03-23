@@ -29,7 +29,7 @@ export const ManifestoBlock: React.FC<ManifestoBlockType> = ({
     <section 
       ref={ref}
       data-section-theme={theme}
-      className="py-16 md:py-24 overflow-hidden bg-background text-foreground transition-colors duration-500"
+      className="py-16 md:py-24 bg-background text-foreground transition-colors duration-500"
     >
       <div className="mx-auto max-w-7xl px-6 md:px-8">
         {/* Intro Heading - Left-aligned across all sizes */}
