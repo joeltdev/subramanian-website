@@ -50,8 +50,8 @@ export const ManifestoBlock: React.FC<ManifestoBlockType> = ({
         )}
 
         <div className={cn(
-          "grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start", 
-          !isTextLeft && "md:grid-cols-[1fr_1fr]" // Standard 2-col
+          "grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-start", 
+          !isTextLeft && "md:grid-cols-[1fr_0.85fr]" // Slightly asymmetric for better balance
         )}>
           {/* Text Content Column */}
           <motion.div
@@ -59,7 +59,7 @@ export const ManifestoBlock: React.FC<ManifestoBlockType> = ({
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
             className={cn(
-              "flex flex-col space-y-6",
+              "flex flex-col space-y-8",
               !isTextLeft && "md:order-2"
             )}
           >
@@ -70,24 +70,25 @@ export const ManifestoBlock: React.FC<ManifestoBlockType> = ({
                 className={cn(
                   "text-left font-malayalam",
                   // Malayalam-specific typography
-                  "[&_p]:type-body-md [&_p]:text-type-body [&_p]:mb-6",
+                  "[&_p]:type-body-md [&_p]:text-type-body [&_p]:mb-8",
                   "[&_p]:[line-height:1.85] md:[&_p]:[line-height:2.0]",
-                  "[&_h3]:type-headline-4 [&_h3]:text-type-heading [&_h3]:mb-6",
-                  "[&_h4]:type-title-xl [&_h4]:text-type-heading [&_h4]:mb-4",
+                  "[&_h3]:type-headline-4 [&_h3]:text-type-heading [&_h3]:mb-8",
+                  "[&_h4]:type-title-xl [&_h4]:text-type-heading [&_h4]:mb-6",
                   // Ensure bullet points are styled too
-                  "[&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-4 [&_ul]:mb-8 [&_li]:type-body-sm [&_li]:text-type-body"
+                  "[&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-4 [&_ul]:mb-10 [&_li]:type-body-sm [&_li]:text-type-body"
                 )}
               />
             </div>
           </motion.div>
 
-          {/* Image & Download Column */}
+          {/* Image & Download Column - Sticky on Desktop */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95, x: isTextLeft ? 30 : -30 }}
             animate={isInView ? { opacity: 1, x: 0, scale: 1 } : {}}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
             className={cn(
-              "flex flex-col items-start space-y-8", // Left-aligned across all sizes
+              "flex flex-col items-start space-y-10", 
+              "md:sticky md:top-32 md:self-start", // STICKY PINNING
               !isTextLeft && "md:order-1"
             )}
           >
