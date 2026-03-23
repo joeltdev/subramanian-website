@@ -27,7 +27,7 @@ export const PromoHeroBlock: React.FC<T> = ({ intro, links }) => {
             </motion.div>
           )}
 
-          {/* CTA Buttons - Ultra Modern Symmetrical Design */}
+          {/* CTA Buttons - Premium Light Blue Design */}
           {links && links.length > 0 && (
             <motion.div 
               className="mt-20 w-full max-w-4xl mx-auto"
@@ -42,7 +42,7 @@ export const PromoHeroBlock: React.FC<T> = ({ intro, links }) => {
                     key={i} 
                     {...link} 
                     size="xl"
-                    className="flex-1 w-full h-20 sm:h-24 justify-center px-8 sm:px-16 min-w-0 sm:min-w-[320px] type-title-lg uppercase tracking-[0.15em] font-bold bg-foreground text-background hover:bg-brand-500 hover:text-white border-none transition-all duration-500 shadow-xl"
+                    className="flex-1 w-full h-20 sm:h-24 justify-center px-8 sm:px-16 min-w-0 sm:min-w-[320px] type-title-lg uppercase tracking-[0.15em] font-bold bg-brand-100 text-brand-700 hover:bg-brand-500 hover:text-white border-none transition-all duration-500 shadow-lg"
                   >
                      <ArrowRight className="transition-transform group-hover:translate-x-2 shrink-0 ml-6 size-6" />
                   </CMSLink>

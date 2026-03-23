@@ -128,7 +128,7 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
               </AnimatedGroup>
             )}
 
-            {/* CTA links - Ultra Modern Premium Design */}
+            {/* CTA links - Premium Blue Design */}
             {Array.isArray(links) && links.length > 0 && (
               <AnimatedGroup
                 variants={{
@@ -146,7 +146,7 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
                       key={i}
                       {...link}
                       size="xl"
-                      className="flex-1 w-full h-20 sm:h-24 justify-center px-8 sm:px-16 min-w-0 sm:min-w-[320px] type-title-lg uppercase tracking-[0.15em] font-bold bg-white text-black hover:bg-brand-500 hover:text-white border-none transition-all duration-500 shadow-2xl shadow-black/20"
+                      className="flex-1 w-full h-20 sm:h-24 justify-center px-8 sm:px-16 min-w-0 sm:min-w-[320px] type-title-lg uppercase tracking-[0.15em] font-bold bg-brand-500 text-white hover:bg-brand-400 hover:text-white border-none transition-all duration-500 shadow-2xl shadow-brand-950/20"
                     >
                       <ArrowRight className="transition-transform group-hover:translate-x-2 shrink-0 ml-6 size-6" />
                     </CMSLink>
