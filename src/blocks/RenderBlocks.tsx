@@ -56,8 +56,9 @@ const blockComponents = {
 
 export const RenderBlocks: React.FC<{
   blocks: Page['layout'][0][]
+  slug?: string
 }> = (props) => {
-  const { blocks } = props
+  const { blocks, slug } = props
 
   const hasBlocks = blocks && Array.isArray(blocks) && blocks.length > 0
 
@@ -74,7 +75,7 @@ export const RenderBlocks: React.FC<{
               return (
                 <div className="my-0" key={index}>
                   {/* @ts-expect-error there may be some mismatch between the expected types here */}
-                  <Block {...block} disableInnerContainer />
+                  <Block {...block} disableInnerContainer slug={slug} />
                 </div>
               )
             }

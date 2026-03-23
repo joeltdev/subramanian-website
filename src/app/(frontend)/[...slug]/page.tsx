@@ -76,8 +76,8 @@ export default async function Page({ params: paramsPromise }: Args) {
 
       {draft && <LivePreviewListener />}
 
-      <RenderHero {...hero} />
-      <RenderBlocks blocks={layout} />
+      <RenderHero {...hero} slug={slug} />
+      <RenderBlocks blocks={layout} slug={slug} />
     </article>
   )
 }

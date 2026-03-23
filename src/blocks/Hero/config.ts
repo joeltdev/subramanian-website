@@ -22,6 +22,7 @@ export const hero: Field = {
         { label: 'None', value: 'none' },
         { label: 'Centered Animated', value: 'section1' },
         { label: 'Left Aligned Animated', value: 'section2' },
+        { label: 'Manifesto Landing', value: 'manifesto' },
       ],
       required: true,
     },
@@ -31,7 +32,7 @@ export const hero: Field = {
       admin: {
         description:
           'Optional announcement badge shown above the heading (e.g. "Introducing our new feature")',
-        condition: (_, { type } = {}) => ['section1', 'section2'].includes(type),
+        condition: (_, { type } = {}) => ['section1', 'section2', 'manifesto'].includes(type),
       },
     },
     {
@@ -60,7 +61,7 @@ export const hero: Field = {
       relationTo: 'media',
       admin: {
         description: 'App screenshot or preview image shown below the hero text',
-        condition: (_, { type } = {}) => ['section1', 'section2'].includes(type),
+        condition: (_, { type } = {}) => ['section1', 'section2', 'manifesto'].includes(type),
       },
     },
     {
@@ -69,7 +70,7 @@ export const hero: Field = {
       relationTo: 'media',
       admin: {
         description: 'Full-screen background video for section 2. Plays autoplay/muted/loop.',
-        condition: (_, { type } = {}) => type === 'section2',
+        condition: (_, { type } = {}) => ['section2', 'manifesto'].includes(type),
       },
     },
     {
@@ -78,7 +79,7 @@ export const hero: Field = {
       relationTo: 'media',
       admin: {
         description: 'Fallback background image when no video is set (section 2 only).',
-        condition: (_, { type } = {}) => type === 'section2',
+        condition: (_, { type } = {}) => ['section2', 'manifesto'].includes(type),
       },
     },
   ],

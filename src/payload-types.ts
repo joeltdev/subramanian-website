@@ -166,7 +166,7 @@ export interface Page {
   id: number;
   title: string;
   hero: {
-    type: 'none' | 'section1' | 'section2';
+    type: 'none' | 'section1' | 'section2' | 'manifesto';
     /**
      * Optional announcement badge shown above the heading (e.g. "Introducing our new feature")
      */
