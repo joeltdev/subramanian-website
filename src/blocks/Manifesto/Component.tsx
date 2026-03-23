@@ -44,7 +44,7 @@ export const ManifestoBlock: React.FC<ManifestoBlockType> = ({
               data={intro}
               enableGutter={false}
               enableProse={false}
-              className="w-full max-w-none font-malayalam [&_h2]:type-title-xl md:[&_h2]:type-headline-2 [&_h2]:font-bold md:[&_h2]:font-extrabold [&_h2]:text-type-heading [&_h2]:mb-0 [&_h2]:text-balance [&_h2]:underline [&_h2]:decoration-foreground/20 [&_h2]:underline-offset-[16px] [&_h2]:decoration-2"
+              className="w-full max-w-none font-malayalam [&_h2]:type-title-xl md:[&_h2]:type-headline-2 [&_h2]:font-bold md:[&_h2]:font-extrabold [&_h2]:text-type-heading [&_h2]:mb-0 [&_h2]:text-balance [&_h2]:no-underline md:[&_h2]:underline [&_h2]:decoration-foreground/20 [&_h2]:underline-offset-[16px] [&_h2]:decoration-2"
             />
           </motion.div>
         )}
@@ -112,7 +112,7 @@ export const ManifestoBlock: React.FC<ManifestoBlockType> = ({
             {manifestoLinks && manifestoLinks.length > 0 && (
               <div className="flex flex-col items-center md:items-start space-y-5 pt-4 w-full max-w-sm md:max-w-md">
                 {linkTitle && (
-                  <p className="type-title-md md:type-title-lg tracking-tight text-type-heading font-bold md:font-extrabold uppercase underline decoration-primary/30 underline-offset-8 decoration-2">
+                  <p className="type-title-md md:type-title-lg tracking-tight text-type-heading font-bold md:font-extrabold uppercase no-underline md:underline decoration-primary/30 underline-offset-8 decoration-2">
                     {linkTitle}
                   </p>
                 )}
