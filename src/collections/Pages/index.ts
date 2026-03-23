@@ -94,6 +94,7 @@ export const Pages: CollectionConfig<'pages'> = {
               name: 'layout',
               type: 'blocks',
               blocks: [
+                PromoHero,
                 CallToAction,
                 Content,
                 MediaBlock,
@@ -118,7 +119,6 @@ export const Pages: CollectionConfig<'pages'> = {
                 ProductHero,
                 ProductListing,
                 NewsletterSubscription,
-                PromoHero,
               ],
               required: true,
               admin: {

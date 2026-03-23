@@ -139,17 +139,19 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
                   },
                   ...transitionVariants,
                 }}
-                className="mt-12 flex flex-col sm:flex-row items-center gap-4">
-                {links.map(({ link }, i) => (
-                  <CMSLink
-                    key={i}
-                    {...link}
-                    size="xl"
-                    className="w-full sm:w-auto"
-                  >
-                    <ArrowRight className="transition-transform group-hover:translate-x-1" />
-                  </CMSLink>
-                ))}
+                className="mt-12 w-full max-w-2xl">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4 w-full">
+                  {links.map(({ link }, i) => (
+                    <CMSLink
+                      key={i}
+                      {...link}
+                      size="xl"
+                      className="flex-1 w-full justify-center px-6 min-w-0 sm:min-w-[240px] [&_span]:truncate [&_span]:block"
+                    >
+                      <ArrowRight className="transition-transform group-hover:translate-x-1 shrink-0" />
+                    </CMSLink>
+                  ))}
+                </div>
               </AnimatedGroup>
             )}
           </div>

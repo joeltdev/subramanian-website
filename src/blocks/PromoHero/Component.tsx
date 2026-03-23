@@ -17,17 +17,19 @@ export const PromoHeroBlock: React.FC<T> = ({ intro, links }) => {
             />
           )}
 
-          {/* CTA Buttons using CMSLink (Sharp Corners Mandate) */}
+          {/* CTA Buttons - Symmetrical Design */}
           {links && links.length > 0 && (
-            <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
-              {links.map(({ link }, i) => (
-                <CMSLink 
-                  key={i} 
-                  {...link} 
-                  size="lg"
-                  className="rounded-none px-10 py-4" 
-                />
-              ))}
+            <div className="mt-12 w-full max-w-2xl mx-auto">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4 w-full">
+                {links.map(({ link }, i) => (
+                  <CMSLink 
+                    key={i} 
+                    {...link} 
+                    size="xl"
+                    className="flex-1 w-full justify-center px-6 min-w-0 sm:min-w-[240px] [&_span]:truncate [&_span]:block" 
+                  />
+                ))}
+              </div>
             </div>
           )}
         </div>
