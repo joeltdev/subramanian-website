@@ -32,19 +32,19 @@ export const ManifestoBlock: React.FC<ManifestoBlockType> = ({
       className="py-16 md:py-24 overflow-hidden bg-background text-foreground transition-colors duration-500"
     >
       <div className="mx-auto max-w-7xl px-6 md:px-8">
-        {/* Intro Heading - Centered on Mobile, Respects Layout on Desktop */}
+        {/* Intro Heading - Left-aligned across all sizes */}
         {intro && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="mb-10 md:mb-20 text-center md:text-left w-full"
+            className="mb-10 md:mb-20 text-left w-full"
           >
             <RichText
               data={intro}
               enableGutter={false}
               enableProse={false}
-              className="w-full max-w-none font-malayalam [&_h2]:type-title-xl md:[&_h2]:type-headline-2 [&_h2]:font-bold md:[&_h2]:font-extrabold [&_h2]:text-type-heading [&_h2]:mb-0 [&_h2]:text-balance [&_h2]:no-underline md:[&_h2]:underline [&_h2]:decoration-foreground/20 [&_h2]:underline-offset-[16px] [&_h2]:decoration-2"
+              className="w-full max-w-none font-malayalam [&_h2]:type-title-xl md:[&_h2]:type-headline-2 [&_h2]:font-bold md:[&_h2]:font-extrabold [&_h2]:text-type-heading [&_h2]:mb-0 [&_h2]:no-underline md:[&_h2]:underline [&_h2]:decoration-foreground/20 [&_h2]:underline-offset-[16px] [&_h2]:decoration-2"
             />
           </motion.div>
         )}
@@ -87,7 +87,7 @@ export const ManifestoBlock: React.FC<ManifestoBlockType> = ({
             animate={isInView ? { opacity: 1, x: 0, scale: 1 } : {}}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
             className={cn(
-              "flex flex-col items-center md:items-start space-y-8", // Shared alignment container
+              "flex flex-col items-start space-y-8", // Left-aligned across all sizes
               !isTextLeft && "md:order-1"
             )}
           >
@@ -110,7 +110,7 @@ export const ManifestoBlock: React.FC<ManifestoBlockType> = ({
 
             {/* Download Section: Title + Button */}
             {manifestoLinks && manifestoLinks.length > 0 && (
-              <div className="flex flex-col items-center md:items-start space-y-5 pt-4 w-full max-w-sm md:max-w-md">
+              <div className="flex flex-col items-start space-y-5 pt-4 w-full max-w-sm md:max-w-md">
                 {linkTitle && (
                   <p className="type-title-md md:type-title-lg tracking-tight text-type-heading font-bold md:font-extrabold uppercase no-underline md:underline decoration-primary/30 underline-offset-8 decoration-2">
                     {linkTitle}
@@ -122,7 +122,7 @@ export const ManifestoBlock: React.FC<ManifestoBlockType> = ({
                     {...link} 
                     className={cn(
                       "group w-full md:w-auto min-w-[260px] h-[58px] px-8 rounded-full",
-                      "flex items-center justify-center md:justify-start gap-3",
+                      "flex items-center justify-start gap-3",
                       "font-bold uppercase tracking-widest text-sm transition-all duration-300",
                       "shadow-lg shadow-primary/10 hover:shadow-xl hover:shadow-primary/20",
                       "bg-primary text-primary-foreground hover:scale-[1.02] active:scale-[0.98]",
