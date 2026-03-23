@@ -248,6 +248,7 @@ export interface Page {
     | ProductHeroBlock
     | ProductListingBlock
     | NewsletterSubscriptionBlock
+    | PromoHeroBlock
   )[];
   meta?: {
     title?: string | null;
@@ -2392,6 +2393,60 @@ export interface NewsletterSubscriptionBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PromoHeroBlock".
+ */
+export interface PromoHeroBlock {
+  /**
+   * Section heading and supporting text
+   */
+  intro?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Add up to 2 call-to-action buttons
+   */
+  links?:
+    | {
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null);
+          url?: string | null;
+          label: string;
+          /**
+           * Choose how the link should be rendered.
+           */
+          appearance?: ('default' | 'outline') | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'promoHero';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -2736,6 +2791,7 @@ export interface PagesSelect<T extends boolean = true> {
         productHero?: T | ProductHeroBlockSelect<T>;
         productListing?: T | ProductListingBlockSelect<T>;
         newsletterSubscription?: T | NewsletterSubscriptionBlockSelect<T>;
+        promoHero?: T | PromoHeroBlockSelect<T>;
       };
   meta?:
     | T
@@ -3250,6 +3306,30 @@ export interface NewsletterSubscriptionBlockSelect<T extends boolean = true> {
   submitButtonLabel?: T;
   formActionUrl?: T;
   image?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PromoHeroBlock_select".
+ */
+export interface PromoHeroBlockSelect<T extends boolean = true> {
+  intro?: T;
+  links?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+              appearance?: T;
+            };
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }
