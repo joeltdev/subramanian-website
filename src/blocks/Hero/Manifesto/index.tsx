@@ -128,7 +128,7 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
               </AnimatedGroup>
             )}
 
-            {/* CTA links - Modern Rounded Symmetrical Design */}
+            {/* CTA links - Refined "Medium" Rounded Design */}
             {Array.isArray(links) && links.length > 0 && (
               <AnimatedGroup
                 variants={{
@@ -146,9 +146,9 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
                       key={i}
                       {...link}
                       size="lg"
-                      className="flex-1 w-full h-12 sm:h-14 justify-center px-8 min-w-0 sm:min-w-[200px] rounded-full type-title-sm uppercase tracking-widest font-bold bg-brand-500 text-white hover:bg-brand-400 hover:text-white border-none transition-all duration-300 shadow-xl"
+                      className="flex-1 w-full h-14 sm:h-16 justify-center px-10 min-w-0 sm:min-w-[220px] rounded-full type-title-md uppercase tracking-widest font-bold bg-brand-500 text-white hover:bg-brand-400 hover:text-white border-none transition-all duration-300 shadow-xl"
                     >
-                      <ArrowRight className="transition-transform group-hover:translate-x-1 shrink-0 ml-2 size-4" />
+                      <ArrowRight className="transition-transform group-hover:translate-x-1 shrink-0 ml-3 size-5" />
                     </CMSLink>
                   ))}
                 </div>
