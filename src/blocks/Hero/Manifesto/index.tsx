@@ -128,7 +128,7 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
               </AnimatedGroup>
             )}
 
-            {/* CTA links */}
+            {/* CTA links - Modern Symmetrical Design */}
             {Array.isArray(links) && links.length > 0 && (
               <AnimatedGroup
                 variants={{
@@ -139,16 +139,16 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
                   },
                   ...transitionVariants,
                 }}
-                className="mt-12 w-full max-w-2xl">
-                <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4 w-full">
+                className="mt-12 w-full max-w-3xl">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-6 w-full">
                   {links.map(({ link }, i) => (
                     <CMSLink
                       key={i}
                       {...link}
                       size="xl"
-                      className="flex-1 w-full justify-center px-6 min-w-0 sm:min-w-[240px] [&_span]:truncate [&_span]:block"
+                      className="flex-1 w-full h-16 sm:h-20 justify-center px-8 sm:px-12 min-w-0 sm:min-w-[280px] type-title-md uppercase tracking-wider bg-primary hover:bg-white hover:text-black border-none transition-all duration-300"
                     >
-                      <ArrowRight className="transition-transform group-hover:translate-x-1 shrink-0" />
+                      <ArrowRight className="transition-transform group-hover:translate-x-1 shrink-0 ml-4" />
                     </CMSLink>
                   ))}
                 </div>
