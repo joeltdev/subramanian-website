@@ -27,7 +27,7 @@ export const PromoHeroBlock: React.FC<T> = ({ intro, links }) => {
             </motion.div>
           )}
 
-          {/* CTA Buttons - Refined "Medium" Rounded Design */}
+          {/* CTA Buttons - Independent Responsive Design */}
           {links && links.length > 0 && (
             <motion.div 
               className="mt-16 w-full max-w-3xl mx-auto"
@@ -36,15 +36,27 @@ export const PromoHeroBlock: React.FC<T> = ({ intro, links }) => {
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-6 w-full">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4 md:gap-6 w-full">
                 {links.map(({ link }, i) => (
                   <CMSLink 
                     key={i} 
                     {...link} 
                     size="lg"
-                    className="flex-1 w-full h-14 sm:h-16 justify-center px-10 min-w-0 sm:min-w-[240px] rounded-full type-title-md uppercase tracking-widest font-bold bg-brand-100 text-brand-700 hover:bg-brand-500 hover:text-white border-none transition-all duration-300 shadow-md"
+                    className="
+                      /* Shared */
+                      flex-1 justify-center rounded-full uppercase font-bold tracking-widest transition-all duration-300 shadow-md border-none bg-brand-100 text-brand-700 hover:bg-brand-500 hover:text-white
+                      
+                      /* Mobile: Medium Height, Larger Font */
+                      w-full h-[60px] px-8 type-title-md
+                      
+                      /* Tablet (md): Refined Height */
+                      md:h-[56px] md:min-w-[220px]
+                      
+                      /* Laptop (lg): Standard Height, Smaller Font */
+                      lg:h-[52px] lg:min-w-[260px] lg:type-title-sm
+                    "
                   >
-                     <ArrowRight className="transition-transform group-hover:translate-x-1 shrink-0 ml-3 size-5" />
+                     <ArrowRight className="transition-transform group-hover:translate-x-1 shrink-0 ml-3 size-5 lg:size-4" />
                   </CMSLink>
                 ))}
               </div>

@@ -128,7 +128,7 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
               </AnimatedGroup>
             )}
 
-            {/* CTA links - Refined "Medium" Rounded Design */}
+            {/* CTA links - Independent Responsive Design */}
             {Array.isArray(links) && links.length > 0 && (
               <AnimatedGroup
                 variants={{
@@ -139,16 +139,28 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
                   },
                   ...transitionVariants,
                 }}
-                className="mt-12 w-full max-w-2xl">
-                <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4 w-full">
+                className="mt-12 w-full max-w-3xl">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4 md:gap-6 w-full">
                   {links.map(({ link }, i) => (
                     <CMSLink
                       key={i}
                       {...link}
                       size="lg"
-                      className="flex-1 w-full h-14 sm:h-16 justify-center px-10 min-w-0 sm:min-w-[220px] rounded-full type-title-md uppercase tracking-widest font-bold bg-brand-500 text-white hover:bg-brand-400 hover:text-white border-none transition-all duration-300 shadow-xl"
+                      className="
+                        /* Shared */
+                        flex-1 justify-center rounded-full uppercase font-bold tracking-widest transition-all duration-300 shadow-xl border-none bg-brand-500 text-white hover:bg-brand-400
+                        
+                        /* Mobile: Medium Height, Larger Font */
+                        w-full h-[60px] px-8 type-title-md
+                        
+                        /* Tablet (md): Refined Height */
+                        md:h-[56px] md:min-w-[220px]
+                        
+                        /* Laptop (lg): Standard Height, Smaller Font */
+                        lg:h-[52px] lg:min-w-[260px] lg:type-title-sm
+                      "
                     >
-                      <ArrowRight className="transition-transform group-hover:translate-x-1 shrink-0 ml-3 size-5" />
+                      <ArrowRight className="transition-transform group-hover:translate-x-1 shrink-0 ml-3 size-5 lg:size-4" />
                     </CMSLink>
                   ))}
                 </div>
