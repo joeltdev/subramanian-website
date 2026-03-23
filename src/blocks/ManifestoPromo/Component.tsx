@@ -44,7 +44,7 @@ export const ManifestoPromoBlock: React.FC<ManifestoPromoBlockType> = ({
             resource={backgroundImage} 
             fill 
             className={cn(mobileBackgroundImage && "hidden md:block")}
-            imgClassName={cn("object-cover", mobileBackgroundImage ? "object-center" : posClasses[backgroundPosition])}
+            imgClassName={cn("object-cover", mobileBackgroundImage ? "object-center" : posClasses[backgroundPosition || 'center'])}
             priority
           />
         )}
@@ -55,7 +55,7 @@ export const ManifestoPromoBlock: React.FC<ManifestoPromoBlockType> = ({
             resource={mobileBackgroundImage} 
             fill 
             className="md:hidden"
-            imgClassName={cn("object-cover", posClasses[backgroundPosition])}
+            imgClassName={cn("object-cover", posClasses[backgroundPosition || 'center'])}
             priority
           />
         )}
