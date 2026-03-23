@@ -1,14 +1,14 @@
 'use client'
 import React, { useRef } from 'react'
 import { motion, useInView } from 'motion/react'
-import type { ManifestoBlock } from '@/payload-types'
+import type { ManifestoBlock as ManifestoBlockType } from '@/payload-types'
 import { Media } from '@/components/Media'
 import { CMSLink } from '@/components/Link'
 import RichText from '@/components/RichText'
 import { cn } from '@/utilities/ui'
 import { Download } from 'lucide-react'
 
-export const ManifestoBlock: React.FC<ManifestoBlock> = ({
+export const ManifestoBlock: React.FC<ManifestoBlockType> = ({
   variant,
   theme = 'light',
   intro,
