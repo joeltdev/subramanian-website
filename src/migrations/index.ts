@@ -36,6 +36,8 @@ import * as migration_20260323_032312 from './20260323_032312';
 import * as migration_20260323_081704 from './20260323_081704';
 import * as migration_20260323_084613 from './20260323_084613';
 import * as migration_20260323_100000_manual_schema_fix from './20260323_100000_manual_schema_fix';
+import * as migration_20260323_200000_add_manifesto_promo from './20260323_200000_add_manifesto_promo';
+import * as migration_20260323_211500_fix_link_columns from './20260323_211500_fix_link_columns';
 
 export const migrations = [
   {
@@ -221,11 +223,21 @@ export const migrations = [
   {
     up: migration_20260323_084613.up,
     down: migration_20260323_084613.down,
-    name: '20260323_084613'
+    name: '20260323_084613',
   },
   {
     up: migration_20260323_100000_manual_schema_fix.up,
     down: migration_20260323_100000_manual_schema_fix.down,
-    name: '20260323_100000_manual_schema_fix'
+    name: '20260323_100000_manual_schema_fix',
+  },
+  {
+    up: migration_20260323_200000_add_manifesto_promo.up,
+    down: migration_20260323_200000_add_manifesto_promo.down,
+    name: '20260323_200000_add_manifesto_promo',
+  },
+  {
+    up: migration_20260323_211500_fix_link_columns.up,
+    down: migration_20260323_211500_fix_link_columns.down,
+    name: '20260323_211500_fix_link_columns',
   },
 ];

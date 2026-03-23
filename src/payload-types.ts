@@ -333,6 +333,71 @@ export interface Page {
         blockName?: string | null;
         blockType: 'tharoorManifesto';
       }
+    | {
+        /**
+         * Large high-quality background image for the section.
+         */
+        backgroundImage: number | Media;
+        /**
+         * Controls the overlay and text color contrast.
+         */
+        theme?: ('brand' | 'dark' | 'light') | null;
+        title: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        description?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        /**
+         * The primary button that links to the full Manifesto page.
+         */
+        cta: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null);
+          url?: string | null;
+          label: string;
+          /**
+           * Choose how the link should be rendered.
+           */
+          appearance?: ('default' | 'outline') | null;
+        };
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'manifestoPromo';
+      }
   )[];
   meta?: {
     title?: string | null;
@@ -2899,6 +2964,26 @@ export interface PagesSelect<T extends boolean = true> {
                           appearance?: T;
                         };
                     id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        manifestoPromo?:
+          | T
+          | {
+              backgroundImage?: T;
+              theme?: T;
+              title?: T;
+              description?: T;
+              cta?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                    appearance?: T;
                   };
               id?: T;
               blockName?: T;

@@ -28,6 +28,7 @@ import { ProductListing } from '../../blocks/ProductListing/config'
 import { NewsletterSubscription } from '../../blocks/NewsletterSubscription/config'
 import { PromoHero } from '@/blocks/PromoHero/config'
 import { Manifesto } from '@/blocks/Manifesto/config'
+import { ManifestoPromo } from '@/blocks/ManifestoPromo/config'
 import { hero } from '@/blocks/Hero/config'
 
 import { slugField } from 'payload'
@@ -122,6 +123,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 ProductListing,
                 NewsletterSubscription,
                 Manifesto,
+                ManifestoPromo,
               ],
               required: true,
               admin: {
