@@ -82,7 +82,7 @@ export const ManifestoPromoBlock: React.FC<ManifestoPromoBlockType> = ({
               enableProse={false}
               className={cn(
                 "mb-6 font-malayalam",
-                "[&_h2]:type-headline-2 md:[&_h2]:type-headline-1 [&_h2]:text-white [&_h2]:font-bold md:[&_h2]:font-extrabold [&_h2]:mb-0",
+                "[&_h2]:type-headline-3 md:[&_h2]:type-headline-1 [&_h2]:text-white [&_h2]:font-bold md:[&_h2]:font-extrabold [&_h2]:mb-0",
                 theme === 'light' && "[&_h2]:text-type-heading"
               )}
             />
@@ -100,7 +100,7 @@ export const ManifestoPromoBlock: React.FC<ManifestoPromoBlockType> = ({
                 enableGutter={false}
                 className={cn(
                   "mb-10 font-malayalam",
-                  "text-white/90 type-body-xl md:type-title-xl md:font-medium max-w-3xl leading-relaxed",
+                  "text-white/90 type-body-lg md:type-title-xl md:font-medium max-w-3xl leading-relaxed",
                   theme === 'light' && "text-type-body"
                 )}
               />
