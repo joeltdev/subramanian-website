@@ -128,7 +128,7 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
               </AnimatedGroup>
             )}
 
-            {/* CTA links - Premium Blue Design */}
+            {/* CTA links - Modern Rounded Symmetrical Design */}
             {Array.isArray(links) && links.length > 0 && (
               <AnimatedGroup
                 variants={{
@@ -139,16 +139,16 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
                   },
                   ...transitionVariants,
                 }}
-                className="mt-16 w-full max-w-4xl">
-                <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-6 w-full">
+                className="mt-12 w-full max-w-2xl">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4 w-full">
                   {links.map(({ link }, i) => (
                     <CMSLink
                       key={i}
                       {...link}
-                      size="xl"
-                      className="flex-1 w-full h-20 sm:h-24 justify-center px-8 sm:px-16 min-w-0 sm:min-w-[320px] type-title-lg uppercase tracking-[0.15em] font-bold bg-brand-500 text-white hover:bg-brand-400 hover:text-white border-none transition-all duration-500 shadow-2xl shadow-brand-950/20"
+                      size="lg"
+                      className="flex-1 w-full h-12 sm:h-14 justify-center px-8 min-w-0 sm:min-w-[200px] rounded-full type-title-sm uppercase tracking-widest font-bold bg-brand-500 text-white hover:bg-brand-400 hover:text-white border-none transition-all duration-300 shadow-xl"
                     >
-                      <ArrowRight className="transition-transform group-hover:translate-x-2 shrink-0 ml-6 size-6" />
+                      <ArrowRight className="transition-transform group-hover:translate-x-1 shrink-0 ml-2 size-4" />
                     </CMSLink>
                   ))}
                 </div>
