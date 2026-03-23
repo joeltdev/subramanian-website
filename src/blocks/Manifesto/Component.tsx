@@ -44,7 +44,7 @@ export const ManifestoBlock: React.FC<ManifestoBlockType> = ({
               data={intro}
               enableGutter={false}
               enableProse={false}
-              className="w-full max-w-none [&_h2]:type-headline-4 md:[&_h2]:type-headline-1 [&_h2]:font-bold md:[&_h2]:font-extrabold [&_h2]:text-type-heading [&_h2]:mb-0 [&_h2]:text-balance [&_h2]:underline [&_h2]:decoration-foreground/20 [&_h2]:underline-offset-[16px] [&_h2]:decoration-2"
+              className="w-full max-w-none font-malayalam [&_h2]:type-headline-4 md:[&_h2]:type-headline-1 [&_h2]:font-bold md:[&_h2]:font-extrabold [&_h2]:text-type-heading [&_h2]:mb-0 [&_h2]:text-balance [&_h2]:underline [&_h2]:decoration-foreground/20 [&_h2]:underline-offset-[16px] [&_h2]:decoration-2"
             />
           </motion.div>
         )}
@@ -68,7 +68,7 @@ export const ManifestoBlock: React.FC<ManifestoBlockType> = ({
                 data={content}
                 enableGutter={false}
                 className={cn(
-                  "text-left",
+                  "text-left font-malayalam",
                   // Malayalam-specific typography
                   "[&_p]:type-body-lg [&_p]:text-type-body [&_p]:mb-6",
                   "[&_p]:[line-height:1.85] md:[&_p]:[line-height:2.1]",

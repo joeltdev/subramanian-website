@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 
+import { Noto_Sans_Malayalam } from 'next/font/google'
 import { cn } from '@/utilities/ui'
 import localFont from 'next/font/local'
 import React from 'react'
@@ -34,11 +35,18 @@ const generalSans = localFont({
   fallback: ['system-ui', 'sans-serif'],
 })
 
+const notoMalayalam = Noto_Sans_Malayalam({
+  subsets: ['malayalam'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-noto-malayalam',
+  display: 'swap',
+})
+
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled } = await draftMode()
 
   return (
-    <html className={cn(generalSans.variable)} lang="en" suppressHydrationWarning>
+    <html className={cn(generalSans.variable, notoMalayalam.variable)} lang="en" suppressHydrationWarning>
       <head>
         <InitTheme />
         <ThemeInjector />
