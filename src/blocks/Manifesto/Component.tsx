@@ -44,7 +44,7 @@ export const ManifestoBlock: React.FC<ManifestoBlockType> = ({
               data={intro}
               enableGutter={false}
               enableProse={false}
-              className="w-full max-w-none font-malayalam [&_h2]:type-headline-4 md:[&_h2]:type-headline-1 [&_h2]:font-bold md:[&_h2]:font-extrabold [&_h2]:text-type-heading [&_h2]:mb-0 [&_h2]:text-balance [&_h2]:underline [&_h2]:decoration-foreground/20 [&_h2]:underline-offset-[16px] [&_h2]:decoration-2"
+              className="w-full max-w-none font-malayalam [&_h2]:type-title-xl md:[&_h2]:type-headline-2 [&_h2]:font-bold md:[&_h2]:font-extrabold [&_h2]:text-type-heading [&_h2]:mb-0 [&_h2]:text-balance [&_h2]:underline [&_h2]:decoration-foreground/20 [&_h2]:underline-offset-[16px] [&_h2]:decoration-2"
             />
           </motion.div>
         )}
@@ -70,12 +70,12 @@ export const ManifestoBlock: React.FC<ManifestoBlockType> = ({
                 className={cn(
                   "text-left font-malayalam",
                   // Malayalam-specific typography
-                  "[&_p]:type-body-lg [&_p]:text-type-body [&_p]:mb-6",
-                  "[&_p]:[line-height:1.85] md:[&_p]:[line-height:2.1]",
-                  "[&_h3]:type-headline-3 [&_h3]:text-type-heading [&_h3]:mb-6",
-                  "[&_h4]:type-headline-4 [&_h4]:text-type-heading [&_h4]:mb-4",
+                  "[&_p]:type-body-md [&_p]:text-type-body [&_p]:mb-6",
+                  "[&_p]:[line-height:1.85] md:[&_p]:[line-height:2.0]",
+                  "[&_h3]:type-headline-4 [&_h3]:text-type-heading [&_h3]:mb-6",
+                  "[&_h4]:type-title-xl [&_h4]:text-type-heading [&_h4]:mb-4",
                   // Ensure bullet points are styled too
-                  "[&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-4 [&_ul]:mb-8 [&_li]:type-body-md [&_li]:text-type-body"
+                  "[&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-4 [&_ul]:mb-8 [&_li]:type-body-sm [&_li]:text-type-body"
                 )}
               />
             </div>
