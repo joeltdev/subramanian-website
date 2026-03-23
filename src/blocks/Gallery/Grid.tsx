@@ -149,32 +149,39 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro }) => {
                       animate="center"
                       exit="exit"
                       transition={{
-                        x: { type: "spring", stiffness: 300, damping: 30 },
+                        x: { type: 'spring', stiffness: 300, damping: 30 },
                         opacity: { duration: 0.2 },
-                        scale: { duration: 0.2 }
+                        scale: { duration: 0.2 },
                       }}
                       drag="x"
                       dragConstraints={{ left: 0, right: 0 }}
                       dragElastic={0.8}
                       onDragEnd={onDragEnd}
-                      className="relative flex h-full w-full max-w-5xl cursor-grab flex-col items-center justify-center active:cursor-grabbing"
+                      className="relative flex h-full w-full max-w-7xl cursor-grab flex-col items-center justify-center active:cursor-grabbing"
                     >
-                      <Media
-                        resource={selectedImage!}
-                        className="max-h-[75vh] md:max-h-[80vh] w-auto object-contain shadow-2xl pointer-events-none"
-                      />
-                      {selectedImage?.alt && (
-                        <motion.p 
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          className="mt-6 text-center text-white/70 type-body-md"
-                        >
-                          {selectedImage.alt}
-                        </motion.p>
-                      )}
-                      <p className="mt-2 text-white/40 type-body-sm font-medium tracking-wider">
-                        {selectedIndex + 1} / {galleryImages.length}
-                      </p>
+                      <div className="relative flex-1 w-full flex items-center justify-center min-h-0">
+                        <Media
+                          resource={selectedImage!}
+                          fill
+                          className="w-full h-full"
+                          imgClassName="object-contain pointer-events-none"
+                        />
+                      </div>
+
+                      <div className="flex flex-col items-center pt-6 pb-2 shrink-0">
+                        {selectedImage?.alt && (
+                          <motion.p
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="text-center text-white/70 type-body-md max-w-2xl px-4"
+                          >
+                            {selectedImage.alt}
+                          </motion.p>
+                        )}
+                        <p className="mt-2 text-white/40 type-body-sm font-medium tracking-wider">
+                          {selectedIndex + 1} / {galleryImages.length}
+                        </p>
+                      </div>
                     </motion.div>
 
                     {/* Controls */}
