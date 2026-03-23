@@ -26,8 +26,10 @@ import { Faq } from '../../blocks/Faq/config'
 import { ProductHero } from '../../blocks/ProductHero/config'
 import { ProductListing } from '../../blocks/ProductListing/config'
 import { NewsletterSubscription } from '../../blocks/NewsletterSubscription/config'
-import { PromoHero } from '../../blocks/PromoHero/config'
+import { PromoHero } from '@/blocks/PromoHero/config'
+import { Manifesto } from '@/blocks/Manifesto/config'
 import { hero } from '@/blocks/Hero/config'
+
 import { slugField } from 'payload'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
 import { generatePreviewPath } from '../../utilities/generatePreviewPath'
@@ -119,6 +121,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 ProductHero,
                 ProductListing,
                 NewsletterSubscription,
+                Manifesto,
               ],
               required: true,
               admin: {

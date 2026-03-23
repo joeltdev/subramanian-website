@@ -27,6 +27,7 @@ import { ProductHeroBlock } from '@/blocks/ProductHero/Component'
 import { ProductListingBlock } from '@/blocks/ProductListing/Component'
 import { NewsletterSubscriptionBlockComponent } from '@/blocks/NewsletterSubscription/Component'
 import { PromoHeroBlock } from '@/blocks/PromoHero/Component'
+import { ManifestoBlock } from '@/blocks/Manifesto/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -54,6 +55,7 @@ const blockComponents = {
   productListing: ProductListingBlock,
   newsletterSubscription: NewsletterSubscriptionBlockComponent,
   promoHero: PromoHeroBlock,
+  manifesto: ManifestoBlock,
 }
 
 export const RenderBlocks: React.FC<{
