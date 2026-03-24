@@ -58,14 +58,14 @@ export const Section2Hero: React.FC<Section2HeroType> = ({
 
           return (
             <h1 className="m-0 font-bold drop-shadow-md flex flex-col items-start gap-1 leading-none">
-              <span className="type-headline-1 text-foreground/90">{firstLine}</span>
-              <span className="type-display text-foreground">{secondLine}</span>
+              <span className="type-headline-4 md:type-headline-1 text-foreground/90">{firstLine}</span>
+              <span className="type-headline-3 md:type-display text-foreground">{secondLine}</span>
             </h1>
           )
         }
 
         return (
-          <h1 className="m-0 type-headline-1 font-bold drop-shadow-md">
+          <h1 className="m-0 type-headline-4 md:type-headline-1 font-bold drop-shadow-md">
             {text}
           </h1>
         )
