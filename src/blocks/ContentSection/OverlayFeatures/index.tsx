@@ -47,6 +47,8 @@ export const OverlayFeaturesContentSection: React.FC<ContentSectionBlock> = ({
               imgClassName="h-full w-full object-cover object-center dark:hidden animate-kenburns"
             />
           )}
+          {/* Gradient Overlay */}
+          <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-background to-transparent pointer-events-none" />
         </div>
 
         {/* Constrained text content */}
