@@ -39,6 +39,7 @@ import * as migration_20260323_100000_manual_schema_fix from './20260323_100000_
 import * as migration_20260323_200000_add_manifesto_promo from './20260323_200000_add_manifesto_promo';
 import * as migration_20260323_211500_fix_link_columns from './20260323_211500_fix_link_columns';
 import * as migration_20260324_000002_add_homeslider_block from './20260324_000002_add_homeslider_block';
+import * as migration_20260324_094000_add_homeslider_overlay_fields from './20260324_094000_add_homeslider_overlay_fields';
 
 export const migrations = [
   {
@@ -245,5 +246,10 @@ export const migrations = [
     up: migration_20260324_000002_add_homeslider_block.up,
     down: migration_20260324_000002_add_homeslider_block.down,
     name: '20260324_000002_add_homeslider_block',
+  },
+  {
+    up: migration_20260324_094000_add_homeslider_overlay_fields.up,
+    down: migration_20260324_094000_add_homeslider_overlay_fields.down,
+    name: '20260324_094000_add_homeslider_overlay_fields',
   },
 ];
