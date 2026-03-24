@@ -20,6 +20,7 @@ import { HoverHighlightsBlock } from '@/blocks/HoverHighlights/Component'
 import { ArticleGridBlock } from '@/blocks/ArticleGrid/Component'
 import { MediaCardsBlock } from '@/blocks/MediaCards/Component'
 import { YouTubeBlock } from '@/blocks/YouTube/Component'
+import { VideoGridBlock } from '@/blocks/VideoGrid/Component'
 import { ParallaxShowcaseBlockComponent } from '@/blocks/ParallaxShowcase/Component'
 import { GalleryBlock } from '@/blocks/Gallery/Component'
 import { FaqBlock } from '@/blocks/Faq/Component'
@@ -50,6 +51,7 @@ const blockComponents = {
   articleGrid: ArticleGridBlock,
   mediaCards: MediaCardsBlock,
   youtube: YouTubeBlock,
+  videoGrid: VideoGridBlock,
   parallaxShowcase: ParallaxShowcaseBlockComponent,
   gallery: GalleryBlock,
   faq: FaqBlock,

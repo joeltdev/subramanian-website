@@ -66,8 +66,8 @@ export const SplitFeatureShowcase: React.FC<FeatureShowcaseBlock> = ({
               data={intro}
               enableGutter={false}
               className="
-      [&_h2]:type-headline-2 [&_h2]:text-black [&_h2]:leading-[1.1] [&_h2]:mb-6
-      [&_h3]:type-headline-3 [&_h3]:text-black [&_h3]:leading-tight [&_h3]:mb-4
+      [&_h2]:text-2xl [&_h2]:md:text-3xl [&_h2]:font-semibold [&_h2]:text-black [&_h2]:leading-tight [&_h2]:mb-6 [&_h2]:break-words [&_h2]:max-w-full [&_h2]:px-4 [&_h2]:mx-auto
+      [&_h3]:text-2xl [&_h3]:md:text-3xl [&_h3]:font-semibold [&_h3]:text-black [&_h3]:leading-tight [&_h3]:mb-4 [&_h3]:break-words [&_h3]:max-w-full [&_h3]:px-4 [&_h3]:mx-auto
       [&_p]:text-black [&_p]:text-lg [&_p]:font-medium [&_p]:leading-relaxed
     "
             />

@@ -39,7 +39,7 @@ export const SingleFaq: React.FC<FaqBlock> = ({ intro, supportLine, groups }) =>
                 data={intro}
                 enableGutter={false}
                 enableProse={false}
-                className="[&_h2]:type-headline-1 [&_h2]:text-type-heading [&_h2]:font-bold [&_h2]:leading-tight [&_h2]:mb-10 [&_h2]:text-center [&_h3]:type-headline-3 [&_h3]:text-type-heading [&_h3]:font-bold [&_h3]:leading-tight [&_h3]:mb-10 [&_p]:type-body-xl [&_p]:text-type-secondary [&_p]:max-w-2xl [&_p]:mx-auto"
+                className="[&_h2]:text-2xl [&_h2]:md:text-3xl [&_h2]:font-semibold [&_h2]:text-type-heading [&_h2]:leading-tight [&_h2]:mb-8 [&_h2]:text-center [&_h2]:break-words [&_h2]:max-w-full [&_h2]:px-4 [&_h2]:mx-auto [&_h3]:text-2xl [&_h3]:md:text-3xl [&_h3]:font-semibold [&_h3]:text-type-heading [&_h3]:leading-tight [&_h3]:mb-10 [&_h3]:text-center [&_h3]:break-words [&_h3]:max-w-full [&_h3]:px-4 [&_h3]:mx-auto [&_p]:type-body-xl [&_p]:text-type-secondary [&_p]:max-w-2xl [&_p]:mx-auto"
               />
             </motion.div>
           )}

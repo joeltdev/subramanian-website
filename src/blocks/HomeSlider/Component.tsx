@@ -33,7 +33,7 @@ export const HomeSliderBlockComponent: React.FC<HomeSliderBlock> = ({ intro_n_a,
               data={intro_n_a}
               enableGutter={false}
               enableProse={false}
-              className="max-w-4xl mx-auto flex flex-col items-center w-full [&_h2]:type-headline-1 [&_h2]:font-bold [&_h2]:text-type-heading [&_h2]:mb-8 [&_h2]:text-center [&_h2]:w-full [&_strong]:type-headline-1 [&_strong]:font-bold [&_p]:type-body-xl [&_p]:text-type-secondary [&_p]:max-w-2xl [&_p]:mx-auto [&_p]:text-center [&_p]:w-full"
+              className="max-w-4xl mx-auto flex flex-col items-center w-full [&_h2]:text-2xl [&_h2]:md:text-3xl [&_h2]:font-semibold [&_h2]:text-type-heading [&_h2]:mb-8 [&_h2]:text-center [&_h2]:w-full [&_h2]:break-words [&_h2]:leading-tight [&_h2]:max-w-full [&_h2]:px-4 [&_h2]:mx-auto [&_strong]:text-2xl [&_strong]:md:text-3xl [&_strong]:font-semibold [&_strong]:break-words [&_strong]:leading-tight [&_p]:type-body-xl [&_p]:text-type-secondary [&_p]:max-w-2xl [&_p]:mx-auto [&_p]:text-center [&_p]:w-full"
             />
           </div>
         )}
@@ -113,7 +113,7 @@ export const HomeSliderBlockComponent: React.FC<HomeSliderBlock> = ({ intro_n_a,
                   transition={{ delay: 0.2, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                   className="max-w-2xl"
                 >
-                  <h3 className="type-title-xl md:type-headline-3 mb-5 md:mb-4">{activeSlide.title}</h3>
+                  <h3 className="text-2xl md:text-3xl font-semibold mb-5 md:mb-4 break-words leading-tight max-w-full">{activeSlide.title}</h3>
                   <p className="type-body-md md:type-body-lg font-medium text-white/90 leading-relaxed">
                     {activeSlide.description}
                   </p>

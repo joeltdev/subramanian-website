@@ -56,7 +56,7 @@ export const OverlayFeaturesContentSection: React.FC<ContentSectionBlock> = ({
               <RichText
                 data={intro}
                 enableGutter={false}
-                className="relative z-10 max-w-3xl [&_h2]:text-black [&_h2]:type-headline-1 [&_h2]:mb-4 [&_h3]:type-headline-3 [&_h3]:text-black [&_h3]:leading-tight [&_h3]:mb-4 [&_p]:text-black [&_p]:type-body-xl md:[&_p]:type-title-xl [&_p]:leading-relaxed mx-0"
+                className="relative z-10 max-w-3xl [&_h2]:text-black [&_h2]:text-2xl [&_h2]:md:text-3xl [&_h2]:font-semibold [&_h2]:mb-4 [&_h2]:break-words [&_h2]:leading-tight [&_h2]:max-w-full [&_h2]:px-4 [&_h2]:mx-auto [&_h3]:text-2xl [&_h3]:md:text-3xl [&_h3]:font-semibold [&_h3]:text-black [&_h3]:leading-tight [&_h3]:mb-4 [&_h3]:break-words [&_h3]:max-w-full [&_h3]:px-4 [&_h3]:mx-auto [&_p]:text-black [&_p]:type-body-xl md:[&_p]:type-title-xl [&_p]:leading-relaxed mx-0"
               />
             )}
             {Array.isArray(items) && items.length > 0 && (

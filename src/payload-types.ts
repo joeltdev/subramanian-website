@@ -243,6 +243,7 @@ export interface Page {
     | ArticleGridBlock
     | MediaCardsBlock
     | YouTubeBlock
+    | VideoGridBlock
     | ParallaxShowcaseBlock
     | GalleryBlock
     | FaqBlock
@@ -2123,6 +2124,27 @@ export interface YouTubeBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "VideoGridBlock".
+ */
+export interface VideoGridBlock {
+  title?: string | null;
+  description?: string | null;
+  videos?:
+    | {
+        /**
+         * Paste any YouTube link (watch, share, embed, shorts).
+         */
+        url: string;
+        title: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'videoGrid';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "ParallaxShowcaseBlock".
  */
 export interface ParallaxShowcaseBlock {
@@ -2986,6 +3008,7 @@ export interface PagesSelect<T extends boolean = true> {
         articleGrid?: T | ArticleGridBlockSelect<T>;
         mediaCards?: T | MediaCardsBlockSelect<T>;
         youtube?: T | YouTubeBlockSelect<T>;
+        videoGrid?: T | VideoGridBlockSelect<T>;
         parallaxShowcase?: T | ParallaxShowcaseBlockSelect<T>;
         gallery?: T | GalleryBlockSelect<T>;
         faq?: T | FaqBlockSelect<T>;
@@ -3471,6 +3494,23 @@ export interface MediaCardsBlockSelect<T extends boolean = true> {
 export interface YouTubeBlockSelect<T extends boolean = true> {
   url?: T;
   title?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "VideoGridBlock_select".
+ */
+export interface VideoGridBlockSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  videos?:
+    | T
+    | {
+        url?: T;
+        title?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }

@@ -20,6 +20,7 @@ import { CaseStudiesHighlight } from '../../blocks/CaseStudiesHighlight/config'
 import { ArticleGrid } from '../../blocks/ArticleGrid/config'
 import { MediaCards } from '../../blocks/MediaCards/config'
 import { YouTube } from '../../blocks/YouTube/config'
+import { VideoGrid } from '../../blocks/VideoGrid/config'
 import { ParallaxShowcase } from '../../blocks/ParallaxShowcase/config'
 import { Gallery } from '../../blocks/Gallery/config'
 import { Faq } from '../../blocks/Faq/config'
@@ -117,6 +118,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 ArticleGrid,
                 MediaCards,
                 YouTube,
+                VideoGrid,
                 ParallaxShowcase,
                 Gallery,
                 Faq,
