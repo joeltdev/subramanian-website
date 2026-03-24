@@ -2634,6 +2634,11 @@ export interface HomeSliderBlock {
     title: string;
     description: string;
     image: number | Media;
+    overlayColor?: ('black' | 'brand') | null;
+    /**
+     * Overlay opacity percentage (e.g. 50 for 50%).
+     */
+    overlayOpacity?: number | null;
     id?: string | null;
   }[];
   id?: string | null;
@@ -3591,6 +3596,8 @@ export interface HomeSliderBlockSelect<T extends boolean = true> {
         title?: T;
         description?: T;
         image?: T;
+        overlayColor?: T;
+        overlayOpacity?: T;
         id?: T;
       };
   id?: T;

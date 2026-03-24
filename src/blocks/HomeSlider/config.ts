@@ -65,6 +65,25 @@ export const HomeSlider: Block = {
           relationTo: 'media',
           required: true,
         },
+        {
+          name: 'overlayColor',
+          type: 'select',
+          defaultValue: 'black',
+          options: [
+            { label: 'Black', value: 'black' },
+            { label: 'Brand Primary', value: 'brand' },
+          ],
+        },
+        {
+          name: 'overlayOpacity',
+          type: 'number',
+          defaultValue: 50,
+          min: 0,
+          max: 100,
+          admin: {
+            description: 'Overlay opacity percentage (e.g. 50 for 50%).',
+          },
+        },
       ],
     },
   ],
