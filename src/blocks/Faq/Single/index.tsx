@@ -25,7 +25,7 @@ export const SingleFaq: React.FC<FaqBlock> = ({ intro, supportLine, groups }) =>
   const asLink = showSupportLine && hasLinkTarget(supportLine)
 
   return (
-    <section ref={sectionRef} className="py-20 md:py-32 bg-stone-50/30">
+    <section ref={sectionRef} className="py-8 md:py-8 bg-stone-50/30">
       <div className="mx-auto max-w-7xl px-6 md:px-8">
         <div className="mx-auto max-w-4xl space-y-16 md:space-y-20">
           {intro && (
