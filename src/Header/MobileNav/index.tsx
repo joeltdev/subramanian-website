@@ -117,13 +117,6 @@ export function MobileNav({ data }: { data: Header }) {
                     </span>
                   )
                 })}
-                <Link
-                  href="/gallery"
-                  onClick={() => setOpen(false)}
-                  className="flex items-center px-3 py-3 type-body-md rounded-none hover:bg-accent transition-colors"
-                >
-                  Gallery
-                </Link>
               </nav>
 
               {/* Footer CTA */}
