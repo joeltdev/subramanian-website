@@ -64,7 +64,7 @@ export const YouTubeBlock: React.FC<YouTubeBlockType & { disableInnerContainer?:
   // Title override as requested - normalized for smart quotes
   const oldTitleNormalized = "It's not about financial reservation, it's about social equality Unfiltered Ft K.C Subramanian !"
   const currentTitleNormalized = (rawTitle || '').replace(/’/g, "'")
-  const title = currentTitleNormalized === oldTitleNormalized ? 'Social Equality Matters' : rawTitle
+  const title = currentTitleNormalized === oldTitleNormalized ? 'സാമൂഹിക സമത്വത്തിന്റെ പ്രാധാന്യം' : rawTitle
 
   return (
     <section className="pt-16 pb-12 md:pt-24 md:pb-16 bg-background">
@@ -74,7 +74,7 @@ export const YouTubeBlock: React.FC<YouTubeBlockType & { disableInnerContainer?:
             <span className="type-label-lg text-primary uppercase tracking-widest mb-4 block font-semibold">
               Featured Conversation
             </span>
-            <h2 className="type-headline-2 text-type-heading max-w-4xl mx-auto leading-tight">
+            <h2 className="type-headline-1 font-bold text-type-heading max-w-4xl mx-auto leading-tight">
               {title}
             </h2>
           </div>

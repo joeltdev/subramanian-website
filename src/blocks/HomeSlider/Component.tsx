@@ -33,7 +33,7 @@ export const HomeSliderBlockComponent: React.FC<HomeSliderBlock> = ({ intro_n_a,
               data={intro_n_a}
               enableGutter={false}
               enableProse={false}
-              className="max-w-4xl mx-auto flex flex-col items-center w-full [&_h2]:type-display [&_h2]:font-extrabold [&_h2]:text-type-heading [&_h2]:mb-8 [&_h2]:text-center [&_h2]:w-full [&_p]:type-body-xl [&_p]:text-type-secondary [&_p]:max-w-2xl [&_p]:mx-auto [&_p]:text-center [&_p]:w-full"
+              className="max-w-4xl mx-auto flex flex-col items-center w-full [&_h2]:type-headline-1 [&_h2]:font-bold [&_h2]:text-type-heading [&_h2]:mb-8 [&_h2]:text-center [&_h2]:w-full [&_strong]:type-headline-1 [&_strong]:font-bold [&_p]:type-body-xl [&_p]:text-type-secondary [&_p]:max-w-2xl [&_p]:mx-auto [&_p]:text-center [&_p]:w-full"
             />
           </div>
         )}
