@@ -57,7 +57,7 @@ export const HomeSliderBlockComponent: React.FC<HomeSliderBlock> = ({ intro_n_a,
         </div>
 
         {/* Slide Content Container */}
-        <div className="relative overflow-hidden aspect-[2/3] md:aspect-[16/9] bg-muted group rounded-none">
+        <div className="relative overflow-hidden aspect-[3/4] md:aspect-[16/9] bg-muted group rounded-none">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeIndex}
@@ -113,8 +113,8 @@ export const HomeSliderBlockComponent: React.FC<HomeSliderBlock> = ({ intro_n_a,
                   transition={{ delay: 0.2, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                   className="max-w-2xl"
                 >
-                  <h3 className="text-xl md:type-headline-3 mb-4 md:mb-4">{activeSlide.title}</h3>
-                  <p className="text-sm md:type-body-lg font-medium text-white/90 leading-relaxed">
+                  <h3 className="type-headline-3 mb-3 md:mb-4">{activeSlide.title}</h3>
+                  <p className="type-body-lg font-medium text-white/90 leading-relaxed">
                     {activeSlide.description}
                   </p>
                 </motion.div>
