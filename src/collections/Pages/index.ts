@@ -29,6 +29,7 @@ import { NewsletterSubscription } from '../../blocks/NewsletterSubscription/conf
 import { PromoHero } from '@/blocks/PromoHero/config'
 import { Manifesto } from '@/blocks/Manifesto/config'
 import { ManifestoPromo } from '@/blocks/ManifestoPromo/config'
+import { HomeSlider } from '@/blocks/HomeSlider/config'
 import { hero } from '@/blocks/Hero/config'
 
 import { slugField } from 'payload'
@@ -124,6 +125,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 NewsletterSubscription,
                 Manifesto,
                 ManifestoPromo,
+                HomeSlider,
               ],
               required: true,
               admin: {

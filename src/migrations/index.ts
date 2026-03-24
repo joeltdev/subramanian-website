@@ -38,6 +38,7 @@ import * as migration_20260323_084613 from './20260323_084613';
 import * as migration_20260323_100000_manual_schema_fix from './20260323_100000_manual_schema_fix';
 import * as migration_20260323_200000_add_manifesto_promo from './20260323_200000_add_manifesto_promo';
 import * as migration_20260323_211500_fix_link_columns from './20260323_211500_fix_link_columns';
+import * as migration_20260324_000002_add_homeslider_block from './20260324_000002_add_homeslider_block';
 
 export const migrations = [
   {
@@ -239,5 +240,10 @@ export const migrations = [
     up: migration_20260323_211500_fix_link_columns.up,
     down: migration_20260323_211500_fix_link_columns.down,
     name: '20260323_211500_fix_link_columns',
+  },
+  {
+    up: migration_20260324_000002_add_homeslider_block.up,
+    down: migration_20260324_000002_add_homeslider_block.down,
+    name: '20260324_000002_add_homeslider_block',
   },
 ];

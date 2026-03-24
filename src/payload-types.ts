@@ -406,6 +406,7 @@ export interface Page {
         blockName?: string | null;
         blockType: 'manifestoPromo';
       }
+    | HomeSliderBlock
   )[];
   meta?: {
     title?: string | null;
@@ -2604,6 +2605,43 @@ export interface NewsletterSubscriptionBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HomeSliderBlock".
+ */
+export interface HomeSliderBlock {
+  /**
+   * Section title and supporting text at the top.
+   */
+  intro_n_a?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  items: {
+    /**
+     * Short label for the tab button.
+     */
+    tabLabel: string;
+    title: string;
+    description: string;
+    image: number | Media;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'home_slider';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -2998,6 +3036,7 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        home_slider?: T | HomeSliderBlockSelect<T>;
       };
   meta?:
     | T
@@ -3536,6 +3575,24 @@ export interface NewsletterSubscriptionBlockSelect<T extends boolean = true> {
   submitButtonLabel?: T;
   formActionUrl?: T;
   image?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HomeSliderBlock_select".
+ */
+export interface HomeSliderBlockSelect<T extends boolean = true> {
+  intro_n_a?: T;
+  items?:
+    | T
+    | {
+        tabLabel?: T;
+        title?: T;
+        description?: T;
+        image?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }
