@@ -13,7 +13,7 @@ export const WideImageCtaContentSection: React.FC<ContentSectionBlock> = ({
     <section className="py-4 md:py-24">
       <div className="mx-auto max-w-7xl space-y-8 px-6 md:space-y-12">
         <div className="grid gap-6 md:gap-12">
-          {intro && <RichText data={intro} enableGutter={false} className="flex row-auto justify-center items-baseline-last **:m-0 **:flex-1 [&_h2]:text-2xl [&_h2]:md:text-3xl [&_h2]:font-semibold [&_h2]:text-type-heading [&_h2]:leading-tight [&_h2]:mb-6 [&_h2]:break-words [&_h2]:max-w-full [&_h2]:px-4 [&_h2]:mx-auto [&_h3]:text-2xl [&_h3]:md:text-3xl [&_h3]:font-semibold [&_h3]:text-type-heading [&_h3]:leading-tight [&_h3]:mb-4 [&_h3]:break-words [&_h3]:max-w-full [&_h3]:px-4 [&_h3]:mx-auto [&_p]:text-type-body [&_p]:type-body-xl" />}
+          {intro && <RichText data={intro} enableGutter={false} className="flex row-auto justify-center items-baseline-last **:m-0 **:flex-1 [&_h2]:type-headline-2 [&_h2]:text-type-heading [&_h2]:mb-6 [&_h3]:type-headline-3 [&_h3]:text-type-heading [&_h3]:mb-4 [&_p]:text-type-body [&_p]:type-body-xl" />}
         </div>
         {typeof image === 'object' && image && (
           <div className="group relative aspect-5/2 overflow-hidden rounded-none cursor-pointer">
