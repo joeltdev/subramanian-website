@@ -32,7 +32,6 @@ const generalSans = localFont({
   ],
   variable: '--font-general-sans',
   display: 'swap',
-  fallback: ['system-ui', 'sans-serif'],
 })
 
 const manjari = Manjari({
