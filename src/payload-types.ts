@@ -215,13 +215,21 @@ export interface Page {
      */
     mediaPreview?: (number | null) | Media;
     /**
-     * Full-screen background video for section 2. Plays autoplay/muted/loop.
+     * Full-screen background video for desktop. Plays autoplay/muted/loop.
      */
     backgroundVideo?: (number | null) | Media;
     /**
-     * Fallback background image when no video is set (section 2 only).
+     * Fallback background image for desktop when no video is set.
      */
     backgroundImage?: (number | null) | Media;
+    /**
+     * Optional background video for mobile devices.
+     */
+    mobileBackgroundVideo?: (number | null) | Media;
+    /**
+     * Optional background image for mobile devices.
+     */
+    mobileBackgroundImage?: (number | null) | Media;
   };
   layout: (
     | PromoHeroBlock
@@ -2985,6 +2993,8 @@ export interface PagesSelect<T extends boolean = true> {
         mediaPreview?: T;
         backgroundVideo?: T;
         backgroundImage?: T;
+        mobileBackgroundVideo?: T;
+        mobileBackgroundImage?: T;
       };
   layout?:
     | T

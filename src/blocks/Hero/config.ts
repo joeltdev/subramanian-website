@@ -69,7 +69,7 @@ export const hero: Field = {
       type: 'upload',
       relationTo: 'media',
       admin: {
-        description: 'Full-screen background video for section 2. Plays autoplay/muted/loop.',
+        description: 'Full-screen background video for desktop. Plays autoplay/muted/loop.',
         condition: (_, { type } = {}) => ['section2', 'manifesto'].includes(type),
       },
     },
@@ -78,7 +78,25 @@ export const hero: Field = {
       type: 'upload',
       relationTo: 'media',
       admin: {
-        description: 'Fallback background image when no video is set (section 2 only).',
+        description: 'Fallback background image for desktop when no video is set.',
+        condition: (_, { type } = {}) => ['section2', 'manifesto'].includes(type),
+      },
+    },
+    {
+      name: 'mobileBackgroundVideo',
+      type: 'upload',
+      relationTo: 'media',
+      admin: {
+        description: 'Optional background video for mobile devices.',
+        condition: (_, { type } = {}) => ['section2', 'manifesto'].includes(type),
+      },
+    },
+    {
+      name: 'mobileBackgroundImage',
+      type: 'upload',
+      relationTo: 'media',
+      admin: {
+        description: 'Optional background image for mobile devices.',
         condition: (_, { type } = {}) => ['section2', 'manifesto'].includes(type),
       },
     },

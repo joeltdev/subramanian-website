@@ -26,19 +26,25 @@ type ManifestoHeroType = Page['hero'] & {
   badgeLabel?: string | null
   backgroundVideo?: Media | number | null
   backgroundImage?: Media | number | null
+  mobileBackgroundVideo?: Media | number | null
+  mobileBackgroundImage?: Media | number | null
 }
 
 export const ManifestoHero: React.FC<ManifestoHeroType> = ({
   badgeLabel,
   backgroundVideo,
   backgroundImage,
+  mobileBackgroundVideo,
+  mobileBackgroundImage,
   links,
   mediaPreview,
   richText,
 }) => {
   const hasBgMedia =
     (backgroundVideo && typeof backgroundVideo === 'object' && !!backgroundVideo.url) ||
-    (backgroundImage && typeof backgroundImage === 'object' && !!(backgroundImage as Media).url)
+    (backgroundImage && typeof backgroundImage === 'object' && !!(backgroundImage as Media).url) ||
+    (mobileBackgroundVideo && typeof mobileBackgroundVideo === 'object' && !!mobileBackgroundVideo.url) ||
+    (mobileBackgroundImage && typeof mobileBackgroundImage === 'object' && !!(mobileBackgroundImage as Media).url)
 
   const heroConverters: JSXConvertersFunction = useMemo(() => ({ defaultConverters }) => ({
     ...defaultConverters,
@@ -70,9 +76,10 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
       <section className="relative min-h-[90svh] flex flex-col justify-center items-center text-center py-24 md:py-32">
         {hasBgMedia && (
           <div className="absolute inset-0 size-full -z-20 overflow-hidden">
-            {backgroundVideo && typeof backgroundVideo === 'object' && backgroundVideo.url ? (
+            {/* Desktop Video */}
+            {backgroundVideo && typeof backgroundVideo === 'object' && backgroundVideo.url && (
               <video
-                className="absolute inset-0 size-full object-cover"
+                className={`absolute inset-0 size-full object-cover ${mobileBackgroundVideo || mobileBackgroundImage ? 'hidden md:block' : 'block'}`}
                 src={backgroundVideo.url}
                 autoPlay
                 muted
@@ -80,14 +87,38 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
                 playsInline
                 aria-hidden
               />
-            ) : backgroundImage && typeof backgroundImage === 'object' && (backgroundImage as Media).url ? (
+            )}
+            {/* Desktop Image */}
+            {backgroundImage && typeof backgroundImage === 'object' && (backgroundImage as Media).url && (
               <img
-                className="absolute inset-0 size-full object-cover"
+                className={`absolute inset-0 size-full object-cover ${mobileBackgroundVideo || mobileBackgroundImage ? 'hidden md:block' : 'block'} ${backgroundVideo ? 'opacity-0' : 'opacity-100'}`}
                 src={(backgroundImage as Media).url!}
                 alt={(backgroundImage as Media).alt ?? ''}
                 aria-hidden
               />
-            ) : null}
+            )}
+
+            {/* Mobile Video */}
+            {mobileBackgroundVideo && typeof mobileBackgroundVideo === 'object' && mobileBackgroundVideo.url && (
+              <video
+                className="absolute inset-0 size-full object-cover md:hidden block"
+                src={mobileBackgroundVideo.url}
+                autoPlay
+                muted
+                loop
+                playsInline
+                aria-hidden
+              />
+            )}
+            {/* Mobile Image */}
+            {mobileBackgroundImage && typeof mobileBackgroundImage === 'object' && (mobileBackgroundImage as Media).url && (
+              <img
+                className={`absolute inset-0 size-full object-cover md:hidden block ${mobileBackgroundVideo ? 'opacity-0' : 'opacity-100'}`}
+                src={(mobileBackgroundImage as Media).url!}
+                alt={(mobileBackgroundImage as Media).alt ?? ''}
+                aria-hidden
+              />
+            )}
             {/* Minimal overlay for text contrast — ONLY if background media exists */}
             <div className="absolute inset-0 bg-black/40 backdrop-grayscale-[0.2]" aria-hidden />
           </div>

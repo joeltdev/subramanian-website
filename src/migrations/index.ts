@@ -41,6 +41,7 @@ import * as migration_20260323_211500_fix_link_columns from './20260323_211500_f
 import * as migration_20260324_000002_add_homeslider_block from './20260324_000002_add_homeslider_block';
 import * as migration_20260324_094000_add_homeslider_overlay_fields from './20260324_094000_add_homeslider_overlay_fields';
 import * as migration_20260324_150000_add_video_grid_block from './20260324_150000_add_video_grid_block';
+import * as migration_20260325_190000_add_mobile_hero_bg_fields from './20260325_190000_add_mobile_hero_bg_fields';
 
 export const migrations = [
   {
@@ -257,5 +258,10 @@ export const migrations = [
     up: migration_20260324_150000_add_video_grid_block.up,
     down: migration_20260324_150000_add_video_grid_block.down,
     name: '20260324_150000_add_video_grid_block',
+  },
+  {
+    up: migration_20260325_190000_add_mobile_hero_bg_fields.up,
+    down: migration_20260325_190000_add_mobile_hero_bg_fields.down,
+    name: '20260325_190000_add_mobile_hero_bg_fields',
   },
 ];

@@ -25,19 +25,25 @@ type Section2HeroType = Page['hero'] & {
   badgeLabel?: string | null
   backgroundVideo?: Media | number | null
   backgroundImage?: Media | number | null
+  mobileBackgroundVideo?: Media | number | null
+  mobileBackgroundImage?: Media | number | null
 }
 
 export const Section2Hero: React.FC<Section2HeroType> = ({
   badgeLabel,
   backgroundVideo,
   backgroundImage,
+  mobileBackgroundVideo,
+  mobileBackgroundImage,
   links,
   mediaPreview,
   richText,
 }) => {
   const hasBgMedia =
     (backgroundVideo && typeof backgroundVideo === 'object' && !!backgroundVideo.url) ||
-    (backgroundImage && typeof backgroundImage === 'object' && !!(backgroundImage as Media).url)
+    (backgroundImage && typeof backgroundImage === 'object' && !!(backgroundImage as Media).url) ||
+    (mobileBackgroundVideo && typeof mobileBackgroundVideo === 'object' && !!mobileBackgroundVideo.url) ||
+    (mobileBackgroundImage && typeof mobileBackgroundImage === 'object' && !!(mobileBackgroundImage as Media).url)
 
   const heroConverters: JSXConvertersFunction = useMemo(() => ({ defaultConverters }) => ({
     ...defaultConverters,
@@ -87,11 +93,12 @@ export const Section2Hero: React.FC<Section2HeroType> = ({
 
       <section>
         <div className={`relative py-24 ${hasBgMedia ? 'min-h-[85svh] flex flex-col justify-center' : ''}`}>
-          {/* Background video */}
+          {/* Background media */}
           <>
-            {backgroundVideo && typeof backgroundVideo === 'object' && backgroundVideo.url ? (
+            {/* Desktop Video */}
+            {backgroundVideo && typeof backgroundVideo === 'object' && backgroundVideo.url && (
               <video
-                className="absolute inset-0 size-full object-cover -z-20"
+                className={`absolute inset-0 size-full object-cover -z-20 ${mobileBackgroundVideo || mobileBackgroundImage ? 'hidden md:block' : 'block'}`}
                 src={backgroundVideo.url}
                 autoPlay
                 muted
@@ -99,14 +106,39 @@ export const Section2Hero: React.FC<Section2HeroType> = ({
                 playsInline
                 aria-hidden
               />
-            ) : backgroundImage && typeof backgroundImage === 'object' && (backgroundImage as Media).url ? (
+            )}
+            {/* Desktop Image */}
+            {backgroundImage && typeof backgroundImage === 'object' && (backgroundImage as Media).url && (
               <img
-                className="absolute inset-0 size-full object-cover -z-20"
+                className={`absolute inset-0 size-full object-cover -z-20 ${mobileBackgroundVideo || mobileBackgroundImage ? 'hidden md:block' : 'block'} ${backgroundVideo ? 'opacity-0' : 'opacity-100'}`}
                 src={(backgroundImage as Media).url!}
                 alt={(backgroundImage as Media).alt ?? ''}
                 aria-hidden
               />
-            ) : null}
+            )}
+
+            {/* Mobile Video */}
+            {mobileBackgroundVideo && typeof mobileBackgroundVideo === 'object' && mobileBackgroundVideo.url && (
+              <video
+                className="absolute inset-0 size-full object-cover -z-20 md:hidden block"
+                src={mobileBackgroundVideo.url}
+                autoPlay
+                muted
+                loop
+                playsInline
+                aria-hidden
+              />
+            )}
+            {/* Mobile Image */}
+            {mobileBackgroundImage && typeof mobileBackgroundImage === 'object' && (mobileBackgroundImage as Media).url && (
+              <img
+                className={`absolute inset-0 size-full object-cover -z-20 md:hidden block ${mobileBackgroundVideo ? 'opacity-0' : 'opacity-100'}`}
+                src={(mobileBackgroundImage as Media).url!}
+                alt={(mobileBackgroundImage as Media).alt ?? ''}
+                aria-hidden
+              />
+            )}
+
             <div className="absolute pointer-events-none left-0 bottom-0 w-full h-full bg-linear-to-t from-black/70 to-transparent" />
           </>
 
