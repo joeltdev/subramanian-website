@@ -45,6 +45,13 @@ export const Section2Hero: React.FC<Section2HeroType> = ({
     (mobileBackgroundVideo && typeof mobileBackgroundVideo === 'object' && !!mobileBackgroundVideo.url) ||
     (mobileBackgroundImage && typeof mobileBackgroundImage === 'object' && !!(mobileBackgroundImage as Media).url)
 
+  // Malayalam detection for font switching
+  const isMalayalam = useMemo(() => {
+    if (!richText) return false
+    const textContent = JSON.stringify(richText)
+    return /[\u0D00-\u0D7F]/.test(textContent)
+  }, [richText])
+
   const heroConverters: JSXConvertersFunction = useMemo(() => ({ defaultConverters }) => ({
     ...defaultConverters,
     heading: ({ node }) => {
@@ -55,6 +62,8 @@ export const Section2Hero: React.FC<Section2HeroType> = ({
           .join('')
           .trim()
 
+        const malayalamHeading = /[\u0D00-\u0D7F]/.test(text)
+
         // Split by the first space to create two lines
         const firstSpaceIndex = text.indexOf(' ')
 
@@ -63,7 +72,7 @@ export const Section2Hero: React.FC<Section2HeroType> = ({
           const secondLine = text.substring(firstSpaceIndex).trim()
 
           return (
-            <h1 className="m-0 font-bold drop-shadow-md flex flex-col items-start gap-1 leading-none">
+            <h1 className={`m-0 font-bold drop-shadow-md flex flex-col items-start gap-1 leading-none ${malayalamHeading ? 'font-malayalam' : ''}`}>
               <span className="type-headline-4 md:type-headline-1 text-foreground/90">{firstLine}</span>
               <span className="type-headline-3 md:type-display text-foreground">{secondLine}</span>
             </h1>
@@ -71,7 +80,7 @@ export const Section2Hero: React.FC<Section2HeroType> = ({
         }
 
         return (
-          <h1 className="m-0 type-headline-4 md:type-headline-1 font-bold drop-shadow-md">
+          <h1 className={`m-0 type-headline-4 md:type-headline-1 font-bold drop-shadow-md ${malayalamHeading ? 'font-malayalam' : ''}`}>
             {text}
           </h1>
         )
@@ -166,7 +175,7 @@ export const Section2Hero: React.FC<Section2HeroType> = ({
                     data={richText}
                     enableGutter={false}
                     converters={heroConverters}
-                    className="text-balance [&_h1]:m-0 [&_h2]:m-0 [&_p]:mt-10 [&_p]:max-w-2xl [&_p]:type-body-xl [&_p]:text-foreground [&_p]:leading-relaxed [&_p]:drop-shadow-sm"
+                    className={`text-balance [&_h1]:m-0 [&_h2]:m-0 [&_p]:mt-10 [&_p]:max-w-2xl [&_p]:type-body-xl [&_p]:text-foreground [&_p]:leading-relaxed [&_p]:drop-shadow-sm ${isMalayalam ? 'font-malayalam' : ''}`}
                   />
                 </AnimatedGroup>
               )}

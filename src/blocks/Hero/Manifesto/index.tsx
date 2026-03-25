@@ -46,6 +46,13 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
     (mobileBackgroundVideo && typeof mobileBackgroundVideo === 'object' && !!mobileBackgroundVideo.url) ||
     (mobileBackgroundImage && typeof mobileBackgroundImage === 'object' && !!(mobileBackgroundImage as Media).url)
 
+  // Malayalam detection for font switching
+  const isMalayalamContent = useMemo(() => {
+    if (!richText) return false
+    const textContent = JSON.stringify(richText)
+    return /[\u0D00-\u0D7F]/.test(textContent)
+  }, [richText])
+
   const heroConverters: JSXConvertersFunction = useMemo(() => ({ defaultConverters }) => ({
     ...defaultConverters,
     heading: ({ node }) => {
@@ -59,7 +66,7 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
         const isMalayalam = /[\u0D00-\u0D7F]/.test(text)
 
         return (
-          <h1 className={`m-0 font-extrabold tracking-tight drop-shadow-xl ${isMalayalam ? 'leading-[1.3] py-2' : 'leading-tight'}`}>
+          <h1 className={`m-0 font-extrabold tracking-tight drop-shadow-xl ${isMalayalam ? 'leading-[1.3] py-2 font-malayalam' : 'leading-tight'}`}>
             <span className="type-display text-foreground text-balance">
               {text}
             </span>
@@ -154,7 +161,7 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
                   data={richText}
                   enableGutter={false}
                   converters={heroConverters}
-                  className="text-balance [&_h2]:type-display [&_h2]:text-foreground/90 [&_h2]:mb-8 [&_p]:mt-10 [&_p]:max-w-3xl [&_p]:mx-auto [&_p]:type-body-xl [&_p]:font-medium [&_p]:text-foreground/90 [&_p]:leading-relaxed [&_p]:drop-shadow-sm"
+                  className={`text-balance [&_h2]:type-display [&_h2]:text-foreground/90 [&_h2]:mb-8 [&_p]:mt-10 [&_p]:max-w-3xl [&_p]:mx-auto [&_p]:type-body-xl [&_p]:font-medium [&_p]:text-foreground/90 [&_p]:leading-relaxed [&_p]:drop-shadow-sm ${isMalayalamContent ? 'font-malayalam' : ''}`}
                 />
               </AnimatedGroup>
             )}
