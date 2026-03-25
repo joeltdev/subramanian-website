@@ -48,7 +48,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
                 loading="eager"
                 fetchPriority="high"
                 decoding="async"
-                className="max-h-12 w-auto transition-all"
+                className="max-h-10 w-auto transition-all"
               />
             ) : (
               <Logo
