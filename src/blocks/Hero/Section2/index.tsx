@@ -197,9 +197,9 @@ export const Section2Hero: React.FC<Section2HeroType> = ({
                       key={i}
                       {...link}
                       size="xl"
-                      className="w-full sm:w-auto"
+                      className="group w-full sm:w-auto shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 active:scale-[0.98]"
                     >
-                      <ArrowRight />
+                      <ArrowRight className="transition-transform group-hover:translate-x-1.5" />
                     </CMSLink>
                   ))}
                 </AnimatedGroup>

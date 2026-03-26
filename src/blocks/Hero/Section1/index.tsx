@@ -86,15 +86,15 @@ export const Section1Hero: React.FC<Section1HeroType> = ({
                     },
                     ...transitionVariants,
                   }}
-                  className="mt-4 flex flex-col items-center justify-center gap-2 md:flex-row">
+                  className="mt-4 flex flex-col items-center justify-center gap-4 md:flex-row">
                   {links.map(({ link }, i) => (
                     <CMSLink
                       key={i}
                       {...link}
                       size="lg"
-                      className=""
+                      className="group shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 active:scale-[0.98]"
                     >
-                      <ArrowRight />
+                      <ArrowRight className="transition-transform group-hover:translate-x-1.5" />
                     </CMSLink>
                   ))}
                 </AnimatedGroup>

@@ -186,7 +186,7 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
                       size="lg"
                       className="
                         /* Shared */
-                        flex-1 justify-center rounded-full uppercase font-bold tracking-widest transition-all duration-300 shadow-xl border-none bg-brand-500 text-white hover:bg-brand-400
+                        group flex-1 justify-center rounded-full uppercase font-bold tracking-widest transition-all duration-300 shadow-xl hover:shadow-2xl hover:-translate-y-1 active:scale-[0.98] border-none bg-brand-500 text-white hover:bg-brand-400
                         
                         /* Mobile: Medium Height, Larger Font */
                         w-full h-[60px] px-8 type-title-md
@@ -198,7 +198,7 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
                         lg:h-[52px] lg:min-w-[260px] lg:type-title-sm
                       "
                     >
-                      <ArrowRight className="transition-transform group-hover:translate-x-1 shrink-0 ml-3 size-5 lg:size-4" />
+                      <ArrowRight className="transition-transform group-hover:translate-x-1.5 shrink-0 ml-3 size-5 lg:size-4" />
                     </CMSLink>
                   ))}
                 </div>
