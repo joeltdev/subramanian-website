@@ -89,12 +89,12 @@ const seed = async () => {
             direction: 'ltr',
           },
         },
-        mediaPreview: heroImg?.id,
+        mediaPreview: heroImg?.id as number,
       },
       layout: [
         {
           blockType: 'manifestoPromo',
-          backgroundImage: manifestoImg?.id,
+          backgroundImage: manifestoImg?.id as number,
           title: {
             root: {
               type: 'root',
@@ -159,13 +159,13 @@ const seed = async () => {
               tabLabel: 'സേവനവും വികസന',
               title: 'പൊതു സേവനവും വികസന പ്രവർത്തനങ്ങളും',
               description: 'എഞ്ചിനീയറായി പ്രവർത്തിച്ച് ഗ്രാമ, ബ്ലോക്ക്, ജില്ല തലങ്ങളിൽ വികസന പദ്ധതികൾ ആസൂത്രണം ചെയ്തു. ഇറിഗേഷൻയും ലോക്കൽ സെൽഫ് ഗവൺമെന്റ് വകുപ്പിലും സേവനം അനുഷ്ഠിച്ച് സൂപ്രണ്ടിംഗ് എഞ്ചിനീയറായി വിരമിച്ചു.',
-              image: activityImg1?.id || heroImg?.id,
+              image: (activityImg1?.id || heroImg?.id) as number,
             },
             {
               tabLabel: 'ജീവിതം',
               title: 'രാഷ്ട്രീയ ജീവിതം',
               description: 'സ്കൂൾ കാലം മുതൽ തന്നെ അദ്ദേഹം ഇന്ത്യൻ നാഷണൽ കോൺഗ്രസിന്റെ പിന്തുണക്കാരനായിരുന്നു. KSU അംഗമായിരിക്കുമ്പോൾ SSLC ക്ലാസ് ലീഡറായി പ്രവർത്തിച്ചു.',
-              image: activityImg2?.id || heroImg?.id,
+              image: (activityImg2?.id || heroImg?.id) as number,
             },
           ],
         },
@@ -287,7 +287,7 @@ const seed = async () => {
     slug: 'header',
     context: { disableRevalidate: true },
     data: {
-      logo: logo?.id,
+      logo: logo?.id as number,
       tabs: [{ label: 'Home', link: { type: 'custom', url: '/', label: 'Home' } }],
     },
   })
@@ -296,7 +296,7 @@ const seed = async () => {
     slug: 'footer',
     context: { disableRevalidate: true },
     data: {
-      logo: logo?.id,
+      logo: logo?.id as number,
       copyright: `© ${new Date().getFullYear()} K.C. Subramanian. All rights reserved.`,
       socialLinks: [{ platform: 'facebook', url: 'https://facebook.com/kcsubramanian' }],
       columns: [{ heading: 'Quick Links', links: [{ link: { type: 'custom', url: '/', label: 'Home' } }] }],
