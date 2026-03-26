@@ -49,9 +49,9 @@
   --breakpoint-lg: 64rem;
   --breakpoint-xl: 80rem;
   --breakpoint-2xl: 86rem;
-  --font-sans: var(--font-general-sans), var(--font-manjari), var(--font-noto-malayalam), sans-serif;
+  --font-sans: var(--font-general-sans), var(--font-anek-malayalam), var(--font-manjari), var(--font-noto-malayalam), sans-serif;
   --font-manjari-malayalam: var(--font-manjari);
-  --font-malayalam: var(--font-manjari-malayalam), var(--font-noto-malayalam), sans-serif;
+  --font-malayalam: var(--font-anek-malayalam), var(--font-manjari-malayalam), var(--font-noto-malayalam), sans-serif;
   --font-mono: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
   /* Brand palette (iNELS Azure) */
   --color-brand-50:  oklch(97.7% 0.013 236.62deg);

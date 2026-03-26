@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-import { Manjari, Noto_Sans_Malayalam } from 'next/font/google'
+import { Anek_Malayalam, Manjari, Noto_Sans_Malayalam } from 'next/font/google'
 import { cn } from '@/utilities/ui'
 import localFont from 'next/font/local'
 import React from 'react'
@@ -34,6 +34,12 @@ const generalSans = localFont({
   display: 'swap',
 })
 
+const anekMalayalam = Anek_Malayalam({
+  subsets: ['malayalam'],
+  variable: '--font-anek-malayalam',
+  display: 'swap',
+})
+
 const manjari = Manjari({
   subsets: ['malayalam'],
   weight: ['400', '700'],
@@ -52,7 +58,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const { isEnabled } = await draftMode()
 
   return (
-    <html className={cn(generalSans.variable, notoMalayalam.variable, manjari.variable)} lang="en" suppressHydrationWarning>
+    <html className={cn(generalSans.variable, anekMalayalam.variable, notoMalayalam.variable, manjari.variable)} lang="en" suppressHydrationWarning>
       <head>
         <InitTheme />
         <ThemeInjector />
