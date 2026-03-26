@@ -60,6 +60,16 @@ export const ContentSection: Block = {
       },
     },
     {
+      name: 'imageDarkMobile',
+      type: 'upload',
+      relationTo: 'media',
+      label: 'Image (Dark Mode - Mobile)',
+      admin: {
+        description: 'Optional image displayed in dark mode on mobile devices',
+        condition: (_, siblingData) => siblingData?.variant === 'overlayFeatures',
+      },
+    },
+    {
       name: 'imageLight',
       type: 'upload',
       relationTo: 'media',
@@ -68,6 +78,16 @@ export const ContentSection: Block = {
         description: 'Image displayed in light mode',
         condition: (_, siblingData) =>
           DARK_LIGHT_IMAGE_VARIANTS.includes(siblingData?.variant),
+      },
+    },
+    {
+      name: 'imageLightMobile',
+      type: 'upload',
+      relationTo: 'media',
+      label: 'Image (Light Mode - Mobile)',
+      admin: {
+        description: 'Optional image displayed in light mode on mobile devices',
+        condition: (_, siblingData) => siblingData?.variant === 'overlayFeatures',
       },
     },
     {

@@ -83,7 +83,7 @@ export function MobileNav({ data }: { data: Header }) {
           {/* Level 1 — Tab list */}
           {activeTab === null ? (
             <div className="flex flex-col flex-1 overflow-y-auto">
-              <nav className="flex flex-col px-4 pt-8 pb-4 gap-1 flex-1">
+              <nav className="flex flex-col px-6 pt-8 pb-4 gap-4 flex-1">
                 {tabs.map((tab, i) => {
                   // Plain link only (no dropdown)
                   if (tab.enableDirectLink && tab.link && !tab.enableDropdown) {

@@ -3,11 +3,14 @@ import type { ContentSectionBlock } from '@/payload-types'
 import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
 import { iconMap } from '@/blocks/shared/featureIcons'
+import { cn } from '@/utilities/ui'
 
 export const OverlayFeaturesContentSection: React.FC<ContentSectionBlock> = ({
   intro,
   imageDark,
+  imageDarkMobile,
   imageLight,
+  imageLightMobile,
   items,
 }) => {
   return (
@@ -29,18 +32,38 @@ export const OverlayFeaturesContentSection: React.FC<ContentSectionBlock> = ({
           {/* Full-bleed media — absolutely positioned edge-to-edge */}
           <div className="md:mask-l-from-5% md:mask-l-to-75% mt-12 md:absolute md:-inset-y-24 md:left-0 md:right-0 md:-z-10 md:mt-0">
             <div className="border-border/50 relative overflow-hidden h-full border border-dotted">
+              {/* Dark Mode - Desktop */}
               {typeof imageDark === 'object' && imageDark && (
                 <Media
                   resource={imageDark}
-                  className="absolute inset-0 h-full w-full"
+                  className={cn("absolute inset-0 h-full w-full", imageDarkMobile && "hidden md:block")}
                   pictureClassName="h-full w-full"
                   imgClassName="hidden h-full w-full object-cover dark:block animate-kenburns"
                 />
               )}
+              {/* Dark Mode - Mobile */}
+              {typeof imageDarkMobile === 'object' && imageDarkMobile && (
+                <Media
+                  resource={imageDarkMobile}
+                  className="absolute inset-0 h-full w-full md:hidden"
+                  pictureClassName="h-full w-full"
+                  imgClassName="hidden h-full w-full object-cover dark:block animate-kenburns"
+                />
+              )}
+              {/* Light Mode - Desktop */}
               {typeof imageLight === 'object' && imageLight && (
                 <Media
                   resource={imageLight}
-                  className="absolute inset-0 h-full w-full"
+                  className={cn("absolute inset-0 h-full w-full", imageLightMobile && "hidden md:block")}
+                  pictureClassName="h-full w-full"
+                  imgClassName="h-full w-full object-cover shadow dark:hidden animate-kenburns"
+                />
+              )}
+              {/* Light Mode - Mobile */}
+              {typeof imageLightMobile === 'object' && imageLightMobile && (
+                <Media
+                  resource={imageLightMobile}
+                  className="absolute inset-0 h-full w-full md:hidden"
                   pictureClassName="h-full w-full"
                   imgClassName="h-full w-full object-cover shadow dark:hidden animate-kenburns"
                 />

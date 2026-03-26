@@ -1630,9 +1630,17 @@ export interface ContentSectionBlock {
    */
   imageDark?: (number | null) | Media;
   /**
+   * Optional image displayed in dark mode on mobile devices
+   */
+  imageDarkMobile?: (number | null) | Media;
+  /**
    * Image displayed in light mode
    */
   imageLight?: (number | null) | Media;
+  /**
+   * Optional image displayed in light mode on mobile devices
+   */
+  imageLightMobile?: (number | null) | Media;
   /**
    * Section image
    */
@@ -3345,7 +3353,9 @@ export interface ContentSectionBlockSelect<T extends boolean = true> {
   variant?: T;
   intro?: T;
   imageDark?: T;
+  imageDarkMobile?: T;
   imageLight?: T;
+  imageLightMobile?: T;
   image?: T;
   quote?: T;
   quoteAuthor?: T;
