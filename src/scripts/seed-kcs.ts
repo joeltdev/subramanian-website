@@ -66,17 +66,27 @@ const seed = async () => {
         richText: {
           root: {
             type: 'root',
+            format: '',
+            indent: 0,
+            version: 1,
             children: [
               {
                 type: 'heading',
                 tag: 'h1',
-                children: [{ type: 'text', text: 'കെ.സി. സുബ്രഹ്മണ്യൻ' }],
+                format: '',
+                indent: 0,
+                version: 1,
+                children: [{ type: 'text', text: 'കെ.സി. സുബ്രഹ്മണ്യൻ', version: 1 }],
               },
               {
                 type: 'paragraph',
-                children: [{ type: 'text', text: 'ജനസേവനവും സാമൂഹിക വികസനവും ലക്ഷ്യമാക്കി പ്രവർത്തിക്കുന്ന നേതാവാണ് കെ.സി. സുബ്രഹ്മണ്യൻ. എഞ്ചിനീയറിംഗ് മേഖലയിലും പൊതുജന സേവന രംഗത്തും ദീർഘകാല അനുഭവമുള്ള അദ്ദേഹം, സമൂഹത്തിന്റെ പുരോഗതിക്കും സമത്വത്തിനുമായി നിരന്തരം പ്രവർത്തിച്ചു കൊണ്ടിരിക്കുന്നു.' }],
+                format: '',
+                indent: 0,
+                version: 1,
+                children: [{ type: 'text', text: 'ജനസേവനവും സാമൂഹിക വികസനവും ലക്ഷ്യമാക്കി പ്രവർത്തിക്കുന്ന നേതാവാണ് കെ.സി. സുബ്രഹ്മണ്യൻ. എഞ്ചിനീയറിംഗ് മേഖലയിലും പൊതുജന സേവന രംഗത്തും ദീർഘകാല അനുഭവമുള്ള അദ്ദേഹം, സമൂഹത്തിന്റെ പുരോഗതിക്കും സമത്വത്തിനുമായി നിരന്തരം പ്രവർത്തിച്ചു കൊണ്ടിരിക്കുന്നു.', version: 1 }],
               },
             ],
+            direction: 'ltr',
           },
         },
         mediaPreview: heroImg?.id,
@@ -88,13 +98,34 @@ const seed = async () => {
           title: {
             root: {
               type: 'root',
-              children: [{ type: 'heading', tag: 'h2', children: [{ type: 'text', text: 'തരൂരിന്റെ വികസന മാനിഫെസ്റ്റോ' }] }],
+              format: '',
+              indent: 0,
+              version: 1,
+              children: [{
+                type: 'heading',
+                tag: 'h2',
+                format: '',
+                indent: 0,
+                version: 1,
+                children: [{ type: 'text', text: 'തരൂരിന്റെ വികസന മാനിഫെസ്റ്റോ', version: 1 }],
+              }],
+              direction: 'ltr',
             },
           },
           description: {
             root: {
               type: 'root',
-              children: [{ type: 'paragraph', children: [{ type: 'text', text: 'പോസ്റ്ററുകൾ, പ്രചാരണ സാമഗ്രികൾ, മുഴുവൻ മാനിഫെസ്റ്റോ PDF എന്നിവ ഉൾക്കൊള്ളുന്ന സമഗ്ര ദർശന രേഖ.' }] }],
+              format: '',
+              indent: 0,
+              version: 1,
+              children: [{
+                type: 'paragraph',
+                format: '',
+                indent: 0,
+                version: 1,
+                children: [{ type: 'text', text: 'പോസ്റ്ററുകൾ, പ്രചാരണ സാമഗ്രികൾ, മുഴുവൻ മാനിഫെസ്റ്റോ PDF എന്നിവ ഉൾക്കൊള്ളുന്ന സമഗ്ര ദർശന രേഖ.', version: 1 }],
+              }],
+              direction: 'ltr',
             },
           },
           cta: {
@@ -109,7 +140,18 @@ const seed = async () => {
           intro_n_a: {
             root: {
               type: 'root',
-              children: [{ type: 'heading', tag: 'h2', children: [{ type: 'text', text: 'പ്രധാന പ്രവർത്തനങ്ങൾ' }] }],
+              format: '',
+              indent: 0,
+              version: 1,
+              children: [{
+                type: 'heading',
+                tag: 'h2',
+                format: '',
+                indent: 0,
+                version: 1,
+                children: [{ type: 'text', text: 'പ്രധാന പ്രവർത്തനങ്ങൾ', version: 1 }],
+              }],
+              direction: 'ltr',
             },
           },
           items: [
@@ -133,13 +175,105 @@ const seed = async () => {
           intro: {
             root: {
               type: 'root',
-              children: [{ type: 'heading', tag: 'h2', children: [{ type: 'text', text: 'വഹിച്ച സ്ഥാനങ്ങൾ' }] }],
+              format: '',
+              indent: 0,
+              version: 1,
+              children: [{
+                type: 'heading',
+                tag: 'h2',
+                format: '',
+                indent: 0,
+                version: 1,
+                children: [{ type: 'text', text: 'വഹിച്ച സ്ഥാനങ്ങൾ', version: 1 }],
+              }],
+              direction: 'ltr',
             },
           },
           items: [
-            { richText: { root: { type: 'root', children: [{ type: 'heading', tag: 'h3', children: [{ type: 'text', text: 'സ്റ്റേറ്റ് പ്രസിഡന്റ്' }] }, { type: 'paragraph', children: [{ type: 'text', text: 'കേരള ഗസറ്റഡ് ഓഫീസേഴ്സ് യൂണിയൻ (2023–2026)' }] }] } } },
-            { richText: { root: { type: 'root', children: [{ type: 'heading', tag: 'h3', children: [{ type: 'text', text: 'ബ്ലോക്ക് പഞ്ചായത്ത് അംഗം' }] }, { type: 'paragraph', children: [{ type: 'text', text: 'വടക്കാഞ്ചേരി ബ്ലോക്ക്, തൃശൂർ (1995–2000)' }] }] } } },
-            { richText: { root: { type: 'root', children: [{ type: 'heading', tag: 'h3', children: [{ type: 'text', text: 'മുൻ താലൂക്ക് പ്രസിഡന്റ്' }] }, { type: 'paragraph', children: [{ type: 'text', text: 'മാതൃഭൂമി സ്റ്റഡി സർകിൾ, തലപ്പള്ളി (1991–1995)' }] }] } } },
+            {
+              richText: {
+                root: {
+                  type: 'root',
+                  format: '',
+                  indent: 0,
+                  version: 1,
+                  children: [
+                    {
+                      type: 'heading',
+                      tag: 'h3',
+                      format: '',
+                      indent: 0,
+                      version: 1,
+                      children: [{ type: 'text', text: 'സ്റ്റേറ്റ് പ്രസിഡന്റ്', version: 1 }],
+                    },
+                    {
+                      type: 'paragraph',
+                      format: '',
+                      indent: 0,
+                      version: 1,
+                      children: [{ type: 'text', text: 'കേരള ഗസറ്റഡ് ഓഫീസേഴ്സ് യൂണിയൻ (2023–2026)', version: 1 }],
+                    },
+                  ],
+                  direction: 'ltr',
+                },
+              },
+            },
+            {
+              richText: {
+                root: {
+                  type: 'root',
+                  format: '',
+                  indent: 0,
+                  version: 1,
+                  children: [
+                    {
+                      type: 'heading',
+                      tag: 'h3',
+                      format: '',
+                      indent: 0,
+                      version: 1,
+                      children: [{ type: 'text', text: 'ബ്ലോക്ക് പഞ്ചായത്ത് അംഗം', version: 1 }],
+                    },
+                    {
+                      type: 'paragraph',
+                      format: '',
+                      indent: 0,
+                      version: 1,
+                      children: [{ type: 'text', text: 'വടക്കാഞ്ചേരി ബ്ലോക്ക്, തൃശൂർ (1995–2000)', version: 1 }],
+                    },
+                  ],
+                  direction: 'ltr',
+                },
+              },
+            },
+            {
+              richText: {
+                root: {
+                  type: 'root',
+                  format: '',
+                  indent: 0,
+                  version: 1,
+                  children: [
+                    {
+                      type: 'heading',
+                      tag: 'h3',
+                      format: '',
+                      indent: 0,
+                      version: 1,
+                      children: [{ type: 'text', text: 'മുൻ താലൂക്ക് പ്രസിഡന്റ്', version: 1 }],
+                    },
+                    {
+                      type: 'paragraph',
+                      format: '',
+                      indent: 0,
+                      version: 1,
+                      children: [{ type: 'text', text: 'മാതൃഭൂമി സ്റ്റഡി സർകിൾ, തലപ്പള്ളി (1991–1995)', version: 1 }],
+                    },
+                  ],
+                  direction: 'ltr',
+                },
+              },
+            },
           ],
         },
       ],
