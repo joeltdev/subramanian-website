@@ -32,7 +32,6 @@ export const ContentSection: Block = {
         { label: 'Centered Grid', value: 'centeredGrid' },
       ],
     },
-    /*
     {
       name: 'theme',
       type: 'select',
@@ -48,7 +47,6 @@ export const ContentSection: Block = {
         { label: 'Light (White)', value: 'light' },
       ],
     },
-    */
     {
       name: 'intro',
       type: 'richText',
@@ -97,7 +95,6 @@ export const ContentSection: Block = {
           DARK_LIGHT_IMAGE_VARIANTS.includes(siblingData?.variant),
       },
     },
-    /*
     {
       name: 'imageLightMobile',
       type: 'upload',
@@ -108,7 +105,6 @@ export const ContentSection: Block = {
         condition: (_, siblingData) => siblingData?.variant === 'overlayFeatures',
       },
     },
-    */
     {
       name: 'image',
       type: 'upload',

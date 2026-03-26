@@ -1608,6 +1608,10 @@ export interface IntegrationsBlock {
 export interface ContentSectionBlock {
   variant: 'splitImage' | 'overlayFeatures' | 'wideImageCta' | 'textCta' | 'centeredGrid';
   /**
+   * Controls the overlay and text color contrast (Overlay with Features variant).
+   */
+  theme?: ('brand' | 'dark' | 'light') | null;
+  /**
    * Section heading and supporting text
    */
   intro?: {
@@ -1637,6 +1641,10 @@ export interface ContentSectionBlock {
    * Image displayed in light mode
    */
   imageLight?: (number | null) | Media;
+  /**
+   * Optional image displayed in light mode on mobile devices
+   */
+  imageLightMobile?: (number | null) | Media;
   /**
    * Section image
    */
@@ -3347,10 +3355,12 @@ export interface IntegrationsBlockSelect<T extends boolean = true> {
  */
 export interface ContentSectionBlockSelect<T extends boolean = true> {
   variant?: T;
+  theme?: T;
   intro?: T;
   imageDark?: T;
   imageDarkMobile?: T;
   imageLight?: T;
+  imageLightMobile?: T;
   image?: T;
   quote?: T;
   quoteAuthor?: T;
