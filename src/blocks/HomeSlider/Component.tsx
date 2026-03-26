@@ -39,13 +39,13 @@ export const HomeSliderBlockComponent: React.FC<HomeSliderBlock> = ({ intro_n_a,
         )}
 
         {/* Tab Navigation */}
-        <div className="flex flex-wrap gap-2 mb-8 md:mb-12 border-b border-border">
+        <div className="flex flex-nowrap md:flex-wrap gap-0 md:gap-2 mb-8 md:mb-12 border-b border-border">
           {items.map((item, index) => (
             <button
               key={index}
               onClick={() => setActiveIndex(index)}
               className={cn(
-                'px-4 md:px-6 py-3 transition-all duration-300 rounded-none border-b-2 font-medium type-title-sm',
+                'flex-1 md:flex-none px-2 md:px-6 py-3 transition-all duration-300 rounded-none border-b-2 font-medium type-body-sm md:type-title-sm text-center',
                 activeIndex === index
                   ? 'border-primary text-primary bg-muted/50'
                   : 'border-transparent text-type-secondary hover:text-type-heading hover:bg-muted/20',

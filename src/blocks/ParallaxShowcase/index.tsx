@@ -152,7 +152,7 @@ export const ParallaxShowcaseCarousel: React.FC<Props> = ({
 
         {/* Tab navigation */}
         {safeSlides.length > 0 && (
-          <div className="flex flex-wrap gap-2 items-center justify-center" role="tablist">
+          <div className="flex flex-nowrap md:flex-wrap gap-1 md:gap-2 items-center justify-center" role="tablist">
             {safeSlides.map((slide, i) => (
               <button
                 key={slide.id ?? i}
@@ -163,7 +163,7 @@ export const ParallaxShowcaseCarousel: React.FC<Props> = ({
                   setActiveReal(i)
                 }}
                 className={cn(
-                  'px-4 py-2 rounded-full type-label-sm transition-colors duration-200 cursor-pointer',
+                  'flex-1 md:flex-none px-2 md:px-4 py-2 rounded-full type-label-sm transition-colors duration-200 cursor-pointer text-center whitespace-nowrap',
                   'border border-border',
                   i === activeReal
                     ? 'bg-primary text-primary-foreground border-primary'
