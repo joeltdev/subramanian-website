@@ -129,7 +129,7 @@ export const Section2Hero: React.FC<Section2HeroType> = ({
             {/* Mobile Video */}
             {mobileBackgroundVideo && typeof mobileBackgroundVideo === 'object' && mobileBackgroundVideo.url && (
               <video
-                className="absolute inset-0 size-full object-cover -z-20 md:hidden block"
+                className="absolute inset-0 size-full object-cover object-top -z-20 md:hidden block"
                 src={mobileBackgroundVideo.url}
                 autoPlay
                 muted
@@ -141,14 +141,15 @@ export const Section2Hero: React.FC<Section2HeroType> = ({
             {/* Mobile Image */}
             {mobileBackgroundImage && typeof mobileBackgroundImage === 'object' && (mobileBackgroundImage as Media).url && (
               <img
-                className={`absolute inset-0 size-full object-cover -z-20 md:hidden block ${mobileBackgroundVideo ? 'opacity-0' : 'opacity-100'}`}
+                className={`absolute inset-0 size-full object-cover object-top -z-20 md:hidden block ${mobileBackgroundVideo ? 'opacity-0' : 'opacity-100'}`}
                 src={(mobileBackgroundImage as Media).url!}
                 alt={(mobileBackgroundImage as Media).alt ?? ''}
                 aria-hidden
               />
             )}
 
-            <div className="absolute pointer-events-none left-0 bottom-0 w-full h-full bg-linear-to-t from-black/70 to-transparent" />
+            {/* Enhanced Scrim Overlay */}
+            <div className="absolute pointer-events-none left-0 bottom-0 w-full h-full bg-linear-to-t from-black/80 via-black/40 to-transparent" />
           </>
 
           <div className="mx-auto max-w-7xl px-6 w-full">

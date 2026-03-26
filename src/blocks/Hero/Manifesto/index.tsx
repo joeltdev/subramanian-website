@@ -108,7 +108,7 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
             {/* Mobile Video */}
             {mobileBackgroundVideo && typeof mobileBackgroundVideo === 'object' && mobileBackgroundVideo.url && (
               <video
-                className="absolute inset-0 size-full object-cover md:hidden block"
+                className="absolute inset-0 size-full object-cover object-top md:hidden block"
                 src={mobileBackgroundVideo.url}
                 autoPlay
                 muted
@@ -120,14 +120,14 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
             {/* Mobile Image */}
             {mobileBackgroundImage && typeof mobileBackgroundImage === 'object' && (mobileBackgroundImage as Media).url && (
               <img
-                className={`absolute inset-0 size-full object-cover md:hidden block ${mobileBackgroundVideo ? 'opacity-0' : 'opacity-100'}`}
+                className={`absolute inset-0 size-full object-cover object-top md:hidden block ${mobileBackgroundVideo ? 'opacity-0' : 'opacity-100'}`}
                 src={(mobileBackgroundImage as Media).url!}
                 alt={(mobileBackgroundImage as Media).alt ?? ''}
                 aria-hidden
               />
             )}
-            {/* Minimal overlay for text contrast — ONLY if background media exists */}
-            <div className="absolute inset-0 bg-black/40 backdrop-grayscale-[0.2]" aria-hidden />
+            {/* Scrim Overlay */}
+            <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent backdrop-grayscale-[0.1]" aria-hidden />
           </div>
         )}
 
