@@ -30,7 +30,7 @@ export const OverlayFeaturesContentSection: React.FC<ContentSectionBlock> = ({
         {/* Full-width positioning context — media escapes the container */}
         <div className="relative">
           {/* Full-bleed media — absolutely positioned edge-to-edge */}
-          <div className="md:mask-l-from-5% md:mask-l-to-75% mt-12 md:absolute md:-inset-y-24 md:left-0 md:right-0 md:-z-10 md:mt-0">
+          <div className="md:mask-l-from-5% md:mask-l-to-75% absolute inset-x-0 inset-y-0 -z-10 md:-inset-y-24">
             <div className="border-border/50 relative overflow-hidden h-full border border-dotted">
               {/* Dark Mode - Desktop */}
               {typeof imageDark === 'object' && imageDark && (
@@ -89,14 +89,14 @@ export const OverlayFeaturesContentSection: React.FC<ContentSectionBlock> = ({
                       <div key={id} className="space-y-5">
                         {Icon && (
                           <div className="flex items-center">
-                            <Icon className="size-10 text-stone-500" />
+                            <Icon className="size-10 text-black" />
                           </div>
                         )}
                         {richText && (
                           <RichText
                             data={richText}
                             enableGutter={false}
-                            className="[&_h3]:type-title-xl [&_h3]:text-type-heading [&_h3]:font-bold [&_h3]:mb-3 [&_h4]:type-title-md [&_h4]:text-type-body [&_h4]:font-semibold [&_h4]:mb-2 [&_p]:type-body-md [&_p]:text-type-secondary [&_p]:leading-relaxed"
+                            className="[&_h3]:type-title-md md:[&_h3]:type-title-xl [&_h3]:text-type-heading [&_h3]:font-bold [&_h3]:mb-3 [&_h4]:type-title-sm md:[&_h4]:type-title-md [&_h4]:text-type-body [&_h4]:font-semibold [&_h4]:mb-2 [&_p]:type-body-md [&_p]:text-black [&_p]:leading-relaxed"
                           />
                         )}
                       </div>
