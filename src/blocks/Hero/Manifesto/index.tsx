@@ -86,7 +86,7 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
             {/* Desktop Video */}
             {backgroundVideo && typeof backgroundVideo === 'object' && backgroundVideo.url && (
               <video
-                className={`absolute inset-0 size-full object-cover ${mobileBackgroundVideo || mobileBackgroundImage ? 'hidden md:block' : 'block'}`}
+                className={`absolute inset-0 size-full object-cover object-top md:object-center ${mobileBackgroundVideo || mobileBackgroundImage ? 'hidden md:block' : 'block'}`}
                 src={backgroundVideo.url}
                 autoPlay
                 muted
@@ -98,7 +98,7 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
             {/* Desktop Image */}
             {backgroundImage && typeof backgroundImage === 'object' && (backgroundImage as Media).url && (
               <img
-                className={`absolute inset-0 size-full object-cover ${mobileBackgroundVideo || mobileBackgroundImage ? 'hidden md:block' : 'block'} ${backgroundVideo ? 'opacity-0' : 'opacity-100'}`}
+                className={`absolute inset-0 size-full object-cover object-top md:object-center ${mobileBackgroundVideo || mobileBackgroundImage ? 'hidden md:block' : 'block'} ${backgroundVideo ? 'opacity-0' : 'opacity-100'}`}
                 src={(backgroundImage as Media).url!}
                 alt={(backgroundImage as Media).alt ?? ''}
                 aria-hidden
