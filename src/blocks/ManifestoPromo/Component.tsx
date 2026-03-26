@@ -33,7 +33,7 @@ export const ManifestoPromoBlock: React.FC<ManifestoPromoBlockType> = ({
   return (
     <section 
       ref={ref}
-      className="relative w-full overflow-hidden py-32 md:py-48"
+      className="relative flex flex-col justify-center min-h-[80svh] w-full overflow-hidden py-32 md:min-h-0 md:py-48"
       data-section-theme={theme}
     >
       {/* Background Image with Overlay */}
