@@ -41,7 +41,7 @@ export const Section1Hero: React.FC<Section1HeroType> = ({
       </div>
 
       <section>
-        <div className="relative py-2 md:py-2">
+        <div className="relative flex min-h-[80svh] flex-col justify-end pb-20 pt-8 md:min-h-0 md:justify-center md:py-2">
           <div
             aria-hidden
             className="absolute inset-0 -z-10 size-full [background:radial-gradient(125%_125%_at_50%_100%,transparent_0%,var(--color-background)_75%)]"

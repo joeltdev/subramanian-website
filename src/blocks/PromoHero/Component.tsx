@@ -8,7 +8,7 @@ import { ArrowRight } from 'lucide-react'
 
 export const PromoHeroBlock: React.FC<T> = ({ intro, links }) => {
   return (
-    <section className="py-20 md:py-32 bg-background overflow-hidden relative border-t border-border/10">
+    <section className="flex min-h-[85svh] flex-col justify-end pb-20 pt-24 md:min-h-0 md:justify-center md:py-32 bg-background overflow-hidden relative border-t border-border/10">
       <div className="mx-auto max-w-7xl px-6 md:px-8">
         <div className="mx-auto max-w-4xl text-center">
           {/* Main Content with Semantic Type Scale */}

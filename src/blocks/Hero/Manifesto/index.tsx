@@ -80,7 +80,7 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
   return (
     <div className="relative overflow-x-clip" data-theme="dark">
       {/* Background Media — Full Width, Full Height */}
-      <section className="relative min-h-[90svh] flex flex-col justify-center items-center text-center py-24 md:py-32">
+      <section className="relative min-h-[90svh] flex flex-col justify-end md:justify-center items-center text-center pb-20 pt-24 md:py-32">
         {hasBgMedia && (
           <div className="absolute inset-0 size-full -z-20 overflow-hidden">
             {/* Desktop Video */}

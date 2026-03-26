@@ -101,7 +101,7 @@ export const Section2Hero: React.FC<Section2HeroType> = ({
       </div>
 
       <section>
-        <div className={`relative py-24 ${hasBgMedia ? 'min-h-[85svh] flex flex-col justify-center' : ''}`}>
+        <div className={`relative py-24 ${hasBgMedia ? 'min-h-[85svh] flex flex-col justify-end md:justify-center pb-20 md:pb-24' : ''}`}>
           {/* Background media */}
           <>
             {/* Desktop Video */}
@@ -191,12 +191,13 @@ export const Section2Hero: React.FC<Section2HeroType> = ({
                     },
                     ...transitionVariants,
                   }}
-                  className="mt-8 flex items-center gap-2">
+                  className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
                   {links.map(({ link }, i) => (
                     <CMSLink
                       key={i}
                       {...link}
                       size="xl"
+                      className="w-full sm:w-auto"
                     >
                       <ArrowRight />
                     </CMSLink>
