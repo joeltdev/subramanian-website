@@ -78,96 +78,76 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
   }), [])
 
   return (
-    <div className="relative overflow-x-clip" data-theme="dark">
-      {/* Background Media — Full Width, Full Height */}
-      <section className="relative flex flex-col items-center flex-1 text-center w-full md:min-h-[90svh]">
-        {hasBgMedia && (
-          <div className="relative w-full h-[60svh] md:absolute md:inset-0 md:size-full md:-z-20 md:overflow-hidden">
-            {/* Desktop Video */}
-            {backgroundVideo && typeof backgroundVideo === 'object' && backgroundVideo.url && (
-              <video
-                className={`absolute inset-0 size-full object-cover object-top md:object-center ${mobileBackgroundVideo || mobileBackgroundImage ? 'hidden md:block' : 'block'}`}
-                src={backgroundVideo.url}
-                autoPlay
-                muted
-                loop
-                playsInline
-                aria-hidden
-              />
-            )}
-            {/* Desktop Image */}
-            {backgroundImage && typeof backgroundImage === 'object' && (backgroundImage as Media).url && (
-              <img
-                className={`absolute inset-0 size-full object-cover object-top md:object-center ${mobileBackgroundVideo || mobileBackgroundImage ? 'hidden md:block' : 'block'} ${backgroundVideo ? 'opacity-0' : 'opacity-100'}`}
-                src={(backgroundImage as Media).url!}
-                alt={(backgroundImage as Media).alt ?? ''}
-                aria-hidden
-              />
-            )}
-
-            {/* Mobile Video */}
-            {mobileBackgroundVideo && typeof mobileBackgroundVideo === 'object' && mobileBackgroundVideo.url && (
-              <video
-                className="absolute inset-0 size-full object-cover object-top md:hidden block"
-                src={mobileBackgroundVideo.url}
-                autoPlay
-                muted
-                loop
-                playsInline
-                aria-hidden
-              />
-            )}
-            {/* Mobile Image */}
-            {mobileBackgroundImage && typeof mobileBackgroundImage === 'object' && (mobileBackgroundImage as Media).url && (
-              <img
-                className={`absolute inset-0 size-full object-cover object-top md:hidden block ${mobileBackgroundVideo ? 'opacity-0' : 'opacity-100'}`}
-                src={(mobileBackgroundImage as Media).url!}
-                alt={(mobileBackgroundImage as Media).alt ?? ''}
-                aria-hidden
-              />
-            )}
-            {/* Scrim Overlay Desktop */}
-            <div className="hidden md:block absolute inset-0 bg-linear-to-t from-black/95 via-black/50 to-transparent backdrop-grayscale-[0.1]" aria-hidden />
-
-            {/* Mobile Title Overlay flush to the bottom of the image */}
-            <div className="absolute bottom-0 left-0 w-full px-4 sm:px-6 pt-24 pb-6 bg-linear-to-t from-black/90 via-black/40 to-transparent flex flex-col md:hidden z-10 text-left pointer-events-none">
-              {badgeLabel && (
-                <AnimatedGroup variants={transitionVariants}>
-                  <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 backdrop-blur-md pointer-events-auto">
-                    <span className="text-white/90 text-[10px] font-semibold uppercase tracking-widest">{badgeLabel}</span>
-                    <div className="bg-brand-500 rounded-full p-0.5">
-                      <ArrowRight className="size-2 text-white" />
-                    </div>
-                  </div>
-                </AnimatedGroup>
+    <div className="relative overflow-x-clip bg-slate-50" data-theme="light">
+      {/* Container holding the stacked sections */}
+      <section className="relative flex flex-col items-center flex-1 w-full">
+        
+        {/* === SECTION 1: TOP IMAGE WITH FADE AND TITLE === */}
+        <div className="relative w-full h-[60svh] md:h-[75svh]">
+          {hasBgMedia ? (
+            <div className="absolute inset-0 size-full overflow-hidden">
+              {/* Desktop Video */}
+              {backgroundVideo && typeof backgroundVideo === 'object' && backgroundVideo.url && (
+                <video
+                  className={`absolute inset-0 size-full object-cover object-top md:object-center ${mobileBackgroundVideo || mobileBackgroundImage ? 'hidden md:block' : 'block'}`}
+                  src={backgroundVideo.url}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  aria-hidden
+                />
               )}
-              {richText && (
-                <AnimatedGroup variants={transitionVariants} className="w-full pointer-events-auto">
-                  <RichText
-                    data={richText}
-                    enableGutter={false}
-                    converters={heroConverters}
-                    className={`text-left text-balance [&_p]:hidden [&_h1_*]:!text-brand-300 [&_h1]:!drop-shadow-lg [&_h2]:type-display [&_h2]:!text-brand-300 [&_h2]:mb-0 ${isMalayalamContent ? 'font-malayalam' : ''}`}
-                  />
-                </AnimatedGroup>
+              {/* Desktop Image */}
+              {backgroundImage && typeof backgroundImage === 'object' && (backgroundImage as Media).url && (
+                <img
+                  className={`absolute inset-0 size-full object-cover object-top md:object-center ${mobileBackgroundVideo || mobileBackgroundImage ? 'hidden md:block' : 'block'} ${backgroundVideo ? 'opacity-0' : 'opacity-100'}`}
+                  src={(backgroundImage as Media).url!}
+                  alt={(backgroundImage as Media).alt ?? ''}
+                  aria-hidden
+                />
+              )}
+
+              {/* Mobile Video */}
+              {mobileBackgroundVideo && typeof mobileBackgroundVideo === 'object' && mobileBackgroundVideo.url && (
+                <video
+                  className="absolute inset-0 size-full object-cover object-top md:hidden block"
+                  src={mobileBackgroundVideo.url}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  aria-hidden
+                />
+              )}
+              {/* Mobile Image */}
+              {mobileBackgroundImage && typeof mobileBackgroundImage === 'object' && (mobileBackgroundImage as Media).url && (
+                <img
+                  className={`absolute inset-0 size-full object-cover object-top md:hidden block ${mobileBackgroundVideo ? 'opacity-0' : 'opacity-100'}`}
+                  src={(mobileBackgroundImage as Media).url!}
+                  alt={(mobileBackgroundImage as Media).alt ?? ''}
+                  aria-hidden
+                />
               )}
             </div>
-          </div>
-        )}
+          ) : (
+             <div className="absolute inset-0 bg-background" aria-hidden>
+                <div className="absolute inset-0 [background:radial-gradient(125%_125%_at_50%_10%,var(--color-brand-100)_0%,transparent_60%)] opacity-30" />
+             </div>
+          )}
 
-        {/* Backdrop for no-media case */}
-        {!hasBgMedia && (
-          <div className="relative w-full h-[60svh] md:absolute md:inset-0 md:-z-20 bg-background" aria-hidden>
-             <div className="absolute inset-0 [background:radial-gradient(125%_125%_at_50%_10%,var(--color-brand-950)_0%,var(--color-background)_60%)] opacity-30" />
-             
-             {/* Mobile Title Overlay for NO-MEDIA fallback */}
-             <div className="absolute bottom-0 left-0 w-full px-4 sm:px-6 pt-24 pb-6 bg-linear-to-t from-brand-950/90 via-brand-950/40 to-transparent flex flex-col md:hidden z-10 text-left">
+          {/* Fade Overlay fading into slate-50 */}
+          <div className="absolute inset-0 bg-linear-to-t from-slate-50 via-slate-50/40 to-transparent pointer-events-none" aria-hidden />
+
+          {/* Title Positioned at the bottom-left of the image container */}
+          <div className="absolute bottom-0 left-0 w-full px-4 sm:px-6 md:px-8 pb-4 md:pb-8">
+            <div className="max-w-7xl mx-auto w-full flex flex-col items-start text-left">
               {badgeLabel && (
                 <AnimatedGroup variants={transitionVariants}>
-                  <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 backdrop-blur-md">
-                    <span className="text-white/90 text-[10px] font-semibold uppercase tracking-widest">{badgeLabel}</span>
+                  <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50 px-3 py-1 backdrop-blur-md">
+                    <span className="text-brand-700 text-[10px] md:text-xs font-semibold uppercase tracking-widest">{badgeLabel}</span>
                     <div className="bg-brand-500 rounded-full p-0.5">
-                      <ArrowRight className="size-2 text-white" />
+                      <ArrowRight className="size-2 md:size-3 text-white" />
                     </div>
                   </div>
                 </AnimatedGroup>
@@ -178,23 +158,24 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
                     data={richText}
                     enableGutter={false}
                     converters={heroConverters}
-                    className={`text-left text-balance [&_p]:hidden [&_h1_*]:!text-brand-300 [&_h1]:!drop-shadow-lg [&_h2]:type-display [&_h2]:!text-brand-300 [&_h2]:mb-0 ${isMalayalamContent ? 'font-malayalam' : ''}`}
+                    className={`text-left text-balance [&_p]:hidden [&_h1_*]:!text-brand-600 [&_h1]:!drop-shadow-sm [&_h2]:type-display [&_h2]:!text-brand-600 [&_h2]:mb-0 ${isMalayalamContent ? 'font-malayalam' : ''}`}
                   />
                 </AnimatedGroup>
               )}
             </div>
           </div>
-        )}
+        </div>
 
-        {/* === MOBILE CONTAINER (White card below image just for text/button) === */}
-        <div className="flex md:hidden w-full px-4 sm:px-6 flex-col relative z-20 pb-12 pt-6 bg-white shrink-0 text-left shadow-[0_-15px_40px_rgba(0,0,0,0.15)]">
+        {/* === SECTION 2: DESCRIPTION AND CTA CONTENT === */}
+        <div className="w-full px-4 sm:px-6 md:px-8 bg-slate-50 pt-6 pb-16 md:py-12">
+          <div className="max-w-7xl mx-auto w-full flex flex-col items-start text-left">
             {richText && (
               <AnimatedGroup variants={transitionVariants} className="w-full">
                 <RichText
                   data={richText}
                   enableGutter={false}
                   converters={heroConverters}
-                  className={`text-left [&_h1]:hidden [&_h2]:hidden [&_p]:mt-0 [&_p]:max-w-3xl [&_p]:mx-0 [&_p]:type-body-lg [&_p]:font-medium [&_p]:!text-slate-800 [&_p]:leading-relaxed [&_p]:!drop-shadow-none ${isMalayalamContent ? 'font-malayalam' : ''}`}
+                  className={`text-left [&_h1]:hidden [&_h2]:hidden [&_p]:mt-0 [&_p]:max-w-4xl [&_p]:mx-0 [&_p]:type-body-lg md:[&_p]:type-body-xl [&_p]:font-medium [&_p]:!text-slate-800 [&_p]:leading-relaxed [&_p]:!drop-shadow-none ${isMalayalamContent ? 'font-malayalam' : ''}`}
                 />
               </AnimatedGroup>
             )}
@@ -205,64 +186,16 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
                   container: { visible: { transition: { staggerChildren: 0.1, delayChildren: 0.2 } } },
                   ...transitionVariants,
                 }}
-                className="mt-6 w-full max-w-xl mx-0">
+                className="mt-8 w-full max-w-xl mx-0">
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-start justify-start gap-4 w-full">
                   {links.map(({ link }, i) => (
                     <CMSLink
                       key={i}
                       {...link}
                       size="lg"
-                      className="group flex justify-center rounded-none uppercase font-bold tracking-widest transition-all duration-300 shadow-xl hover:shadow-2xl hover:-translate-y-1 active:scale-[0.98] border-none bg-brand-500 text-white hover:bg-brand-400 w-full h-[60px] items-center px-8 type-title-md"
+                      className="group flex justify-center rounded-full border border-brand-500 bg-transparent text-brand-600 uppercase font-bold tracking-widest transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-1 active:scale-[0.98] hover:bg-brand-50 w-full h-[56px] md:h-[52px] md:min-w-[260px] items-center px-8 type-title-md md:type-title-sm"
                     >
-                      <ArrowRight className="transition-transform group-hover:translate-x-1.5 shrink-0 ml-3 size-5" />
-                    </CMSLink>
-                  ))}
-                </div>
-              </AnimatedGroup>
-            )}
-        </div>
-
-        {/* === DESKTOP CONTAINER (Centered as requested) === */}
-        <div className="hidden md:flex container mx-auto px-8 w-full flex-1 flex-col justify-center py-32 relative z-10">
-          <div className="flex flex-col items-center max-w-5xl mx-auto w-full">
-            {badgeLabel && (
-              <AnimatedGroup variants={transitionVariants}>
-                <div className="mb-10 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 backdrop-blur-md transition-all hover:bg-white/10">
-                  <span className="text-white/80 text-xs font-semibold uppercase tracking-widest">{badgeLabel}</span>
-                  <div className="bg-brand-500 rounded-full p-0.5">
-                    <ArrowRight className="size-3 text-white" />
-                  </div>
-                </div>
-              </AnimatedGroup>
-            )}
-
-            {richText && (
-              <AnimatedGroup variants={transitionVariants} className="w-full">
-                <RichText
-                  data={richText}
-                  enableGutter={false}
-                  converters={heroConverters}
-                  className={`text-balance [&_h2]:type-display [&_h2]:text-foreground/90 [&_h2]:mb-8 [&_p]:mt-10 [&_p]:max-w-3xl [&_p]:mx-auto [&_p]:type-body-xl [&_p]:font-medium [&_p]:text-foreground/90 [&_p]:leading-relaxed [&_p]:drop-shadow-sm ${isMalayalamContent ? 'font-malayalam' : ''}`}
-                />
-              </AnimatedGroup>
-            )}
-
-            {Array.isArray(links) && links.length > 0 && (
-              <AnimatedGroup
-                variants={{
-                  container: { visible: { transition: { staggerChildren: 0.1, delayChildren: 0.8 } } },
-                  ...transitionVariants,
-                }}
-                className="mt-12 w-full max-w-3xl mx-auto">
-                <div className="flex flex-row items-center justify-center gap-6 w-full">
-                  {links.map(({ link }, i) => (
-                    <CMSLink
-                      key={i}
-                      {...link}
-                      size="lg"
-                      className="group flex-1 justify-center rounded-full uppercase font-bold tracking-widest transition-all duration-300 shadow-xl hover:shadow-2xl hover:-translate-y-1 active:scale-[0.98] border-none bg-brand-500 text-white hover:bg-brand-400 h-[56px] min-w-[220px] lg:h-[52px] lg:min-w-[260px] lg:type-title-sm"
-                    >
-                      <ArrowRight className="transition-transform group-hover:translate-x-1.5 shrink-0 ml-3 size-4" />
+                      <ArrowRight className="transition-transform group-hover:translate-x-1.5 shrink-0 ml-3 size-4 md:size-5" />
                     </CMSLink>
                   ))}
                 </div>
@@ -275,10 +208,10 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
         {mediaPreview && typeof mediaPreview === 'object' && (
           <AnimatedGroup
             variants={transitionVariants}
-            className="mt-20 w-full max-w-6xl px-6">
-            <div className="relative group">
+            className="w-full max-w-7xl px-4 sm:px-6 md:px-8 pb-16 md:pb-24 mx-auto bg-slate-50">
+            <div className="relative group mx-auto">
               <div className="absolute -inset-1 bg-brand-500/20 rounded-none blur-3xl opacity-50 group-hover:opacity-100 transition duration-1000 group-hover:duration-500"></div>
-              <div className="relative bg-background border border-border/50 shadow-2xl overflow-hidden ring-1 ring-white/10">
+              <div className="relative bg-white border border-border/50 shadow-2xl overflow-hidden ring-1 ring-black/5">
                 <MediaComponent
                   className="aspect-16/9 relative"
                   imgClassName="object-cover"
@@ -290,8 +223,8 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
         )}
       </section>
 
-      {/* Decorative elements */}
-      <div className="absolute top-0 right-0 -z-10 w-1/3 h-full pointer-events-none overflow-hidden opacity-20">
+      {/* Decorative elements minimal for light theme */}
+      <div className="absolute top-0 right-0 -z-10 w-1/3 h-full pointer-events-none overflow-hidden opacity-10">
          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-500 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2" />
       </div>
     </div>
