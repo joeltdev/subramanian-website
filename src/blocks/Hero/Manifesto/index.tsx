@@ -80,9 +80,9 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
   return (
     <div className="relative overflow-x-clip" data-theme="dark">
       {/* Background Media — Full Width, Full Height */}
-      <section className="relative flex flex-col items-center flex-1 text-center w-full min-h-[90svh] overflow-hidden">
+      <section className="relative flex flex-col items-center flex-1 text-center w-full md:min-h-[90svh]">
         {hasBgMedia && (
-          <div className="absolute inset-0 size-full -z-20">
+          <div className="relative w-full h-[60svh] md:absolute md:inset-0 md:size-full md:-z-20 md:overflow-hidden">
             {/* Desktop Video */}
             {backgroundVideo && typeof backgroundVideo === 'object' && backgroundVideo.url && (
               <video
@@ -126,67 +126,64 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
                 aria-hidden
               />
             )}
-            
-            {/* Desktop Scrim Overlay */}
+            {/* Scrim Overlay */}
             <div className="hidden md:block absolute inset-0 bg-linear-to-t from-black/95 via-black/50 to-transparent backdrop-grayscale-[0.1]" aria-hidden />
           </div>
         )}
 
         {/* Backdrop for no-media case */}
         {!hasBgMedia && (
-          <div className="absolute inset-0 -z-20 bg-background" aria-hidden>
+          <div className="relative w-full h-[60svh] md:absolute md:inset-0 md:-z-20 bg-background" aria-hidden>
              <div className="absolute inset-0 [background:radial-gradient(125%_125%_at_50%_10%,var(--color-brand-950)_0%,var(--color-background)_60%)] opacity-30" />
           </div>
         )}
 
-        {/* === MOBILE CONTAINER (Based on provided snippet) === */}
-        <div className="flex md:hidden absolute inset-0 items-end justify-center z-10 pointer-events-none" data-theme="light">
-          <div className="w-full bg-linear-to-t from-[#F1F3F4] via-[#F1F3F4]/90 to-transparent pointer-events-auto">
-            <div className="min-h-[300px] w-full pt-48 pb-10 px-6 flex flex-col items-start gap-4">
-              {badgeLabel && (
-                <AnimatedGroup variants={transitionVariants}>
-                  <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-black/10 bg-black/5 px-4 py-1.5 backdrop-blur-md transition-all hover:bg-black/10">
-                    <span className="text-brand-950/80 text-xs font-semibold uppercase tracking-widest">{badgeLabel}</span>
-                    <div className="bg-brand-500 rounded-full p-0.5">
-                      <ArrowRight className="size-3 text-white" />
-                    </div>
+        {/* === MOBILE CONTAINER (Overlapping white card) === */}
+        <div className="flex md:hidden w-full px-4 sm:px-6 flex-col relative z-10 -mt-20 pb-12" data-theme="light">
+          <div className="flex flex-col items-start bg-background p-6 sm:p-8 shadow-2xl w-full text-left rounded-none">
+            {badgeLabel && (
+              <AnimatedGroup variants={transitionVariants}>
+                <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-black/10 bg-black/5 px-4 py-1.5 backdrop-blur-md transition-all hover:bg-black/10">
+                  <span className="text-brand-950/80 text-xs font-semibold uppercase tracking-widest">{badgeLabel}</span>
+                  <div className="bg-brand-500 rounded-full p-0.5">
+                    <ArrowRight className="size-3 text-white" />
                   </div>
-                </AnimatedGroup>
-              )}
+                </div>
+              </AnimatedGroup>
+            )}
 
-              {richText && (
-                <AnimatedGroup variants={transitionVariants} className="w-full">
-                  <RichText
-                    data={richText}
-                    enableGutter={false}
-                    converters={heroConverters}
-                    className={`text-left text-balance [&_h1_*]:!text-brand-900 [&_h1]:!drop-shadow-none [&_h2]:type-display [&_h2]:text-brand-900 [&_h2]:mb-2 [&_p]:mt-2 [&_p]:max-w-3xl [&_p]:mx-0 [&_p]:type-body-lg [&_p]:font-medium [&_p]:text-foreground/90 [&_p]:leading-relaxed [&_p]:drop-shadow-none ${isMalayalamContent ? 'font-malayalam' : ''}`}
-                  />
-                </AnimatedGroup>
-              )}
+            {richText && (
+              <AnimatedGroup variants={transitionVariants} className="w-full">
+                <RichText
+                  data={richText}
+                  enableGutter={false}
+                  converters={heroConverters}
+                  className={`text-left text-balance [&_h1_*]:!text-brand-900 [&_h1]:!drop-shadow-none [&_h2]:type-display [&_h2]:text-brand-900 [&_h2]:mb-4 [&_p]:mt-4 [&_p]:max-w-3xl [&_p]:mx-0 [&_p]:type-body-lg [&_p]:font-medium [&_p]:text-foreground/90 [&_p]:leading-relaxed [&_p]:drop-shadow-none ${isMalayalamContent ? 'font-malayalam' : ''}`}
+                />
+              </AnimatedGroup>
+            )}
 
-              {Array.isArray(links) && links.length > 0 && (
-                <AnimatedGroup
-                  variants={{
-                    container: { visible: { transition: { staggerChildren: 0.1, delayChildren: 0.8 } } },
-                    ...transitionVariants,
-                  }}
-                  className="mt-4 w-full max-w-xl mx-0">
-                  <div className="flex flex-col sm:flex-row items-stretch justify-start gap-4 w-full">
-                    {links.map(({ link }, i) => (
-                      <CMSLink
-                        key={i}
-                        {...link}
-                        size="lg"
-                        className="group flex justify-center rounded-none uppercase font-bold tracking-widest transition-all duration-300 shadow-xl hover:shadow-2xl hover:-translate-y-1 active:scale-[0.98] border-none bg-brand-500 text-white hover:bg-brand-400 w-full h-[60px] items-center px-8 type-title-md"
-                      >
-                        <ArrowRight className="transition-transform group-hover:translate-x-1.5 shrink-0 ml-3 size-5" />
-                      </CMSLink>
-                    ))}
-                  </div>
-                </AnimatedGroup>
-              )}
-            </div>
+            {Array.isArray(links) && links.length > 0 && (
+              <AnimatedGroup
+                variants={{
+                  container: { visible: { transition: { staggerChildren: 0.1, delayChildren: 0.8 } } },
+                  ...transitionVariants,
+                }}
+                className="mt-8 w-full max-w-xl mx-0">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-start justify-start gap-4 w-full">
+                  {links.map(({ link }, i) => (
+                    <CMSLink
+                      key={i}
+                      {...link}
+                      size="lg"
+                      className="group flex justify-center rounded-none uppercase font-bold tracking-widest transition-all duration-300 shadow-xl hover:shadow-2xl hover:-translate-y-1 active:scale-[0.98] border-none bg-brand-500 text-white hover:bg-brand-400 w-full h-[60px] items-center px-8 type-title-md"
+                    >
+                      <ArrowRight className="transition-transform group-hover:translate-x-1.5 shrink-0 ml-3 size-5" />
+                    </CMSLink>
+                  ))}
+                </div>
+              </AnimatedGroup>
+            )}
           </div>
         </div>
 
