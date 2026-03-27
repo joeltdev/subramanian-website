@@ -80,7 +80,7 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
   return (
     <div className="relative overflow-x-clip" data-theme="dark">
       {/* Background Media — Full Width, Full Height */}
-      <section className="relative min-h-[100svh] md:min-h-[90svh] flex flex-col justify-end md:justify-center items-center text-center pb-12 pt-[40vh] md:pb-32 md:pt-32">
+      <section className="relative min-h-[100svh] md:min-h-[90svh] flex flex-col justify-end md:justify-center items-center text-center pb-6 pt-[50vh] md:pb-32 md:pt-32">
         {hasBgMedia && (
           <div className="absolute inset-0 size-full -z-20 overflow-hidden">
             {/* Desktop Video */}
@@ -127,7 +127,7 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
               />
             )}
             {/* Scrim Overlay */}
-            <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent backdrop-grayscale-[0.1]" aria-hidden />
+            <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-transparent backdrop-grayscale-[0.1]" aria-hidden />
           </div>
         )}
 
@@ -138,7 +138,7 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
           </div>
         )}
 
-        <div className="container mx-auto px-6 md:px-8 w-full relative z-10">
+        <div className="container mx-auto px-6 md:px-8 w-full relative z-10 mt-auto md:mt-0">
           <div className="flex flex-col items-center max-w-5xl mx-auto">
             {/* Badge */}
             {badgeLabel && (
