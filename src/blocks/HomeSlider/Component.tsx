@@ -57,7 +57,7 @@ export const HomeSliderBlockComponent: React.FC<HomeSliderBlock> = ({ intro_n_a,
         </div>
 
         {/* Slide Content Container */}
-        <div className="relative overflow-hidden aspect-[2/3] md:aspect-[16/9] bg-muted group rounded-none">
+        <div className="relative overflow-hidden aspect-[3/4] md:aspect-[16/9] bg-muted group rounded-none">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeIndex}
@@ -72,7 +72,8 @@ export const HomeSliderBlockComponent: React.FC<HomeSliderBlock> = ({ intro_n_a,
                 <Media
                   resource={activeSlide.image}
                   fill
-                  className="object-cover"
+                  className="w-full h-full"
+                  imgClassName="object-contain md:object-cover"
                 />
               )}
 
