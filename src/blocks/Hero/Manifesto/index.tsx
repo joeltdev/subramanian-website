@@ -82,7 +82,7 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
       {/* Background Media — Full Width, Full Height */}
       <section className="relative flex flex-col items-center flex-1 text-center w-full md:min-h-[90svh]">
         {hasBgMedia && (
-          <div className="relative w-full h-[60svh] md:absolute md:inset-0 md:size-full md:-z-20 md:overflow-hidden">
+          <div className="relative w-full h-[65svh] md:absolute md:inset-0 md:size-full md:-z-20 md:overflow-hidden">
             {/* Desktop Video */}
             {backgroundVideo && typeof backgroundVideo === 'object' && backgroundVideo.url && (
               <video
@@ -126,21 +126,25 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
                 aria-hidden
               />
             )}
-            {/* Scrim Overlay */}
+            {/* Desktop Scrim Overlay */}
             <div className="hidden md:block absolute inset-0 bg-linear-to-t from-black/95 via-black/50 to-transparent backdrop-grayscale-[0.1]" aria-hidden />
+            
+            {/* Mobile White Gradient at image bottom */}
+            <div className="block md:hidden absolute inset-x-0 bottom-0 h-[10rem] sm:h-[12rem] bg-linear-to-t from-white via-white/80 to-transparent" aria-hidden />
           </div>
         )}
 
         {/* Backdrop for no-media case */}
         {!hasBgMedia && (
-          <div className="relative w-full h-[60svh] md:absolute md:inset-0 md:-z-20 bg-background" aria-hidden>
+          <div className="relative w-full h-[65svh] md:absolute md:inset-0 md:-z-20 bg-background" aria-hidden>
              <div className="absolute inset-0 [background:radial-gradient(125%_125%_at_50%_10%,var(--color-brand-950)_0%,var(--color-background)_60%)] opacity-30" />
           </div>
         )}
 
-        {/* === MOBILE CONTAINER (Overlapping white card) === */}
-        <div className="flex md:hidden w-full px-4 sm:px-6 flex-col relative z-10 -mt-20 pb-12" data-theme="light">
-          <div className="flex flex-col items-start bg-background p-6 sm:p-8 shadow-2xl w-full text-left rounded-none">
+        {/* === MOBILE CONTAINER (Seamless overlay without shadow box) === */}
+        <div className="flex md:hidden w-full flex-col relative z-20 bg-white" data-theme="light">
+          {/* Content pulled up onto the white gradient over the image */}
+          <div className="flex flex-col items-start w-full text-left px-6 sm:px-8 pb-16 relative z-10 -mt-24 sm:-mt-28">
             {badgeLabel && (
               <AnimatedGroup variants={transitionVariants}>
                 <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-black/10 bg-black/5 px-4 py-1.5 backdrop-blur-md transition-all hover:bg-black/10">
