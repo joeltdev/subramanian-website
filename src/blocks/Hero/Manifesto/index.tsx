@@ -80,7 +80,7 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
   return (
     <div className="relative overflow-x-clip" data-theme="dark">
       {/* Background Media — Full Width, Full Height */}
-      <section className="relative min-h-[90svh] flex flex-col justify-end md:justify-center items-center text-center pb-20 pt-24 md:py-32">
+      <section className="relative min-h-[100svh] md:min-h-[90svh] flex flex-col justify-end md:justify-center items-center text-center pb-12 pt-[40vh] md:pb-32 md:pt-32">
         {hasBgMedia && (
           <div className="absolute inset-0 size-full -z-20 overflow-hidden">
             {/* Desktop Video */}
@@ -127,7 +127,7 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
               />
             )}
             {/* Scrim Overlay */}
-            <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent backdrop-grayscale-[0.1]" aria-hidden />
+            <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent backdrop-grayscale-[0.1]" aria-hidden />
           </div>
         )}
 
@@ -143,7 +143,7 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
             {/* Badge */}
             {badgeLabel && (
               <AnimatedGroup variants={transitionVariants}>
-                <div className="mb-10 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 backdrop-blur-md transition-all hover:bg-white/10">
+                <div className="mb-6 md:mb-10 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 backdrop-blur-md transition-all hover:bg-white/10">
                   <span className="text-white/80 text-xs font-semibold uppercase tracking-widest">{badgeLabel}</span>
                   <div className="bg-brand-500 rounded-full p-0.5">
                     <ArrowRight className="size-3 text-white" />
@@ -161,7 +161,7 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
                   data={richText}
                   enableGutter={false}
                   converters={heroConverters}
-                  className={`text-balance [&_h2]:type-display [&_h2]:text-foreground/90 [&_h2]:mb-8 [&_p]:mt-10 [&_p]:max-w-3xl [&_p]:mx-auto [&_p]:type-body-xl [&_p]:font-medium [&_p]:text-foreground/90 [&_p]:leading-relaxed [&_p]:drop-shadow-sm ${isMalayalamContent ? 'font-malayalam' : ''}`}
+                  className={`text-balance [&_h2]:type-display [&_h2]:text-foreground/90 [&_h2]:mb-4 md:[&_h2]:mb-8 [&_p]:mt-4 md:[&_p]:mt-10 [&_p]:max-w-3xl [&_p]:mx-auto [&_p]:type-body-xl [&_p]:font-medium [&_p]:text-foreground/90 [&_p]:leading-relaxed [&_p]:drop-shadow-md ${isMalayalamContent ? 'font-malayalam' : ''}`}
                 />
               </AnimatedGroup>
             )}
@@ -177,7 +177,7 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
                   },
                   ...transitionVariants,
                 }}
-                className="mt-12 w-full max-w-3xl">
+                className="mt-8 md:mt-12 w-full max-w-3xl">
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4 md:gap-6 w-full">
                   {links.map(({ link }, i) => (
                     <CMSLink
