@@ -126,8 +126,32 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
                 aria-hidden
               />
             )}
-            {/* Scrim Overlay */}
+            {/* Scrim Overlay Desktop */}
             <div className="hidden md:block absolute inset-0 bg-linear-to-t from-black/95 via-black/50 to-transparent backdrop-grayscale-[0.1]" aria-hidden />
+
+            {/* Mobile Title Overlay flush to the bottom of the image */}
+            <div className="absolute bottom-0 left-0 w-full px-4 sm:px-6 pt-24 pb-6 bg-linear-to-t from-black/90 via-black/40 to-transparent flex flex-col md:hidden z-10 text-left pointer-events-none">
+              {badgeLabel && (
+                <AnimatedGroup variants={transitionVariants}>
+                  <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 backdrop-blur-md pointer-events-auto">
+                    <span className="text-white/90 text-[10px] font-semibold uppercase tracking-widest">{badgeLabel}</span>
+                    <div className="bg-brand-500 rounded-full p-0.5">
+                      <ArrowRight className="size-2 text-white" />
+                    </div>
+                  </div>
+                </AnimatedGroup>
+              )}
+              {richText && (
+                <AnimatedGroup variants={transitionVariants} className="w-full pointer-events-auto">
+                  <RichText
+                    data={richText}
+                    enableGutter={false}
+                    converters={heroConverters}
+                    className={`text-left text-balance [&_p]:hidden [&_h1_*]:!text-brand-300 [&_h1]:!drop-shadow-lg [&_h2]:type-display [&_h2]:!text-brand-300 [&_h2]:mb-0 ${isMalayalamContent ? 'font-malayalam' : ''}`}
+                  />
+                </AnimatedGroup>
+              )}
+            </div>
           </div>
         )}
 
@@ -135,30 +159,42 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
         {!hasBgMedia && (
           <div className="relative w-full h-[60svh] md:absolute md:inset-0 md:-z-20 bg-background" aria-hidden>
              <div className="absolute inset-0 [background:radial-gradient(125%_125%_at_50%_10%,var(--color-brand-950)_0%,var(--color-background)_60%)] opacity-30" />
+             
+             {/* Mobile Title Overlay for NO-MEDIA fallback */}
+             <div className="absolute bottom-0 left-0 w-full px-4 sm:px-6 pt-24 pb-6 bg-linear-to-t from-brand-950/90 via-brand-950/40 to-transparent flex flex-col md:hidden z-10 text-left">
+              {badgeLabel && (
+                <AnimatedGroup variants={transitionVariants}>
+                  <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 backdrop-blur-md">
+                    <span className="text-white/90 text-[10px] font-semibold uppercase tracking-widest">{badgeLabel}</span>
+                    <div className="bg-brand-500 rounded-full p-0.5">
+                      <ArrowRight className="size-2 text-white" />
+                    </div>
+                  </div>
+                </AnimatedGroup>
+              )}
+              {richText && (
+                <AnimatedGroup variants={transitionVariants} className="w-full">
+                  <RichText
+                    data={richText}
+                    enableGutter={false}
+                    converters={heroConverters}
+                    className={`text-left text-balance [&_p]:hidden [&_h1_*]:!text-brand-300 [&_h1]:!drop-shadow-lg [&_h2]:type-display [&_h2]:!text-brand-300 [&_h2]:mb-0 ${isMalayalamContent ? 'font-malayalam' : ''}`}
+                  />
+                </AnimatedGroup>
+              )}
+            </div>
           </div>
         )}
 
-        {/* === MOBILE CONTAINER (Overlapping white card) === */}
-        <div className="flex md:hidden w-full px-4 sm:px-6 flex-col relative z-10 -mt-20 pb-12" data-theme="light">
-          <div className="flex flex-col items-start bg-background p-6 sm:p-8 shadow-2xl w-full text-left rounded-none">
-            {badgeLabel && (
-              <AnimatedGroup variants={transitionVariants}>
-                <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-black/10 bg-black/5 px-4 py-1.5 backdrop-blur-md transition-all hover:bg-black/10">
-                  <span className="text-brand-950/80 text-xs font-semibold uppercase tracking-widest">{badgeLabel}</span>
-                  <div className="bg-brand-500 rounded-full p-0.5">
-                    <ArrowRight className="size-3 text-white" />
-                  </div>
-                </div>
-              </AnimatedGroup>
-            )}
-
+        {/* === MOBILE CONTAINER (White card below image just for text/button) === */}
+        <div className="flex md:hidden w-full px-4 sm:px-6 flex-col relative z-20 pb-12 pt-6 bg-white shrink-0 text-left shadow-[0_-15px_40px_rgba(0,0,0,0.15)]">
             {richText && (
               <AnimatedGroup variants={transitionVariants} className="w-full">
                 <RichText
                   data={richText}
                   enableGutter={false}
                   converters={heroConverters}
-                  className={`text-left text-balance [&_h1_*]:!text-brand-900 [&_h1]:!drop-shadow-none [&_h2]:type-display [&_h2]:text-brand-900 [&_h2]:mb-4 [&_p]:mt-4 [&_p]:max-w-3xl [&_p]:mx-0 [&_p]:type-body-lg [&_p]:font-medium [&_p]:text-foreground/90 [&_p]:leading-relaxed [&_p]:drop-shadow-none ${isMalayalamContent ? 'font-malayalam' : ''}`}
+                  className={`text-left [&_h1]:hidden [&_h2]:hidden [&_p]:mt-0 [&_p]:max-w-3xl [&_p]:mx-0 [&_p]:type-body-lg [&_p]:font-medium [&_p]:!text-slate-800 [&_p]:leading-relaxed [&_p]:!drop-shadow-none ${isMalayalamContent ? 'font-malayalam' : ''}`}
                 />
               </AnimatedGroup>
             )}
@@ -166,10 +202,10 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
             {Array.isArray(links) && links.length > 0 && (
               <AnimatedGroup
                 variants={{
-                  container: { visible: { transition: { staggerChildren: 0.1, delayChildren: 0.8 } } },
+                  container: { visible: { transition: { staggerChildren: 0.1, delayChildren: 0.2 } } },
                   ...transitionVariants,
                 }}
-                className="mt-8 w-full max-w-xl mx-0">
+                className="mt-6 w-full max-w-xl mx-0">
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-start justify-start gap-4 w-full">
                   {links.map(({ link }, i) => (
                     <CMSLink
@@ -184,7 +220,6 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
                 </div>
               </AnimatedGroup>
             )}
-          </div>
         </div>
 
         {/* === DESKTOP CONTAINER (Centered as requested) === */}
