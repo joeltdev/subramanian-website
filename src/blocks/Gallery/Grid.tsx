@@ -78,7 +78,7 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro }) => {
           <RichText 
             data={intro} 
             enableGutter={false} 
-            className="[&_h2]:type-headline-1 [&_h2]:text-type-heading [&_p]:type-body-lg [&_p]:text-type-body [&_p]:mt-4"
+            className="[&_h3]:type-headline-1 [&_h3]:text-type-heading [&_p]:type-body-lg [&_p]:text-type-body [&_p]:mt-4"
           />
         </div>
       )}
