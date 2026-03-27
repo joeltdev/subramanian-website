@@ -34,14 +34,16 @@ export const ManifestoPromoBlock: React.FC<ManifestoPromoBlockType> = ({
     <section 
       ref={ref}
       className={cn(
-        "relative flex flex-col w-full overflow-hidden",
-        "justify-end min-h-[100svh] pb-12 pt-[55vh]", 
-        "md:justify-center md:min-h-0 md:py-48"
+        "relative flex flex-col w-full",
+        "md:overflow-hidden md:justify-center md:min-h-0 md:py-48"
       )}
       data-section-theme={theme}
     >
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0 -z-10">
+      {/* Background Image (Desktop) / Top Image (Mobile) */}
+      <div className={cn(
+        "relative w-full h-[60svh]", // Mobile: top image, 60svh
+        "md:absolute md:inset-0 md:-z-10 md:h-auto" // Desktop: absolute background
+      )}>
         {/* Desktop Image */}
         {backgroundImage && typeof backgroundImage === 'object' && (
           <Media 
@@ -64,31 +66,43 @@ export const ManifestoPromoBlock: React.FC<ManifestoPromoBlockType> = ({
           />
         )}
         
-        {/* Overlay for readability - gradient to ensure text readability at the bottom while keeping the face clear at the top */}
+        {/* Overlay for readability - Desktop only since mobile uses a solid card */}
         <div className={cn(
-          "absolute inset-0",
+          "hidden md:block absolute inset-0",
           theme === 'brand' ? "bg-linear-to-t from-brand-950/95 via-brand-950/60 to-brand-950/10" 
           : theme === 'light' ? "bg-linear-to-t from-white/95 via-white/60 to-white/10"
           : "bg-linear-to-t from-black/95 via-black/50 to-transparent" // Default dark overlay
         )} />
       </div>
 
-      <div className="mx-auto max-w-7xl px-6 md:px-8">
-        <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
+      <div className={cn(
+        "relative z-10 px-4 sm:px-6", // Mobile: standard padding
+        "md:mx-auto md:max-w-7xl md:px-8", // Desktop: centering and padding
+        "-mt-20 sm:-mt-24 pb-12", // Mobile: overlap image, padding bottom
+        "md:mt-0 md:pb-0" // Desktop: reset overlap & padding
+      )}>
+        <div className={cn(
+          "flex flex-col text-left items-start", // Mobile stack approach
+          "bg-white p-6 sm:p-8 shadow-2xl", // Mobile white card overlaying the image
+          "md:bg-transparent md:p-0 md:shadow-none md:items-center md:text-center md:max-w-4xl md:mx-auto" // Desktop original structural style
+        )}>
           {/* Title */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="w-full"
           >
             <RichText
               data={title}
               enableGutter={false}
               enableProse={false}
               className={cn(
-                "mb-10 md:mb-14 font-malayalam",
-                "[&_h2]:type-headline-3 md:[&_h2]:type-headline-1 [&_h2]:text-white [&_h2]:font-bold md:[&_h2]:font-extrabold [&_h2]:mb-0",
-                theme === 'light' && "[&_h2]:text-type-heading"
+                "mb-6 md:mb-14 font-malayalam",
+                "[&_h2]:type-headline-3 md:[&_h2]:type-headline-1",
+                "[&_h2]:text-brand-900 md:[&_h2]:text-white", // Mobile: blue title, Desktop: white title
+                "[&_h2]:font-bold md:[&_h2]:font-extrabold [&_h2]:mb-0",
+                theme === 'light' && "md:[&_h2]:text-type-heading" // Reset to dark if theme is light on MD
               )}
             />
           </motion.div>
@@ -99,14 +113,16 @@ export const ManifestoPromoBlock: React.FC<ManifestoPromoBlockType> = ({
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+              className="w-full"
             >
               <RichText
                 data={description}
                 enableGutter={false}
                 className={cn(
-                  "mb-10 font-malayalam",
-                  "text-white/90 type-body-lg md:type-title-xl md:font-medium max-w-3xl leading-relaxed",
-                  theme === 'light' && "text-type-body"
+                  "mb-8 md:mb-10 font-malayalam",
+                  "text-type-body md:text-white/90 md:type-title-xl md:font-medium max-w-3xl md:leading-relaxed",
+                  "type-body-lg",
+                  theme === 'light' && "md:text-type-body"
                 )}
               />
             </motion.div>
@@ -118,15 +134,16 @@ export const ManifestoPromoBlock: React.FC<ManifestoPromoBlockType> = ({
               initial={{ opacity: 0, scale: 0.9 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
+              className="w-full md:w-auto mt-auto"
             >
               <CMSLink 
                 {...cta} 
                 className={cn(
-                  "group h-14 px-10 rounded-none", // Sharp corners per GEMINI.md
+                  "group h-14 px-10 rounded-none w-full md:w-auto", // Sharp corners per GEMINI.md
                   "flex items-center justify-center gap-3",
                   "text-sm font-bold uppercase tracking-widest transition-all duration-300",
-                  "bg-white text-brand-950 hover:bg-brand-500 hover:text-white",
-                  theme === 'light' && "bg-brand-500 text-white hover:bg-black"
+                  "bg-brand-500 text-white md:bg-white md:text-brand-950 hover:bg-brand-600 md:hover:bg-brand-500 md:hover:text-white", // Mobile uses blue bg
+                  theme === 'light' && "md:bg-brand-500 md:text-white md:hover:bg-black"
                 )}
               >
                 <ArrowRight className="size-5 transition-transform duration-300 group-hover:translate-x-1" />
