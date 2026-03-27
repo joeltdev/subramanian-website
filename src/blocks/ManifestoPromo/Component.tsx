@@ -33,7 +33,11 @@ export const ManifestoPromoBlock: React.FC<ManifestoPromoBlockType> = ({
   return (
     <section 
       ref={ref}
-      className="relative flex flex-col justify-center min-h-[80svh] w-full overflow-hidden py-32 md:min-h-0 md:py-48"
+      className={cn(
+        "relative flex flex-col w-full overflow-hidden",
+        "justify-end min-h-[100svh] pb-12 pt-[55vh]", 
+        "md:justify-center md:min-h-0 md:py-48"
+      )}
       data-section-theme={theme}
     >
       {/* Background Image with Overlay */}
@@ -60,11 +64,12 @@ export const ManifestoPromoBlock: React.FC<ManifestoPromoBlockType> = ({
           />
         )}
         
-        {/* Overlay for readability - adjusts based on theme but usually dark for image promos */}
+        {/* Overlay for readability - gradient to ensure text readability at the bottom while keeping the face clear at the top */}
         <div className={cn(
-          "absolute inset-0 bg-black/60", // Default dark overlay
-          theme === 'brand' && "bg-brand-950/70",
-          theme === 'light' && "bg-white/40"
+          "absolute inset-0",
+          theme === 'brand' ? "bg-linear-to-t from-brand-950/95 via-brand-950/60 to-brand-950/10" 
+          : theme === 'light' ? "bg-linear-to-t from-white/95 via-white/60 to-white/10"
+          : "bg-linear-to-t from-black/95 via-black/50 to-transparent" // Default dark overlay
         )} />
       </div>
 
