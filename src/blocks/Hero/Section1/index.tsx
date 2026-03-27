@@ -47,8 +47,8 @@ export const Section1Hero: React.FC<Section1HeroType> = ({
             className="absolute inset-0 -z-10 size-full [background:radial-gradient(125%_125%_at_50%_100%,transparent_0%,var(--color-background)_75%)]"
           />
 
-          <div className="mx-auto max-w-7xl px-8 w-full">
-            <div className="text-center sm:mx-auto lg:mr-auto lg:mt-0">
+          <div className="mx-auto max-w-7xl px-4 md:px-8 w-full order-2 md:order-1 relative z-10 -mt-24 md:mt-0">
+            <div className="bg-background md:bg-transparent p-6 sm:p-8 md:p-0 shadow-2xl shadow-zinc-950/20 md:shadow-none border border-border/50 md:border-transparent text-center sm:mx-auto lg:mr-auto lg:mt-0 relative">
               {/* Badge */}
               {badgeLabel && (
                 <AnimatedGroup variants={transitionVariants}>
@@ -105,6 +105,7 @@ export const Section1Hero: React.FC<Section1HeroType> = ({
           {/* App preview screenshot */}
           {mediaPreview && typeof mediaPreview === 'object' && (
             <AnimatedGroup
+              className="order-1 md:order-2 w-full"
               variants={{
                 container: {
                   visible: {
@@ -113,11 +114,11 @@ export const Section1Hero: React.FC<Section1HeroType> = ({
                 },
                 ...transitionVariants,
               }}>
-              <div className="mask-b-from-55% relative -mr-56 mt-8 overflow-hidden px-2 sm:mr-0 sm:mt-12 md:mt-20">
+              <div className="mask-b-from-55% relative -mr-56 mt-0 overflow-hidden px-2 sm:mr-0 md:mt-20">
                 <div className="inset-shadow-2xs ring-background dark:inset-shadow-white/20 bg-background relative mx-auto max-w-5xl overflow-hidden rounded-none border p-4 shadow-lg shadow-zinc-950/15 ring-1">
                   <Media
-                    className="aspect-15/8 relative rounded-none"
-                    imgClassName="rounded-none"
+                    className="aspect-[4/5] sm:aspect-video md:aspect-15/8 relative rounded-none"
+                    imgClassName="rounded-none object-cover"
                     resource={mediaPreview}
                   />
                 </div>
