@@ -38,10 +38,18 @@ import * as migration_20260323_084613 from './20260323_084613';
 import * as migration_20260323_100000_manual_schema_fix from './20260323_100000_manual_schema_fix';
 import * as migration_20260323_200000_add_manifesto_promo from './20260323_200000_add_manifesto_promo';
 import * as migration_20260323_211500_fix_link_columns from './20260323_211500_fix_link_columns';
+import * as migration_20260323_215500_add_manifesto_promo_mobile from './20260323_215500_add_manifesto_promo_mobile';
 import * as migration_20260324_000002_add_homeslider_block from './20260324_000002_add_homeslider_block';
 import * as migration_20260324_094000_add_homeslider_overlay_fields from './20260324_094000_add_homeslider_overlay_fields';
 import * as migration_20260324_150000_add_video_grid_block from './20260324_150000_add_video_grid_block';
 import * as migration_20260325_190000_add_mobile_hero_bg_fields from './20260325_190000_add_mobile_hero_bg_fields';
+import * as migration_20260326_add_content_section_theme from './20260326_add_content_section_theme';
+import * as migration_20260326_add_mobile_images_to_content_section from './20260326_add_mobile_images_to_content_section';
+import * as migration_20260326_fix_footer_logo from './20260326_fix_footer_logo';
+import * as migration_20260327_politician_hero_schema from './20260327_politician_hero_schema';
+import * as migration_20260328_cleanup_content_section from './20260328_cleanup_content_section';
+import * as migration_20260328_final_poster_fix from './20260328_final_poster_fix';
+import * as migration_20260328_143858 from './20260328_143858';
 
 export const migrations = [
   {
@@ -245,6 +253,11 @@ export const migrations = [
     name: '20260323_211500_fix_link_columns',
   },
   {
+    up: migration_20260323_215500_add_manifesto_promo_mobile.up,
+    down: migration_20260323_215500_add_manifesto_promo_mobile.down,
+    name: '20260323_215500_add_manifesto_promo_mobile',
+  },
+  {
     up: migration_20260324_000002_add_homeslider_block.up,
     down: migration_20260324_000002_add_homeslider_block.down,
     name: '20260324_000002_add_homeslider_block',
@@ -263,5 +276,40 @@ export const migrations = [
     up: migration_20260325_190000_add_mobile_hero_bg_fields.up,
     down: migration_20260325_190000_add_mobile_hero_bg_fields.down,
     name: '20260325_190000_add_mobile_hero_bg_fields',
+  },
+  {
+    up: migration_20260326_add_content_section_theme.up,
+    down: migration_20260326_add_content_section_theme.down,
+    name: '20260326_add_content_section_theme',
+  },
+  {
+    up: migration_20260326_add_mobile_images_to_content_section.up,
+    down: migration_20260326_add_mobile_images_to_content_section.down,
+    name: '20260326_add_mobile_images_to_content_section',
+  },
+  {
+    up: migration_20260326_fix_footer_logo.up,
+    down: migration_20260326_fix_footer_logo.down,
+    name: '20260326_fix_footer_logo',
+  },
+  {
+    up: migration_20260327_politician_hero_schema.up,
+    down: migration_20260327_politician_hero_schema.down,
+    name: '20260327_politician_hero_schema',
+  },
+  {
+    up: migration_20260328_cleanup_content_section.up,
+    down: migration_20260328_cleanup_content_section.down,
+    name: '20260328_cleanup_content_section',
+  },
+  {
+    up: migration_20260328_final_poster_fix.up,
+    down: migration_20260328_final_poster_fix.down,
+    name: '20260328_final_poster_fix',
+  },
+  {
+    up: migration_20260328_143858.up,
+    down: migration_20260328_143858.down,
+    name: '20260328_143858',
   },
 ];
