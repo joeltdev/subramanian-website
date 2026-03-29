@@ -49,7 +49,7 @@
   --breakpoint-lg: 64rem;
   --breakpoint-xl: 80rem;
   --breakpoint-2xl: 86rem;
-  --font-sans: var(--font-general-sans), var(--font-anek-malayalam), var(--font-manjari), var(--font-noto-malayalam), sans-serif;
+  --font-sans: var(--font-inter), var(--font-general-sans), var(--font-anek-malayalam), var(--font-manjari), var(--font-noto-malayalam), sans-serif;
   --font-manjari-malayalam: var(--font-manjari);
   --font-malayalam: var(--font-anek-malayalam), var(--font-manjari-malayalam), var(--font-noto-malayalam), sans-serif;
   --font-mono: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
@@ -104,10 +104,10 @@
   --type-weight-light:   300;
 
   /* Typography scale — size, line-height, and (where non-zero) letter-spacing */
-  --type-size-display:       5.25rem;  --type-leading-display:       1.05;  --type-tracking-display:       -0.03em;
-  --type-size-headline-1:    3.75rem;  --type-leading-headline-1:    1.1;   --type-tracking-headline-1:    -0.025em;
-  --type-size-headline-2:    3rem;     --type-leading-headline-2:    1.15;  --type-tracking-headline-2:    -0.02em;
-  --type-size-headline-3:    2.25rem;  --type-leading-headline-3:    1.2;   --type-tracking-headline-3:    -0.015em;
+  --type-size-display:       clamp(2.75rem, 10vw, 5.25rem);  --type-leading-display:       1.05;  --type-tracking-display:       -0.03em;
+  --type-size-headline-1:    clamp(2.25rem, 8vw, 3.75rem);   --type-leading-headline-1:    1.1;   --type-tracking-headline-1:    -0.025em;
+  --type-size-headline-2:    clamp(1.875rem, 6vw, 3rem);     --type-leading-headline-2:    1.15;  --type-tracking-headline-2:    -0.02em;
+  --type-size-headline-3:    clamp(1.5rem, 5vw, 2.25rem);    --type-leading-headline-3:    1.2;   --type-tracking-headline-3:    -0.015em;
   --type-size-headline-4:    1.875rem; --type-leading-headline-4:    1.25;  --type-tracking-headline-4:    -0.01em;
   --type-size-title-xl:      1.75rem;   --type-leading-title-xl:      1.3;   --type-tracking-title-xl:      -0.005em;
   --type-size-title-lg:      1.25rem;  --type-leading-title-lg:      1.35;
@@ -124,7 +124,7 @@
   --type-size-caption:       0.75rem;  --type-leading-caption:       1.5;
   --type-size-quote:         1.25rem;  --type-leading-quote:         1.65;
   --type-size-quote-sm:      1rem;     --type-leading-quote-sm:      1.6;
-  --type-size-page-title:    3.75rem;  --type-leading-page-title:    1.1;   --type-tracking-page-title:    -0.025em;
+  --type-size-page-title:    clamp(2.25rem, 8vw, 3.75rem);  --type-leading-page-title:    1.1;   --type-tracking-page-title:    -0.025em;
   --type-size-stat:          4.5rem;   --type-leading-stat:          1;     --type-tracking-stat:          -0.04em;
   --type-size-stat-xl:       6rem;     --type-leading-stat-xl:       1;     --type-tracking-stat-xl:       -0.04em;
 }

@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import Link from 'next/link'
 import { ChevronLeft, ChevronRight, Menu } from 'lucide-react'
 
 import type { Header } from '@/payload-types'
@@ -34,14 +33,14 @@ function MobileNavItem({
         </span>
       )}
       {links && links.length > 0 && (
-        <ul className="mt-1 flex flex-col gap-1.5">
+        <ul className="mt-1 flex flex-col gap-2">
           {links.map((item, i) => (
             <li key={i}>
               <CMSLink
                 {...item.link}
                 appearance="inline"
                 onClick={onClose}
-                className="type-body-sm"
+                className="type-body-md"
               />
             </li>
           ))}
@@ -93,7 +92,7 @@ export function MobileNav({ data }: { data: Header }) {
                         {...tab.link}
                         appearance="inline"
                         onClick={() => setOpen(false)}
-                        className="flex items-center px-3 py-3 type-body-md rounded-none hover:bg-accent transition-colors"
+                        className="flex items-center px-4 py-4 type-body-lg rounded-none hover:bg-accent transition-colors"
                       />
                     )
                   }
@@ -102,7 +101,7 @@ export function MobileNav({ data }: { data: Header }) {
                     return (
                       <button
                         key={i}
-                        className="flex items-center justify-between px-3 py-3 type-body-md rounded-none hover:bg-accent transition-colors w-full text-left"
+                        className="flex items-center justify-between px-4 py-4 type-body-lg rounded-none hover:bg-accent transition-colors w-full text-left"
                         onClick={() => setActiveTab(i)}
                       >
                         {tab.label}
@@ -112,7 +111,7 @@ export function MobileNav({ data }: { data: Header }) {
                   }
 
                   return (
-                    <span key={i} className="px-3 py-3 type-body-md">
+                    <span key={i} className="px-4 py-4 type-body-lg">
                       {tab.label}
                     </span>
                   )
@@ -136,7 +135,7 @@ export function MobileNav({ data }: { data: Header }) {
             <div className="flex flex-col flex-1 overflow-y-auto">
               <div className="px-4 pt-8 pb-4">
                 <button
-                  className="flex items-center gap-1 type-body-sm text-muted-foreground hover:text-primary transition-colors mb-4"
+                  className="flex items-center gap-1 type-body-md text-muted-foreground hover:text-primary transition-colors mb-4"
                   onClick={() => setActiveTab(null)}
                 >
                   <ChevronLeft className="h-4 w-4" />
@@ -148,20 +147,20 @@ export function MobileNav({ data }: { data: Header }) {
                     <h2 className="type-title-lg">{activeTabData.label}</h2>
 
                     {activeTabData.description && (
-                      <p className="mt-1 type-body-sm text-muted-foreground">
+                      <p className="mt-1 type-body-md text-muted-foreground">
                         {activeTabData.description}
                       </p>
                     )}
 
                     {activeTabData.descriptionLinks && activeTabData.descriptionLinks.length > 0 && (
-                      <div className="mt-3 flex flex-wrap gap-3 border-b pb-4">
+                      <div className="mt-3 flex flex-wrap gap-4 border-b pb-4">
                         {activeTabData.descriptionLinks.map((dl, i) => (
                           <CMSLink
                             key={i}
                             {...dl.link}
                             appearance="inline"
                             onClick={() => setOpen(false)}
-                            className="type-body-sm hover:text-primary transition-colors"
+                            className="type-body-md hover:text-primary transition-colors"
                           />
                         ))}
                       </div>

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-import { Anek_Malayalam, Manjari, Noto_Sans_Malayalam } from 'next/font/google'
+import { Anek_Malayalam, Inter, Manjari, Noto_Sans_Malayalam } from 'next/font/google'
 import { cn } from '@/utilities/ui'
 import localFont from 'next/font/local'
 import React from 'react'
@@ -16,6 +16,12 @@ import { draftMode } from 'next/headers'
 
 import './globals.css'
 import { getServerSideURL } from '@/utilities/getURL'
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+})
 
 const generalSans = localFont({
   src: [
@@ -58,7 +64,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const { isEnabled } = await draftMode()
 
   return (
-    <html className={cn(generalSans.variable, anekMalayalam.variable, notoMalayalam.variable, manjari.variable)} lang="en" suppressHydrationWarning>
+    <html className={cn(inter.variable, generalSans.variable, anekMalayalam.variable, notoMalayalam.variable, manjari.variable)} lang="en" suppressHydrationWarning>
       <head>
         <InitTheme />
         <ThemeInjector />
