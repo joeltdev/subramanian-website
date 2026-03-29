@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight, Menu } from 'lucide-react'
 
 import type { Header } from '@/payload-types'
 import { CMSLink } from '@/components/Link'
+import { cn } from '@/utilities/ui'
 import {
   Sheet,
   SheetContent,
@@ -125,7 +126,12 @@ export function MobileNav({ data }: { data: Header }) {
                     {...menuCta}
                     appearance={menuCta.appearance ?? 'default'}
                     onClick={() => setOpen(false)}
-                    className="w-full justify-center"
+                    className={cn(
+                      "w-full justify-center transition-all duration-300",
+                      menuCta.label?.toUpperCase().includes('MANIFESTO')
+                        ? "bg-tharoor-orange text-white hover:bg-tharoor-orange/90 font-bold uppercase tracking-widest text-xs rounded-full py-4 h-auto shadow-md"
+                        : ""
+                    )}
                   />
                 </div>
               )}
@@ -188,7 +194,12 @@ export function MobileNav({ data }: { data: Header }) {
                     {...menuCta}
                     appearance={menuCta.appearance ?? 'default'}
                     onClick={() => setOpen(false)}
-                    className="w-full justify-center"
+                    className={cn(
+                      "w-full justify-center transition-all duration-300",
+                      menuCta.label?.toUpperCase().includes('MANIFESTO')
+                        ? "bg-tharoor-orange text-white hover:bg-tharoor-orange/90 font-bold uppercase tracking-widest text-xs rounded-full py-4 h-auto shadow-md"
+                        : ""
+                    )}
                   />
                 </div>
               )}

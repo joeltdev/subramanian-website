@@ -131,7 +131,12 @@ export function DesktopNav({ data }: { data: Header }) {
         <CMSLink
           {...menuCta}
           appearance={menuCta.appearance ?? 'default'}
-          className="ml-8 font-sans font-medium tracking-wide text-sm"
+          className={cn(
+            'ml-8 font-sans font-bold tracking-widest text-xs uppercase rounded-full px-6 transition-all duration-300',
+            menuCta.label?.toUpperCase().includes('MANIFESTO') 
+              ? 'bg-tharoor-orange text-white hover:bg-tharoor-orange/90 shadow-lg hover:shadow-tharoor-orange/20 hover:-translate-y-0.5' 
+              : ''
+          )}
         />
       ) : null}
 
