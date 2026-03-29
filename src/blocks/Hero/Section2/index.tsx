@@ -176,7 +176,7 @@ export const Section2Hero: React.FC<Section2HeroType> = ({
                     data={richText}
                     enableGutter={false}
                     converters={heroConverters}
-                    className={`text-balance [&_h1]:m-0 [&_h2]:m-0 [&_p]:mt-10 [&_p]:max-w-2xl [&_p]:type-body-xl [&_p]:text-foreground [&_p]:leading-relaxed [&_p]:drop-shadow-sm ${isMalayalam ? 'font-malayalam' : ''}`}
+                    className={`text-balance [&_h1]:m-0 [&_h2]:m-0 [&_p]:mt-10 [&_p]:max-w-2xl [&_p]:type-body-lg md:[&_p]:type-body-xl [&_p]:text-foreground [&_p]:leading-relaxed [&_p]:drop-shadow-sm ${isMalayalam ? 'font-malayalam' : ''}`}
                   />
                 </AnimatedGroup>
               )}
