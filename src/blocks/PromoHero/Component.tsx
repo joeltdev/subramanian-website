@@ -47,7 +47,7 @@ export const PromoHeroBlock: React.FC<T> = ({ intro, links }) => {
                       group flex-1 justify-center rounded-full uppercase font-bold tracking-widest transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-1 active:scale-[0.98] border-none bg-brand-100 text-brand-700 hover:bg-brand-500 hover:text-white
                       
                       /* Mobile: Medium Height, Larger Font */
-                      w-full h-[60px] px-8 type-title-md
+                      w-full h-[48px] px-8 type-title-md
                       
                       /* Tablet (md): Refined Height */
                       md:h-[56px] md:min-w-[220px]

@@ -91,8 +91,8 @@ export const Section1Hero: React.FC<Section1HeroType> = ({
                     <CMSLink
                       key={i}
                       {...link}
-                      size="lg"
-                      className="group shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 active:scale-[0.98]"
+                      size="default"
+                      className="group shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 active:scale-[0.98] md:size-lg max-md:bg-brand-100 max-md:text-brand-700 max-md:hover:bg-brand-500 max-md:hover:text-white max-md:border-none"
                     >
                       <ArrowRight className="transition-transform group-hover:translate-x-1.5" />
                     </CMSLink>

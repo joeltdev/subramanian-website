@@ -193,7 +193,7 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
                       key={i}
                       {...link}
                       size="lg"
-                      className="group flex justify-center rounded-full border border-brand-500 bg-transparent text-brand-600 uppercase font-bold tracking-widest transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-1 active:scale-[0.98] hover:bg-brand-50 w-full h-[56px] md:h-[52px] md:min-w-[260px] items-center px-8 type-title-md md:type-title-sm"
+                      className="group flex justify-center rounded-full border border-brand-500 bg-brand-100 md:bg-transparent text-brand-600 uppercase font-bold tracking-widest transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-1 active:scale-[0.98] hover:bg-brand-50 w-full h-[48px] md:h-[52px] md:min-w-[260px] items-center px-8 type-title-md md:type-title-sm border-none md:border-solid"
                     >
                       <ArrowRight className="transition-transform group-hover:translate-x-1.5 shrink-0 ml-3 size-4 md:size-5" />
                     </CMSLink>
