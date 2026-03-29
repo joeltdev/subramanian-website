@@ -72,9 +72,9 @@ export function MobileNav({ data }: { data: Header }) {
         <SheetTrigger asChild>
           <button
             aria-label="Open navigation menu"
-            className="p-2 rounded-none hover:bg-accent transition-colors"
+            className="p-2 rounded-none hover:bg-white/10 transition-colors"
           >
-            <Menu className="h-5 w-5" />
+            <Menu className="h-5 w-5 text-white" />
           </button>
         </SheetTrigger>
         <SheetContent side="right" className="w-80 flex flex-col p-0">
@@ -129,7 +129,7 @@ export function MobileNav({ data }: { data: Header }) {
                     className={cn(
                       "w-full justify-center transition-all duration-300",
                       menuCta.label?.toUpperCase().includes('MANIFESTO')
-                        ? "bg-tharoor-orange text-white hover:bg-tharoor-orange/90 font-bold uppercase tracking-widest text-xs rounded-full py-4 h-auto shadow-md"
+                        ? "bg-inels-blue text-white hover:bg-inels-blue/90 font-bold uppercase tracking-widest text-xs rounded-full py-4 h-auto shadow-md"
                         : ""
                     )}
                   />
@@ -197,7 +197,7 @@ export function MobileNav({ data }: { data: Header }) {
                     className={cn(
                       "w-full justify-center transition-all duration-300",
                       menuCta.label?.toUpperCase().includes('MANIFESTO')
-                        ? "bg-tharoor-orange text-white hover:bg-tharoor-orange/90 font-bold uppercase tracking-widest text-xs rounded-full py-4 h-auto shadow-md"
+                        ? "bg-inels-blue text-white hover:bg-inels-blue/90 font-bold uppercase tracking-widest text-xs rounded-full py-4 h-auto shadow-md"
                         : ""
                     )}
                   />
