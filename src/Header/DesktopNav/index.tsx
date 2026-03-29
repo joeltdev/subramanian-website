@@ -27,10 +27,10 @@ function NavItemContent({
           </span>
         )}
         {links && links.length > 0 && (
-          <ul className="mt-2 flex flex-col gap-2">
+          <ul className="mt-2 flex flex-col gap-1.5">
             {links.map((item, i) => (
               <li key={i} className="translate-x-0 hover:translate-x-1.5 transition-transform duration-200">
-                <CMSLink {...item.link} appearance="inline" onClick={onLinkClick} className="type-body-lg font-medium text-foreground hover:text-primary transition-colors duration-200" />
+                <CMSLink {...item.link} appearance="inline" onClick={onLinkClick} className="type-body-md font-medium text-foreground hover:text-primary transition-colors duration-200" />
               </li>
             ))}
           </ul>
@@ -63,8 +63,8 @@ export function DesktopNav({ data }: { data: Header }) {
   const activeTabData = activeTab !== null ? tabs[activeTab] : null
 
   return (
-    <div className="hidden md:flex items-center gap-2">
-      <nav className="flex items-center gap-2">
+    <div className="hidden md:flex items-center gap-1">
+      <nav className="flex items-center gap-1">
         {tabs.map((tab, i) => {
           const hasDropdown = tab.enableDropdown
           const isActive = activeTab === i
@@ -77,7 +77,7 @@ export function DesktopNav({ data }: { data: Header }) {
                 {...tab.link}
                 appearance="inline"
                 className={cn(
-                  'relative px-5 py-3 type-body-lg font-medium transition-colors duration-200',
+                  'relative px-4 py-2.5 type-body-md font-medium transition-colors duration-200',
                   'text-foreground hover:text-brand-600 hover:bg-muted rounded-xl',
                 )}
               />
@@ -100,7 +100,7 @@ export function DesktopNav({ data }: { data: Header }) {
             >
               <button
                 className={cn(
-                  'relative flex items-center gap-2 px-5 py-3 text-lg font-medium tracking-wide transition-all duration-200 hover:text-brand-600 hover:bg-muted/50 rounded-md',
+                  'relative flex items-center gap-1.5 px-4 py-2 text-base font-medium tracking-wide transition-all duration-200 hover:text-brand-600 hover:bg-muted/50 rounded-md',
                   isActive ? 'text-primary' : 'text-foreground',
                 )}
               >
@@ -131,7 +131,7 @@ export function DesktopNav({ data }: { data: Header }) {
         <CMSLink
           {...menuCta}
           appearance={menuCta.appearance ?? 'default'}
-          className="ml-10 font-sans font-medium tracking-wide text-base"
+          className="ml-8 font-sans font-medium tracking-wide text-sm"
         />
       ) : null}
 
