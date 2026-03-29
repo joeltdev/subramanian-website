@@ -48,13 +48,13 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
                 loading="eager"
                 fetchPriority="high"
                 decoding="async"
-                className="max-h-10 w-auto transition-all brightness-0 invert"
+                className="max-h-8 md:max-h-10 w-auto transition-all brightness-0 invert"
               />
             ) : (
               <Logo
                 loading="eager"
                 priority="high"
-                className="transition-all brightness-0 invert"
+                className="max-h-8 md:max-h-10 transition-all brightness-0 invert"
               />
             )}
           </Link>
