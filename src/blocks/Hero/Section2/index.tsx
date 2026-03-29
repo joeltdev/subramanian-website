@@ -72,15 +72,15 @@ export const Section2Hero: React.FC<Section2HeroType> = ({
           const secondLine = text.substring(firstSpaceIndex).trim()
 
           return (
-        <h1 className={`m-0 font-bold drop-shadow-md flex flex-col items-start gap-1 leading-none ${malayalamHeading ? 'font-malayalam' : ''}`}>
-  <span className="text-5xl md:text-7xl text-foreground/90">{firstLine}</span>
-  <span className="text-5xl md:text-7xl text-foreground">{secondLine}</span>
+        <h1 className={`m-0 font-bold drop-shadow-md flex flex-col items-start gap-1 leading-none break-words ${malayalamHeading ? 'font-malayalam' : ''}`}>
+  <span className="type-headline-2 text-foreground/90">{firstLine}</span>
+  <span className="type-headline-2 text-foreground">{secondLine}</span>
 </h1>
           )
         }
 
         return (
-          <h1 className={`m-0 type-headline-4 md:type-headline-1 font-bold drop-shadow-md ${malayalamHeading ? 'font-malayalam' : ''}`}>
+          <h1 className={`m-0 type-headline-4 md:type-headline-1 font-bold drop-shadow-md break-words ${malayalamHeading ? 'font-malayalam' : ''}`}>
             {text}
           </h1>
         )
@@ -176,7 +176,7 @@ export const Section2Hero: React.FC<Section2HeroType> = ({
                     data={richText}
                     enableGutter={false}
                     converters={heroConverters}
-                    className={`text-balance [&_h1]:m-0 [&_h2]:m-0 [&_p]:mt-10 [&_p]:max-w-2xl [&_p]:type-body-lg md:[&_p]:type-body-xl [&_p]:text-foreground [&_p]:leading-relaxed [&_p]:drop-shadow-sm ${isMalayalam ? 'font-malayalam' : ''}`}
+                    className={`text-balance [&_h1]:m-0 [&_h2]:m-0 [&_p]:mt-10 [&_p]:max-w-2xl [&_p]:type-body-lg md:[&_p]:type-body-xl [&_p]:text-foreground [&_p]:leading-relaxed [&_p]:drop-shadow-sm [&_h1]:break-words [&_h2]:break-words ${isMalayalam ? 'font-malayalam' : ''}`}
                   />
                 </AnimatedGroup>
               )}

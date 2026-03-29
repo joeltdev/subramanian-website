@@ -47,7 +47,7 @@ export const Section1Hero: React.FC<Section1HeroType> = ({
             className="absolute inset-0 -z-10 size-full [background:radial-gradient(125%_125%_at_50%_100%,transparent_0%,var(--color-background)_75%)]"
           />
 
-          <div className="mx-auto max-w-7xl px-4 md:px-8 w-full order-2 md:order-1 relative z-10 -mt-24 md:mt-0">
+          <div className="mx-auto max-w-7xl px-6 md:px-8 w-full order-2 md:order-1 relative z-10 -mt-24 md:mt-0">
             <div className="bg-background md:bg-transparent p-6 sm:p-8 md:p-0 shadow-2xl shadow-zinc-950/20 md:shadow-none border border-border/50 md:border-transparent text-center sm:mx-auto lg:mr-auto lg:mt-0 relative">
               {/* Badge */}
               {badgeLabel && (
@@ -70,7 +70,7 @@ export const Section1Hero: React.FC<Section1HeroType> = ({
                   <RichText
                     data={richText}
                     enableGutter={false}
-                    className="text-balance [&_h1]:type-display [&_p]:mt-4 [&_p]:max-w-2xl [&_p]:mx-auto [&_p]:type-body-lg md:[&_p]:type-body-xl"
+                    className="text-balance [&_h1]:type-display [&_h1]:break-words [&_p]:mt-4 [&_p]:max-w-2xl [&_p]:mx-auto [&_p]:type-body-lg md:[&_p]:type-body-xl"
                   />
                 </AnimatedGroup>
               )}

@@ -140,7 +140,7 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
           <div className="absolute inset-0 bg-linear-to-t from-slate-50 via-slate-50/40 to-transparent pointer-events-none" aria-hidden />
 
           {/* Title Positioned at the bottom-left of the image container */}
-          <div className="absolute bottom-0 left-0 w-full px-4 sm:px-6 md:px-8 pb-4 md:pb-8">
+          <div className="absolute bottom-0 left-0 w-full px-6 md:px-8 pb-4 md:pb-8">
             <div className="max-w-7xl mx-auto w-full flex flex-col items-start text-left">
               {badgeLabel && (
                 <AnimatedGroup variants={transitionVariants}>
@@ -158,7 +158,7 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
                     data={richText}
                     enableGutter={false}
                     converters={heroConverters}
-                    className={`text-left text-balance [&_p]:hidden [&_h1_*]:!text-brand-600 [&_h1]:!drop-shadow-sm [&_h2]:type-display [&_h2]:!text-brand-600 [&_h2]:mb-0 ${isMalayalamContent ? 'font-malayalam' : ''}`}
+                    className={`text-left text-balance [&_p]:hidden [&_h1_*]:!text-brand-600 [&_h1]:!drop-shadow-sm [&_h2]:type-display [&_h2]:!text-brand-600 [&_h2]:mb-0 [&_h1]:break-words [&_h2]:break-words ${isMalayalamContent ? 'font-malayalam' : ''}`}
                   />
                 </AnimatedGroup>
               )}
@@ -167,7 +167,7 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
         </div>
 
         {/* === SECTION 2: DESCRIPTION AND CTA CONTENT === */}
-        <div className="w-full px-4 sm:px-6 md:px-8 bg-slate-50 pt-6 pb-16 md:py-12">
+        <div className="w-full px-6 md:px-8 bg-slate-50 pt-6 pb-16 md:py-12">
           <div className="max-w-7xl mx-auto w-full flex flex-col items-start text-left">
             {richText && (
               <AnimatedGroup variants={transitionVariants} className="w-full">
@@ -175,7 +175,7 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
                   data={richText}
                   enableGutter={false}
                   converters={heroConverters}
-                  className={`text-left [&_h1]:hidden [&_h2]:hidden [&_p]:mt-0 [&_p]:max-w-4xl [&_p]:mx-0 [&_p]:type-body-lg md:[&_p]:type-body-xl [&_p]:font-medium [&_p]:!text-slate-800 [&_p]:leading-relaxed [&_p]:!drop-shadow-none ${isMalayalamContent ? 'font-malayalam' : ''}`}
+                  className={`text-left [&_h1]:hidden [&_h2]:hidden [&_p]:mt-0 [&_p]:max-w-4xl [&_p]:mx-0 [&_p]:type-body-lg md:[&_p]:type-body-xl [&_p]:font-medium [&_p]:!text-slate-800 [&_p]:leading-relaxed [&_p]:!drop-shadow-none [&_p]:break-words ${isMalayalamContent ? 'font-malayalam' : ''}`}
                 />
               </AnimatedGroup>
             )}
