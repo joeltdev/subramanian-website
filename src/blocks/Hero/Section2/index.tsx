@@ -101,7 +101,7 @@ export const Section2Hero: React.FC<Section2HeroType> = ({
       </div>
 
       <section>
-        <div className={`relative py-24 ${hasBgMedia ? 'min-h-[85svh] flex flex-col justify-end md:justify-center pb-20 md:pb-24' : ''}`}>
+        <div className={`relative py-24 ${hasBgMedia ? 'min-h-[100svh] flex flex-col justify-end md:justify-center pb-20 md:pb-24' : ''}`}>
           {/* Background media */}
           <>
             {/* Desktop Video */}
