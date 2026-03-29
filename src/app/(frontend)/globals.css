@@ -54,6 +54,7 @@
   --font-malayalam: var(--font-anek-malayalam), var(--font-manjari-malayalam), var(--font-noto-malayalam), sans-serif;
   --font-mono: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
   /* Brand palette (iNELS Azure) */
+  --color-inels-blue: #0160b8;
   --color-brand-50:  oklch(97.7% 0.013 236.62deg);
   --color-brand-100: oklch(95.1% 0.026 236.62deg);
   --color-brand-200: oklch(90.1% 0.05  237deg);
@@ -280,7 +281,7 @@
 }
 
 [data-section-theme='brand'] {
-  --background: var(--color-brand-600);
+  --background: var(--color-inels-blue);
   --foreground: var(--color-stone-50);
   --card: var(--color-brand-700);
   --card-foreground: var(--color-stone-50);

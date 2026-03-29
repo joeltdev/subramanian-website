@@ -32,8 +32,9 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
 
   return (
     <header
-      className="sticky top-0 z-50 w-full border-b border-border/60 bg-white/95 backdrop-blur-md"
-      style={{ '--header-height': '80px' } as React.CSSProperties}
+      className="sticky top-0 z-50 w-full border-b border-white/10 bg-background"
+      data-section-theme="brand"
+      style={{ '--header-height': '72px' } as React.CSSProperties}
     >
       <div className="mx-auto w-full max-w-7xl px-6">
         <div className="py-4 flex items-center justify-between">
@@ -47,13 +48,13 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
                 loading="eager"
                 fetchPriority="high"
                 decoding="async"
-                className="max-h-10 w-auto transition-all"
+                className="max-h-10 w-auto transition-all brightness-0 invert"
               />
             ) : (
               <Logo
                 loading="eager"
                 priority="high"
-                className="transition-all"
+                className="transition-all brightness-0 invert"
               />
             )}
           </Link>

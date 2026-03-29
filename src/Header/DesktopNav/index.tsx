@@ -78,7 +78,7 @@ export function DesktopNav({ data }: { data: Header }) {
                 appearance="inline"
                 className={cn(
                   'relative px-4 py-2.5 type-body-md font-medium transition-colors duration-200',
-                  'text-foreground hover:text-brand-600 hover:bg-muted rounded-xl',
+                  'text-foreground hover:text-white hover:bg-muted rounded-xl',
                 )}
               />
             )
@@ -100,8 +100,8 @@ export function DesktopNav({ data }: { data: Header }) {
             >
               <button
                 className={cn(
-                  'relative flex items-center gap-1.5 px-4 py-2 text-base font-medium tracking-wide transition-all duration-200 hover:text-brand-600 hover:bg-muted/50 rounded-md',
-                  isActive ? 'text-primary' : 'text-foreground',
+                  'relative flex items-center gap-1.5 px-4 py-2 text-base font-medium tracking-wide transition-all duration-200 hover:text-white hover:bg-muted/50 rounded-md',
+                  isActive ? 'text-white' : 'text-foreground',
                 )}
               >
                 {tab.enableDirectLink && tab.link ? (
