@@ -12,11 +12,26 @@ import RichText from '@/components/RichText'
 export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro, variant = 'grid' }) => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
   const [direction, setDirection] = useState(0)
+  const [isExpanded, setIsExpanded] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   const galleryImages = useMemo(() => 
     images?.filter((img): img is MediaType => typeof img === 'object') || [],
     [images]
   )
+
+  const limit = isMobile ? 9 : 16
+  const hasMore = galleryImages.length > limit
+  const visibleImages = isExpanded ? galleryImages : galleryImages.slice(0, limit)
 
   const isMasonry = variant === 'masonry'
 
@@ -87,7 +102,7 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro, variant
 
       {isMasonry ? (
         <div className="columns-3 lg:columns-4 gap-6 space-y-6">
-          {galleryImages.map((image, index) => (
+          {visibleImages.map((image, index) => (
             <motion.div
               key={image.id}
               initial={{ opacity: 0, y: 20 }}
@@ -96,8 +111,9 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro, variant
               transition={{ delay: index * 0.05 }}
               className="break-inside-avoid group relative cursor-zoom-in overflow-hidden bg-muted shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1 hover:shadow-brand-500/10"
               onClick={() => {
+                const originalIndex = galleryImages.findIndex(img => img.id === image.id)
                 setDirection(0)
-                setSelectedIndex(index)
+                setSelectedIndex(originalIndex)
               }}
             >
               <Media
@@ -111,7 +127,7 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro, variant
         </div>
       ) : (
         <div className="grid grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-          {galleryImages.map((image, index) => (
+          {visibleImages.map((image, index) => (
             <motion.div
               key={image.id}
               initial={{ opacity: 0, y: 20 }}
@@ -120,8 +136,9 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro, variant
               transition={{ delay: index * 0.05 }}
               className="group relative aspect-square cursor-zoom-in overflow-hidden bg-muted"
               onClick={() => {
+                const originalIndex = galleryImages.findIndex(img => img.id === image.id)
                 setDirection(0)
-                setSelectedIndex(index)
+                setSelectedIndex(originalIndex)
               }}
             >
               <Media
@@ -132,6 +149,17 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro, variant
               <div className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/10" />
             </motion.div>
           ))}
+        </div>
+      )}
+
+      {hasMore && (
+        <div className="mt-12 flex justify-center">
+          <button
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="px-8 py-4 bg-muted hover:bg-muted/80 text-type-heading font-bold transition-all active:scale-95"
+          >
+            {isExpanded ? 'Show less' : `Show all images (+${galleryImages.length - limit})`}
+          </button>
         </div>
       )}
 
