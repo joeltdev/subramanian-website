@@ -78,7 +78,7 @@ export const HomeSliderBlockComponent: React.FC<HomeSliderBlock> = ({ intro_n_a,
                   {/* Content Card */}
                   <div className="absolute inset-x-0 bottom-0 z-20 p-6 flex flex-col justify-end h-full">
                     <div className="bg-white/5 backdrop-blur-md border border-white/10 p-6 transition-all duration-500">
-                      <span className="text-[10px] md:type-headline-1 text-white/60 block mb-3 tracking-[0.2em] uppercase font-bold">
+                      <span className="text-xl md:type-headline-1 text-white block mb-4 tracking-tight font-bold">
                         {item.tabLabel}
                       </span>
                       <p className={cn(
