@@ -193,9 +193,9 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
                       key={i}
                       {...link}
                       size="lg"
-                      className="group flex justify-center rounded-full bg-brand-600 text-white uppercase font-bold tracking-widest transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-1 active:scale-[0.98] hover:bg-brand-700 w-full h-[48px] md:h-[60px] md:min-w-[300px] items-center px-8 type-title-md md:type-title-lg"
+                      className="group flex justify-center rounded-full bg-brand-600 text-white uppercase font-bold tracking-widest transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-1 active:scale-[0.98] hover:bg-brand-700 w-full h-[60px] md:h-[60px] md:min-w-[300px] items-center px-8 type-title-md md:type-title-lg"
                     >
-                      <ArrowRight className="transition-transform group-hover:translate-x-1.5 shrink-0 ml-3 size-4 md:size-5" />
+                      <ArrowRight className="transition-transform group-hover:translate-x-1.5 shrink-0 ml-3 size-4 md:size-7 md:animate-arrow-right" />
                     </CMSLink>
                   ))}
                 </div>

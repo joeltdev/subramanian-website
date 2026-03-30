@@ -550,3 +550,16 @@ html[data-theme='light'] {
 @utility font-malayalam {
   font-family: var(--font-malayalam);
 }
+
+@keyframes arrow-right {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(6px);
+  }
+}
+
+@utility animate-arrow-right {
+  animation: arrow-right 1.5s ease-in-out infinite;
+}
