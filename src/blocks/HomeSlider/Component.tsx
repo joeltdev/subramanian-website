@@ -75,13 +75,10 @@ export const HomeSliderBlockComponent: React.FC<HomeSliderBlock> = ({ intro_n_a,
                 {/* Content Card */}
                 <div className="absolute inset-x-0 bottom-0 z-20 p-8 flex flex-col justify-end h-full">
                   <div className="bg-white/5 backdrop-blur-md border border-white/10 p-6 md:p-8 translate-y-0">
-                    <span className="type-headline-1 text-white/60 block mb-2 tracking-widest uppercase">
+                    <span className="type-headline-1 text-white/60 block mb-4 tracking-widest uppercase">
                       {item.tabLabel}
                     </span>
-                    <h3 className="text-white text-2xl font-bold mb-3 tracking-tight">
-                      {item.title}
-                    </h3>
-                    <p className="text-white/80 type-body-md line-clamp-3">
+                    <p className="text-white/80 type-body-md line-clamp-4">
                       {item.description}
                     </p>
                   </div>
@@ -154,13 +151,10 @@ export const HomeSliderBlockComponent: React.FC<HomeSliderBlock> = ({ intro_n_a,
                       transition={{ duration: 0.5, ease: "easeOut" }}
                       className="max-w-md bg-white/5 backdrop-blur-xl border border-white/10 p-8"
                     >
-                      <span className="type-headline-1 text-white/60 block mb-4 tracking-widest uppercase">
+                      <span className="type-headline-1 text-white/60 block mb-6 tracking-widest uppercase">
                         {item.tabLabel}
                       </span>
-                      <h3 className="text-white type-display-sm mb-6 leading-tight">
-                        {item.title}
-                      </h3>
-                      <p className="text-white/80 type-body-lg mb-8 line-clamp-4">
+                      <p className="text-white/80 type-body-lg mb-8 line-clamp-6">
                         {item.description}
                       </p>
                       <div className="flex items-center gap-3 text-white group/btn">
