@@ -14,12 +14,12 @@ export const OverlayFeaturesContentSection: React.FC<ContentSectionBlock> = (pro
         
         {/* 1. Header Section - Left on mobile, Centered on Desktop */}
         {intro && (
-          <div className="mb-16 md:mb-20 text-left md:text-center flex flex-col items-start md:items-center">
-            <div className="max-w-3xl">
+          <div className="mb-16 md:mb-20 text-left md:text-center flex flex-col items-start md:items-center w-full">
+            <div className="max-w-3xl w-full">
               <RichText
                 data={intro}
                 enableGutter={false}
-                className="[&_h2]:text-xl md:[&_h2]:type-display-lg [&_h2]:text-black [&_h2]:tracking-tight [&_h2]:whitespace-nowrap md:[&_h2]:whitespace-normal [&_h3]:type-headline-1 [&_h3]:text-black [&_h3]:tracking-widest [&_h3]:uppercase [&_h3]:mb-4 [&_p]:type-title-md [&_p]:text-zinc-600 [&_p]:max-w-2xl [&_p]:mt-6"
+                className="[&_h2]:!text-lg md:[&_h2]:type-display-lg [&_h2]:text-black [&_h2]:tracking-tight [&_h2]:!whitespace-nowrap md:[&_h2]:!whitespace-normal [&_h3]:type-headline-1 [&_h3]:text-black [&_h3]:tracking-widest [&_h3]:uppercase [&_h3]:mb-4 [&_p]:type-title-md [&_p]:text-zinc-600 [&_p]:max-w-2xl [&_p]:mt-6"
               />
             </div>
           </div>
