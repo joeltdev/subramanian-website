@@ -10,6 +10,7 @@ import { ArrowRight } from 'lucide-react'
 
 export const HomeSliderBlockComponent: React.FC<HomeSliderBlock> = ({ intro_n_a, items }) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+  const [expandedMobileIndex, setExpandedMobileIndex] = useState<number | null>(null)
   const [isMobile, setIsMobile] = useState(false)
   const scrollRef = useRef<HTMLDivElement>(null)
 
@@ -46,45 +47,59 @@ export const HomeSliderBlockComponent: React.FC<HomeSliderBlock> = ({ intro_n_a,
             ref={scrollRef}
             className="flex flex-col gap-6"
           >
-            {items.map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                className="relative aspect-[4/5] w-full overflow-hidden bg-muted rounded-none group"
-              >
-                {/* Background Image */}
-                {item.image && typeof item.image !== 'string' && (
-                  <Media
-                    resource={item.image}
-                    fill
-                    className="w-full h-full"
-                    imgClassName="object-cover transition-transform duration-1000 group-hover:scale-110"
-                  />
-                )}
-                
-                {/* Dynamic Overlay */}
-                <div 
-                  className={cn(
-                    "absolute inset-0 z-10 bg-linear-to-t from-black/90 via-black/20 to-transparent",
-                    item.overlayColor === 'brand' ? "from-brand-950/90" : "from-black/90"
+            {items.map((item, index) => {
+              const isExpanded = expandedMobileIndex === index
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  className="relative aspect-[4/5] w-full overflow-hidden bg-muted rounded-none group"
+                >
+                  {/* Background Image */}
+                  {item.image && typeof item.image !== 'string' && (
+                    <Media
+                      resource={item.image}
+                      fill
+                      className="w-full h-full"
+                      imgClassName="object-cover transition-transform duration-1000 group-hover:scale-110"
+                    />
                   )}
-                />
+                  
+                  {/* Dynamic Overlay */}
+                  <div 
+                    className={cn(
+                      "absolute inset-0 z-10 bg-linear-to-t from-black/95 via-black/40 to-transparent",
+                      item.overlayColor === 'brand' ? "from-brand-950/95" : "from-black/95"
+                    )}
+                  />
 
-                {/* Content Card */}
-                <div className="absolute inset-x-0 bottom-0 z-20 p-8 flex flex-col justify-end h-full">
-                  <div className="bg-white/5 backdrop-blur-md border border-white/10 p-6 md:p-8 translate-y-0">
-                    <span className="type-headline-1 text-white/60 block mb-4 tracking-widest uppercase">
-                      {item.tabLabel}
-                    </span>
-                    <p className="text-white/80 type-body-md line-clamp-4">
-                      {item.description}
-                    </p>
+                  {/* Content Card */}
+                  <div className="absolute inset-x-0 bottom-0 z-20 p-6 flex flex-col justify-end h-full">
+                    <div className="bg-white/5 backdrop-blur-md border border-white/10 p-6 transition-all duration-500">
+                      <span className="text-[10px] md:type-headline-1 text-white/60 block mb-3 tracking-[0.2em] uppercase font-bold">
+                        {item.tabLabel}
+                      </span>
+                      <p className={cn(
+                        "text-white/80 type-body-md transition-all duration-500",
+                        isExpanded ? "line-clamp-none" : "line-clamp-3"
+                      )}>
+                        {item.description}
+                      </p>
+                      {item.description && item.description.length > 100 && (
+                        <button 
+                          onClick={() => setExpandedMobileIndex(isExpanded ? null : index)}
+                          className="mt-4 text-white text-[11px] uppercase tracking-widest font-bold underline underline-offset-4 decoration-white/30 hover:decoration-white transition-all"
+                        >
+                          {isExpanded ? 'Read Less' : 'Read More'}
+                        </button>
+                      )}
+                    </div>
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              )
+            })}
           </div>
         ) : (
           /* Desktop Experience: Expanding Triptych */
