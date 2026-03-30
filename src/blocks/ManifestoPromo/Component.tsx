@@ -115,21 +115,21 @@ export const ManifestoPromoBlock: React.FC<ManifestoPromoBlockType> = ({
           {/* CTA Button */}
           {cta && (
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
             >
               <CMSLink 
                 {...cta} 
                 className={cn(
-                  "group h-14 px-10 rounded-none", // Sharp corners per GEMINI.md
-                  "flex items-center justify-center gap-3",
-                  "text-sm font-bold uppercase tracking-widest transition-all duration-300",
-                  "bg-white text-brand-950 hover:bg-brand-500 hover:text-white",
-                  theme === 'light' && "bg-brand-500 text-white hover:bg-black"
+                  "group h-16 px-12 rounded-none", // Sharp corners per GEMINI.md
+                  "flex items-center justify-center gap-4",
+                  "type-label-lg tracking-[0.2em] transition-all duration-300",
+                  "bg-primary text-type-inverse shadow-xl hover:shadow-2xl hover:-translate-y-1 active:scale-[0.98]",
+                  "hover:bg-primary/90"
                 )}
               >
-                <ArrowRight className="size-5 transition-transform duration-300 group-hover:translate-x-1" />
+                <ArrowRight className="size-5 transition-transform duration-300 group-hover:translate-x-2" />
               </CMSLink>
             </motion.div>
           )}
