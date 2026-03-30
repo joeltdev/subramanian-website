@@ -1,128 +1,181 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import type { HomeSliderBlock } from '@/payload-types'
 import RichText from '@/components/RichText'
 import { Media } from '@/components/Media'
 import { motion, AnimatePresence } from 'motion/react'
 import { cn } from '@/utilities/ui'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 
 export const HomeSliderBlockComponent: React.FC<HomeSliderBlock> = ({ intro_n_a, items }) => {
-  const [activeIndex, setActiveIndex] = useState(0)
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+  const [isMobile, setIsMobile] = useState(false)
+  const scrollRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   if (!items || items.length === 0) return null
 
-  const activeSlide = items[activeIndex]
-
-  const nextSlide = () => {
-    setActiveIndex((prev) => (prev + 1) % items.length)
-  }
-
-  const prevSlide = () => {
-    setActiveIndex((prev) => (prev - 1 + items.length) % items.length)
-  }
-
   return (
-    <section className="py-16 md:py-24" data-section-theme="light">
+    <section className="py-16 md:py-24 overflow-hidden" data-section-theme="light">
       <div className="mx-auto max-w-7xl px-6 md:px-8">
-        {/* Section Title */}
+        {/* Section Header - Matched to Gallery Style */}
         {intro_n_a && (
-          <div className="mb-12 md:mb-20 flex flex-col items-center justify-center text-center w-full">
-            <RichText
-              data={intro_n_a}
-              enableGutter={false}
-              enableProse={false}
-              className="max-w-4xl mx-auto flex flex-col items-center w-full [&_h2]:text-2xl [&_h2]:md:text-3xl [&_h2]:font-semibold [&_h2]:text-type-heading [&_h2]:mb-8 [&_h2]:text-center [&_h2]:w-full [&_h2]:break-words [&_h2]:leading-tight [&_h2]:max-w-full [&_h2]:px-4 [&_h2]:mx-auto [&_strong]:text-2xl [&_strong]:md:text-3xl [&_strong]:font-semibold [&_strong]:break-words [&_strong]:leading-tight [&_p]:type-body-xl [&_p]:text-type-secondary [&_p]:max-w-2xl [&_p]:mx-auto [&_p]:text-center [&_p]:w-full"
-            />
+          <div className="mb-16 md:mb-20">
+            <div className="max-w-3xl">
+              <RichText
+                data={intro_n_a}
+                enableGutter={false}
+                className="[&_h2]:type-display-lg [&_h2]:text-type-heading [&_h2]:tracking-tight [&_h3]:type-headline-1 [&_h3]:text-type-heading [&_h3]:tracking-widest [&_h3]:uppercase [&_h3]:mb-4 [&_p]:type-title-md [&_p]:text-type-secondary [&_p]:max-w-2xl [&_p]:mt-6 md:[&_p]:mt-0"
+              />
+            </div>
           </div>
         )}
 
-        {/* Tab Navigation */}
-        <div className="flex flex-nowrap md:flex-wrap gap-0 md:gap-2 mb-8 md:mb-12 border-b border-border">
-          {items.map((item, index) => (
-            <button
-              key={index}
-              onClick={() => setActiveIndex(index)}
-              className={cn(
-                'flex-1 md:flex-none px-2 md:px-6 py-3 transition-all duration-300 rounded-none border-b-2 font-medium type-body-sm md:type-title-sm text-center',
-                activeIndex === index
-                  ? 'border-primary text-primary bg-muted/50'
-                  : 'border-transparent text-type-secondary hover:text-type-heading hover:bg-muted/20',
-              )}
-            >
-              {item.tabLabel}
-            </button>
-          ))}
-        </div>
-
-        {/* Slide Content Container */}
-        <div className="relative overflow-hidden aspect-[3/4] md:aspect-[16/9] bg-muted group rounded-none">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeIndex}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="absolute inset-0"
-            >
-              {/* Background Image */}
-              {activeSlide.image && typeof activeSlide.image !== 'string' && (
-                <Media
-                  resource={activeSlide.image}
-                  fill
-                  className="w-full h-full"
-                  imgClassName="object-contain md:object-cover"
-                />
-              )}
-
-              {/* Overlay Background - Full Coverage */}
-              <div 
-                className={cn(
-                  "absolute inset-0 z-10",
-                  activeSlide.overlayColor === 'brand' ? "bg-brand-950" : "bg-black"
+        {/* Mobile Experience: Vertical Scroll-Snap Cards */}
+        {isMobile ? (
+          <div 
+            ref={scrollRef}
+            className="flex flex-col gap-6"
+          >
+            {items.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                className="relative aspect-[4/5] w-full overflow-hidden bg-muted rounded-none group"
+              >
+                {/* Background Image */}
+                {item.image && typeof item.image !== 'string' && (
+                  <Media
+                    resource={item.image}
+                    fill
+                    className="w-full h-full"
+                    imgClassName="object-cover transition-transform duration-1000 group-hover:scale-110"
+                  />
                 )}
-                style={{ opacity: (activeSlide.overlayOpacity ?? 50) / 100 }}
-              />
+                
+                {/* Dynamic Overlay */}
+                <div 
+                  className={cn(
+                    "absolute inset-0 z-10 bg-linear-to-t from-black/90 via-black/20 to-transparent",
+                    item.overlayColor === 'brand' ? "from-brand-950/90" : "from-black/90"
+                  )}
+                />
 
-              {/* Navigation Arrows */}
-              <div className="absolute inset-y-0 left-0 z-30 flex items-center pl-4 md:pl-8 pointer-events-none">
-                <button
-                  onClick={prevSlide}
-                  className="pointer-events-auto p-2 md:p-3 rounded-full bg-white/10 backdrop-blur-md text-white border border-white/20 hover:bg-white/20 transition-all duration-300 group/btn"
-                  aria-label="Previous slide"
-                >
-                  <ChevronLeft className="size-6 md:size-8 transition-transform group-hover/btn:-translate-x-0.5" />
-                </button>
-              </div>
-              <div className="absolute inset-y-0 right-0 z-30 flex items-center pr-4 md:pr-8 pointer-events-none">
-                <button
-                  onClick={nextSlide}
-                  className="pointer-events-auto p-2 md:p-3 rounded-full bg-white/10 backdrop-blur-md text-white border border-white/20 hover:bg-white/20 transition-all duration-300 group/btn"
-                  aria-label="Next slide"
-                >
-                  <ChevronRight className="size-6 md:size-8 transition-transform group-hover/btn:translate-x-0.5" />
-                </button>
-              </div>
+                {/* Content Card */}
+                <div className="absolute inset-x-0 bottom-0 z-20 p-8 flex flex-col justify-end h-full">
+                  <div className="bg-white/5 backdrop-blur-md border border-white/10 p-6 md:p-8 translate-y-0">
+                    <span className="type-headline-1 text-white/60 block mb-2 tracking-widest uppercase">
+                      {item.tabLabel}
+                    </span>
+                    <h3 className="text-white text-2xl font-bold mb-3 tracking-tight">
+                      {item.title}
+                    </h3>
+                    <p className="text-white/80 type-body-md line-clamp-3">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        ) : (
+          /* Desktop Experience: Expanding Triptych */
+          <div className="flex gap-4 h-[600px] w-full">
+            {items.map((item, index) => {
+              const isHovered = hoveredIndex === index
+              const isAnyHovered = hoveredIndex !== null
+              
+              // Calculate width based on hover state
+              // Default: equal width. Hovered: wider. Non-hovered while another is hovered: narrower.
+              const width = isHovered ? '50%' : (isAnyHovered ? '25%' : '33.33%')
 
-              {/* Overlay Content - Text above overlay */}
-              <div className="absolute inset-0 z-20 flex flex-col justify-end p-6 md:p-12 text-white">
+              return (
                 <motion.div
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.2, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                  className="max-w-2xl"
+                  key={index}
+                  onMouseEnter={() => setHoveredIndex(index)}
+                  onMouseLeave={() => setHoveredIndex(null)}
+                  animate={{ width }}
+                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                  className="relative h-full overflow-hidden bg-muted cursor-pointer group rounded-none"
                 >
-                  <h3 className="text-2xl md:text-3xl font-semibold mb-5 md:mb-4 break-words leading-tight max-w-full">{activeSlide.title}</h3>
-                  <p className="type-body-md md:type-body-lg font-medium text-white/90 leading-relaxed">
-                    {activeSlide.description}
-                  </p>
+                  {/* Background Image */}
+                  {item.image && typeof item.image !== 'string' && (
+                    <Media
+                      resource={item.image}
+                      fill
+                      className="w-full h-full"
+                      imgClassName="object-cover transition-transform duration-1000 group-hover:scale-105"
+                    />
+                  )}
+
+                  {/* Overlay */}
+                  <div 
+                    className={cn(
+                      "absolute inset-0 z-10 transition-opacity duration-500 bg-black",
+                      isHovered ? "opacity-60" : "opacity-40",
+                      item.overlayColor === 'brand' && "bg-brand-950"
+                    )}
+                  />
+
+                  {/* Vertical Label (when not hovered) */}
+                  <AnimatePresence>
+                    {!isHovered && (
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="absolute inset-0 z-20 flex items-center justify-center"
+                      >
+                        <span className="type-headline-1 text-white/80 uppercase tracking-[0.3em] rotate-180 [writing-mode:vertical-lr]">
+                          {item.tabLabel}
+                        </span>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
+                  {/* Content Container (revealed on hover) */}
+                  <div className="absolute inset-0 z-30 p-12 flex flex-col justify-end pointer-events-none">
+                    <motion.div
+                      animate={{ 
+                        opacity: isHovered ? 1 : 0,
+                        y: isHovered ? 0 : 40
+                      }}
+                      transition={{ duration: 0.5, ease: "easeOut" }}
+                      className="max-w-md bg-white/5 backdrop-blur-xl border border-white/10 p-8"
+                    >
+                      <span className="type-headline-1 text-white/60 block mb-4 tracking-widest uppercase">
+                        {item.tabLabel}
+                      </span>
+                      <h3 className="text-white type-display-sm mb-6 leading-tight">
+                        {item.title}
+                      </h3>
+                      <p className="text-white/80 type-body-lg mb-8 line-clamp-4">
+                        {item.description}
+                      </p>
+                      <div className="flex items-center gap-3 text-white group/btn">
+                        <span className="type-title-sm font-bold uppercase tracking-wider">Explore Journey</span>
+                        <div className="size-10 rounded-full border border-white/20 flex items-center justify-center transition-all group-hover/btn:bg-white group-hover/btn:text-black">
+                          <ArrowRight className="size-5" />
+                        </div>
+                      </div>
+                    </motion.div>
+                  </div>
                 </motion.div>
-              </div>
-            </motion.div>
-          </AnimatePresence>
-        </div>
+              )
+            })}
+          </div>
+        )}
       </div>
     </section>
   )
