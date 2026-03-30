@@ -88,28 +88,6 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro, variant
     }),
   }
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.08,
-      },
-    },
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: [0.21, 0.45, 0.32, 0.9],
-      }
-    },
-  }
-
   return (
     <div className="container mx-auto px-6 md:px-8 pt-16 md:pt-24 pb-16 md:pb-24">
       {intro && (
@@ -162,13 +140,9 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro, variant
             </button>
           </div>
         ) : (
-          <motion.div 
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
+          <div 
             className={cn(
-              "grid gap-4 md:gap-6",
+              "grid gap-4 md:gap-6 animate-in fade-in duration-1000 ease-out",
               "grid-cols-2 md:grid-cols-3 lg:grid-cols-4",
               !isExpanded && hasMore && "max-h-[1200px] overflow-hidden"
             )}
@@ -177,11 +151,11 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro, variant
               const isHero = index === 0 && !isMobile;
               
               return (
-                <motion.div
+                <div
                   key={image.id}
-                  variants={itemVariants}
                   className={cn(
                     "group relative cursor-pointer overflow-hidden bg-muted",
+                    "transition-all duration-700 ease-out",
                     isHero ? "md:col-span-2 md:row-span-2 aspect-video md:aspect-auto" : "aspect-square"
                   )}
                   onClick={() => {
@@ -209,10 +183,10 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro, variant
 
                   {/* Subtle Inner Glow on Hover */}
                   <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 ring-1 ring-inset ring-white/20 shadow-[inset_0_0_80px_rgba(255,255,255,0.05)]" />
-                </motion.div>
+                </div>
               )
             })}
-          </motion.div>
+          </div>
         )}
 
         {/* Show More Logic with Gradient Fade (Desktop) */}
