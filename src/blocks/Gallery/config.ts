@@ -13,6 +13,15 @@ export const Gallery: Block = {
   labels: { singular: 'Gallery', plural: 'Galleries' },
   fields: [
     {
+      name: 'variant',
+      type: 'select',
+      defaultValue: 'grid',
+      options: [
+        { label: 'Standard Grid', value: 'grid' },
+        { label: 'Masonry Poster Wall', value: 'masonry' },
+      ],
+    },
+    {
       name: 'intro',
       type: 'richText',
       label: 'Intro',

@@ -9,7 +9,7 @@ import type { GalleryBlock as GalleryBlockType, Media as MediaType } from '@/pay
 import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
 
-export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro }) => {
+export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro, variant = 'grid' }) => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
   const [direction, setDirection] = useState(0)
 
@@ -17,6 +17,8 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro }) => {
     images?.filter((img): img is MediaType => typeof img === 'object') || [],
     [images]
   )
+
+  const isMasonry = variant === 'masonry'
 
   const selectedImage = selectedIndex !== null ? galleryImages[selectedIndex] : null
 
@@ -29,7 +31,7 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro }) => {
   const handlePrev = useCallback(() => {
     if (selectedIndex === null) return
     setDirection(-1)
-    setSelectedIndex((prev) => (prev !== null ? (prev - 1 + galleryImages.length) % galleryImages.length : 0))
+    setSelectedIndex((prev) => (prev !== null ? (prev - 1 + galleryImages.length) : 0))
   }, [selectedIndex, galleryImages.length])
 
   useEffect(() => {
@@ -74,7 +76,7 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro }) => {
   return (
     <div className="container mx-auto px-6 md:px-8 pt-8 md:pt-12 pb-16 md:pb-24">
       {intro && (
-        <div className="mb-8 text-center max-w-2xl mx-auto">
+        <div className="mb-12 text-center max-w-2xl mx-auto">
           <RichText 
             data={intro} 
             enableGutter={false} 
@@ -83,29 +85,55 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro }) => {
         </div>
       )}
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-        {galleryImages.map((image, index) => (
-          <motion.div
-            key={image.id}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.05 }}
-            className="group relative aspect-square cursor-zoom-in overflow-hidden bg-muted"
-            onClick={() => {
-              setDirection(0)
-              setSelectedIndex(index)
-            }}
-          >
-            <Media
-              resource={image}
-              fill
-              className="object-cover transition-transform duration-500 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/10" />
-          </motion.div>
-        ))}
-      </div>
+      {isMasonry ? (
+        <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6">
+          {galleryImages.map((image, index) => (
+            <motion.div
+              key={image.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.05 }}
+              className="break-inside-avoid group relative cursor-zoom-in overflow-hidden bg-muted shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1 hover:shadow-brand-500/10"
+              onClick={() => {
+                setDirection(0)
+                setSelectedIndex(index)
+              }}
+            >
+              <Media
+                resource={image}
+                className="w-full h-auto"
+                imgClassName="w-full h-auto transition-transform duration-700 group-hover:scale-[1.03]"
+              />
+              <div className="absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/5" />
+            </motion.div>
+          ))}
+        </div>
+      ) : (
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+          {galleryImages.map((image, index) => (
+            <motion.div
+              key={image.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.05 }}
+              className="group relative aspect-square cursor-zoom-in overflow-hidden bg-muted"
+              onClick={() => {
+                setDirection(0)
+                setSelectedIndex(index)
+              }}
+            >
+              <Media
+                resource={image}
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/10" />
+            </motion.div>
+          ))}
+        </div>
+      )}
 
       <Dialog.Root open={selectedIndex !== null} onOpenChange={(open) => !open && setSelectedIndex(null)}>
         <AnimatePresence initial={false}>

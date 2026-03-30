@@ -2249,6 +2249,7 @@ export interface ParallaxShowcaseBlock {
  * via the `definition` "GalleryBlock".
  */
 export interface GalleryBlock {
+  variant?: ('grid' | 'masonry') | null;
   /**
    * Optional section heading and supporting text
    */
@@ -3572,6 +3573,7 @@ export interface ParallaxShowcaseBlockSelect<T extends boolean = true> {
  * via the `definition` "GalleryBlock_select".
  */
 export interface GalleryBlockSelect<T extends boolean = true> {
+  variant?: T;
   intro?: T;
   images?: T;
   id?: T;
