@@ -17,7 +17,7 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro, variant
 
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 1024)
+      setIsMobile(window.innerWidth < 768)
     }
     checkMobile()
     window.addEventListener('resize', checkMobile)
@@ -29,7 +29,7 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro, variant
     [images]
   )
 
-  const limit = isMobile ? 9 : 16
+  const limit = isMobile ? 9 : 16 // 3 columns * 3 rows = 9; 4 columns * 4 rows = 16
   const hasMore = galleryImages.length > limit
   const visibleImages = isExpanded ? galleryImages : galleryImages.slice(0, limit)
 
@@ -101,7 +101,7 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro, variant
       )}
 
       {isMasonry ? (
-        <div className="columns-3 lg:columns-4 gap-6 space-y-6">
+        <div className="columns-3 md:columns-4 gap-6 space-y-6">
           {visibleImages.map((image, index) => (
             <motion.div
               key={image.id}
@@ -126,7 +126,7 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro, variant
           ))}
         </div>
       ) : (
-        <div className="grid grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+        <div className="grid grid-cols-3 md:grid-cols-4 gap-4 md:gap-6">
           {visibleImages.map((image, index) => (
             <motion.div
               key={image.id}
