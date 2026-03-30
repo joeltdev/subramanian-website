@@ -37,7 +37,7 @@ export const PerspectiveFeatureShowcase: React.FC<FeatureShowcaseBlock> = ({
           animate={isInView ? { opacity: 1, y: 0 } : undefined}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
         >
-          {intro && <RichText data={intro} enableGutter={false} className="flex flex-col md:flex-row gap-8 [&_h2]:flex-1 [&_h3]:flex-1 [&_p]:flex-1 [&_h2]:text-2xl [&_h2]:md:text-3xl [&_h2]:font-semibold [&_h2]:text-type-heading [&_h2]:mb-6 md:[&_h2]:mb-0 [&_h2]:break-words [&_h2]:leading-tight [&_h2]:max-w-full [&_h2]:px-4 [&_h2]:mx-auto [&_h3]:text-2xl [&_h3]:md:text-3xl [&_h3]:font-semibold [&_h3]:text-type-heading [&_h3]:mb-6 md:[&_h3]:mb-0 [&_h3]:break-words [&_h3]:leading-tight [&_h3]:max-w-full [&_h3]:px-4 [&_h3]:mx-auto [&_p]:text-type-body [&_p]:type-body-xl [&_p]:font-medium [&_p]:leading-relaxed" />}
+                    {intro && <RichText data={intro} enableGutter={false} className="flex flex-col md:flex-row gap-8 [&_h2]:flex-1 [&_h3]:flex-1 [&_p]:flex-1 [&_h2]:type-headline-2 md:[&_h2]:type-headline-1 [&_h2]:text-type-heading [&_h2]:mb-8 md:[&_h2]:mb-0 [&_h2]:break-words [&_h2]:leading-tight [&_h2]:max-w-full [&_h2]:px-4 [&_h2]:mx-auto [&_h3]:type-headline-2 md:[&_h3]:type-headline-1 [&_h3]:text-type-heading [&_h3]:mb-8 md:[&_h3]:mb-0 [&_h3]:break-words [&_h3]:leading-tight [&_h3]:max-w-full [&_h3]:px-4 [&_h3]:mx-auto [&_p]:text-type-body [&_p]:type-body-lg md:[&_p]:type-body-xl [&_p]:font-medium [&_p]:leading-relaxed" />}
         </motion.div>
       </div>
 
