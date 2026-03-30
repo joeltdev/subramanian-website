@@ -17,7 +17,8 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro, variant
 
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768)
+      // If screen is less than 1024px (lg breakpoint), we use mobile/tablet logic (3 columns)
+      setIsMobile(window.innerWidth < 1024)
     }
     checkMobile()
     window.addEventListener('resize', checkMobile)
@@ -101,7 +102,7 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro, variant
       )}
 
       {isMasonry ? (
-        <div className="columns-3 md:columns-4 gap-6 space-y-6">
+        <div className="columns-2 sm:columns-3 lg:columns-4 gap-6 space-y-6">
           {visibleImages.map((image, index) => (
             <motion.div
               key={image.id}
@@ -126,7 +127,7 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro, variant
           ))}
         </div>
       ) : (
-        <div className="grid grid-cols-3 md:grid-cols-4 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
           {visibleImages.map((image, index) => (
             <motion.div
               key={image.id}
