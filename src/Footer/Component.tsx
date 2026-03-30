@@ -83,7 +83,7 @@ export async function Footer() {
 
   return (
     <footer data-section-theme="dark" className="bg-background text-foreground border-t border-border">
-      <div className="mx-auto max-w-7xl px-6 md:px-8 py-16 md:py-20">
+      <div className="mx-auto max-w-7xl px-6 md:px-8 py-16 md:py-16">
         <div className="flex flex-col md:flex-row justify-between items-start gap-12">
           {/* Left side: Logo + Copyright (Desktop) */}
           <div className="flex flex-col items-start gap-6">
