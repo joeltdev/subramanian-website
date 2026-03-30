@@ -86,7 +86,7 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro, variant
       )}
 
       {isMasonry ? (
-        <div className="columns-3 md:columns-3 lg:columns-4 gap-6 space-y-6">
+        <div className="columns-3 lg:columns-4 gap-6 space-y-6">
           {galleryImages.map((image, index) => (
             <motion.div
               key={image.id}
@@ -110,7 +110,7 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro, variant
           ))}
         </div>
       ) : (
-        <div className="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+        <div className="grid grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
           {galleryImages.map((image, index) => (
             <motion.div
               key={image.id}
