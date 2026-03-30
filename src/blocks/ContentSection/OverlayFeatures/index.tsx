@@ -80,7 +80,7 @@ const MobileView: React.FC<ContentSectionBlock> = ({
           <RichText
             data={intro}
             enableGutter={false}
-            className="relative z-10 max-w-[55ch] [&_h2]:type-headline-1 [&_h2]:text-type-heading [&_h2]:mb-8 [&_h3]:type-headline-3 [&_h3]:text-type-heading [&_h3]:leading-tight [&_h3]:mb-6 [&_p]:type-body-xl [&_p]:text-type-body [&_p]:leading-relaxed"
+            className="relative z-10 max-w-[55ch] [&_h2]:type-headline-1 [&_h2]:text-type-heading [&_h2]:mb-8 [&_h3]:type-headline-3 [&_h3]:text-type-heading [&_h3]:leading-tight [&_h3]:mb-6 [&_p]:type-body-md [&_p]:text-type-body [&_p]:leading-relaxed"
           />
         )}
         
