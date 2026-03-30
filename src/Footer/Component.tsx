@@ -82,11 +82,11 @@ export async function Footer() {
   const logo = footerLogo || headerLogo
 
   return (
-    <footer data-theme="dark" className="bg-black text-foreground">
-      <div className="mx-auto max-w-7xl px-6 py-12 md:py-16">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-10">
+    <footer data-section-theme="dark" className="bg-background text-foreground border-t border-border">
+      <div className="mx-auto max-w-7xl px-6 md:px-8 py-16 md:py-24">
+        <div className="flex flex-col md:flex-row justify-between items-start gap-12">
           {/* Left side: Logo + Copyright (Desktop) */}
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col items-start gap-6">
             <Link href="/" aria-label="go home" className="block size-fit">
               {typeof logo === 'object' && logo && (logo as Media).url ? (
                 <img
