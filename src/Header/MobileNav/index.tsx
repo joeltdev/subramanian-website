@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import { ChevronLeft, ChevronRight, Menu } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Menu, ArrowRight } from 'lucide-react'
 
 import type { Header } from '@/payload-types'
 import { CMSLink } from '@/components/Link'
@@ -129,10 +129,12 @@ export function MobileNav({ data }: { data: Header }) {
                     className={cn(
                       "w-full justify-center transition-all duration-300",
                       menuCta.label?.toUpperCase().includes('MANIFESTO')
-                        ? "bg-[#98b6e5] text-black hover:bg-[#98b6e5]/90 font-bold uppercase tracking-widest text-xs rounded-none py-4 h-auto shadow-md block text-center"
+                        ? "bg-[#98b6e5] text-black hover:bg-[#98b6e5]/90 font-bold uppercase tracking-widest text-xs rounded-none py-4 h-auto shadow-md flex items-center justify-center gap-2"
                         : ""
                     )}
-                  />
+                  >
+                    {menuCta.label?.toUpperCase().includes('MANIFESTO') && <ArrowRight className="size-4" />}
+                  </CMSLink>
                 </div>
               )}
             </div>
@@ -197,10 +199,12 @@ export function MobileNav({ data }: { data: Header }) {
                     className={cn(
                       "w-full justify-center transition-all duration-300",
                       menuCta.label?.toUpperCase().includes('MANIFESTO')
-                        ? "bg-[#98b6e5] text-black hover:bg-[#98b6e5]/90 font-bold uppercase tracking-widest text-xs rounded-none py-4 h-auto shadow-md block text-center"
+                        ? "bg-[#98b6e5] text-black hover:bg-[#98b6e5]/90 font-bold uppercase tracking-widest text-xs rounded-none py-4 h-auto shadow-md flex items-center justify-center gap-2"
                         : ""
                     )}
-                  />
+                  >
+                    {menuCta.label?.toUpperCase().includes('MANIFESTO') && <ArrowRight className="size-4" />}
+                  </CMSLink>
                 </div>
               )}
             </div>
