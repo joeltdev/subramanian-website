@@ -111,7 +111,8 @@ export const SplitFeatureShowcase: React.FC<FeatureShowcaseBlock> = ({
                       <Icon className="size-6 text-primary" />
                     </div>
                   )}
-                  {richText && <RichText data={richText} enableGutter={false} className="space-y-2 [&_h4]:text-type-heading [&_h4]:type-title-sm [&_h3]:text-type-heading [&_h3]:type-title-md [&_p]:type-body-md [&_p]:text-type-body [&_p]:leading-relaxed" />}
+                  {richText && <RichText data={richText} enableGutter={false} className="space-y-4 md:space-y-2 [&_h4]:text-type-heading [&_h4]:type-body-sm [&_h4]:font-bold [&_h3]:text-type-heading [&_h3]:type-title-md [&_p]:type-body-sm [&_p]:text-type-body [&_p]:leading-relaxed" />}
+
                 </div>
               )
             })}
