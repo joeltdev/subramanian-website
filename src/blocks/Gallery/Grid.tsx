@@ -3,7 +3,8 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react'
 import * as Dialog from '@radix-ui/react-dialog'
 import { motion, AnimatePresence, PanInfo } from 'motion/react'
-import { X, ChevronLeft, ChevronRight } from 'lucide-react'
+import { X, ChevronLeft, ChevronRight, Maximize2 } from 'lucide-react'
+import { cn } from '@/utilities/cn'
 
 import type { GalleryBlock as GalleryBlockType, Media as MediaType } from '@/payload-types'
 import { Media } from '@/components/Media'
@@ -17,8 +18,7 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro, variant
 
   useEffect(() => {
     const checkMobile = () => {
-      // If screen is less than 1024px (lg breakpoint), we use mobile/tablet logic (3 columns)
-      setIsMobile(window.innerWidth < 1024)
+      setIsMobile(window.innerWidth < 768)
     }
     checkMobile()
     window.addEventListener('resize', checkMobile)
@@ -30,11 +30,10 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro, variant
     [images]
   )
 
-  const limit = isMobile ? 9 : 16 // 3 columns * 3 rows = 9; 4 columns * 4 rows = 16
+  // Asymmetrical pattern: Hero (2x2), then regular squares
+  const limit = isMobile ? 4 : 12 
   const hasMore = galleryImages.length > limit
   const visibleImages = isExpanded ? galleryImages : galleryImages.slice(0, limit)
-
-  const isMasonry = variant === 'masonry'
 
   const selectedImage = selectedIndex !== null ? galleryImages[selectedIndex] : null
 
@@ -47,7 +46,7 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro, variant
   const handlePrev = useCallback(() => {
     if (selectedIndex === null) return
     setDirection(-1)
-    setSelectedIndex((prev) => (prev !== null ? (prev - 1 + galleryImages.length) : 0))
+    setSelectedIndex((prev) => (prev !== null ? (prev - 1 + galleryImages.length) % galleryImages.length : 0))
   }, [selectedIndex, galleryImages.length])
 
   useEffect(() => {
@@ -69,7 +68,7 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro, variant
     }
   }
 
-  const variants = {
+  const lightboxVariants = {
     enter: (direction: number) => ({
       x: direction > 0 ? 300 : -300,
       opacity: 0,
@@ -89,81 +88,163 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro, variant
     }),
   }
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.08,
+      },
+    },
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.21, 0.45, 0.32, 0.9],
+      }
+    },
+  }
+
   return (
-    <div className="container mx-auto px-6 md:px-8 pt-8 md:pt-12 pb-16 md:pb-24">
+    <div className="container mx-auto px-6 md:px-8 pt-16 md:pt-24 pb-16 md:pb-24">
       {intro && (
-        <div className="mb-12 text-center max-w-2xl mx-auto">
-          <RichText 
-            data={intro} 
-            enableGutter={false} 
-            className="[&_h3]:type-headline-1 [&_h3]:text-type-heading [&_p]:type-body-lg [&_p]:text-type-body [&_p]:mt-4"
-          />
+        <div className="mb-16 md:mb-20">
+          <div className="max-w-3xl">
+            <RichText 
+              data={intro} 
+              enableGutter={false} 
+              className="[&_h2]:type-headline-1 [&_h2]:text-type-heading [&_h2]:tracking-tight [&_h3]:type-title-lg [&_h3]:text-type-heading [&_h3]:tracking-widest [&_h3]:uppercase [&_h3]:mb-4 [&_p]:type-body-xl [&_p]:text-type-secondary [&_p]:max-w-2xl"
+            />
+            <div className="mt-8 h-px w-24 bg-brand-500" />
+          </div>
         </div>
       )}
 
-      {isMasonry ? (
-        <div className="columns-2 sm:columns-3 lg:columns-4 gap-6 space-y-6">
-          {visibleImages.map((image, index) => (
-            <motion.div
-              key={image.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.05 }}
-              className="break-inside-avoid group relative cursor-zoom-in overflow-hidden bg-muted shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1 hover:shadow-brand-500/10"
-              onClick={() => {
-                const originalIndex = galleryImages.findIndex(img => img.id === image.id)
-                setDirection(0)
-                setSelectedIndex(originalIndex)
-              }}
+      <div className="relative">
+        {/* Mobile Snap Carousel / Desktop Bento Grid */}
+        {isMobile && !isExpanded ? (
+          <div className="flex flex-col gap-8">
+            <div className="flex overflow-x-auto snap-x snap-mandatory no-scrollbar -mx-6 px-6 gap-4">
+              {visibleImages.map((image, index) => (
+                <div
+                  key={image.id}
+                  className="min-w-[85vw] snap-center aspect-[4/5] relative bg-muted overflow-hidden"
+                  onClick={() => {
+                    setDirection(0)
+                    setSelectedIndex(index)
+                  }}
+                >
+                  <Media
+                    resource={image}
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                  <div className="absolute bottom-6 left-6 right-6">
+                    <p className="type-body-sm text-white font-medium uppercase tracking-widest opacity-80">
+                      {index + 1} / {galleryImages.length}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            <button
+              onClick={() => setIsExpanded(true)}
+              className="w-full py-5 border border-type-heading/20 type-title-sm text-type-heading uppercase tracking-widest font-bold"
             >
-              <Media
-                resource={image}
-                className="w-full h-auto"
-                imgClassName="w-full h-auto transition-transform duration-700 group-hover:scale-[1.03]"
-              />
-              <div className="absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/5" />
-            </motion.div>
-          ))}
-        </div>
-      ) : (
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-          {visibleImages.map((image, index) => (
-            <motion.div
-              key={image.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.05 }}
-              className="group relative aspect-square cursor-zoom-in overflow-hidden bg-muted"
-              onClick={() => {
-                const originalIndex = galleryImages.findIndex(img => img.id === image.id)
-                setDirection(0)
-                setSelectedIndex(originalIndex)
-              }}
-            >
-              <Media
-                resource={image}
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/10" />
-            </motion.div>
-          ))}
-        </div>
-      )}
-
-      {hasMore && (
-        <div className="mt-12 flex justify-center">
-          <button
-            onClick={() => setIsExpanded(!isExpanded)}
-            className="px-8 py-4 bg-muted hover:bg-muted/80 text-type-heading font-bold transition-all active:scale-95"
+              View Archive ({galleryImages.length})
+            </button>
+          </div>
+        ) : (
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className={cn(
+              "grid gap-4 md:gap-6",
+              "grid-cols-2 md:grid-cols-3 lg:grid-cols-4",
+              !isExpanded && hasMore && "max-h-[1200px] overflow-hidden"
+            )}
           >
-            {isExpanded ? 'Show less' : `Show all images (+${galleryImages.length - limit})`}
-          </button>
-        </div>
-      )}
+            {visibleImages.map((image, index) => {
+              const isHero = index === 0 && !isMobile;
+              
+              return (
+                <motion.div
+                  key={image.id}
+                  variants={itemVariants}
+                  className={cn(
+                    "group relative cursor-pointer overflow-hidden bg-muted",
+                    isHero ? "md:col-span-2 md:row-span-2 aspect-video md:aspect-auto" : "aspect-square"
+                  )}
+                  onClick={() => {
+                    setDirection(0)
+                    setSelectedIndex(index)
+                  }}
+                >
+                  <Media
+                    resource={image}
+                    fill
+                    className="object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.03]"
+                  />
+                  
+                  {/* Glassmorphism Caption Overlay */}
+                  <div className="absolute inset-x-0 bottom-0 translate-y-full transition-transform duration-500 group-hover:translate-y-0">
+                    <div className="m-4 overflow-hidden rounded-sm bg-background/20 p-4 backdrop-blur-md border border-white/10">
+                      <div className="flex items-center justify-between gap-4">
+                        <p className="type-body-sm text-white line-clamp-1 font-medium tracking-wide">
+                          {image.alt || 'View Gallery'}
+                        </p>
+                        <Maximize2 className="size-4 text-white/70 shrink-0" />
+                      </div>
+                    </div>
+                  </div>
 
+                  {/* Subtle Inner Glow on Hover */}
+                  <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 ring-1 ring-inset ring-white/20 shadow-[inset_0_0_80px_rgba(255,255,255,0.05)]" />
+                </motion.div>
+              )
+            })}
+          </motion.div>
+        )}
+
+        {/* Show More Logic with Gradient Fade (Desktop) */}
+        {!isMobile && hasMore && !isExpanded && (
+          <div className="absolute inset-x-0 bottom-0 flex h-96 flex-col items-center justify-end bg-gradient-to-t from-background via-background/80 to-transparent pb-12">
+            <button
+              onClick={() => setIsExpanded(true)}
+              className="group relative flex items-center gap-4 px-10 py-5 overflow-hidden transition-all active:scale-95"
+            >
+              <div className="absolute inset-0 bg-type-heading transition-transform duration-500 group-hover:translate-x-full" />
+              <div className="absolute inset-0 bg-brand-500 -translate-x-full transition-transform duration-500 group-hover:translate-x-0" />
+              <span className="relative z-10 type-title-sm text-background group-hover:text-background transition-colors duration-500 uppercase tracking-widest font-bold">
+                Discover More (+{galleryImages.length - limit})
+              </span>
+            </button>
+          </div>
+        )}
+
+        {/* Collapse Logic (Shared) */}
+        {hasMore && isExpanded && (
+          <div className="mt-16 flex justify-center">
+            <button
+              onClick={() => setIsExpanded(false)}
+              className="px-10 py-5 border border-type-heading/20 hover:border-type-heading type-title-sm text-type-heading transition-all uppercase tracking-widest font-bold active:scale-95"
+            >
+              Collapse Archive
+            </button>
+          </div>
+        )}
+      </div>
+
+      {/* Cinematic Lightbox */}
       <Dialog.Root open={selectedIndex !== null} onOpenChange={(open) => !open && setSelectedIndex(null)}>
         <AnimatePresence initial={false}>
           {selectedIndex !== null && (
@@ -173,81 +254,95 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro, variant
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md"
+                  className="fixed inset-0 z-50 bg-background/95 backdrop-blur-xl"
                 />
               </Dialog.Overlay>
               <Dialog.Content asChild>
-                <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 md:p-12 outline-none">
-                  <div className="relative flex h-full w-full items-center justify-center overflow-hidden">
+                <div className="fixed inset-0 z-[60] flex items-center justify-center outline-none">
+                  {/* Background Ambient Blur */}
+                  <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-40">
+                    <Media
+                      resource={selectedImage!}
+                      fill
+                      imgClassName="object-cover blur-[120px] scale-150"
+                    />
+                  </div>
+
+                  <div className="relative flex h-full w-full items-center justify-center p-4 md:p-12 lg:p-24">
                     
-                    {/* Navigation Buttons - Desktop */}
-                    <button
-                      onClick={(e) => { e.stopPropagation(); handlePrev() }}
-                      className="absolute left-4 z-[70] hidden md:flex items-center justify-center rounded-full bg-white/5 p-4 text-white backdrop-blur-sm transition-all hover:bg-white/10 active:scale-95 focus:outline-none"
-                      aria-label="Previous image"
-                    >
-                      <ChevronLeft className="size-8" />
-                    </button>
+                    {/* Navigation - Floating & Minimal */}
+                    <div className="absolute inset-x-0 top-1/2 flex -translate-y-1/2 items-center justify-between px-4 md:px-8 pointer-events-none">
+                      <button
+                        onClick={(e) => { e.stopPropagation(); handlePrev() }}
+                        className="group pointer-events-auto flex size-12 md:size-16 items-center justify-center rounded-full bg-white/5 text-white backdrop-blur-md transition-all hover:bg-white/20 active:scale-90"
+                        aria-label="Previous image"
+                      >
+                        <ChevronLeft className="size-6 md:size-8 transition-transform group-hover:-translate-x-0.5" />
+                      </button>
 
-                    <button
-                      onClick={(e) => { e.stopPropagation(); handleNext() }}
-                      className="absolute right-4 z-[70] hidden md:flex items-center justify-center rounded-full bg-white/5 p-4 text-white backdrop-blur-sm transition-all hover:bg-white/10 active:scale-95 focus:outline-none"
-                      aria-label="Next image"
-                    >
-                      <ChevronRight className="size-8" />
-                    </button>
+                      <button
+                        onClick={(e) => { e.stopPropagation(); handleNext() }}
+                        className="group pointer-events-auto flex size-12 md:size-16 items-center justify-center rounded-full bg-white/5 text-white backdrop-blur-md transition-all hover:bg-white/20 active:scale-90"
+                        aria-label="Next image"
+                      >
+                        <ChevronRight className="size-6 md:size-8 transition-transform group-hover:translate-x-0.5" />
+                      </button>
+                    </div>
 
-                    {/* Image Container with Swipe */}
+                    {/* Main Image View */}
                     <motion.div
                       key={selectedIndex}
                       custom={direction}
-                      variants={variants}
+                      variants={lightboxVariants}
                       initial="enter"
                       animate="center"
                       exit="exit"
                       transition={{
-                        x: { type: 'spring', stiffness: 300, damping: 30 },
-                        opacity: { duration: 0.2 },
-                        scale: { duration: 0.2 },
+                        x: { type: 'spring', stiffness: 200, damping: 25 },
+                        opacity: { duration: 0.3 },
+                        scale: { duration: 0.4 },
                       }}
                       drag="x"
                       dragConstraints={{ left: 0, right: 0 }}
-                      dragElastic={0.8}
+                      dragElastic={0.5}
                       onDragEnd={onDragEnd}
-                      className="relative flex h-full w-full max-w-7xl cursor-grab flex-col items-center justify-center active:cursor-grabbing"
+                      className="relative flex h-full w-full max-w-6xl cursor-grab flex-col items-center justify-center active:cursor-grabbing"
                     >
-                      <div className="relative flex-1 w-full flex items-center justify-center min-h-0">
+                      <div className="relative h-full w-full flex items-center justify-center shadow-2xl">
                         <Media
                           resource={selectedImage!}
                           fill
                           className="w-full h-full"
-                          imgClassName="object-contain pointer-events-none"
+                          imgClassName="object-contain"
                         />
                       </div>
 
-                      <div className="flex flex-col items-center pt-6 pb-2 shrink-0">
-                        {selectedImage?.alt && (
-                          <motion.p
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            className="text-center text-white/70 type-body-md max-w-2xl px-4"
-                          >
-                            {selectedImage.alt}
-                          </motion.p>
-                        )}
-                        <p className="mt-2 text-white/40 type-body-sm font-medium tracking-wider">
-                          {selectedIndex + 1} / {galleryImages.length}
-                        </p>
+                      {/* Lightbox Caption */}
+                      <div className="absolute bottom-0 left-0 right-0 p-8 pt-12 bg-gradient-to-t from-background/80 to-transparent">
+                        <div className="max-w-xl mx-auto text-center">
+                          {selectedImage?.alt && (
+                            <motion.p
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              className="text-white type-body-lg font-medium tracking-wide mb-2"
+                            >
+                              {selectedImage.alt}
+                            </motion.p>
+                          )}
+                          <p className="text-white/40 type-body-sm uppercase tracking-widest font-bold">
+                            {selectedIndex + 1} <span className="mx-2 opacity-30">/</span> {galleryImages.length}
+                          </p>
+                        </div>
                       </div>
                     </motion.div>
 
-                    {/* Controls */}
+                    {/* Close Control */}
                     <Dialog.Close asChild>
                       <button
-                        className="fixed right-4 top-4 z-[80] rounded-full bg-white/5 p-3 text-white backdrop-blur-sm transition-all hover:bg-white/10 active:scale-90 focus:outline-none md:right-8 md:top-8"
+                        className="fixed right-6 top-6 z-[80] flex size-12 items-center justify-center rounded-full bg-white/5 text-white backdrop-blur-md transition-all hover:bg-white/20 active:scale-90 focus:outline-none"
                         aria-label="Close dialog"
                       >
-                        <X className="size-6 md:size-8" />
+                        <X className="size-6" />
                       </button>
                     </Dialog.Close>
                   </div>
@@ -260,3 +355,4 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro, variant
     </div>
   )
 }
+
