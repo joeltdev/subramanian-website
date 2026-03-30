@@ -30,7 +30,7 @@ export const SplitFeatureShowcase: React.FC<FeatureShowcaseBlock> = ({
   const hasForeground = typeof imageForeground === 'object' && imageForeground
 
   return (
-    <section ref={sectionRef} className="relative py-4 md:py-24 overflow-hidden" data-section-theme="light">
+    <section ref={sectionRef} className="relative py-4 md:py-24 overflow-hidden" data-section-theme="dark">
 
       {/* Full-viewport-width background image with subtle parallax */}
       {hasBgImages && (
@@ -57,6 +57,7 @@ export const SplitFeatureShowcase: React.FC<FeatureShowcaseBlock> = ({
 
         <motion.div
           className="relative w-full flex-1 z-10 md:py-4 items-center"
+          data-section-theme="light"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : undefined}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
@@ -104,7 +105,7 @@ export const SplitFeatureShowcase: React.FC<FeatureShowcaseBlock> = ({
             {items.map(({ id, icon, richText }) => {
               const Icon = icon ? iconMap[icon] : null
               return (
-                <div key={id} className="space-y-3 bg-background shadow-xs rounded px-6 py-8">
+                <div key={id} className="space-y-3 bg-muted shadow-xs rounded-none px-6 py-8">
                   {Icon && (
                     <div className="flex items-center gap-2">
                       <Icon className="size-6 text-primary" />
