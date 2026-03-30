@@ -92,9 +92,9 @@ export const Section1Hero: React.FC<Section1HeroType> = ({
                       key={i}
                       {...link}
                       size="default"
-                      className="group shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 active:scale-[0.98] md:size-lg max-md:bg-brand-100 max-md:text-brand-700 max-md:hover:bg-brand-500 max-md:hover:text-white max-md:border-none"
+                      className="group flex justify-center items-center rounded-full bg-brand-600 text-white shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 active:scale-[0.98] px-8 py-3 md:py-4 md:px-10 type-title-md hover:bg-brand-700"
                     >
-                      <ArrowRight className="transition-transform group-hover:translate-x-1.5" />
+                      <ArrowRight className="transition-transform group-hover:translate-x-1.5 ml-2" />
                     </CMSLink>
                   ))}
                 </AnimatedGroup>
