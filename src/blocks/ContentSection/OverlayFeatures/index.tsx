@@ -19,7 +19,9 @@ export const OverlayFeaturesContentSection: React.FC<ContentSectionBlock> = (pro
               <RichText
                 data={intro}
                 enableGutter={false}
-                className="[&_h2]:!text-sm md:[&_h2]:type-display-lg [&_h2]:text-black [&_h2]:tracking-tight [&_h2]:!whitespace-nowrap md:[&_h2]:!whitespace-normal [&_h3]:type-headline-1 [&_h3]:text-black [&_h3]:tracking-widest [&_h3]:uppercase [&_h3]:mb-4 [&_p]:type-title-md [&_p]:text-zinc-600 [&_p]:max-w-2xl [&_p]:mt-6"
+                enableProse={false}
+                disableTextAlign={true}
+                className="[&_h2]:!text-lg md:[&_h2]:type-display-lg [&_h2]:text-black [&_h2]:tracking-tight [&_h2]:!whitespace-nowrap md:[&_h2]:!whitespace-normal [&_h3]:type-headline-1 [&_h3]:text-black [&_h3]:tracking-widest [&_h3]:uppercase [&_h3]:mb-4 [&_p]:type-title-md [&_p]:text-zinc-600 [&_p]:max-w-2xl [&_p]:mt-6"
               />
             </div>
           </div>
