@@ -130,12 +130,12 @@ export function DesktopNav({ data }: { data: Header }) {
       {menuCta?.url || menuCta?.reference ? (
         <CMSLink
           {...menuCta}
-          appearance={menuCta.appearance ?? 'default'}
+          appearance="inline"
           className={cn(
-            'ml-8 font-sans font-bold tracking-widest text-xs uppercase rounded-full px-6 transition-all duration-300',
+            'ml-8 font-sans font-bold tracking-widest text-xs uppercase rounded-full px-6 py-3 transition-all duration-300',
             menuCta.label?.toUpperCase().includes('MANIFESTO') 
-              ? 'bg-inels-blue text-white hover:bg-inels-blue/90 shadow-lg hover:shadow-inels-blue/20 hover:-translate-y-0.5' 
-              : ''
+              ? 'bg-inels-blue text-white hover:bg-inels-blue/90 shadow-lg hover:shadow-inels-blue/20 hover:-translate-y-0.5 block' 
+              : 'bg-primary text-primary-foreground hover:bg-primary/90'
           )}
         />
       ) : null}
