@@ -29,7 +29,7 @@ export const PerspectiveFeatureShowcase: React.FC<FeatureShowcaseBlock> = ({
   const hasImages = imageForeground || imageDark || imageLight
 
   return (
-    <section ref={sectionRef} className="relative md:py-24 md:space-y-8 overflow-hidden bg-slate-100 dark:bg-slate-900">
+    <section ref={sectionRef} className="relative md:py-24 md:space-y-8 overflow-hidden" data-section-theme="light">
       <div className="mx-auto w-full max-w-7xl space-y-8 px-6 md:space-y-12">
         <motion.div
           className="relative z-10"

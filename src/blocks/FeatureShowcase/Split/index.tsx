@@ -30,7 +30,7 @@ export const SplitFeatureShowcase: React.FC<FeatureShowcaseBlock> = ({
   const hasForeground = typeof imageForeground === 'object' && imageForeground
 
   return (
-    <section ref={sectionRef} className="relative py-4 md:py-24 overflow-hidden" data-theme="dark">
+    <section ref={sectionRef} className="relative py-4 md:py-24 overflow-hidden" data-section-theme="light">
 
       {/* Full-viewport-width background image with subtle parallax */}
       {hasBgImages && (
