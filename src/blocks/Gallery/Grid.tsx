@@ -4,7 +4,7 @@ import React, { useState, useEffect, useCallback, useMemo } from 'react'
 import * as Dialog from '@radix-ui/react-dialog'
 import { motion, AnimatePresence, PanInfo } from 'motion/react'
 import { X, ChevronLeft, ChevronRight, Maximize2 } from 'lucide-react'
-import { cn } from '@/utilities/cn'
+import { cn } from '@/utilities/ui'
 
 import type { GalleryBlock as GalleryBlockType, Media as MediaType } from '@/payload-types'
 import { Media } from '@/components/Media'
