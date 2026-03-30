@@ -129,7 +129,7 @@ export function MobileNav({ data }: { data: Header }) {
                     className={cn(
                       "w-full justify-center transition-all duration-300",
                       menuCta.label?.toUpperCase().includes('MANIFESTO')
-                        ? "bg-[#98b6e5] text-black hover:bg-[#98b6e5]/90 font-bold uppercase tracking-widest text-xs rounded-full py-4 h-auto shadow-md block text-center"
+                        ? "bg-[#98b6e5] text-black hover:bg-[#98b6e5]/90 font-bold uppercase tracking-widest text-xs rounded-none py-4 h-auto shadow-md block text-center"
                         : ""
                     )}
                   />
@@ -197,7 +197,7 @@ export function MobileNav({ data }: { data: Header }) {
                     className={cn(
                       "w-full justify-center transition-all duration-300",
                       menuCta.label?.toUpperCase().includes('MANIFESTO')
-                        ? "bg-[#98b6e5] text-black hover:bg-[#98b6e5]/90 font-bold uppercase tracking-widest text-xs rounded-full py-4 h-auto shadow-md block text-center"
+                        ? "bg-[#98b6e5] text-black hover:bg-[#98b6e5]/90 font-bold uppercase tracking-widest text-xs rounded-none py-4 h-auto shadow-md block text-center"
                         : ""
                     )}
                   />

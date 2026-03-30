@@ -132,7 +132,7 @@ export function DesktopNav({ data }: { data: Header }) {
           {...menuCta}
           appearance="inline"
           className={cn(
-            'ml-8 font-sans font-bold tracking-widest text-xs uppercase rounded-full px-6 py-3 transition-all duration-300',
+            'ml-8 font-sans font-bold tracking-widest text-xs uppercase rounded-none px-6 py-3 transition-all duration-300',
             menuCta.label?.toUpperCase().includes('MANIFESTO') 
               ? 'bg-[#98b6e5] text-black hover:bg-[#98b6e5]/90 shadow-lg hover:shadow-[#98b6e5]/20 hover:-translate-y-0.5 block' 
               : 'bg-primary text-primary-foreground hover:bg-primary/90'
