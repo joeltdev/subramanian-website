@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useCallback, useMemo } from 'react'
 import * as Dialog from '@radix-ui/react-dialog'
-import { motion, AnimatePresence, PanInfo } from 'motion/react'
+import { motion, AnimatePresence, PanInfo } from 'motion'
 import { X, ChevronLeft, ChevronRight, Maximize2 } from 'lucide-react'
 import { cn } from '@/utilities/ui'
 
