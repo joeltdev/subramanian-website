@@ -124,12 +124,12 @@ export function MobileNav({ data }: { data: Header }) {
                 <div className="p-4 border-t">
                   <CMSLink
                     {...menuCta}
-                    appearance={menuCta.appearance ?? 'default'}
+                    appearance="inline"
                     onClick={() => setOpen(false)}
                     className={cn(
                       "w-full justify-center transition-all duration-300",
                       menuCta.label?.toUpperCase().includes('MANIFESTO')
-                        ? "bg-inels-blue text-white hover:bg-inels-blue/90 font-bold uppercase tracking-widest text-xs rounded-full py-4 h-auto shadow-md"
+                        ? "bg-[#98b6e5] text-black hover:bg-[#98b6e5]/90 font-bold uppercase tracking-widest text-xs rounded-full py-4 h-auto shadow-md block text-center"
                         : ""
                     )}
                   />
@@ -192,12 +192,12 @@ export function MobileNav({ data }: { data: Header }) {
                 <div className="mt-auto p-4 border-t">
                   <CMSLink
                     {...menuCta}
-                    appearance={menuCta.appearance ?? 'default'}
+                    appearance="inline"
                     onClick={() => setOpen(false)}
                     className={cn(
                       "w-full justify-center transition-all duration-300",
                       menuCta.label?.toUpperCase().includes('MANIFESTO')
-                        ? "bg-inels-blue text-white hover:bg-inels-blue/90 font-bold uppercase tracking-widest text-xs rounded-full py-4 h-auto shadow-md"
+                        ? "bg-[#98b6e5] text-black hover:bg-[#98b6e5]/90 font-bold uppercase tracking-widest text-xs rounded-full py-4 h-auto shadow-md block text-center"
                         : ""
                     )}
                   />
