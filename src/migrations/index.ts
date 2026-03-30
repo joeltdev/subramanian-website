@@ -50,6 +50,7 @@ import * as migration_20260327_politician_hero_schema from './20260327_politicia
 import * as migration_20260328_cleanup_content_section from './20260328_cleanup_content_section';
 import * as migration_20260328_final_poster_fix from './20260328_final_poster_fix';
 import * as migration_20260328_143858 from './20260328_143858';
+import * as migration_20260330_final_gallery_sync from './20260330_final_gallery_sync';
 
 export const migrations = [
   {
@@ -311,5 +312,10 @@ export const migrations = [
     up: migration_20260328_143858.up,
     down: migration_20260328_143858.down,
     name: '20260328_143858',
+  },
+  {
+    up: migration_20260330_final_gallery_sync.up,
+    down: migration_20260330_final_gallery_sync.down,
+    name: '20260330_final_gallery_sync',
   },
 ];
