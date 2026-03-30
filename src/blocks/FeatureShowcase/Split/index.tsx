@@ -67,7 +67,7 @@ export const SplitFeatureShowcase: React.FC<FeatureShowcaseBlock> = ({
               data={intro}
               enableGutter={false}
               className="
-      [&_h3]:type-headline-3 [&_h3]:text-type-heading [&_h2]:type-headline-2 md:[&_h2]:type-headline-1 [&_h2]:text-type-heading [&_h2]:mb-8 [&_h3]:mb-8 [&_h2]:break-words [&_h2]:max-w-full [&_h3]:px-4 [&_h2]:mx-auto [&_p]:text-type-body [&_p]:type-body-md md:[&_p]:type-body-lg [&_p]:font-medium [&_p]:leading-relaxed
+      [&_h3]:type-headline-3 [&_h3]:text-type-heading [&_h2]:type-headline-2 md:[&_h2]:type-headline-1 [&_h2]:text-type-heading [&_h2]:mb-8 [&_h3]:mb-8 [&_h2]:break-words [&_h2]:max-w-full [&_h2]:mx-0 [&_p]:text-type-body [&_p]:type-body-md md:[&_p]:type-body-lg [&_p]:font-medium [&_p]:leading-relaxed
     "
             />
           )}        </motion.div>
