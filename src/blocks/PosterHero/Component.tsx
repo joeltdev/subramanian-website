@@ -103,7 +103,7 @@ export const PosterHeroBlock: React.FC<T> = ({
                     {/* Highlight color used as an accent element */}
                     <div 
                       className="h-1.5 w-24 ml-auto mt-6"
-                      style={{ backgroundColor: highlightColor }}
+                      style={{ backgroundColor: highlightColor ?? undefined }}
                     />
                   </motion.div>
 
