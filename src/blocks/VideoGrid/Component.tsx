@@ -70,7 +70,7 @@ export const VideoGridBlock: React.FC<VideoGridBlockType> = ({
                 </h3>
               )}
               {description && (
-                <p className="type-title-md text-type-secondary max-w-2xl mt-6 md:mt-0">
+                <p className="type-body-lg text-type-secondary max-w-2xl mt-6 md:mt-0">
                   {description}
                 </p>
               )}
