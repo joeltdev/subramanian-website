@@ -27,20 +27,24 @@ export const SingleFaq: React.FC<FaqBlock> = ({ intro, supportLine, groups }) =>
   return (
     <section ref={sectionRef} className="py-8 md:py-8 bg-stone-50/30">
       <div className="mx-auto max-w-7xl px-6 md:px-8">
-        <div className="mx-auto max-w-4xl space-y-16 md:space-y-20">
+        <div className="mx-auto max-w-4xl">
           {intro && (
             <motion.div
-              className="text-center"
+              className="mb-16 md:mb-20 text-left flex flex-col items-start w-full"
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : undefined}
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             >
-              <RichText
-                data={intro}
-                enableGutter={false}
-                enableProse={false}
-                className="[&_h2]:text-2xl [&_h2]:md:text-3xl [&_h2]:font-semibold [&_h2]:text-type-heading [&_h2]:leading-tight [&_h2]:mb-8 [&_h2]:text-center [&_h2]:break-words [&_h2]:max-w-full [&_h2]:px-4 [&_h2]:mx-auto [&_h3]:text-2xl [&_h3]:md:text-3xl [&_h3]:font-semibold [&_h3]:text-type-heading [&_h3]:leading-tight [&_h3]:mb-10 [&_h3]:text-center [&_h3]:break-words [&_h3]:max-w-full [&_h3]:px-4 [&_h3]:mx-auto [&_p]:type-body-xl [&_p]:text-type-secondary [&_p]:max-w-2xl [&_p]:mx-auto"
-              />
+              <div className="max-w-none md:max-w-3xl w-full">
+                <RichText
+                  data={intro}
+                  enableGutter={false}
+                  enableProse={false}
+                  disableTextAlign={true}
+                  className="[&_h2]:!text-lg md:[&_h2]:type-display-lg [&_h2]:text-type-heading [&_h2]:tracking-tight [&_h2]:!whitespace-nowrap md:[&_h2]:!whitespace-normal [&_h3]:type-headline-1 [&_h3]:text-type-heading [&_h3]:tracking-widest [&_h3]:uppercase [&_h3]:mb-4 [&_p]:type-title-md [&_p]:text-type-secondary [&_p]:max-w-2xl [&_p]:mt-6 md:[&_p]:mt-0"
+                />
+                <div className="mt-8 h-px w-24 bg-brand-500" />
+              </div>
             </motion.div>
           )}
           {showSupportLine && (

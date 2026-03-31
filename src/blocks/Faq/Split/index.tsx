@@ -36,11 +36,18 @@ export const SplitFaq: React.FC<FaqBlock> = ({ intro, supportLine, groups }) => 
           >
             <div className="w-full">
               {intro && (
-                <RichText
-                  data={intro}
-                  enableGutter={false}
-                  className="text-left [&_h2]:text-2xl [&_h2]:md:text-3xl [&_h2]:font-semibold [&_h2]:text-primary [&_h2]:leading-tight [&_h2]:mb-8 [&_h2]:text-left [&_h2]:break-words [&_h2]:max-w-full [&_h2]:px-4 [&_h2]:mx-auto [&_p]:type-body-xl [&_p]:text-type-secondary [&_p]:text-left"
-                />
+                <div className="mb-12 text-left flex flex-col items-start w-full">
+                  <div className="max-w-none md:max-w-3xl w-full">
+                    <RichText
+                      data={intro}
+                      enableGutter={false}
+                      enableProse={false}
+                      disableTextAlign={true}
+                      className="[&_h2]:!text-lg md:[&_h2]:type-display-lg [&_h2]:text-type-heading [&_h2]:tracking-tight [&_h2]:!whitespace-nowrap md:[&_h2]:!whitespace-normal [&_h3]:type-headline-1 [&_h3]:text-type-heading [&_h3]:tracking-widest [&_h3]:uppercase [&_h3]:mb-4 [&_p]:type-title-md [&_p]:text-type-secondary [&_p]:max-w-2xl [&_p]:mt-6 md:[&_p]:mt-0"
+                    />
+                    <div className="mt-8 h-px w-24 bg-brand-500" />
+                  </div>
+                </div>
               )}
               {showSupportLine && (
                 <p className="mt-8 w-full md:mt-10 type-body-lg text-type-secondary">

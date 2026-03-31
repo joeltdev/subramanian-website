@@ -51,7 +51,6 @@ export const VideoGridBlock: React.FC<VideoGridBlockType & { disableInnerContain
   title,
   description,
   videos,
-  disableInnerContainer,
 }) => {
   if (!videos || videos.length === 0) return null
 
@@ -59,17 +58,20 @@ export const VideoGridBlock: React.FC<VideoGridBlockType & { disableInnerContain
     <section className="py-16 md:py-24 bg-background">
       <div className={cn('mx-auto max-w-7xl px-6 md:px-8')}>
         {(title || description) && (
-          <div className="mb-10 md:mb-12 text-center max-w-3xl mx-auto">
-            {title && (
-              <h2 className="text-2xl md:text-3xl font-bold text-type-heading mb-4">
-                {title}
-              </h2>
-            )}
-            {description && (
-              <p className="type-body-lg text-type-secondary">
-                {description}
-              </p>
-            )}
+          <div className="mb-16 md:mb-20 text-left flex flex-col items-start w-full">
+            <div className="max-w-none md:max-w-3xl w-full">
+              {title && (
+                <h2 className="!text-lg md:type-display-lg text-type-heading tracking-tight !whitespace-nowrap md:!whitespace-normal mb-4">
+                  {title}
+                </h2>
+              )}
+              {description && (
+                <p className="type-title-md text-type-secondary max-w-2xl mt-6 md:mt-0">
+                  {description}
+                </p>
+              )}
+              <div className="mt-8 h-px w-24 bg-brand-500" />
+            </div>
           </div>
         )}
 
