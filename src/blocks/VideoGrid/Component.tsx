@@ -61,7 +61,7 @@ export const VideoGridBlock: React.FC<VideoGridBlockType & { disableInnerContain
           <div className="mb-16 md:mb-20 text-left flex flex-col items-start w-full">
             <div className="max-w-none md:max-w-3xl w-full">
               {title && (
-                <h2 className="!text-lg md:type-display-lg text-type-heading tracking-tight !whitespace-nowrap md:!whitespace-normal mb-4">
+                <h2 className="type-display-lg text-type-heading tracking-tight mb-4">
                   {title}
                 </h2>
               )}
