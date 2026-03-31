@@ -32,13 +32,13 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
 
   return (
     <header
-      className="sticky top-0 z-50 w-full border-b border-white/10 bg-background"
+      className="absolute md:sticky top-0 z-50 w-full md:bg-background bg-transparent border-none md:border-b md:border-white/10"
       data-section-theme="brand"
       style={{ '--header-height': '72px' } as React.CSSProperties}
     >
       <div className="mx-auto w-full max-w-7xl px-6">
-        <div className="py-4 flex items-center justify-between">
-          <Link href="/">
+        <div className="py-4 flex items-center justify-end md:justify-between">
+          <Link href="/" className="hidden md:block">
             {data.logo && typeof data.logo === 'object' && (data.logo as Media).url ? (
               <img
                 src={(data.logo as Media).url!}
