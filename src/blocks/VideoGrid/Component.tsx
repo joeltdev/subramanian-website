@@ -102,7 +102,7 @@ export const VideoGridBlock: React.FC<VideoGridBlockType> = ({
                 )}
               >
                 {/* Decorative Index */}
-                <span className="hidden lg:block absolute -left-12 top-0 text-zinc-200 type-display-sm font-bold select-none">
+                <span className="hidden lg:block absolute -left-12 top-0 text-black type-display-sm font-bold select-none">
                   {String(index + 1).padStart(2, '0')}
                 </span>
 
