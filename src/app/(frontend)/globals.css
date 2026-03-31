@@ -115,6 +115,7 @@
   --type-size-title-lg:      1.25rem;  --type-leading-title-lg:      1.35;
   --type-size-title-md:      1.125rem; --type-leading-title-md:      1.4;
   --type-size-title-sm:      1rem;     --type-leading-title-sm:      1.4;
+  --type-size-body-2xl:       1.5rem;  --type-leading-body-2xl:       1.75;
   --type-size-body-xl:       1.25rem;  --type-leading-body-xl:       1.75;
   --type-size-body-lg:       1.125rem; --type-leading-body-lg:       1.7;
   --type-size-body-md:       1rem;     --type-leading-body-md:       1.65;
@@ -448,6 +449,13 @@ html[data-theme='light'] {
 }
 
 /* BODY */
+@utility type-body-2xl {
+  font-size: var(--type-size-body-2xl);
+  line-height: var(--type-leading-body-2xl);
+  font-weight: var(--type-weight-regular);
+  letter-spacing: 0;
+}
+
 @utility type-body-xl {
   font-size: var(--type-size-body-xl);
   line-height: var(--type-leading-body-xl);
