@@ -72,9 +72,9 @@ export function MobileNav({ data }: { data: Header }) {
         <SheetTrigger asChild>
           <button
             aria-label="Open navigation menu"
-            className="p-3 bg-black/20 backdrop-blur-md border border-white/10 hover:bg-black/40 transition-all duration-300 shadow-lg group"
+            className="size-14 flex items-center justify-center bg-foreground text-background shadow-[0_0_40px_rgba(0,0,0,0.3)] hover:opacity-90 transition-all active:scale-95 group border border-background/10"
           >
-            <Menu className="h-6 w-6 text-white group-hover:scale-110 transition-transform" />
+            <Menu className="size-8 stroke-[1.5px] transition-transform group-hover:scale-110" />
           </button>
         </SheetTrigger>
         <SheetContent side="right" className="w-80 flex flex-col p-0">

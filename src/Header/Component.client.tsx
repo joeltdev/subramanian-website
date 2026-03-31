@@ -37,7 +37,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
       style={{ '--header-height': '72px' } as React.CSSProperties}
     >
       <div className="mx-auto w-full max-w-7xl px-6">
-        <div className="py-4 flex items-center justify-end md:justify-between">
+        <div className="pt-6 pb-2 md:py-4 flex items-center justify-end md:justify-between">
           <Link href="/" className="hidden md:block">
             {data.logo && typeof data.logo === 'object' && (data.logo as Media).url ? (
               <img
