@@ -5,6 +5,7 @@ import RichText from '@/components/RichText'
 import { Media } from '@/components/Media'
 import { CMSLink } from '@/components/Link'
 import { motion } from 'motion/react'
+import { ArrowRight } from 'lucide-react'
 
 export const PosterHeroBlock: React.FC<T> = ({
   headline,
@@ -117,8 +118,11 @@ export const PosterHeroBlock: React.FC<T> = ({
                       <CMSLink
                         {...link}
                         appearance="inline"
-                        className="inline-block bg-transparent border-2 border-white text-white uppercase font-bold tracking-[0.2em] px-10 py-4 mt-10 transition-all duration-300 hover:bg-white hover:text-[#0B1A28] rounded-none text-sm"
-                      />
+                        className="inline-flex items-center gap-3 bg-transparent border-2 border-white text-white uppercase font-bold tracking-[0.15em] px-6 md:px-10 py-3 md:py-4 mt-10 transition-all duration-300 hover:bg-white hover:text-[#0B1A28] rounded-none text-[10px] md:text-sm whitespace-nowrap group/link"
+                      >
+                        {link.label}
+                        <ArrowRight className="size-4 transition-transform duration-300 group-hover/link:translate-x-1" />
+                      </CMSLink>
                     </motion.div>
                   )}
                 </div>
