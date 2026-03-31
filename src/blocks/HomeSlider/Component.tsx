@@ -35,7 +35,7 @@ export const HomeSliderBlockComponent: React.FC<HomeSliderBlock> = ({ intro_n_a,
               <RichText
                 data={intro_n_a}
                 enableGutter={false}
-                className="[&_h2]:!text-3xl md:[&_h2]:type-display-lg [&_h2]:text-type-heading [&_h2]:tracking-tight [&_h2]:!whitespace-nowrap md:[&_h2]:!whitespace-normal [&_h3]:text-lg md:[&_h3]:type-headline-1 [&_h3]:text-type-heading [&_h3]:font-bold [&_h3]:mb-4 [&_p]:type-title-md [&_p]:text-type-secondary [&_p]:max-w-2xl [&_p]:mt-6 md:[&_p]:mt-0"
+                className="[&_h2]:text-2xl md:[&_h2]:type-display [&_h2]:text-type-heading [&_h2]:tracking-tight [&_h2]:!whitespace-nowrap md:[&_h2]:!whitespace-normal [&_h3]:text-2xl md:[&_h3]:type-headline-1 [&_h3]:text-type-heading [&_h3]:font-bold [&_h3]:mb-4 [&_p]:type-title-md [&_p]:text-type-secondary [&_p]:max-w-2xl [&_p]:mt-6 md:[&_p]:mt-0"
               />
               <div className="mt-8 h-px w-24 bg-brand-500" />
             </div>

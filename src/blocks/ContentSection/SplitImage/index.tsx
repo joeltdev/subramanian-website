@@ -14,7 +14,7 @@ export const SplitImageContentSection: React.FC<ContentSectionBlock> = ({
   return (
     <section className="py-4 md:py-24">
       <div className="mx-auto max-w-7xl space-y-8 px-6 md:space-y-16">
-        {intro && <RichText data={intro} enableGutter={false} className="relative z-10 max-w-4xl ml-0 mb-8 [&_h2]:type-display-lg [&_h2]:text-type-heading [&_h2]:tracking-tight [&_h2]:mb-4 [&_h3]:type-headline-3 [&_h3]:text-type-heading [&_h3]:leading-tight [&_h3]:mb-2 [&_p]:text-type-body [&_p]:type-body-xl [&_p]:leading-snug" />}
+        {intro && <RichText data={intro} enableGutter={false} className="relative z-10 max-w-4xl ml-0 mb-8 [&_h2]:type-display [&_h2]:text-type-heading [&_h2]:tracking-tight [&_h2]:mb-4 [&_h3]:type-headline-3 [&_h3]:text-type-heading [&_h3]:leading-tight [&_h3]:mb-2 [&_p]:text-type-body [&_p]:type-body-xl [&_p]:leading-snug" />}
 
         <div className="grid gap-6 sm:grid-cols-2 md:gap-12 lg:gap-24">
           <div className="relative mb-2 sm:mb-0">

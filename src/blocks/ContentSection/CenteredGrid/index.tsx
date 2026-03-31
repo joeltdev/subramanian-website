@@ -14,7 +14,7 @@ export const CenteredGridContentSection: React.FC<ContentSectionBlock> = ({
       <div className="mx-auto max-w-7xl space-y-8 px-6 md:space-y-12">
         {intro && (
           <div className="mx-auto max-w-3xl space-y-6 text-center md:space-y-12">
-            <RichText data={intro} enableGutter={false} className="[&_h2]:type-display-lg [&_h2]:text-type-body [&_h2]:tracking-tight [&_h2]:leading-[1.1] [&_h2]:mb-6 [&_h3]:type-headline-3 [&_h3]:text-type-body [&_h3]:leading-tight [&_h3]:mb-4 [&_p]:text-type-secondary [&_p]:type-body-xl [&_p]:leading-snug" />
+            <RichText data={intro} enableGutter={false} className="[&_h2]:type-display [&_h2]:text-type-body [&_h2]:tracking-tight [&_h2]:leading-[1.1] [&_h2]:mb-6 [&_h3]:type-headline-3 [&_h3]:text-type-body [&_h3]:leading-tight [&_h3]:mb-4 [&_p]:text-type-secondary [&_p]:type-body-xl [&_p]:leading-snug" />
           </div>
         )}
 
