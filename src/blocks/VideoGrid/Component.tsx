@@ -65,7 +65,7 @@ export const VideoGridBlock: React.FC<VideoGridBlockType> = ({
           <div className="mb-16 md:mb-24 text-left flex flex-col items-start w-full">
             <div className="max-w-none md:max-w-3xl w-full">
               {title && (
-                <h3 className="text-2xl md:type-display text-type-heading tracking-tight !whitespace-nowrap md:!whitespace-normal mb-4 font-bold">
+                <h3 className="text-xl md:type-headline-1 text-type-heading tracking-tight !whitespace-nowrap md:!whitespace-normal mb-4 font-bold">
                   {title}
                 </h3>
               )}
