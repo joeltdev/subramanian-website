@@ -64,7 +64,7 @@ export const ProductHero: React.FC<ProductHeroProps> = ({
           <div className="lg:w-1/2">
             {/* Name + badges */}
             <div className="mb-4 space-y-2">
-              <h1 className="text-2xl font-bold text-gray-900 sm:text-3xl lg:text-4xl">
+              <h1 className="text-3xl font-bold text-gray-900 sm:text-3xl lg:text-4xl">
                 {product.name}
               </h1>
               {product.subtitle && (

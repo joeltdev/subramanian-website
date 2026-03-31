@@ -73,14 +73,14 @@ export const Section2Hero: React.FC<Section2HeroType> = ({
 
           return (
         <h1 className={`m-0 font-bold drop-shadow-md flex flex-col items-start gap-1 leading-none break-words ${malayalamHeading ? 'font-malayalam' : ''}`}>
-  <span className="type-headline-1 text-foreground/90">{firstLine}</span>
-  <span className="type-headline-1 text-foreground">{secondLine}</span>
+  <span className="type-display text-foreground/90">{firstLine}</span>
+  <span className="type-display text-foreground">{secondLine}</span>
 </h1>
           )
         }
 
         return (
-          <h1 className={`m-0 type-headline-4 md:type-headline-1 font-bold drop-shadow-md break-words ${malayalamHeading ? 'font-malayalam' : ''}`}>
+          <h1 className={`m-0 type-headline-1 font-bold drop-shadow-md break-words ${malayalamHeading ? 'font-malayalam' : ''}`}>
             {text}
           </h1>
         )
