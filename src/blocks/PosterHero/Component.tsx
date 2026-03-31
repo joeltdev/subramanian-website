@@ -73,9 +73,9 @@ export const PosterHeroBlock: React.FC<T> = ({
                       enableProse={false}
                       className="
                         text-right
-                        [&_h1]:text-6xl md:[&_h1]:text-8xl lg:[&_h1]:text-[9rem] 
+                        [&_h1]:text-5xl md:[&_h1]:text-7xl lg:[&_h1]:text-[8rem] 
                         [&_h1]:font-black 
-                        [&_h1]:leading-[0.85] 
+                        [&_h1]:leading-none 
                         [&_h1]:text-white 
                         [&_h1]:tracking-tighter
                         [&_h1]:m-0
