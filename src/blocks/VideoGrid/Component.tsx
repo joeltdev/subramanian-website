@@ -1,6 +1,8 @@
+'use client'
 import React from 'react'
 import { cn } from '@/utilities/ui'
 import type { VideoGridBlock as VideoGridBlockType } from '@/payload-types'
+import { motion } from 'motion/react'
 
 const getYouTubeVideoId = (input: string): string | null => {
   const raw = (input || '').trim()
@@ -47,7 +49,7 @@ const getEmbedSrc = (url: string): string | null => {
   return `https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}?${params.toString()}`
 }
 
-export const VideoGridBlock: React.FC<VideoGridBlockType & { disableInnerContainer?: boolean }> = ({
+export const VideoGridBlock: React.FC<VideoGridBlockType> = ({
   title,
   description,
   videos,
@@ -55,13 +57,15 @@ export const VideoGridBlock: React.FC<VideoGridBlockType & { disableInnerContain
   if (!videos || videos.length === 0) return null
 
   return (
-    <section className="py-16 md:py-24 bg-background">
-      <div className={cn('mx-auto max-w-7xl px-6 md:px-8')}>
+    <section className="py-16 md:py-24 bg-background overflow-hidden">
+      <div className="mx-auto max-w-7xl px-6 md:px-8">
+        
+        {/* 1. International Header - Left Aligned & Matching Gallery */}
         {(title || description) && (
-          <div className="mb-16 md:mb-20 text-left flex flex-col items-start w-full">
+          <div className="mb-16 md:mb-24 text-left flex flex-col items-start w-full">
             <div className="max-w-none md:max-w-3xl w-full">
               {title && (
-                <h2 className="type-display-lg text-type-heading tracking-tight mb-4">
+                <h2 className="!text-lg md:type-display-lg text-type-heading tracking-tight !whitespace-nowrap md:!whitespace-normal mb-4 font-bold">
                   {title}
                 </h2>
               )}
@@ -75,34 +79,60 @@ export const VideoGridBlock: React.FC<VideoGridBlockType & { disableInnerContain
           </div>
         )}
 
-        <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
-            {videos.map((video, index) => {
-              const src = getEmbedSrc(video.url)
-              if (!src) return null
+        {/* 2. Cinematic Video Layout */}
+        <div className={cn(
+          "grid grid-cols-1 gap-12 lg:gap-24",
+          videos.length === 2 ? "lg:grid-cols-2" : "md:grid-cols-2 lg:grid-cols-3"
+        )}>
+          {videos.map((video, index) => {
+            const src = getEmbedSrc(video.url)
+            if (!src) return null
 
-              return (
-                <div key={index} className="flex flex-col group">
-                  <div className="relative w-full aspect-video overflow-hidden border border-border bg-muted mb-6 transition-all duration-300 group-hover:border-primary/50 group-hover:shadow-lg">
-                    <iframe
-                      className="absolute inset-0 h-full w-full"
-                      src={src}
-                      title={video.title}
-                      loading="lazy"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      referrerPolicy="strict-origin-when-cross-origin"
-                      allowFullScreen
-                    />
-                  </div>
-                  {video.title && (
-                    <h3 className="type-title-md font-bold text-type-heading leading-tight group-hover:text-primary transition-colors text-center md:text-left">
+            return (
+              <motion.div 
+                key={index} 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.2, duration: 0.8 }}
+                className={cn(
+                  "flex flex-col group relative",
+                  // Staggered offset for 2-video layout on desktop
+                  videos.length === 2 && index === 1 && "lg:mt-24"
+                )}
+              >
+                {/* Decorative Index */}
+                <span className="hidden lg:block absolute -left-12 top-0 text-zinc-200 type-display-sm font-bold select-none">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+
+                <div className="relative w-full aspect-video overflow-hidden bg-muted border border-border/40 shadow-sm transition-all duration-500 group-hover:border-brand-500/50 group-hover:shadow-2xl">
+                  <iframe
+                    className="absolute inset-0 h-full w-full grayscale-[0.2] contrast-[1.1] transition-all duration-700 group-hover:grayscale-0 group-hover:scale-[1.02]"
+                    src={src}
+                    title={video.title}
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                  />
+                  
+                  {/* Subtle Grain Overlay */}
+                  <div className="absolute inset-0 pointer-events-none opacity-[0.03] mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+                </div>
+
+                {video.title && (
+                  <div className="mt-8">
+                    <h3 className="type-title-lg font-bold text-type-heading leading-tight transition-all duration-500 group-hover:text-brand-500">
                       {video.title}
                     </h3>
-                  )}
-                </div>
-              )
-            })}
-          </div>
+                    {/* Visual spacer */}
+                    <div className="w-0 h-[2px] bg-brand-500 mt-4 transition-all duration-500 group-hover:w-12" />
+                  </div>
+                )}
+              </motion.div>
+            )
+          })}
         </div>
       </div>
     </section>
