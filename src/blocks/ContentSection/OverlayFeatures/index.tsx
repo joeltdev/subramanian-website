@@ -12,9 +12,9 @@ export const OverlayFeaturesContentSection: React.FC<ContentSectionBlock> = (pro
     <section className="py-16 md:py-24 bg-white" data-section-theme="light">
       <div className="mx-auto max-w-7xl px-6 md:px-8">
         
-        {/* 1. Header Section - Left on mobile, Centered on Desktop */}
+        {/* 1. Header Section - Left Aligned */}
         {intro && (
-          <div className="mb-16 md:mb-20 text-left md:text-center flex flex-col items-start md:items-center w-full">
+          <div className="mb-16 md:mb-20 text-left flex flex-col items-start w-full">
             <div className="max-w-none md:max-w-3xl w-full">
               <RichText
                 data={intro}
