@@ -95,11 +95,7 @@ export const VideoGridBlock: React.FC<VideoGridBlockType> = ({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.2, duration: 0.8 }}
-                className={cn(
-                  "flex flex-col group relative",
-                  // Staggered offset for 2-video layout on desktop
-                  videos.length === 2 && index === 1 && "lg:mt-24"
-                )}
+                className="flex flex-col group relative"
               >
                 {/* Decorative Index */}
                 <span className="hidden lg:block absolute -left-12 top-0 text-zinc-700 type-display-sm font-bold select-none">
