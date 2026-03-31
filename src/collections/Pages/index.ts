@@ -31,6 +31,7 @@ import { PromoHero } from '@/blocks/PromoHero/config'
 import { Manifesto } from '@/blocks/Manifesto/config'
 import { ManifestoPromo } from '@/blocks/ManifestoPromo/config'
 import { HomeSlider } from '@/blocks/HomeSlider/config'
+import { PosterHero } from '@/blocks/PosterHero/config'
 import { hero } from '@/blocks/Hero/config'
 
 import { slugField } from 'payload'
@@ -128,6 +129,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 Manifesto,
                 ManifestoPromo,
                 HomeSlider,
+                PosterHero,
               ],
               required: true,
               admin: {

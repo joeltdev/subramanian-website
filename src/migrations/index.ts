@@ -47,10 +47,12 @@ import * as migration_20260326_add_content_section_theme from './20260326_add_co
 import * as migration_20260326_add_mobile_images_to_content_section from './20260326_add_mobile_images_to_content_section';
 import * as migration_20260326_fix_footer_logo from './20260326_fix_footer_logo';
 import * as migration_20260327_politician_hero_schema from './20260327_politician_hero_schema';
+import * as migration_20260328_143858 from './20260328_143858';
 import * as migration_20260328_cleanup_content_section from './20260328_cleanup_content_section';
 import * as migration_20260328_final_poster_fix from './20260328_final_poster_fix';
-import * as migration_20260328_143858 from './20260328_143858';
 import * as migration_20260330_final_gallery_sync from './20260330_final_gallery_sync';
+import * as migration_20260331_100644 from './20260331_100644';
+import * as migration_20260331_102929 from './20260331_102929';
 
 export const migrations = [
   {
@@ -299,6 +301,11 @@ export const migrations = [
     name: '20260327_politician_hero_schema',
   },
   {
+    up: migration_20260328_143858.up,
+    down: migration_20260328_143858.down,
+    name: '20260328_143858',
+  },
+  {
     up: migration_20260328_cleanup_content_section.up,
     down: migration_20260328_cleanup_content_section.down,
     name: '20260328_cleanup_content_section',
@@ -309,13 +316,18 @@ export const migrations = [
     name: '20260328_final_poster_fix',
   },
   {
-    up: migration_20260328_143858.up,
-    down: migration_20260328_143858.down,
-    name: '20260328_143858',
-  },
-  {
     up: migration_20260330_final_gallery_sync.up,
     down: migration_20260330_final_gallery_sync.down,
     name: '20260330_final_gallery_sync',
+  },
+  {
+    up: migration_20260331_100644.up,
+    down: migration_20260331_100644.down,
+    name: '20260331_100644',
+  },
+  {
+    up: migration_20260331_102929.up,
+    down: migration_20260331_102929.down,
+    name: '20260331_102929'
   },
 ];

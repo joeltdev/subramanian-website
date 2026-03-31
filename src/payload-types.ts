@@ -416,6 +416,7 @@ export interface Page {
         blockType: 'manifestoPromo';
       }
     | HomeSliderBlock
+    | PosterHeroBlock
   )[];
   meta?: {
     title?: string | null;
@@ -2690,6 +2691,68 @@ export interface HomeSliderBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PosterHeroBlock".
+ */
+export interface PosterHeroBlock {
+  /**
+   * Main poster headline (H1)
+   */
+  headline?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Supporting text displayed below the headline
+   */
+  subheadline?: string | null;
+  /**
+   * Primary accent color (Default: Mustard Gold #B59449)
+   */
+  highlightColor?: string | null;
+  link: {
+    type?: ('reference' | 'custom') | null;
+    newTab?: boolean | null;
+    reference?:
+      | ({
+          relationTo: 'pages';
+          value: number | Page;
+        } | null)
+      | ({
+          relationTo: 'posts';
+          value: number | Post;
+        } | null);
+    url?: string | null;
+    label: string;
+    /**
+     * Choose how the link should be rendered.
+     */
+    appearance?: ('default' | 'outline') | null;
+  };
+  /**
+   * The main subject image for the poster
+   */
+  subjectImage?: (number | null) | Media;
+  /**
+   * Toggle the paper texture overlay effect
+   */
+  textureOverlay?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'posterHero';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -3088,6 +3151,7 @@ export interface PagesSelect<T extends boolean = true> {
               blockName?: T;
             };
         home_slider?: T | HomeSliderBlockSelect<T>;
+        posterHero?: T | PosterHeroBlockSelect<T>;
       };
   meta?:
     | T
@@ -3667,6 +3731,29 @@ export interface HomeSliderBlockSelect<T extends boolean = true> {
         overlayOpacity?: T;
         id?: T;
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PosterHeroBlock_select".
+ */
+export interface PosterHeroBlockSelect<T extends boolean = true> {
+  headline?: T;
+  subheadline?: T;
+  highlightColor?: T;
+  link?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        reference?: T;
+        url?: T;
+        label?: T;
+        appearance?: T;
+      };
+  subjectImage?: T;
+  textureOverlay?: T;
   id?: T;
   blockName?: T;
 }

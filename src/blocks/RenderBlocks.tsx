@@ -31,6 +31,7 @@ import { PromoHeroBlock } from '@/blocks/PromoHero/Component'
 import { ManifestoBlock } from '@/blocks/Manifesto/Component'
 import { ManifestoPromoBlock } from '@/blocks/ManifestoPromo/Component'
 import { HomeSliderBlockComponent } from '@/blocks/HomeSlider/Component'
+import { PosterHeroBlock } from '@/blocks/PosterHero/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -62,6 +63,7 @@ const blockComponents = {
   tharoorManifesto: ManifestoBlock,
   manifestoPromo: ManifestoPromoBlock,
   home_slider: HomeSliderBlockComponent,
+  posterHero: PosterHeroBlock,
 }
 
 export const RenderBlocks: React.FC<{
