@@ -2,6 +2,7 @@
 
 import React, { useRef } from 'react'
 import { motion, useInView } from 'motion/react'
+import { cn } from '@/utilities/ui'
 import type { FaqBlock } from '@/payload-types'
 import RichText from '@/components/RichText'
 import { CMSLink } from '@/components/Link'
@@ -25,53 +26,50 @@ export const SingleFaq: React.FC<FaqBlock> = ({ intro, supportLine, groups }) =>
   const asLink = showSupportLine && hasLinkTarget(supportLine)
 
   return (
-    <section ref={sectionRef} className="py-8 md:py-8 bg-stone-50/30">
+    <section ref={sectionRef} className="py-16 md:py-24 bg-background">
       <div className="mx-auto max-w-7xl px-6 md:px-8">
-        <div className="mx-auto max-w-4xl">
-          {intro && (
-            <motion.div
-              className="mb-16 md:mb-20 text-left flex flex-col items-start w-full"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : undefined}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            >
+        {(intro || showSupportLine) && (
+          <motion.div
+            className="mb-16 md:mb-20 text-left flex flex-col items-start w-full"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : undefined}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          >
+            {intro && (
               <div className="max-w-none md:max-w-3xl w-full">
                 <RichText
                   data={intro}
                   enableGutter={false}
                   enableProse={false}
                   disableTextAlign={true}
-                  className="[&_h2]:!text-lg md:[&_h2]:type-display-lg [&_h2]:text-type-heading [&_h2]:tracking-tight [&_h2]:!whitespace-nowrap md:[&_h2]:!whitespace-normal [&_h3]:type-headline-1 [&_h3]:text-type-heading [&_h3]:tracking-widest [&_h3]:uppercase [&_h3]:mb-4 [&_p]:type-title-md [&_p]:text-type-secondary [&_p]:max-w-2xl [&_p]:mt-6 md:[&_p]:mt-0"
+                  className="[&_h2]:type-display-lg [&_h2]:text-type-heading [&_h2]:tracking-tight [&_h3]:type-headline-1 [&_h3]:text-type-heading [&_h3]:tracking-widest [&_h3]:uppercase [&_h3]:mb-4 [&_p]:type-title-md [&_p]:text-type-secondary [&_p]:max-w-2xl [&_p]:mt-6 md:[&_p]:mt-0"
                 />
                 <div className="mt-8 h-px w-24 bg-brand-500" />
               </div>
-            </motion.div>
-          )}
-          {showSupportLine && (
-            <motion.p
-              className="type-body-lg text-type-secondary"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : undefined}
-              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-            >
-              {asLink ? (
-                <>
-                  {supportLine.subtitle}{' '}
-                  <CMSLink
-                    type={supportLine.type ?? 'reference'}
-                    reference={supportLine.reference ?? undefined}
-                    url={supportLine.url ?? undefined}
-                    label={supportLine.linkLabel ?? undefined}
-                    newTab={supportLine.newTab ?? undefined}
-                    appearance="inline"
-                    className="text-primary underline hover:no-underline"
-                  />
-                </>
-              ) : (
-                supportLine.subtitle
-              )}
-            </motion.p>
-          )}
+            )}
+            {showSupportLine && (
+              <p className={cn("type-body-lg text-type-secondary max-w-3xl", intro && "mt-8 md:mt-10")}>
+                {asLink ? (
+                  <>
+                    {supportLine.subtitle}{' '}
+                    <CMSLink
+                      type={supportLine.type ?? 'reference'}
+                      reference={supportLine.reference ?? undefined}
+                      url={supportLine.url ?? undefined}
+                      label={supportLine.linkLabel ?? undefined}
+                      newTab={supportLine.newTab ?? undefined}
+                      appearance="inline"
+                      className="text-primary underline hover:no-underline"
+                    />
+                  </>
+                ) : (
+                  supportLine.subtitle
+                )}
+              </p>
+            )}
+          </motion.div>
+        )}
+        <div className="mx-auto max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : undefined}
