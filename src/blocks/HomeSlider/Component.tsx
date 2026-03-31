@@ -37,6 +37,7 @@ export const HomeSliderBlockComponent: React.FC<HomeSliderBlock> = ({ intro_n_a,
                 enableGutter={false}
                 className="[&_h2]:type-display-lg [&_h2]:text-type-heading [&_h2]:tracking-tight [&_h3]:type-headline-1 [&_h3]:text-type-heading [&_h3]:tracking-widest [&_h3]:uppercase [&_h3]:mb-4 [&_p]:type-title-md [&_p]:text-type-secondary [&_p]:max-w-2xl [&_p]:mt-6 md:[&_p]:mt-0"
               />
+              <div className="mt-8 h-px w-24 bg-brand-500" />
             </div>
           </div>
         )}
