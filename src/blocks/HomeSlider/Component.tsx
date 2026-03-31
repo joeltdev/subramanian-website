@@ -141,16 +141,16 @@ export const HomeSliderBlockComponent: React.FC<HomeSliderBlock> = ({ intro_n_a,
                     )}
                   />
 
-                  {/* Vertical Label (when not hovered) */}
+                  {/* Horizontal Label (when not hovered) */}
                   <AnimatePresence>
                     {!isHovered && (
                       <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="absolute inset-0 z-20 flex items-center justify-center"
+                        className="absolute inset-0 z-20 flex items-center justify-center p-4"
                       >
-                        <span className="type-headline-1 text-white/80 uppercase tracking-[0.3em] rotate-180 [writing-mode:vertical-lr]">
+                        <span className="type-headline-3 text-white/80 uppercase tracking-[0.2em] text-center">
                           {item.tabLabel}
                         </span>
                       </motion.div>
@@ -167,7 +167,7 @@ export const HomeSliderBlockComponent: React.FC<HomeSliderBlock> = ({ intro_n_a,
                       transition={{ duration: 0.5, ease: "easeOut" }}
                       className="max-w-md bg-white/5 backdrop-blur-xl border border-white/10 p-8"
                     >
-                      <span className="type-headline-1 text-white/60 block mb-6 tracking-widest uppercase">
+                      <span className="type-headline-2 text-white/60 block mb-6 tracking-widest uppercase">
                         {item.tabLabel}
                       </span>
                       <p className="text-white/80 type-body-lg mb-8 line-clamp-6">
