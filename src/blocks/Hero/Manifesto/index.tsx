@@ -137,7 +137,7 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
           )}
 
           {/* Responsive Fade Overlay - Lowered height to start just above the title */}
-          <div className="absolute inset-x-0 bottom-[-1px] h-[32%] md:h-[28%] bg-linear-to-t from-white from-40% via-white/90 to-transparent pointer-events-none" aria-hidden />
+          <div className="absolute inset-x-0 bottom-[-1px] h-[25%] md:h-[28%] bg-linear-to-t from-white from-30% via-white/90 to-transparent pointer-events-none" aria-hidden />
 
           {/* Responsive Title Position - Moved lower to be closer to the paragraph */}
           <div className="absolute bottom-0 left-0 w-full px-6 md:px-8 pb-2">
