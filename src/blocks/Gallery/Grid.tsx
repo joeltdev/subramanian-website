@@ -120,7 +120,8 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro, variant
                   <Media
                     resource={image}
                     fill
-                    className="object-cover"
+                    imgClassName="object-cover object-center"
+                    className="w-full h-full"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                   <div className="absolute bottom-6 left-6 right-6">
@@ -174,7 +175,7 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro, variant
                   <Media
                     resource={image}
                     fill
-                    imgClassName="object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.05] transform-gpu"
+                    imgClassName="object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-[1.05] transform-gpu will-change-transform"
                     className="w-full h-full"
                   />
                   
@@ -250,7 +251,7 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro, variant
                     <Media
                       resource={selectedImage!}
                       fill
-                      imgClassName="object-cover blur-[120px] scale-150"
+                      imgClassName="object-cover object-center blur-[120px] scale-150"
                     />
                   </div>
 
@@ -299,7 +300,7 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro, variant
                           resource={selectedImage!}
                           fill
                           className="w-full h-full"
-                          imgClassName="object-contain"
+                          imgClassName="object-contain object-center"
                         />
                       </div>
 
