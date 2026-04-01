@@ -26,7 +26,7 @@ export const PosterHeroBlock: React.FC<T> = ({
         whileInView={{ x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-        className=" bg-[#0B1A28] rounded-xl max-w-7xl left-1/2 -translate-x-1/2  px-6 md:px-8 w-full h-[80%] bottom-0 absolute flex flex-col overflow-hidden shadow-2xl"
+        className=" bg-[#0B1A28] rounded-none max-w-7xl left-1/2 -translate-x-1/2  px-6 md:px-8 w-full h-[80%] bottom-0 absolute flex flex-col overflow-hidden"
       >
       </motion.div>
       {/* Subject Image - Positioned to overlap the left edge of the navy box */}
@@ -92,7 +92,7 @@ export const PosterHeroBlock: React.FC<T> = ({
                   transition={{ duration: 0.8, delay: 1.0 }}
                 >
                   {subheadline && (
-                    <p className="type-body-lg md:type-body-2xl text-white/90 leading-relaxed font-medium text-balance">
+                    <p className="type-body-xl md:type-body-2xl text-white/90 leading-relaxed font-medium text-balance">
                       {subheadline}
                     </p>
                   )}
