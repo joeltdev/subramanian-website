@@ -98,7 +98,7 @@ export const Section2Hero: React.FC<Section2HeroType> = ({
             {/* Desktop Video */}
             {backgroundVideo && typeof backgroundVideo === 'object' && backgroundVideo.url && (
               <video
-                className={`absolute inset-0 size-full object-cover object-[20%_0%] md:object-center -z-20 ${mobileBackgroundVideo || mobileBackgroundImage ? 'hidden md:block' : 'block'}`}
+                className={`absolute inset-0 size-full object-cover object-[10%_0%] md:object-center -z-20 ${mobileBackgroundVideo || mobileBackgroundImage ? 'hidden md:block' : 'block'}`}
                 src={backgroundVideo.url}
                 autoPlay
                 muted
@@ -110,7 +110,7 @@ export const Section2Hero: React.FC<Section2HeroType> = ({
             {/* Desktop Image */}
             {backgroundImage && typeof backgroundImage === 'object' && (backgroundImage as Media).url && (
               <img
-                className={`absolute inset-0 size-full object-cover object-[20%_0%] md:object-center -z-20 ${mobileBackgroundVideo || mobileBackgroundImage ? 'hidden md:block' : 'block'} ${backgroundVideo ? 'opacity-0' : 'opacity-100'}`}
+                className={`absolute inset-0 size-full object-cover object-[10%_0%] md:object-center -z-20 ${mobileBackgroundVideo || mobileBackgroundImage ? 'hidden md:block' : 'block'} ${backgroundVideo ? 'opacity-0' : 'opacity-100'}`}
                 src={(backgroundImage as Media).url!}
                 alt={(backgroundImage as Media).alt ?? ''}
                 aria-hidden
@@ -120,7 +120,7 @@ export const Section2Hero: React.FC<Section2HeroType> = ({
             {/* Mobile Video */}
             {mobileBackgroundVideo && typeof mobileBackgroundVideo === 'object' && mobileBackgroundVideo.url && (
               <video
-                className="absolute inset-0 size-full object-cover object-[20%_0%] -z-20 md:hidden block"
+                className="absolute inset-0 size-full object-cover object-[10%_0%] -z-20 md:hidden block"
                 src={mobileBackgroundVideo.url}
                 autoPlay
                 muted
@@ -132,7 +132,7 @@ export const Section2Hero: React.FC<Section2HeroType> = ({
             {/* Mobile Image */}
             {mobileBackgroundImage && typeof mobileBackgroundImage === 'object' && (mobileBackgroundImage as Media).url && (
               <img
-                className={`absolute inset-0 size-full object-cover object-[20%_0%] -z-20 md:hidden block ${mobileBackgroundVideo ? 'opacity-0' : 'opacity-100'}`}
+                className={`absolute inset-0 size-full object-cover object-[10%_0%] -z-20 md:hidden block ${mobileBackgroundVideo ? 'opacity-0' : 'opacity-100'}`}
                 src={(mobileBackgroundImage as Media).url!}
                 alt={(mobileBackgroundImage as Media).alt ?? ''}
                 aria-hidden

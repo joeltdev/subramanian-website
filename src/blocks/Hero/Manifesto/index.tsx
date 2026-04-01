@@ -89,7 +89,7 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
               {/* Desktop Video */}
               {backgroundVideo && typeof backgroundVideo === 'object' && backgroundVideo.url && (
                 <video
-                  className={`absolute inset-0 size-full object-cover object-[35%_0%] md:object-[center_25%] ${mobileBackgroundVideo || mobileBackgroundImage ? 'hidden md:block' : 'block'}`}
+                  className={`absolute inset-0 size-full object-cover object-[10%_0%] md:object-[center_25%] ${mobileBackgroundVideo || mobileBackgroundImage ? 'hidden md:block' : 'block'}`}
                   src={backgroundVideo.url}
                   autoPlay
                   muted
@@ -101,7 +101,7 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
               {/* Desktop Image */}
               {backgroundImage && typeof backgroundImage === 'object' && (backgroundImage as Media).url && (
                 <img
-                  className={`absolute inset-0 size-full object-cover object-[35%_0%] md:object-[center_25%] ${mobileBackgroundVideo || mobileBackgroundImage ? 'hidden md:block' : 'block'} ${backgroundVideo ? 'opacity-0' : 'opacity-100'}`}
+                  className={`absolute inset-0 size-full object-cover object-[10%_0%] md:object-[center_25%] ${mobileBackgroundVideo || mobileBackgroundImage ? 'hidden md:block' : 'block'} ${backgroundVideo ? 'opacity-0' : 'opacity-100'}`}
                   src={(backgroundImage as Media).url!}
                   alt={(backgroundImage as Media).alt ?? ''}
                   aria-hidden
@@ -111,7 +111,7 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
               {/* Mobile Video */}
               {mobileBackgroundVideo && typeof mobileBackgroundVideo === 'object' && mobileBackgroundVideo.url && (
                 <video
-                  className="absolute inset-0 size-full object-cover object-[20%_20%] md:hidden block"
+                  className="absolute inset-0 size-full object-cover object-[10%_20%] md:hidden block"
                   src={mobileBackgroundVideo.url}
                   autoPlay
                   muted
@@ -123,7 +123,7 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
               {/* Mobile Image */}
               {mobileBackgroundImage && typeof mobileBackgroundImage === 'object' && (mobileBackgroundImage as Media).url && (
                 <img
-                  className={`absolute inset-0 size-full object-cover object-[20%_20%] md:hidden block ${mobileBackgroundVideo ? 'opacity-0' : 'opacity-100'}`}
+                  className={`absolute inset-0 size-full object-cover object-[10%_20%] md:hidden block ${mobileBackgroundVideo ? 'opacity-0' : 'opacity-100'}`}
                   src={(mobileBackgroundImage as Media).url!}
                   alt={(mobileBackgroundImage as Media).alt ?? ''}
                   aria-hidden
