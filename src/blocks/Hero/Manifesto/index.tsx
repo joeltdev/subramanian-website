@@ -175,7 +175,8 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
                   data={richText}
                   enableGutter={false}
                   converters={heroConverters}
-                  className={`text-left [&_h1]:hidden [&_h2]:hidden [&_p]:mt-0 [&_p]:max-w-4xl [&_p]:mx-0 [&_p]:type-body-xl md:[&_p]:type-body-2xl [&_p]:font-medium [&_p]:!text-slate-900 [&_p]:leading-relaxed [&_p]:!drop-shadow-none [&_p]:break-words ${isMalayalamContent ? 'font-malayalam' : ''}`}
+                  className={`text-left [&_h1]:hidden [&_h2]:hidden [&_p]:mt-0 [&_p]:max-w-4xl [&_p]:mx-0 [&_p]:type-body-lg md:[&_p]:type-body-xl [&_p]:font-medium [&_p]:!text-slate-900 [&_p]:leading-relaxed [&_p]:!drop-shadow-none [&_p]:break-words ${isMalayalamContent ? 'font-malayalam' : ''}`}
+
                 />
               </AnimatedGroup>
             )}
