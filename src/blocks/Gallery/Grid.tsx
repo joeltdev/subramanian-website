@@ -90,7 +90,7 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro, variant
   }
 
   return (
-    <div className="container mx-auto px-6 md:px-8 pt-16 md:pt-24 pb-16 md:pb-24">
+    <div className="container mx-auto px-6 md:px-8 pt-10 md:pt-12 pb-16 md:pb-24">
       {intro && (
         <div className="mb-16 md:mb-20">
           <div className="max-w-3xl">
