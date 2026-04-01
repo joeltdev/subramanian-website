@@ -155,7 +155,6 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro, variant
                   key={image.id}
                   className={cn(
                     "group relative cursor-pointer overflow-hidden bg-muted",
-                    "transition-all duration-700 ease-out",
                     isHero ? "md:col-span-2 md:row-span-2 aspect-video md:aspect-auto" : "aspect-square"
                   )}
                   onClick={() => {
@@ -166,12 +165,13 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro, variant
                   <Media
                     resource={image}
                     fill
-                    className="object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.03]"
+                    imgClassName="object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.05] transform-gpu"
+                    className="w-full h-full"
                   />
                   
                   {/* Glassmorphism Caption Overlay */}
-                  <div className="absolute inset-x-0 bottom-0 translate-y-full transition-transform duration-500 group-hover:translate-y-0">
-                    <div className="m-4 overflow-hidden rounded-sm bg-background/20 p-4 backdrop-blur-md border border-white/10">
+                  <div className="absolute inset-x-0 bottom-0 translate-y-full transition-transform duration-500 group-hover:translate-y-0 z-10">
+                    <div className="m-4 overflow-hidden rounded-sm bg-black/40 p-4 backdrop-blur-md border border-white/10">
                       <div className="flex items-center justify-between gap-4">
                         <p className="type-body-sm text-white line-clamp-1 font-medium tracking-wide">
                           {image.alt || 'View Gallery'}
@@ -182,7 +182,7 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro, variant
                   </div>
 
                   {/* Subtle Inner Glow on Hover */}
-                  <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 ring-1 ring-inset ring-white/20 shadow-[inset_0_0_80px_rgba(255,255,255,0.05)]" />
+                  <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 ring-1 ring-inset ring-white/20 shadow-[inset_0_0_80px_rgba(255,255,255,0.05)] z-20" />
                 </div>
               )
             })}
@@ -191,7 +191,7 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro, variant
 
         {/* Show More Logic with Gradient Fade (Desktop) */}
         {!isMobile && hasMore && !isExpanded && (
-          <div className="absolute inset-x-0 bottom-0 flex h-96 flex-col items-center justify-end bg-gradient-to-t from-background via-background/80 to-transparent pb-12">
+          <div className="absolute inset-x-0 bottom-0 flex h-96 flex-col items-center justify-end bg-gradient-to-t from-background via-background/80 to-transparent pb-12 z-30">
             <button
               onClick={() => setIsExpanded(true)}
               className="group relative flex items-center gap-4 px-10 py-5 overflow-hidden transition-all active:scale-95"
@@ -245,10 +245,10 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro, variant
                   <div className="relative flex h-full w-full items-center justify-center p-4 md:p-12 lg:p-24">
                     
                     {/* Navigation - Floating & Minimal */}
-                    <div className="absolute inset-x-0 top-1/2 flex -translate-y-1/2 items-center justify-between px-4 md:px-8 pointer-events-none">
+                    <div className="absolute inset-x-0 top-1/2 flex -translate-y-1/2 items-center justify-between px-4 md:px-8 pointer-events-none z-20">
                       <button
                         onClick={(e) => { e.stopPropagation(); handlePrev() }}
-                        className="group pointer-events-auto flex size-12 md:size-16 items-center justify-center rounded-full bg-white/5 text-white backdrop-blur-md transition-all hover:bg-white/20 active:scale-90"
+                        className="group pointer-events-auto flex size-12 md:size-16 items-center justify-center rounded-full bg-zinc-950/80 text-white backdrop-blur-md transition-all hover:bg-zinc-900 border border-white/20 active:scale-90"
                         aria-label="Previous image"
                       >
                         <ChevronLeft className="size-6 md:size-8 transition-transform group-hover:-translate-x-0.5" />
@@ -256,7 +256,7 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro, variant
 
                       <button
                         onClick={(e) => { e.stopPropagation(); handleNext() }}
-                        className="group pointer-events-auto flex size-12 md:size-16 items-center justify-center rounded-full bg-white/5 text-white backdrop-blur-md transition-all hover:bg-white/20 active:scale-90"
+                        className="group pointer-events-auto flex size-12 md:size-16 items-center justify-center rounded-full bg-zinc-950/80 text-white backdrop-blur-md transition-all hover:bg-zinc-900 border border-white/20 active:scale-90"
                         aria-label="Next image"
                       >
                         <ChevronRight className="size-6 md:size-8 transition-transform group-hover:translate-x-0.5" />
@@ -280,7 +280,7 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro, variant
                       dragConstraints={{ left: 0, right: 0 }}
                       dragElastic={0.5}
                       onDragEnd={onDragEnd}
-                      className="relative flex h-full w-full max-w-6xl cursor-grab flex-col items-center justify-center active:cursor-grabbing"
+                      className="relative flex h-full w-full max-w-6xl cursor-grab flex-col items-center justify-center active:cursor-grabbing z-10"
                     >
                       <div className="relative h-full w-full flex items-center justify-center shadow-2xl">
                         <Media
@@ -313,7 +313,7 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro, variant
                     {/* Close Control */}
                     <Dialog.Close asChild>
                       <button
-                        className="fixed right-6 top-6 z-[80] flex size-12 items-center justify-center rounded-full bg-white/5 text-white backdrop-blur-md transition-all hover:bg-white/20 active:scale-90 focus:outline-none"
+                        className="fixed right-6 top-6 z-[80] flex size-12 items-center justify-center rounded-full bg-zinc-950/80 text-white backdrop-blur-md transition-all hover:bg-zinc-900 border border-white/20 active:scale-90 focus:outline-none"
                         aria-label="Close dialog"
                       >
                         <X className="size-6" />
