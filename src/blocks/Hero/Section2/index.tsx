@@ -72,15 +72,15 @@ export const Section2Hero: React.FC<Section2HeroType> = ({
           const secondLine = text.substring(firstSpaceIndex).trim()
 
           return (
-        <h1 className={`m-0 font-bold drop-shadow-md flex flex-col items-start gap-1 leading-none break-words ${malayalamHeading ? 'font-malayalam' : ''}`}>
-  <span className="type-display text-foreground/90">{firstLine}</span>
-  <span className="type-display text-foreground">{secondLine}</span>
-</h1>
+        <h1 className={`m-0 font-black flex flex-col items-start gap-1 leading-none break-words ${malayalamHeading ? 'font-malayalam' : ''}`}>
+          <span className="type-display text-foreground" style={{ fontWeight: 800 }}>{firstLine}</span>
+          <span className="type-display text-foreground" style={{ fontWeight: 800 }}>{secondLine}</span>
+        </h1>
           )
         }
 
         return (
-          <h1 className={`m-0 type-headline-1 font-bold drop-shadow-md break-words ${malayalamHeading ? 'font-malayalam' : ''}`}>
+          <h1 className={`m-0 type-headline-1 font-black break-words ${malayalamHeading ? 'font-malayalam' : ''}`}>
             {text}
           </h1>
         )
@@ -91,17 +91,8 @@ export const Section2Hero: React.FC<Section2HeroType> = ({
 
   return (
     <div className="overflow-x-clip" data-theme="dark">
-      {/* Decorative gradients */}
-      <div
-        aria-hidden
-        className="absolute inset-0 isolate hidden contain-strict lg:block">
-        <div className="w-140 h-320 -translate-y-87.5 absolute left-0 top-0 -rotate-45 rounded-full bg-[radial-gradient(68.54%_68.72%_at_55.02%_31.46%,hsla(0,0%,85%,.08)_0,hsla(0,0%,55%,.02)_50%,hsla(0,0%,45%,0)_80%)]" />
-        <div className="h-320 absolute left-0 top-0 w-60 -rotate-45 rounded-full bg-[radial-gradient(50%_50%_at_50%_50%,hsla(0,0%,85%,.06)_0,hsla(0,0%,45%,.02)_80%,transparent_100%)] [translate:5%_-50%]" />
-        <div className="h-320 -translate-y-87.5 absolute left-0 top-0 w-60 -rotate-45 bg-[radial-gradient(50%_50%_at_50%_50%,hsla(0,0%,85%,.04)_0,hsla(0,0%,45%,.02)_80%,transparent_100%)]" />
-      </div>
-
       <section>
-        <div className={`relative py-24 ${hasBgMedia ? 'min-h-[100svh] flex flex-col justify-end md:justify-center pb-20 md:pb-24' : ''}`}>
+        <div className={`relative py-32 md:py-48 ${hasBgMedia ? 'min-h-[100svh] flex flex-col justify-end md:justify-center pb-24 md:pb-32' : ''}`}>
           {/* Background media */}
           <>
             {/* Desktop Video */}
@@ -157,10 +148,10 @@ export const Section2Hero: React.FC<Section2HeroType> = ({
               {/* Badge */}
               {badgeLabel && (
                 <AnimatedGroup variants={transitionVariants}>
-                  <div className="hover:bg-background dark:hover:border-t-border bg-muted flex w-fit items-center gap-4 rounded-full border p-1 pl-4 shadow-md shadow-zinc-950/5 transition-colors duration-300 dark:border-t-white/5 dark:shadow-zinc-950">
-                    <span className="text-foreground text-sm">{badgeLabel}</span>
+                  <div className="hover:bg-background dark:hover:border-t-border bg-muted flex w-fit items-center gap-4 rounded-none border p-1 pl-4 transition-colors duration-300 dark:border-t-white/5">
+                    <span className="text-foreground text-sm font-bold uppercase tracking-widest">{badgeLabel}</span>
                     <span className="dark:border-background block h-4 w-0.5 border-l bg-border" />
-                    <div className="bg-background size-6 overflow-hidden rounded-full">
+                    <div className="bg-background size-6 overflow-hidden rounded-none">
                       <ArrowRight className="m-auto size-3 translate-y-1/3" />
                     </div>
                   </div>
@@ -171,12 +162,12 @@ export const Section2Hero: React.FC<Section2HeroType> = ({
               {richText && (
                 <AnimatedGroup
                   variants={transitionVariants}
-                  className="mt-8 max-w-2xl lg:mt-16">
+                  className="mt-10 max-w-2xl lg:mt-20">
                   <RichText
                     data={richText}
                     enableGutter={false}
                     converters={heroConverters}
-                    className={`text-balance [&_h1]:m-0 [&_h2]:m-0 [&_p]:mt-10 [&_p]:max-w-2xl [&_p]:type-body-lg md:[&_p]:type-body-xl [&_p]:text-foreground [&_p]:leading-relaxed [&_p]:drop-shadow-sm [&_h1]:break-words [&_h2]:break-words ${isMalayalam ? 'font-malayalam' : ''}`}
+                    className={`text-balance [&_h1]:m-0 [&_h2]:m-0 [&_p]:mt-10 [&_p]:max-w-2xl [&_p]:type-body-xl md:[&_p]:type-body-2xl [&_p]:text-foreground [&_p]:leading-relaxed [&_h1]:break-words [&_h2]:break-words ${isMalayalam ? 'font-malayalam' : ''}`}
                   />
                 </AnimatedGroup>
               )}
@@ -192,15 +183,15 @@ export const Section2Hero: React.FC<Section2HeroType> = ({
                     },
                     ...transitionVariants,
                   }}
-                  className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+                  className="mt-12 flex flex-col sm:flex-row items-stretch sm:items-center gap-6">
                   {links.map(({ link }, i) => (
                     <CMSLink
                       key={i}
                       {...link}
                       size="default"
-                      className="group flex justify-center items-center rounded-full bg-brand-600 text-white shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 active:scale-[0.98] px-8 py-3 md:py-5 md:px-12 type-title-md md:type-title-lg hover:bg-brand-700 w-full sm:w-auto"
+                      className="group flex justify-center items-center rounded-none bg-foreground text-background transition-all duration-300 active:scale-[0.98] px-10 py-5 md:py-7 md:px-16 type-label-lg hover:bg-brand-600 hover:text-white w-full sm:w-auto border-none"
                     >
-                      <ArrowRight className="transition-transform group-hover:translate-x-1.5 ml-2 md:animate-arrow-right md:size-6" />
+                      <ArrowRight className="transition-transform group-hover:translate-x-1.5 ml-3 md:animate-arrow-right md:size-6" />
                     </CMSLink>
                   ))}
                 </AnimatedGroup>

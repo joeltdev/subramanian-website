@@ -22,7 +22,7 @@ export const PromoHeroBlock: React.FC<T> = ({ intro, links }) => {
               <RichText
                 data={intro}
                 enableGutter={false}
-                className="[&_h1]:type-display [&_h1]:text-type-heading [&_p]:type-body-lg md:[&_p]:type-body-xl [&_p]:text-type-secondary [&_p]:mt-8 [&_p]:mx-auto [&_p]:max-w-3xl [&_h1]:break-words"
+                className="[&_h1]:type-display [&_h1]:text-type-heading [&_p]:type-body-xl md:[&_p]:type-body-2xl [&_p]:text-type-secondary [&_p]:mt-8 [&_p]:mx-auto [&_p]:max-w-3xl [&_h1]:break-words"
               />
             </motion.div>
           )}
@@ -44,16 +44,16 @@ export const PromoHeroBlock: React.FC<T> = ({ intro, links }) => {
                     size="lg"
                     className="
                       /* Shared */
-                      group flex-1 justify-center rounded-full uppercase font-bold tracking-widest transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-1 active:scale-[0.98] border-none bg-brand-100 text-brand-700 hover:bg-brand-500 hover:text-white
+                      group flex-1 justify-center rounded-none uppercase font-bold tracking-widest transition-all duration-300 active:scale-[0.98] border-none bg-foreground text-background hover:bg-brand-600 hover:text-white
                       
                       /* Mobile: Medium Height, Larger Font */
                       w-full h-[48px] px-8 type-title-md
                       
                       /* Tablet (md): Refined Height */
-                      md:h-[56px] md:min-w-[220px]
+                      md:h-[60px] md:min-w-[220px]
                       
                       /* Laptop (lg): Standard Height, Smaller Font */
-                      lg:h-[52px] lg:min-w-[260px] lg:type-title-sm
+                      lg:h-[56px] lg:min-w-[260px] lg:type-title-sm
                     "
                   >
                      <ArrowRight className="transition-transform group-hover:translate-x-1.5 shrink-0 ml-3 size-5 lg:size-4" />

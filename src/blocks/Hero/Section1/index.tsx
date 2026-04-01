@@ -31,17 +31,8 @@ export const Section1Hero: React.FC<Section1HeroType> = ({
 }) => {
   return (
     <div className="overflow-x-clip">
-      {/* Decorative gradients */}
-      <div
-        aria-hidden
-        className="absolute inset-0 isolate hidden opacity-65 contain-strict lg:block">
-        <div className="w-140 h-320 -translate-y-87.5 absolute left-0 top-0 -rotate-45 rounded-full bg-[radial-gradient(68.54%_68.72%_at_55.02%_31.46%,hsla(0,0%,85%,.08)_0,hsla(0,0%,55%,.02)_50%,hsla(0,0%,45%,0)_80%)]" />
-        <div className="h-320 absolute left-0 top-0 w-60 -rotate-45 rounded-full bg-[radial-gradient(50%_50%_at_50%_50%,hsla(0,0%,85%,.06)_0,hsla(0,0%,45%,.02)_80%,transparent_100%)] [translate:5%_-50%]" />
-        <div className="h-320 -translate-y-87.5 absolute left-0 top-0 w-60 -rotate-45 bg-[radial-gradient(50%_50%_at_50%_50%,hsla(0,0%,85%,.04)_0,hsla(0,0%,45%,.02)_80%,transparent_100%)]" />
-      </div>
-
       <section>
-        <div className="relative flex min-h-[80svh] flex-col justify-end pb-20 pt-8 md:min-h-0 md:justify-center md:py-2">
+        <div className="relative flex min-h-[85svh] flex-col justify-end pb-24 pt-12 md:min-h-0 md:justify-center md:py-32">
           <div
             aria-hidden
             className="absolute inset-0 -z-10 size-full [background:radial-gradient(125%_125%_at_50%_100%,transparent_0%,var(--color-background)_75%)]"
@@ -52,10 +43,10 @@ export const Section1Hero: React.FC<Section1HeroType> = ({
               {/* Badge */}
               {badgeLabel && (
                 <AnimatedGroup variants={transitionVariants}>
-                  <div className="hover:bg-background dark:hover:border-t-border bg-muted mx-auto flex w-fit items-center gap-4 rounded-full border p-1 pl-4 shadow-md shadow-zinc-950/5 transition-colors duration-300 dark:border-t-white/5 dark:shadow-zinc-950">
-                    <span className="text-foreground text-sm">{badgeLabel}</span>
+                  <div className="hover:bg-background dark:hover:border-t-border bg-muted mx-auto flex w-fit items-center gap-4 rounded-none border p-1 pl-4 transition-colors duration-300 dark:border-t-white/5">
+                    <span className="text-foreground text-sm font-bold uppercase tracking-widest">{badgeLabel}</span>
                     <span className="dark:border-background block h-4 w-0.5 border-l bg-border" />
-                    <div className="bg-background size-6 overflow-hidden rounded-full">
+                    <div className="bg-background size-6 overflow-hidden rounded-none">
                       <ArrowRight className="m-auto size-3 translate-y-1/3" />
                     </div>
                   </div>
@@ -66,11 +57,11 @@ export const Section1Hero: React.FC<Section1HeroType> = ({
               {richText && (
                 <AnimatedGroup
                   variants={transitionVariants}
-                  className="mx-auto mt-8 max-w-4xl">
+                  className="mx-auto mt-12 max-w-4xl">
                   <RichText
                     data={richText}
                     enableGutter={false}
-                    className="text-balance [&_h1]:type-display [&_h1]:break-words [&_p]:mt-4 [&_p]:max-w-2xl [&_p]:mx-auto [&_p]:type-body-lg md:[&_p]:type-body-xl"
+                    className="text-balance [&_h1]:type-display [&_h1]:font-black [&_h1]:break-words [&_p]:mt-8 [&_p]:max-w-2xl [&_p]:mx-auto [&_p]:type-body-xl md:[&_p]:type-body-2xl"
                   />
                 </AnimatedGroup>
               )}
@@ -92,9 +83,9 @@ export const Section1Hero: React.FC<Section1HeroType> = ({
                       key={i}
                       {...link}
                       size="default"
-                      className="group flex justify-center items-center rounded-full bg-brand-600 text-white shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 active:scale-[0.98] px-8 py-3 md:py-5 md:px-12 type-title-md md:type-title-lg hover:bg-brand-700"
+                      className="group flex justify-center items-center rounded-none bg-foreground text-background transition-all duration-300 active:scale-[0.98] px-10 py-5 md:py-7 md:px-16 type-label-lg hover:bg-brand-600 hover:text-white"
                     >
-                      <ArrowRight className="transition-transform group-hover:translate-x-1.5 ml-2 md:animate-arrow-right md:size-6" />
+                      <ArrowRight className="transition-transform group-hover:translate-x-1.5 ml-3 md:animate-arrow-right md:size-6" />
                     </CMSLink>
                   ))}
                 </AnimatedGroup>

@@ -144,9 +144,9 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
             <div className="max-w-7xl mx-auto w-full flex flex-col items-start text-left">
               {badgeLabel && (
                 <AnimatedGroup variants={transitionVariants}>
-                  <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50 px-3 py-1 backdrop-blur-md">
+                  <div className="mb-4 inline-flex items-center gap-2 rounded-none border border-brand-200 bg-brand-50 px-3 py-1 backdrop-blur-md">
                     <span className="text-brand-700 text-[10px] md:text-xs font-semibold uppercase tracking-widest">{badgeLabel}</span>
-                    <div className="bg-brand-500 rounded-full p-0.5">
+                    <div className="bg-brand-500 rounded-none p-0.5">
                       <ArrowRight className="size-2 md:size-3 text-white" />
                     </div>
                   </div>
@@ -175,7 +175,7 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
                   data={richText}
                   enableGutter={false}
                   converters={heroConverters}
-                  className={`text-left [&_h1]:hidden [&_h2]:hidden [&_p]:mt-0 [&_p]:max-w-4xl [&_p]:mx-0 [&_p]:type-body-lg md:[&_p]:type-body-xl [&_p]:font-medium [&_p]:!text-slate-800 [&_p]:leading-relaxed [&_p]:!drop-shadow-none [&_p]:break-words ${isMalayalamContent ? 'font-malayalam' : ''}`}
+                  className={`text-left [&_h1]:hidden [&_h2]:hidden [&_p]:mt-0 [&_p]:max-w-4xl [&_p]:mx-0 [&_p]:type-body-xl md:[&_p]:type-body-2xl [&_p]:font-medium [&_p]:!text-slate-800 [&_p]:leading-relaxed [&_p]:!drop-shadow-none [&_p]:break-words ${isMalayalamContent ? 'font-malayalam' : ''}`}
                 />
               </AnimatedGroup>
             )}
@@ -193,7 +193,7 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
                       key={i}
                       {...link}
                       size="lg"
-                      className="group flex justify-center rounded-full bg-brand-600 text-white uppercase font-bold tracking-widest transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-1 active:scale-[0.98] hover:bg-brand-700 w-full h-[60px] md:h-[60px] md:min-w-[300px] items-center px-8 type-title-md md:type-title-lg"
+                      className="group flex justify-center rounded-none bg-brand-600 text-white uppercase font-bold tracking-widest transition-all duration-300 active:scale-[0.98] hover:bg-brand-700 w-full h-[64px] md:h-[72px] md:min-w-[320px] items-center px-8 type-label-lg"
                     >
                       <ArrowRight className="transition-transform group-hover:translate-x-1.5 shrink-0 ml-3 size-4 md:size-7 md:animate-arrow-right" />
                     </CMSLink>
