@@ -66,8 +66,8 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
         const isMalayalam = /[\u0D00-\u0D7F]/.test(text)
 
         return (
-          <h1 className={`m-0 font-extrabold tracking-tight drop-shadow-xl ${isMalayalam ? 'leading-[1.3] py-2 font-malayalam' : 'leading-tight'}`}>
-            <span className="type-display text-foreground text-balance">
+          <h1 className={`m-0 font-extrabold tracking-tight ${isMalayalam ? 'leading-[1.15] py-2 font-malayalam' : 'leading-tight'}`}>
+            <span className="type-display text-foreground text-balance md:max-w-[800px] block">
               {text}
             </span>
           </h1>
@@ -78,18 +78,18 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
   }), [])
 
   return (
-    <div className="relative overflow-x-clip bg-slate-50" data-theme="light">
+    <div className="relative overflow-x-clip bg-white" data-theme="light">
       {/* Container holding the stacked sections */}
       <section className="relative flex flex-col items-center flex-1 w-full">
         
         {/* === SECTION 1: TOP IMAGE WITH FADE AND TITLE === */}
-        <div className="relative w-full h-[60svh] md:h-[75svh]">
+        <div className="relative w-full h-[70svh] md:h-[85svh] bg-white">
           {hasBgMedia ? (
             <div className="absolute inset-0 size-full overflow-hidden">
               {/* Desktop Video */}
               {backgroundVideo && typeof backgroundVideo === 'object' && backgroundVideo.url && (
                 <video
-                  className={`absolute inset-0 size-full object-cover object-top md:object-center ${mobileBackgroundVideo || mobileBackgroundImage ? 'hidden md:block' : 'block'}`}
+                  className={`absolute inset-0 size-full object-cover object-top ${mobileBackgroundVideo || mobileBackgroundImage ? 'hidden md:block' : 'block'}`}
                   src={backgroundVideo.url}
                   autoPlay
                   muted
@@ -101,7 +101,7 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
               {/* Desktop Image */}
               {backgroundImage && typeof backgroundImage === 'object' && (backgroundImage as Media).url && (
                 <img
-                  className={`absolute inset-0 size-full object-cover object-top md:object-center ${mobileBackgroundVideo || mobileBackgroundImage ? 'hidden md:block' : 'block'} ${backgroundVideo ? 'opacity-0' : 'opacity-100'}`}
+                  className={`absolute inset-0 size-full object-cover object-top ${mobileBackgroundVideo || mobileBackgroundImage ? 'hidden md:block' : 'block'} ${backgroundVideo ? 'opacity-0' : 'opacity-100'}`}
                   src={(backgroundImage as Media).url!}
                   alt={(backgroundImage as Media).alt ?? ''}
                   aria-hidden
@@ -111,7 +111,7 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
               {/* Mobile Video */}
               {mobileBackgroundVideo && typeof mobileBackgroundVideo === 'object' && mobileBackgroundVideo.url && (
                 <video
-                  className="absolute inset-0 size-full object-cover object-top md:hidden block"
+                  className="absolute inset-0 size-full object-cover object-[center_20%] md:hidden block"
                   src={mobileBackgroundVideo.url}
                   autoPlay
                   muted
@@ -123,7 +123,7 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
               {/* Mobile Image */}
               {mobileBackgroundImage && typeof mobileBackgroundImage === 'object' && (mobileBackgroundImage as Media).url && (
                 <img
-                  className={`absolute inset-0 size-full object-cover object-top md:hidden block ${mobileBackgroundVideo ? 'opacity-0' : 'opacity-100'}`}
+                  className={`absolute inset-0 size-full object-cover object-[center_20%] md:hidden block ${mobileBackgroundVideo ? 'opacity-0' : 'opacity-100'}`}
                   src={(mobileBackgroundImage as Media).url!}
                   alt={(mobileBackgroundImage as Media).alt ?? ''}
                   aria-hidden
@@ -131,21 +131,21 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
               )}
             </div>
           ) : (
-             <div className="absolute inset-0 bg-background" aria-hidden>
+             <div className="absolute inset-0 bg-white" aria-hidden>
                 <div className="absolute inset-0 [background:radial-gradient(125%_125%_at_50%_10%,var(--color-brand-100)_0%,transparent_60%)] opacity-30" />
              </div>
           )}
 
-          {/* Fade Overlay fading into slate-50 */}
-          <div className="absolute inset-0 bg-linear-to-t from-slate-50 via-slate-50/40 to-transparent pointer-events-none" aria-hidden />
+          {/* Improved Fade Overlay - Bottom weighted to keep face clear */}
+          <div className="absolute inset-x-0 bottom-0 h-1/2 bg-linear-to-t from-white via-white/80 to-transparent pointer-events-none" aria-hidden />
 
           {/* Title Positioned at the bottom-left of the image container */}
-          <div className="absolute bottom-0 left-0 w-full px-6 md:px-8 pb-4 md:pb-8">
+          <div className="absolute bottom-0 left-0 w-full px-6 md:px-8 pb-6 md:pb-12">
             <div className="max-w-7xl mx-auto w-full flex flex-col items-start text-left">
               {badgeLabel && (
                 <AnimatedGroup variants={transitionVariants}>
-                  <div className="mb-4 inline-flex items-center gap-2 rounded-none border border-brand-200 bg-brand-50 px-3 py-1 backdrop-blur-md">
-                    <span className="text-brand-700 text-[10px] md:text-xs font-semibold uppercase tracking-widest">{badgeLabel}</span>
+                  <div className="mb-6 inline-flex items-center gap-2 rounded-none border border-brand-200 bg-brand-50/80 px-3 py-1.5 backdrop-blur-sm">
+                    <span className="text-brand-700 text-[10px] md:text-xs font-bold uppercase tracking-widest">{badgeLabel}</span>
                     <div className="bg-brand-500 rounded-none p-0.5">
                       <ArrowRight className="size-2 md:size-3 text-white" />
                     </div>
@@ -158,7 +158,7 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
                     data={richText}
                     enableGutter={false}
                     converters={heroConverters}
-                    className={`text-left text-balance [&_p]:hidden [&_h1_*]:!text-brand-600 [&_h1]:!drop-shadow-sm [&_h2]:type-display [&_h2]:!text-brand-600 [&_h2]:mb-0 [&_h1]:break-words [&_h2]:break-words ${isMalayalamContent ? 'font-malayalam' : ''}`}
+                    className={`text-left text-balance [&_p]:hidden [&_h1_*]:!text-brand-600 [&_h1]:!drop-shadow-none [&_h2]:type-display [&_h2]:!text-brand-600 [&_h2]:mb-0 [&_h1]:break-words [&_h2]:break-words ${isMalayalamContent ? 'font-malayalam' : ''}`}
                   />
                 </AnimatedGroup>
               )}
@@ -167,7 +167,7 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
         </div>
 
         {/* === SECTION 2: DESCRIPTION AND CTA CONTENT === */}
-        <div className="w-full px-6 md:px-8 bg-slate-50 pt-6 pb-16 md:py-12">
+        <div className="w-full px-6 md:px-8 bg-white pt-8 pb-16 md:pb-24">
           <div className="max-w-7xl mx-auto w-full flex flex-col items-start text-left">
             {richText && (
               <AnimatedGroup variants={transitionVariants} className="w-full">
@@ -175,7 +175,7 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
                   data={richText}
                   enableGutter={false}
                   converters={heroConverters}
-                  className={`text-left [&_h1]:hidden [&_h2]:hidden [&_p]:mt-0 [&_p]:max-w-4xl [&_p]:mx-0 [&_p]:type-body-xl md:[&_p]:type-body-2xl [&_p]:font-medium [&_p]:!text-slate-800 [&_p]:leading-relaxed [&_p]:!drop-shadow-none [&_p]:break-words ${isMalayalamContent ? 'font-malayalam' : ''}`}
+                  className={`text-left [&_h1]:hidden [&_h2]:hidden [&_p]:mt-0 [&_p]:max-w-4xl [&_p]:mx-0 [&_p]:type-body-xl md:[&_p]:type-body-2xl [&_p]:font-medium [&_p]:!text-slate-900 [&_p]:leading-relaxed [&_p]:!drop-shadow-none [&_p]:break-words ${isMalayalamContent ? 'font-malayalam' : ''}`}
                 />
               </AnimatedGroup>
             )}
@@ -186,7 +186,7 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
                   container: { visible: { transition: { staggerChildren: 0.1, delayChildren: 0.2 } } },
                   ...transitionVariants,
                 }}
-                className="mt-8 w-full max-w-xl mx-0">
+                className="mt-10 md:mt-12 w-full max-w-xl mx-0">
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-start justify-start gap-4 w-full">
                   {links.map(({ link }, i) => (
                     <CMSLink
@@ -208,7 +208,7 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
         {mediaPreview && typeof mediaPreview === 'object' && (
           <AnimatedGroup
             variants={transitionVariants}
-            className="w-full max-w-7xl px-4 sm:px-6 md:px-8 pb-16 md:pb-24 mx-auto bg-slate-50">
+            className="w-full max-w-7xl px-4 sm:px-6 md:px-8 pb-16 md:pb-24 mx-auto bg-white">
             <div className="relative group mx-auto">
               <div className="absolute -inset-1 bg-brand-500/20 rounded-none blur-3xl opacity-50 group-hover:opacity-100 transition duration-1000 group-hover:duration-500"></div>
               <div className="relative bg-white border border-border/50 shadow-2xl overflow-hidden ring-1 ring-black/5">
