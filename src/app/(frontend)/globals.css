@@ -106,8 +106,8 @@
   --type-weight-light:   300;
 
   /* Typography scale — size, line-height, and (where non-zero) letter-spacing */
-  --type-size-display:       clamp(3.5rem, 12vw, 5.75rem);  --type-leading-display:       1.0;  --type-tracking-display:       -0.04em;
-  --type-size-headline-1:    clamp(2.875rem, 10vw, 4rem);   --type-leading-headline-1:    1.05;   --type-tracking-headline-1:    -0.03em;
+  --type-size-display:       clamp(2.75rem, 12vw, 5.75rem);  --type-leading-display:       1.0;  --type-tracking-display:       -0.04em;
+  --type-size-headline-1:    clamp(2.25rem, 10vw, 4rem);   --type-leading-headline-1:    1.05;   --type-tracking-headline-1:    -0.03em;
   --type-size-headline-2:    clamp(1.875rem, 6vw, 3rem);     --type-leading-headline-2:    1.15;  --type-tracking-headline-2:    -0.02em;
   --type-size-headline-3:    clamp(1.5rem, 5vw, 2.25rem);    --type-leading-headline-3:    1.2;   --type-tracking-headline-3:    -0.015em;
   --type-size-headline-4:    1.875rem; --type-leading-headline-4:    1.25;  --type-tracking-headline-4:    -0.01em;
