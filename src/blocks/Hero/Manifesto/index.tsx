@@ -136,11 +136,11 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
              </div>
           )}
 
-          {/* Improved Fade Overlay - Bottom weighted to keep face clear */}
-          <div className="absolute inset-x-0 bottom-0 h-1/2 bg-linear-to-t from-white via-white/80 to-transparent pointer-events-none" aria-hidden />
+          {/* Responsive Fade Overlay - taller on mobile to overlap title, shorter on desktop to stay below it */}
+          <div className="absolute inset-x-0 bottom-0 h-[35%] md:h-[15%] bg-linear-to-t from-white via-white/80 to-transparent pointer-events-none" aria-hidden />
 
-          {/* Title Positioned at the bottom-left of the image container */}
-          <div className="absolute bottom-0 left-0 w-full px-6 md:px-8 pb-6 md:pb-12">
+          {/* Responsive Title Position - lower on mobile to allow overlap, higher on desktop for clarity */}
+          <div className="absolute bottom-0 left-0 w-full px-6 md:px-8 pb-12 md:pb-48">
             <div className="max-w-7xl mx-auto w-full flex flex-col items-start text-left">
               {badgeLabel && (
                 <AnimatedGroup variants={transitionVariants}>
@@ -167,7 +167,7 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
         </div>
 
         {/* === SECTION 2: DESCRIPTION AND CTA CONTENT === */}
-        <div className="w-full px-6 md:px-8 bg-white pt-8 pb-16 md:pb-24">
+        <div className="w-full px-6 md:px-8 bg-white pt-10 pb-16 md:pb-24">
           <div className="max-w-7xl mx-auto w-full flex flex-col items-start text-left">
             {richText && (
               <AnimatedGroup variants={transitionVariants} className="w-full">
