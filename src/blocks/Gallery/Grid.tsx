@@ -30,8 +30,8 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro, variant
     [images]
   )
 
-  // Asymmetrical pattern: Hero (2x2), then regular squares
-  const limit = isMobile ? 4 : 12 
+  // Different limits for different variants
+  const limit = isMobile ? 4 : variant === 'curated' ? 6 : 8
   const hasMore = galleryImages.length > limit
   const visibleImages = isExpanded ? galleryImages : galleryImages.slice(0, limit)
 
@@ -142,20 +142,29 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro, variant
         ) : (
           <div 
             className={cn(
-              "grid gap-4 md:gap-6 animate-in fade-in duration-1000 ease-out",
-              "grid-cols-2 md:grid-cols-3 lg:grid-cols-4",
-              !isExpanded && hasMore && "max-h-[1200px] overflow-hidden"
+              "grid gap-4 md:gap-8 animate-in fade-in duration-1000 ease-out",
+              variant === 'curated' ? "grid-cols-2 md:grid-cols-4" : "grid-cols-2 md:grid-cols-3 lg:grid-cols-4",
+              !isExpanded && hasMore && "max-h-[1400px] overflow-hidden"
             )}
           >
             {visibleImages.map((image, index) => {
               const isHero = index === 0 && !isMobile;
               
+              // Curated variant custom spans
+              const isCurated = variant === 'curated' && !isMobile;
+              const curatedSpan = isCurated ? (
+                index === 0 ? "md:col-span-2 md:row-span-2 aspect-video md:aspect-auto" :
+                index === 1 ? "md:col-span-1 md:row-span-2 aspect-[3/4] md:aspect-auto" :
+                index === 4 ? "md:col-span-2 md:row-span-1 aspect-[21/9] md:aspect-auto" :
+                "aspect-square"
+              ) : isHero ? "md:col-span-2 md:row-span-2 aspect-video md:aspect-auto" : "aspect-square";
+
               return (
                 <div
                   key={image.id}
                   className={cn(
                     "group relative cursor-pointer overflow-hidden bg-muted",
-                    isHero ? "md:col-span-2 md:row-span-2 aspect-video md:aspect-auto" : "aspect-square"
+                    curatedSpan
                   )}
                   onClick={() => {
                     setDirection(0)
@@ -171,7 +180,7 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro, variant
                   
                   {/* Glassmorphism Caption Overlay */}
                   <div className="absolute inset-x-0 bottom-0 translate-y-full transition-transform duration-500 group-hover:translate-y-0 z-10">
-                    <div className="m-4 overflow-hidden rounded-sm bg-black/40 p-4 backdrop-blur-md border border-white/10">
+                    <div className="m-4 overflow-hidden rounded-none bg-black/40 p-4 backdrop-blur-md border border-white/10">
                       <div className="flex items-center justify-between gap-4">
                         <p className="type-body-sm text-white line-clamp-1 font-medium tracking-wide">
                           {image.alt || 'View Gallery'}
@@ -191,7 +200,10 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro, variant
 
         {/* Show More Logic with Gradient Fade (Desktop) */}
         {!isMobile && hasMore && !isExpanded && (
-          <div className="absolute inset-x-0 bottom-0 flex h-96 flex-col items-center justify-end bg-gradient-to-t from-background via-background/80 to-transparent pb-12 z-30">
+          <div className={cn(
+            "absolute inset-x-0 bottom-0 flex h-96 flex-col items-center justify-end bg-gradient-to-t from-background via-background/80 to-transparent pb-12 z-30",
+            variant === 'curated' && "h-48" // Smaller fade for curated
+          )}>
             <button
               onClick={() => setIsExpanded(true)}
               className="group relative flex items-center gap-4 px-10 py-5 overflow-hidden transition-all active:scale-95"
@@ -199,7 +211,7 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro, variant
               <div className="absolute inset-0 bg-type-heading transition-transform duration-500 group-hover:translate-x-full" />
               <div className="absolute inset-0 bg-brand-500 -translate-x-full transition-transform duration-500 group-hover:translate-x-0" />
               <span className="relative z-10 type-title-sm text-background group-hover:text-background transition-colors duration-500 uppercase tracking-widest font-bold">
-                Discover More (+{galleryImages.length - limit})
+                {variant === 'curated' ? 'Explore Archive' : `Discover More (+${galleryImages.length - limit})`}
               </span>
             </button>
           </div>

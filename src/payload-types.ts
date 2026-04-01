@@ -2250,7 +2250,7 @@ export interface ParallaxShowcaseBlock {
  * via the `definition` "GalleryBlock".
  */
 export interface GalleryBlock {
-  variant?: ('grid' | 'masonry') | null;
+  variant?: ('grid' | 'masonry' | 'curated') | null;
   /**
    * Optional section heading and supporting text
    */

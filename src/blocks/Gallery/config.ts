@@ -19,6 +19,7 @@ export const Gallery: Block = {
       options: [
         { label: 'Standard Grid', value: 'grid' },
         { label: 'Masonry Poster Wall', value: 'masonry' },
+        { label: 'Curated Collection (International)', value: 'curated' },
       ],
     },
     {
