@@ -387,7 +387,7 @@ html[data-theme='light'] {
 @utility type-display {
   font-size: var(--type-size-display);
   line-height: var(--type-leading-display);
-  font-weight: var(--type-weight-extrabold);
+  font-weight: var(--type-weight-heavy);
   @variant md {
     font-weight: var(--type-weight-bold);
   }
@@ -399,10 +399,7 @@ html[data-theme='light'] {
 @utility type-headline-1 {
   font-size: var(--type-size-headline-1);
   line-height: var(--type-leading-headline-1);
-  font-weight: var(--type-weight-heavy);
-  @variant md {
-    font-weight: var(--type-weight-bold);
-  }
+  font-weight: var(--type-weight-bold);
   letter-spacing: var(--type-tracking-headline-1);
   text-wrap: balance;
 }
