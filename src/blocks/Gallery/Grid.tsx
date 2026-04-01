@@ -3,8 +3,9 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react'
 import * as Dialog from '@radix-ui/react-dialog'
 import { motion, AnimatePresence, PanInfo } from 'motion/react'
-import { X, ChevronLeft, ChevronRight, Maximize2 } from 'lucide-react'
+import { X, ChevronLeft, ChevronRight, Maximize2, ArrowUpRight } from 'lucide-react'
 import { cn } from '@/utilities/ui'
+import Link from 'next/link'
 
 import type { GalleryBlock as GalleryBlockType, Media as MediaType } from '@/payload-types'
 import { Media } from '@/components/Media'
@@ -220,13 +221,20 @@ export const GalleryGrid: React.FC<GalleryBlockType> = ({ images, intro, variant
 
         {/* Collapse Logic (Shared) */}
         {hasMore && isExpanded && (
-          <div className="mt-16 flex justify-center">
+          <div className="mt-16 flex flex-col md:flex-row items-center justify-center gap-4">
             <button
               onClick={() => setIsExpanded(false)}
               className="px-10 py-5 border border-type-heading/20 hover:border-type-heading type-title-sm text-type-heading transition-all uppercase tracking-widest font-bold active:scale-95"
             >
               Collapse Archive
             </button>
+            <Link
+              href="/gallery"
+              className="group flex items-center gap-2 px-10 py-5 bg-type-heading text-background hover:bg-brand-500 transition-all type-title-sm uppercase tracking-widest font-bold active:scale-95"
+            >
+              View Full Gallery
+              <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </Link>
           </div>
         )}
       </div>
