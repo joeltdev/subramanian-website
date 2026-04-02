@@ -386,6 +386,9 @@ html[data-theme='light'] {
 /* DISPLAY */
 @utility type-display {
   font-size: var(--type-size-display);
+  @media (width < 400px) {
+    font-size: clamp(2.25rem, 10vw, 2.75rem);
+  }
   line-height: var(--type-leading-display);
   font-weight: var(--type-weight-heavy);
   @variant md {
@@ -398,6 +401,9 @@ html[data-theme='light'] {
 /* HEADLINES */
 @utility type-headline-1 {
   font-size: var(--type-size-headline-1);
+  @media (width < 400px) {
+    font-size: clamp(1.875rem, 9vw, 2.25rem);
+  }
   line-height: var(--type-leading-headline-1);
   font-weight: var(--type-weight-bold);
   letter-spacing: var(--type-tracking-headline-1);
