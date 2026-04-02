@@ -67,7 +67,10 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
 
         return (
           <h1 className={`m-0 font-extrabold tracking-tight ${isMalayalam ? 'leading-[1.15] py-2 font-malayalam' : 'leading-tight'}`}>
-            <span className="type-display text-foreground text-balance md:max-w-[800px] block">
+            <span
+              className="type-display text-foreground text-balance md:max-w-[800px] block"
+              style={{ fontWeight: 800 }}
+            >
               {text}
             </span>
           </h1>
@@ -81,7 +84,7 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
     <div className="relative overflow-x-clip bg-white" data-theme="light">
       {/* Container holding the stacked sections */}
       <section className="relative flex flex-col items-center flex-1 w-full">
-        
+
         {/* === SECTION 1: TOP IMAGE WITH FADE AND TITLE === */}
         <div className="relative w-full h-[80svh] md:h-[92svh] bg-white">
           {hasBgMedia ? (
@@ -131,13 +134,13 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
               )}
             </div>
           ) : (
-             <div className="absolute inset-0 bg-white" aria-hidden>
-                <div className="absolute inset-0 [background:radial-gradient(125%_125%_at_50%_10%,var(--color-brand-100)_0%,transparent_60%)] opacity-30" />
-             </div>
+            <div className="absolute inset-0 bg-white" aria-hidden>
+              <div className="absolute inset-0 [background:radial-gradient(125%_125%_at_50%_10%,var(--color-brand-100)_0%,transparent_60%)] opacity-30" />
+            </div>
           )}
 
           {/* Responsive Fade Overlay - Lowered height to start just above the title */}
-          <div className="absolute inset-x-0 bottom-[-1px] h-[40%] md:h-[28%] bg-linear-to-t from-white from-30% via-white/90 to-transparent pointer-events-none" aria-hidden />
+          <div className="absolute inset-x-0 bottom-[-1px] h-[40%] md:h-[36%] bg-linear-to-t from-white from-20% via-white/70 to-transparent pointer-events-none" aria-hidden />
 
           {/* Responsive Title Position - Moved lower to be closer to the paragraph */}
           <div className="absolute bottom-0 left-0 w-full px-6 md:px-8 pb-2">
@@ -226,7 +229,7 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
 
       {/* Decorative elements minimal for light theme */}
       <div className="absolute top-0 right-0 -z-10 w-1/3 h-full pointer-events-none overflow-hidden opacity-10">
-         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-500 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2" />
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-500 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2" />
       </div>
     </div>
   )
