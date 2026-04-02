@@ -115,10 +115,10 @@
   --type-size-title-lg:      1.25rem;  --type-leading-title-lg:      1.35;
   --type-size-title-md:      1.125rem; --type-leading-title-md:      1.4;
   --type-size-title-sm:      1rem;     --type-leading-title-sm:      1.4;
-  --type-size-body-2xl:       1.5rem;  --type-leading-body-2xl:       1.75;
-  --type-size-body-xl:       1.25rem;  --type-leading-body-xl:       1.75;
-  --type-size-body-lg:       1.125rem; --type-leading-body-lg:       1.7;
-  --type-size-body-md:       1rem;     --type-leading-body-md:       1.65;
+  --type-size-body-2xl:       clamp(1.125rem, 4vw, 1.5rem);  --type-leading-body-2xl:       1.75;
+  --type-size-body-xl:       clamp(1rem, 3.5vw, 1.25rem);  --type-leading-body-xl:       1.75;
+  --type-size-body-lg:       clamp(0.9375rem, 3vw, 1.125rem); --type-leading-body-lg:       1.7;
+  --type-size-body-md:       clamp(0.875rem, 2.5vw, 1rem);     --type-leading-body-md:       1.65;
   --type-size-body-sm:       0.875rem; --type-leading-body-sm:       1.6;
   --type-size-body-xs:       0.75rem;  --type-leading-body-xs:       1.5;
   --type-size-label-lg:      0.875rem; --type-leading-label-lg:      1.4;   --type-tracking-label-lg:      0.08em;
