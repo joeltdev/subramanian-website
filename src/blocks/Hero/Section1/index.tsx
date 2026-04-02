@@ -61,7 +61,7 @@ export const Section1Hero: React.FC<Section1HeroType> = ({
                   <RichText
                     data={richText}
                     enableGutter={false}
-                    className="text-balance [&_h1]:type-display [&_h1]:font-black [&_h1]:break-words [&_p]:mt-8 [&_p]:max-w-2xl [&_p]:mx-auto [&_p]:type-body-xl md:[&_p]:type-body-2xl md:[&_h1]:translate-y-4"
+                    className="text-balance [&_h1]:type-display [&_h1]:font-black [&_h1]:break-words [&_p]:mt-8 [&_p]:max-w-2xl [&_p]:mx-auto [&_p]:type-body-xl md:[&_p]:type-body-2xl md:[&_h1]:translate-y-4 lg:[&_h1]:-translate-y-5"
                   />
                 </AnimatedGroup>
               )}
