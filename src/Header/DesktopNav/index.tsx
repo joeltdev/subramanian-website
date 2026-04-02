@@ -128,18 +128,27 @@ export function DesktopNav({ data }: { data: Header }) {
       </nav>
 
       {menuCta?.url || menuCta?.reference ? (
-        <CMSLink
-          {...menuCta}
-          appearance="inline"
-          className={cn(
-            'ml-8 font-sans font-bold tracking-widest text-xs uppercase rounded-none px-6 py-3 transition-all duration-300',
-            menuCta.label?.toUpperCase().includes('MANIFESTO') 
-              ? 'bg-[#98b6e5] text-black hover:bg-[#98b6e5]/90 shadow-lg hover:shadow-[#98b6e5]/20 hover:-translate-y-0.5 flex items-center gap-2' 
-              : 'bg-primary text-primary-foreground hover:bg-primary/90'
-          )}
-        >
-          {menuCta.label?.toUpperCase().includes('MANIFESTO') && <ArrowRight className="size-4" />}
-        </CMSLink>
+        (() => {
+          const isManifesto = menuCta.label?.toUpperCase().includes('MANIFESTO')
+          const isMalayalamText = menuCta.label && /[\u0D00-\u0D7F]/.test(menuCta.label)
+          const isSpecial = isManifesto || isMalayalamText
+
+          return (
+            <CMSLink
+              {...menuCta}
+              appearance="inline"
+              className={cn(
+                'ml-8 font-sans font-bold tracking-widest text-xs uppercase rounded-none px-6 py-3 transition-all duration-300',
+                isSpecial
+                  ? 'bg-[#98b6e5] text-black hover:bg-[#98b6e5]/90 shadow-lg hover:shadow-[#98b6e5]/20 hover:-translate-y-0.5 flex items-center gap-2'
+                  : 'bg-primary text-primary-foreground hover:bg-primary/90',
+                isMalayalamText && 'font-malayalam normal-case tracking-normal text-sm'
+              )}
+            >
+              {isSpecial && <ArrowRight className="size-4" />}
+            </CMSLink>
+          )
+        })()
       ) : null}
 
       {/* Dropdown panel */}

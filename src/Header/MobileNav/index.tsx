@@ -122,19 +122,28 @@ export function MobileNav({ data }: { data: Header }) {
               {/* Footer CTA */}
               {(menuCta?.url || menuCta?.reference) && (
                 <div className="p-4 border-t">
-                  <CMSLink
-                    {...menuCta}
-                    appearance="inline"
-                    onClick={() => setOpen(false)}
-                    className={cn(
-                      "w-full justify-center transition-all duration-300",
-                      menuCta.label?.toUpperCase().includes('MANIFESTO')
-                        ? "bg-[#98b6e5] text-black hover:bg-[#98b6e5]/90 font-bold uppercase tracking-widest text-xs rounded-none py-4 h-auto shadow-md flex items-center justify-center gap-2"
-                        : ""
-                    )}
-                  >
-                    {menuCta.label?.toUpperCase().includes('MANIFESTO') && <ArrowRight className="size-4" />}
-                  </CMSLink>
+                  {(() => {
+                    const isManifesto = menuCta.label?.toUpperCase().includes('MANIFESTO')
+                    const isMalayalamText = menuCta.label && /[\u0D00-\u0D7F]/.test(menuCta.label)
+                    const isSpecial = isManifesto || isMalayalamText
+
+                    return (
+                      <CMSLink
+                        {...menuCta}
+                        appearance="inline"
+                        onClick={() => setOpen(false)}
+                        className={cn(
+                          'w-full justify-center transition-all duration-300 font-bold uppercase tracking-widest text-xs rounded-none py-4 h-auto shadow-md flex items-center justify-center gap-2',
+                          isSpecial
+                            ? 'bg-[#98b6e5] text-black hover:bg-[#98b6e5]/90'
+                            : 'bg-primary text-primary-foreground hover:bg-primary/90',
+                          isMalayalamText && 'font-malayalam normal-case tracking-normal text-sm'
+                        )}
+                      >
+                        {isSpecial && <ArrowRight className="size-4" />}
+                      </CMSLink>
+                    )
+                  })()}
                 </div>
               )}
             </div>
@@ -192,19 +201,28 @@ export function MobileNav({ data }: { data: Header }) {
               {/* Footer CTA */}
               {(menuCta?.url || menuCta?.reference) && (
                 <div className="mt-auto p-4 border-t">
-                  <CMSLink
-                    {...menuCta}
-                    appearance="inline"
-                    onClick={() => setOpen(false)}
-                    className={cn(
-                      "w-full justify-center transition-all duration-300",
-                      menuCta.label?.toUpperCase().includes('MANIFESTO')
-                        ? "bg-[#98b6e5] text-black hover:bg-[#98b6e5]/90 font-bold uppercase tracking-widest text-xs rounded-none py-4 h-auto shadow-md flex items-center justify-center gap-2"
-                        : ""
-                    )}
-                  >
-                    {menuCta.label?.toUpperCase().includes('MANIFESTO') && <ArrowRight className="size-4" />}
-                  </CMSLink>
+                  {(() => {
+                    const isManifesto = menuCta.label?.toUpperCase().includes('MANIFESTO')
+                    const isMalayalamText = menuCta.label && /[\u0D00-\u0D7F]/.test(menuCta.label)
+                    const isSpecial = isManifesto || isMalayalamText
+
+                    return (
+                      <CMSLink
+                        {...menuCta}
+                        appearance="inline"
+                        onClick={() => setOpen(false)}
+                        className={cn(
+                          'w-full justify-center transition-all duration-300 font-bold uppercase tracking-widest text-xs rounded-none py-4 h-auto shadow-md flex items-center justify-center gap-2',
+                          isSpecial
+                            ? 'bg-[#98b6e5] text-black hover:bg-[#98b6e5]/90'
+                            : 'bg-primary text-primary-foreground hover:bg-primary/90',
+                          isMalayalamText && 'font-malayalam normal-case tracking-normal text-sm'
+                        )}
+                      >
+                        {isSpecial && <ArrowRight className="size-4" />}
+                      </CMSLink>
+                    )
+                  })()}
                 </div>
               )}
             </div>
