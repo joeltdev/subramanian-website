@@ -22,7 +22,7 @@ export const PromoHeroBlock: React.FC<T> = ({ intro, links }) => {
               <RichText
                 data={intro}
                 enableGutter={false}
-                className="[&_h1]:type-display [&_h1]:text-type-heading [&_p]:type-body-xl md:[&_p]:type-body-2xl [&_p]:text-type-secondary [&_p]:mt-8 [&_p]:mx-auto [&_p]:max-w-3xl [&_h1]:break-words"
+                className="[&_h1]:type-display [&_h1]:text-type-heading lg:[&_h1]:text-[6.5rem] [&_p]:type-body-xl md:[&_p]:type-body-2xl [&_p]:text-type-secondary [&_p]:mt-8 [&_p]:mx-auto [&_p]:max-w-3xl [&_h1]:break-words"
               />
             </motion.div>
           )}

@@ -73,8 +73,8 @@ export const Section2Hero: React.FC<Section2HeroType> = ({
 
           return (
         <h1 className={`m-0 font-black flex flex-col items-start gap-1 leading-none break-words ${malayalamHeading ? 'font-malayalam' : ''}`}>
-          <span className="type-display text-foreground" style={{ fontWeight: 800 }}>{firstLine}</span>
-          <span className="type-display text-foreground" style={{ fontWeight: 800 }}>{secondLine}</span>
+          <span className="type-display text-foreground lg:text-[6.5rem]" style={{ fontWeight: 800 }}>{firstLine}</span>
+          <span className="type-display text-foreground lg:text-[6.5rem]" style={{ fontWeight: 800 }}>{secondLine}</span>
         </h1>
           )
         }

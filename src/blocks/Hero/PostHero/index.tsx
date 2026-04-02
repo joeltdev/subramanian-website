@@ -39,7 +39,7 @@ export const PostHero: React.FC<{
           </div>
 
           <div className="">
-            <h1 className="mb-6 type-display text-background">{title}</h1>
+            <h1 className="mb-6 type-display text-background lg:text-[6.5rem]">{title}</h1>
           </div>
 
           <div className="flex flex-col md:flex-row gap-4 md:gap-16">

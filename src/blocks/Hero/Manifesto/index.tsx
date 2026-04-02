@@ -68,7 +68,7 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
         return (
           <h1 className={`m-0 font-extrabold tracking-tight ${isMalayalam ? 'leading-[1.15] py-2 font-malayalam' : 'leading-tight'}`}>
             <span
-              className="type-display text-foreground text-balance md:max-w-[800px] block"
+              className="type-display text-foreground text-balance md:max-w-[800px] lg:text-[6.5rem] block"
               style={{ fontWeight: 800 }}
             >
               {text}
@@ -161,7 +161,7 @@ export const ManifestoHero: React.FC<ManifestoHeroType> = ({
                     data={richText}
                     enableGutter={false}
                     converters={heroConverters}
-                    className={`text-left text-balance [&_p]:hidden [&_h1_*]:!text-brand-600 [&_h1]:!drop-shadow-none [&_h2]:type-display [&_h2]:!text-brand-600  [&_h2]:mb-0 [&_h1]:break-words [&_h2]:break-words md:[&_h1]:translate-y-4 lg:[&_h1]:-translate-y-5 ${isMalayalamContent ? 'font-malayalam' : ''}`}
+                    className={`text-left text-balance [&_p]:hidden [&_h1_*]:!text-brand-600 [&_h1]:!drop-shadow-none [&_h2]:type-display lg:[&_h2]:text-[6.5rem] [&_h2]:!text-brand-600  [&_h2]:mb-0 [&_h1]:break-words [&_h2]:break-words md:[&_h1]:translate-y-4 lg:[&_h1]:-translate-y-5 ${isMalayalamContent ? 'font-malayalam' : ''}`}
                   />
                 </AnimatedGroup>
               )}
