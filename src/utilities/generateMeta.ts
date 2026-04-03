@@ -37,9 +37,12 @@ export const generateMeta = async (args: {
 
   const ogImage = getImageURL(doc?.meta?.image)
 
-  const title = doc?.meta?.title
-    ? doc?.meta?.title + ' | കെ.സി. സുബ്രഹ്മണ്യൻ'
-    : 'കെ.സി. സുബ്രഹ്മണ്യൻ | ഔദ്യോഗിക വെബ്സൈറ്റ്'
+  let title = 'കെ.സി. സുബ്രഹ്മണ്യൻ | ഔദ്യോഗിക വെബ്സൈറ്റ്'
+  if (doc?.meta?.title) {
+    title = doc.meta.title.includes('കെ.സി. സുബ്രഹ്മണ്യൻ')
+      ? doc.meta.title
+      : `${doc.meta.title} | കെ.സി. സുബ്രഹ്മണ്യൻ`
+  }
 
   return {
     description: doc?.meta?.description,
