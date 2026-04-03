@@ -38,8 +38,8 @@ export const generateMeta = async (args: {
   const ogImage = getImageURL(doc?.meta?.image)
 
   const title = doc?.meta?.title
-    ? doc?.meta?.title + ' | Payload Website Template'
-    : 'Payload Website Template'
+    ? doc?.meta?.title + ' | കെ.സി. സുബ്രഹ്മണ്യൻ'
+    : 'കെ.സി. സുബ്രഹ്മണ്യൻ | ഔദ്യോഗിക വെബ്സൈറ്റ്'
 
   return {
     description: doc?.meta?.description,

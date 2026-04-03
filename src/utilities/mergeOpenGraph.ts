@@ -3,14 +3,14 @@ import { getServerSideURL } from './getURL'
 
 const defaultOpenGraph: Metadata['openGraph'] = {
   type: 'website',
-  description: 'An open-source website built with Payload and Next.js.',
+  description: 'കെ.സി. സുബ്രഹ്മണ്യൻ്റെ ഔദ്യോഗിക വെബ്സൈറ്റ്.',
   images: [
     {
       url: `${getServerSideURL()}/website-template-OG.webp`,
     },
   ],
-  siteName: 'Payload Website Template',
-  title: 'Payload Website Template',
+  siteName: 'കെ.സി. സുബ്രഹ്മണ്യൻ',
+  title: 'കെ.സി. സുബ്രഹ്മണ്യൻ | ഔദ്യോഗിക വെബ്സൈറ്റ്',
 }
 
 export const mergeOpenGraph = (og?: Metadata['openGraph']): Metadata['openGraph'] => {

@@ -16,7 +16,7 @@ import { getServerSideURL } from '@/utilities/getURL'
 
 const generateTitle: GenerateTitle<Post | Page> = ({ doc }) => {
   const label = doc?.title ?? (doc as unknown as { name?: string })?.name
-  return label ? `${label} | Payload Website Template` : 'Payload Website Template'
+  return label ? `${label} | കെ.സി. സുബ്രഹ്മണ്യൻ` : 'കെ.സി. സുബ്രഹ്മണ്യൻ | ഔദ്യോഗിക വെബ്സൈറ്റ്'
 }
 
 const generateURL: GenerateURL<Post | Page> = ({ doc, collectionConfig }) => {
